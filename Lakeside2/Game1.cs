@@ -10,6 +10,8 @@ namespace Lakeside2
         private SpriteBatch _spriteBatch;
         private InputHandler input;
 
+        TileMap testMap;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -33,6 +35,8 @@ namespace Lakeside2
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            testMap = new TileMap(Content, 20, 10);
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -50,7 +54,7 @@ namespace Lakeside2
 
             _spriteBatch.Begin();
 
-            // drawing goes here...
+            testMap.draw(_spriteBatch, Vector2.Zero);
 
             _spriteBatch.End();
 
