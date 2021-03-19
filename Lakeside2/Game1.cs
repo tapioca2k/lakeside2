@@ -14,12 +14,17 @@ namespace Lakeside2
         const int SCREEN_HEIGHT = 720;
         const bool FULLSCREEN = false;
 
-        const int INTERNAL_WIDTH = 320;
-        const int INTERNAL_HEIGHT = 180;
+        public const int INTERNAL_WIDTH = 320;
+        public const int INTERNAL_HEIGHT = 180;
+
+        public const int TILE_WIDTH = INTERNAL_WIDTH / Tile.TILE_SIZE;
+        public const int TILE_HEIGHT = INTERNAL_HEIGHT / Tile.TILE_SIZE;
+
+        public static Texture2D WHITE_PIXEL;
 
         RenderTarget2D mainTarget;
 
-        TileMap testMap;
+        World world;
 
         public Game1()
         {
@@ -39,6 +44,9 @@ namespace Lakeside2
 
             input = new InputHandler();
 
+            WHITE_PIXEL = new Texture2D(GraphicsDevice, 1, 1);
+            WHITE_PIXEL.SetData<Color>(new Color[] { Color.White });
+
             base.Initialize();
         }
 
@@ -46,7 +54,7 @@ namespace Lakeside2
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            testMap = new TileMap(Content, 20, 10);
+            world = new World(Content);
 
         }
 
@@ -55,6 +63,11 @@ namespace Lakeside2
             input.update();
             if (input.isKeyPressed(Keys.Escape))
                 Exit();
+
+            double dt = gameTime.ElapsedGameTime.TotalSeconds;
+
+            world.onInput(input);
+            world.update(dt);
 
             base.Update(gameTime);
         }
@@ -65,7 +78,7 @@ namespace Lakeside2
             GraphicsDevice.SetRenderTarget(mainTarget);
             _spriteBatch.Begin();
             // most drawing happens here...
-            testMap.draw(_spriteBatch, Vector2.Zero);
+            world.draw(_spriteBatch);
             _spriteBatch.End();
 
             // scale to screen size, draw to window
