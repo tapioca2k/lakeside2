@@ -36,7 +36,9 @@ namespace Lakeside2
 
         public void draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.WHITE_PIXEL, new Rectangle(0, Game1.INTERNAL_HEIGHT - STRIPE_HEIGHT, Game1.INTERNAL_WIDTH, STRIPE_HEIGHT), Color.White);
+            spriteBatch.Draw(Game1.WHITE_PIXEL, 
+                new Rectangle(0, Game1.INTERNAL_HEIGHT - STRIPE_HEIGHT, Game1.INTERNAL_WIDTH, STRIPE_HEIGHT), 
+                Color.White);
             spriteBatch.Draw(logo, logoPosition, Color.White);
         }
     }
