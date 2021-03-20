@@ -22,6 +22,9 @@ namespace Lakeside2
             map = new TileMap(Content, 20, 10);
             camera = new TilemapCamera(map);
             stripe = new UiStripe(Content);
+
+            stripe.addElement(new UiTextDisplay(Fonts.loadFont(Content, "Arial"), "$1000"), 'l');
+            stripe.addElement(new UiTextDisplay(Fonts.get("Arial"), "3:23PM"), 'r');
         }
 
         public void update(double dt)

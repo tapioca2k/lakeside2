@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Lakeside2
 {
-    class TextInput
+    class UiTextInput : UiTextDisplay
     {
         static Dictionary<Keys, char> TRANSLATION = new Dictionary<Keys, char>()
         {
@@ -25,38 +25,22 @@ namespace Lakeside2
             { Keys.OemPeriod, '.' }
         };
 
-
-        SpriteFont font;
-
-        public Vector2 position;
-        public string typed;
-        public bool finished;
-
-        public TextInput(SpriteFont font, Vector2 position)
+        public UiTextInput(SpriteFont font) : base(font, "")
         {
-            this.font = font;
-            this.position = position;
-            this.finished = false;
-            this.typed = "";
         }
 
-        static void keyPressed(object sender, EventArgs e)
-        {
-
-        } 
-
-        public void update(InputHandler ih)
+        public void input(InputHandler ih)
         {
             if (finished) return;
             else if (ih.isKeyPressed(Keys.Enter)) finished = true;
             else if (ih.isKeyPressed(Keys.Escape))
             {
                 finished = true;
-                typed = "";
+                text = "";
             }
             else if (ih.isKeyPressed(Keys.Back))
             {
-                typed = typed.Substring(0, typed.Length - 1);
+                text = text.Substring(0, text.Length - 1);
             }
             else
             {
@@ -64,16 +48,11 @@ namespace Lakeside2
                 {
                     if (ih.isKeyPressed(k))
                     {
-                        if (TRANSLATION.ContainsKey(k)) typed += TRANSLATION[k];
-                        else typed += k.ToString().ToLower();
+                        if (TRANSLATION.ContainsKey(k)) text += TRANSLATION[k];
+                        else text += k.ToString().ToLower();
                     }
                 }
             }
-        }
-
-        public void draw(SpriteBatch sb)
-        {
-            sb.DrawString(font, typed, position, Color.Black);
         }
 
 
