@@ -14,6 +14,8 @@ namespace Lakeside2
         const int SCREEN_HEIGHT = 720;
         const bool FULLSCREEN = false;
 
+        public static Color BG_COLOR = new Color(140, 145, 0);
+
         public const int INTERNAL_WIDTH = 320;
         public const int INTERNAL_HEIGHT = 180;
 
@@ -25,6 +27,8 @@ namespace Lakeside2
         RenderTarget2D mainTarget;
 
         World world;
+
+        Effect colorize;
 
         public Game1()
         {
@@ -55,6 +59,7 @@ namespace Lakeside2
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Fonts.loadFont(Content, "Arial");
+            colorize = Content.Load<Effect>("colorize");
 
             world = new World(Content);
         }
@@ -84,8 +89,8 @@ namespace Lakeside2
 
             // scale to screen size, draw to window
             GraphicsDevice.SetRenderTarget(null);
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            GraphicsDevice.Clear(BG_COLOR);
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: colorize);
             _spriteBatch.Draw(mainTarget, new Rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT), Color.White);
             _spriteBatch.End();
 
