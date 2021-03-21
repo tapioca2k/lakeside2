@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lakeside2
+namespace Lakeside2.UI
 {
-    class UiTextDisplay : IUiElement
+    class UiTextDisplay : UiElement
     {
         public override Vector2 size
         {
@@ -31,6 +31,7 @@ namespace Lakeside2
             this.font = font;
             this.text = text;
         }
+
 
         public override void draw(SpriteBatch spriteBatch, Vector2 location)
         {

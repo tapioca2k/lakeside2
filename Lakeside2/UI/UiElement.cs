@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lakeside2
+namespace Lakeside2.UI
 {
-    abstract class IUiElement
+    abstract class UiElement
     {
         public abstract Vector2 size
         {
@@ -17,6 +17,14 @@ namespace Lakeside2
         {
             get;
             set;
+        }
+
+        public virtual void update(double dt)
+        {
+        }
+
+        public virtual void onInput(InputHandler input)
+        {
         }
 
         public abstract void draw(SpriteBatch spriteBatch, Vector2 location);

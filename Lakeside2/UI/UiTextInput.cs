@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lakeside2
+namespace Lakeside2.UI
 {
     class UiTextInput : UiTextDisplay
     {
@@ -29,24 +29,24 @@ namespace Lakeside2
         {
         }
 
-        public void input(InputHandler ih)
+        public override void onInput(InputHandler input)
         {
             if (finished) return;
-            else if (ih.isKeyPressed(Keys.Enter)) finished = true;
-            else if (ih.isKeyPressed(Keys.Escape))
+            else if (input.isKeyPressed(Keys.Enter)) finished = true;
+            else if (input.isKeyPressed(Keys.Escape))
             {
                 finished = true;
                 text = "";
             }
-            else if (ih.isKeyPressed(Keys.Back))
+            else if (input.isKeyPressed(Keys.Back))
             {
                 text = text.Substring(0, text.Length - 1);
             }
             else
             {
-                foreach (Keys k in ih.heldKeys)
+                foreach (Keys k in input.heldKeys)
                 {
-                    if (ih.isKeyPressed(k))
+                    if (input.isKeyPressed(k))
                     {
                         if (TRANSLATION.ContainsKey(k)) text += TRANSLATION[k];
                         else text += k.ToString().ToLower();

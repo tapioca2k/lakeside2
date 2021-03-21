@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Lakeside2.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -10,9 +11,7 @@ namespace Lakeside2
 {
     class World
     {
-        UiStripe stripe;
-        
-        //UiSystem ui;
+        UiSystem ui;
 
         TilemapCamera camera;
         TileMap map;
@@ -21,10 +20,10 @@ namespace Lakeside2
         {
             map = new TileMap(Content, 20, 10);
             camera = new TilemapCamera(map);
-            stripe = new UiStripe(Content);
+            ui = new UiSystem(Content);
 
-            stripe.addElement(new UiTextDisplay(Fonts.loadFont(Content, "Arial"), "$1000"), 'l');
-            stripe.addElement(new UiTextDisplay(Fonts.get("Arial"), "3:23PM"), 'r');
+            ui.addStripeElement(new UiTextDisplay(Fonts.get("Arial"), "$1000"), 'l');
+            ui.addStripeElement(new UiTextDisplay(Fonts.get("Arial"), "3:23PM"), 'r');
         }
 
         public void update(double dt)
@@ -43,9 +42,8 @@ namespace Lakeside2
         public void draw(SpriteBatch spriteBatch)
         {
             camera.draw(spriteBatch);
-            // ui.draw(spriteBatch);
-
-            stripe.draw(spriteBatch);
+            ui.draw(spriteBatch);
         }
+
     }
 }

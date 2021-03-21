@@ -54,8 +54,9 @@ namespace Lakeside2
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            world = new World(Content);
+            Fonts.loadFont(Content, "Arial");
 
+            world = new World(Content);
         }
 
         protected override void Update(GameTime gameTime)

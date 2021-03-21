@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lakeside2
+namespace Lakeside2.UI
 {
     class UiStripe
     {
@@ -14,7 +14,7 @@ namespace Lakeside2
         Texture2D logo;
         Vector2 logoPosition;
 
-        public IUiElement leftElement, rightElement;
+        public UiElement leftElement, rightElement;
         Vector2 stripeLeft, stripeRight;
 
         public UiStripe(ContentManager Content)
@@ -32,7 +32,7 @@ namespace Lakeside2
         }
 
         
-        public void addElement(IUiElement element, char location)
+        public void addElement(UiElement element, char location)
         {
             if (location == 'l')
             {
@@ -46,6 +46,11 @@ namespace Lakeside2
             }
         }
         
+        public void update(double dt)
+        {
+            if (leftElement != null) leftElement.update(dt);
+            if (rightElement != null) rightElement.update(dt);
+        }
         
 
         public void draw(SpriteBatch spriteBatch)
