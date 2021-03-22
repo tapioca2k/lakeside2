@@ -11,14 +11,16 @@ namespace Lakeside2
         static float SLOWNESS = 0.1f;
 
         TileMap map;
+        Player player;
         Vector2 location;
 
         bool inMove;
         Vector2 targetLocation;
 
-        public TilemapCamera(TileMap map)
+        public TilemapCamera(TileMap map, Player player)
         {
             this.map = map;
+            this.player = player;
             location = Vector2.Zero;
 
             inMove = false;

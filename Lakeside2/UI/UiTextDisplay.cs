@@ -32,7 +32,6 @@ namespace Lakeside2.UI
             this.text = text;
         }
 
-
         public override void draw(SpriteBatch spriteBatch, Vector2 location)
         {
             spriteBatch.DrawString(font, text, location, Color.Black);
