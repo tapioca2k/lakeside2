@@ -4,13 +4,14 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Lakeside2
 {
-    class Player
+    class Player : IEntity
     {
-        const int RUN_SPEED = 100;
+        const int RUN_SPEED = 75;
 
         Texture2D texture;
         TileMap map;
@@ -25,11 +26,16 @@ namespace Lakeside2
         }
 
         Vector2 location;
+        public Vector2 getLocation()
+        {
+            return location;
+        }
+
         public Vector2 tileLocation
         {
             get
             {
-                return TileMap.realToTile(location);
+                return TileMap.worldToTile(location);
             }
             set
             {
@@ -93,15 +99,15 @@ namespace Lakeside2
                 if (!moving)
                 {
                     // correct for floating point weirdness, ensure location is on the grid
-                    // TODO make this step unnecessary...
-                    tileLocation = TileMap.realToTile(location + Vector2.One);
+                    // TODO really need to clean up floating point weirdness!!
+                    location = Vector2.Round(location);
                 }
             }
         }
 
-        public void draw(SpriteBatch spriteBatch)
+        public void draw(SpriteBatch spriteBatch, TilemapCamera camera)
         {
-            spriteBatch.Draw(texture, location, Color.White);
+            spriteBatch.Draw(texture, camera.worldToScreen(location), Color.White);
         }
     }
 }

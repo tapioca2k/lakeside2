@@ -11,11 +11,18 @@ namespace Lakeside2
 {
     class World
     {
+        public const int PORTAL_WIDTH = Game1.INTERNAL_WIDTH;
+        public const int HALF_PORTAL_WIDTH = PORTAL_WIDTH / 2;
+        public const int PORTAL_HEIGHT = Game1.INTERNAL_HEIGHT - 16 - 4;
+        public const int HALF_PORTAL_HEIGHT = PORTAL_HEIGHT / 2;
+
+
         UiSystem ui;
 
         TilemapCamera camera;
         TileMap map;
 
+        List<IEntity> entities;
         Player player;
 
         public World(ContentManager Content)
@@ -24,8 +31,12 @@ namespace Lakeside2
             player = new Player(Content, map);
             camera = new TilemapCamera(map, player);
             ui = new UiSystem(Content);
+            camera.centerPlayer(true);
 
-            ui.addStripeElement(new UiPlayerLocationDisplay(Fonts.get("Arial"), player), 'l');
+            entities = new List<IEntity>();
+            entities.Add(player);
+
+            ui.addStripeElement(new UiPlayerLocationDisplay(player), 'l');
         }
 
         public void update(double dt)
@@ -43,8 +54,7 @@ namespace Lakeside2
 
         public void draw(SpriteBatch spriteBatch)
         {
-            camera.draw(spriteBatch);
-            player.draw(spriteBatch);
+            camera.draw(spriteBatch, entities);
             ui.draw(spriteBatch);
         }
 

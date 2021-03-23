@@ -14,7 +14,7 @@ namespace Lakeside2
         public int width;
         public int height;
 
-        public static Vector2 realToTile(Vector2 real)
+        public static Vector2 worldToTile(Vector2 real)
         {
             return new Vector2(
                 (int)real.X / Tile.TILE_SIZE,

@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Lakeside2.UI
 {
-    // probbaly just for debug
+    // probably just for debug
     class UiPlayerLocationDisplay : UiTextDisplay
     {
         Player player;
-        public UiPlayerLocationDisplay(SpriteFont font, Player player) : base(font, "----------")
+        public UiPlayerLocationDisplay(Player player) : base(Fonts.get("Arial"), "----------")
         {
             this.player = player;
         }

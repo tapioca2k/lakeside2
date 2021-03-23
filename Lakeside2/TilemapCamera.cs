@@ -13,9 +13,19 @@ namespace Lakeside2
         TileMap map;
         Player player;
         Vector2 location;
+        bool centeringPlayer;
 
         bool inMove;
         Vector2 targetLocation;
+
+        public Vector2 screenToWorld(Vector2 coordinates)
+        {
+            return location + coordinates;
+        }
+        public Vector2 worldToScreen(Vector2 coordinates)
+        {
+            return coordinates - location;
+        }
 
         public TilemapCamera(TileMap map, Player player)
         {
@@ -34,15 +44,18 @@ namespace Lakeside2
 
         public void tileMoveX(int amnt)
         {
-            if (inMove) return;
-            targetLocation = new Vector2(location.X + (amnt * Tile.TILE_SIZE), location.Y);
-            inMove = true;
+            tileMove(amnt, 0);
         }
 
         public void tileMoveY(int amnt)
         {
+            tileMove(0, amnt);
+        }
+
+        public void tileMove(int x, int y)
+        {
             if (inMove) return;
-            targetLocation = new Vector2(location.X, location.Y + (amnt * Tile.TILE_SIZE));
+            targetLocation = new Vector2(location.X + (x * Tile.TILE_SIZE), location.Y + (y * Tile.TILE_SIZE));
             inMove = true;
         }
 
@@ -58,11 +71,27 @@ namespace Lakeside2
                     inMove = false;
                 }
             }
+
+            if (centeringPlayer)
+            {
+                location = new Vector2(
+                    player.getLocation().X - World.HALF_PORTAL_WIDTH, 
+                    player.getLocation().Y - World.HALF_PORTAL_HEIGHT);
+            }
         }
 
-        public void draw(SpriteBatch spriteBatch)
+        public void centerPlayer(bool center)
+        {
+            this.centeringPlayer = center;
+        }
+
+        public void draw(SpriteBatch spriteBatch, List<IEntity> entities)
         {
             map.draw(spriteBatch, -location);
+            foreach (IEntity entity in entities) {
+                entity.draw(spriteBatch, this);
+            }
+
         }
 
     }
