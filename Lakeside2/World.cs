@@ -36,7 +36,11 @@ namespace Lakeside2
             entities = new List<IEntity>();
             entities.Add(player);
 
-            ui.addStripeElement(new UiPlayerLocationDisplay(player), 'l');
+            ui.addStripeElement(new UiObjectMonitor(player, (player) =>
+            {
+                Player p = (Player)player;
+                return p.tileLocation.ToString();
+            }), 'l');
         }
 
         public void update(double dt)
