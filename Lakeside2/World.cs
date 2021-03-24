@@ -16,6 +16,7 @@ namespace Lakeside2
         public const int PORTAL_HEIGHT = Game1.INTERNAL_HEIGHT - 16 - 4;
         public const int HALF_PORTAL_HEIGHT = PORTAL_HEIGHT / 2;
 
+        ContentManager Content;
 
         UiSystem ui;
 
@@ -27,7 +28,9 @@ namespace Lakeside2
 
         public World(ContentManager Content)
         {
-            map = new TileMap(Content, 20, 10);
+            this.Content = Content;
+
+            map = SerializableMap.Load(Content, "default.txt");
             player = new Player(Content, map);
             camera = new TilemapCamera(map, player);
             ui = new UiSystem(Content);
@@ -53,6 +56,13 @@ namespace Lakeside2
         {
             player.onInput(input);
             ui.onInput(input);
+
+
+            // DEBUG attempt to save the current TileMap
+            if (input.isKeyPressed(Keys.B))
+            {
+                SerializableMap.Save(Content, map, "DefaultMap.txt");
+            }
         }
 
         public void draw(SpriteBatch spriteBatch)

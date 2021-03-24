@@ -9,7 +9,7 @@ namespace Lakeside2
 {
     class TileMap
     {
-        Tile[,] map;
+        public Tile[,] map;
         bool[,] collision;
         public int width;
         public int height;
@@ -21,6 +21,7 @@ namespace Lakeside2
                 (int)real.Y / Tile.TILE_SIZE);
         }
 
+        // default, empty TileMap
         public TileMap(ContentManager Content, int width, int height)
         {
             this.width = width;
@@ -35,6 +36,15 @@ namespace Lakeside2
                     collision[x, y] = true;
                 }
             }
+        }
+
+        // only SerializableMap.ToTilemap() should use this constructor
+        public TileMap(Tile[,] tiles, bool[,] collision)
+        {
+            this.map = tiles;
+            this.collision = collision;
+            this.width = tiles.GetLength(0);
+            this.height = tiles.GetLength(1);
         }
 
         public bool checkCollision(int x, int y)
