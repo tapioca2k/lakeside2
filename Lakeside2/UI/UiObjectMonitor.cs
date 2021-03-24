@@ -5,11 +5,11 @@ using System.Text;
 namespace Lakeside2.UI
 {
     // Debug UI element for displaying some object info on screen
-    class UiObjectMonitor : UiTextDisplay
+    class UiObjectMonitor<T> : UiTextDisplay
     {
-        Object obj;
-        Func<Object, string> lambda;
-        public UiObjectMonitor(Object obj, Func<Object, string> lambda) : base(Fonts.get("Arial"), "----------")
+        T obj;
+        Func<T, string> lambda;
+        public UiObjectMonitor(T obj, Func<T, string> lambda) : base(Fonts.get("Arial"), "----------")
         {
             this.obj = obj;
             this.lambda = lambda;
