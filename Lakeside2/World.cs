@@ -1,4 +1,5 @@
-﻿using Lakeside2.UI;
+﻿using Lakeside2.Editor;
+using Lakeside2.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -26,15 +27,22 @@ namespace Lakeside2
         List<IEntity> entities;
         Player player;
 
-        public World(ContentManager Content)
+        bool editing = false;
+        EditingOverlay editor;
+
+        public World(ContentManager Content, string filename=null)
         {
             this.Content = Content;
 
-            map = SerializableMap.Load(Content, "default.txt");
+            if (filename != null) map = SerializableMap.Load(Content, filename);
+            else map = new TileMap(Content, 20, 10);
+
             player = new Player(Content, map);
-            camera = new TilemapCamera(map, player);
+            camera = new TilemapCamera(map);
             ui = new UiSystem(Content);
-            camera.centerPlayer(true);
+
+            camera.setCenteringEntity(player);
+            camera.centerEntity(true);
 
             entities = new List<IEntity>();
             entities.Add(player);
@@ -45,30 +53,58 @@ namespace Lakeside2
             }), 'l');
         }
 
-        public void update(double dt)
-        {
-            player.update(dt);
-            camera.update(dt);
-            ui.update(dt);
-        }
-
         public void onInput(InputHandler input)
         {
-            player.onInput(input);
-            ui.onInput(input);
-
-
-            // DEBUG attempt to save the current TileMap
-            if (input.isKeyPressed(Keys.B))
+            if (!editing)
             {
-                SerializableMap.Save(Content, map, "DefaultMap.txt");
+                player.onInput(input);
+                ui.onInput(input);
+            }
+            else
+            {
+                editor.onInput(input);
+            }
+
+            // enter/exit editing mode
+            if (input.isKeyPressed(Keys.F1))
+            {
+                editing = !editing;
+                if (editing)
+                {
+                    editor = new EditingOverlay(Content, camera, map);
+                }
+                else
+                {
+                    editor = null;
+                    camera.setCenteringEntity(player); // editing mode stole this
+                }
+            }
+        }
+        public void update(double dt)
+        {
+            if (!editing)
+            {
+                player.update(dt);
+                ui.update(dt);
+                camera.update(dt);
+            }
+            else
+            {
+                editor.update(dt);
             }
         }
 
         public void draw(SpriteBatch spriteBatch)
         {
-            camera.draw(spriteBatch, entities);
-            ui.draw(spriteBatch);
+            if (editing)
+            {
+                editor.draw(spriteBatch);
+            }
+            else
+            {
+                camera.draw(spriteBatch, entities);
+                ui.draw(spriteBatch);
+            }
         }
 
     }

@@ -20,6 +20,14 @@ namespace Lakeside2.UI
             locations = new List<Vector2>();
         }
 
+        // create a UiSystem with no logo on the stripe (for edit mode)
+        public UiSystem()
+        {
+            stripe = new UiStripe();
+            stack = new List<UiElement>();
+            locations = new List<Vector2>();
+        }
+
         public void update(double dt)
         {
             stripe.update(dt);

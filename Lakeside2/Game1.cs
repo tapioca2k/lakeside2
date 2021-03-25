@@ -61,7 +61,7 @@ namespace Lakeside2
             Fonts.loadFont(Content, "Arial");
             colorize = Content.Load<Effect>("colorize");
 
-            world = new World(Content);
+            world = new World(Content, "default.txt");
         }
 
         protected override void Update(GameTime gameTime)

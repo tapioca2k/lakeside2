@@ -31,6 +31,12 @@ namespace Lakeside2.UI
                 Math.Max(STRIPE_START, (Game1.INTERNAL_HEIGHT - logo.Height) / 2));
         }
 
+        public UiStripe()
+        {
+            logo = null;
+            logoPosition = Vector2.Zero;
+        }
+
         
         public void addElement(UiElement element, char location)
         {
@@ -49,16 +55,25 @@ namespace Lakeside2.UI
         public void update(double dt)
         {
             if (leftElement != null) leftElement.update(dt);
-            if (rightElement != null) rightElement.update(dt);
+            if (rightElement != null)
+            {
+                rightElement.update(dt);
+                // update stripeRight location in case the element changed size
+                stripeRight = new Vector2(Game1.INTERNAL_WIDTH - rightElement.size.X, STRIPE_START);
+            }
+
         }
-        
+
 
         public void draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.WHITE_PIXEL, 
                 new Rectangle(0, Game1.INTERNAL_HEIGHT - STRIPE_HEIGHT, Game1.INTERNAL_WIDTH, STRIPE_HEIGHT), 
                 Color.White);
-            spriteBatch.Draw(logo, logoPosition, Color.White);
+            if (logo != null)
+            {
+                spriteBatch.Draw(logo, logoPosition, Color.White);
+            }
 
             if (leftElement != null) leftElement.draw(spriteBatch, stripeLeft);
             if (rightElement != null) rightElement.draw(spriteBatch, stripeRight);

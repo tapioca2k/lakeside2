@@ -11,9 +11,10 @@ namespace Lakeside2
         static float SLOWNESS = 0.1f;
 
         TileMap map;
-        Player player;
         Vector2 location;
-        bool centeringPlayer;
+
+        IEntity centeredEntity;
+        bool centeringEntity;
 
         bool inMove;
         Vector2 targetLocation;
@@ -27,10 +28,9 @@ namespace Lakeside2
             return coordinates - location;
         }
 
-        public TilemapCamera(TileMap map, Player player)
+        public TilemapCamera(TileMap map)
         {
             this.map = map;
-            this.player = player;
             location = Vector2.Zero;
 
             inMove = false;
@@ -72,17 +72,21 @@ namespace Lakeside2
                 }
             }
 
-            if (centeringPlayer)
+            if (centeringEntity)
             {
                 location = new Vector2(
-                    player.getLocation().X - World.HALF_PORTAL_WIDTH, 
-                    player.getLocation().Y - World.HALF_PORTAL_HEIGHT);
+                    centeredEntity.getLocation().X - World.HALF_PORTAL_WIDTH,
+                    centeredEntity.getLocation().Y - World.HALF_PORTAL_HEIGHT);
             }
         }
 
-        public void centerPlayer(bool center)
+        public void centerEntity(bool center)
         {
-            this.centeringPlayer = center;
+            this.centeringEntity = center;
+        }
+        public void setCenteringEntity(IEntity entity)
+        {
+            this.centeredEntity = entity;
         }
 
         public void draw(SpriteBatch spriteBatch, List<IEntity> entities)
