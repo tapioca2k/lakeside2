@@ -22,7 +22,13 @@ namespace Lakeside2
         UiSystem ui;
 
         TilemapCamera camera;
-        TileMap map;
+        TileMap map
+        {
+            get
+            {
+                return camera.getMap();
+            }
+        }
 
         List<IEntity> entities;
         Player player;
@@ -34,9 +40,7 @@ namespace Lakeside2
         {
             this.Content = Content;
 
-            if (filename != null) map = SerializableMap.Load(Content, filename);
-            else map = new TileMap(Content, 20, 10);
-
+            TileMap map = new TileMap(Content, 20, 10);
             player = new Player(Content, map);
             camera = new TilemapCamera(map);
             ui = new UiSystem(Content);
@@ -71,7 +75,7 @@ namespace Lakeside2
                 editing = !editing;
                 if (editing)
                 {
-                    editor = new EditingOverlay(Content, camera, map);
+                    editor = new EditingOverlay(Content, camera);
                 }
                 else
                 {

@@ -16,9 +16,16 @@ namespace Lakeside2.Editor
         UiSystem ui;
         Cursor cursor;
         TilemapCamera camera;
-        TileMap map;
 
-        public EditingOverlay(ContentManager Content, TilemapCamera camera, TileMap map)
+        TileMap map
+        {
+            get
+            {
+                return camera.getMap();
+            }
+        }
+
+        public EditingOverlay(ContentManager Content, TilemapCamera camera)
         {
             this.Content = Content;
 
@@ -32,7 +39,6 @@ namespace Lakeside2.Editor
             }), 'r');
 
             this.camera = camera;
-            this.map = map;
             this.camera.setCenteringEntity(cursor);
         }
 
@@ -58,8 +64,6 @@ namespace Lakeside2.Editor
                 UiElement filename = new UiTextInput().addCallback((element) =>
                 {
                     TileMap newMap = SerializableMap.Load(Content, ((UiTextInput)element).text);
-                    this.map = newMap;
-                    // TODO this appears to draw correctly when leaving edit mode but the map in World isn't changing. WILL cause bugs.
                     this.camera.setMap(newMap);
                     cursor.setLocation(Vector2.Zero);
                     return true;

@@ -66,9 +66,17 @@ namespace Lakeside2
 
         public static TileMap Load(ContentManager Content, string filename)
         {
-            string json = File.ReadAllText(Content.RootDirectory + MAPS_DIRECTORY + filename);
-            SerializableMap s = JsonSerializer.Deserialize<SerializableMap>(json);
-            return ToTilemap(Content, s);
+            try
+            {
+                string json = File.ReadAllText(Content.RootDirectory + MAPS_DIRECTORY + filename);
+                SerializableMap s = JsonSerializer.Deserialize<SerializableMap>(json);
+                return ToTilemap(Content, s);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("No map file found: " + filename);
+                return null;
+            }
         }
 
         public static void Save(ContentManager Content, TileMap map, string filename)

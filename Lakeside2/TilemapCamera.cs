@@ -42,6 +42,11 @@ namespace Lakeside2
             this.map = newMap;
         }
 
+        public TileMap getMap()
+        {
+            return map;
+        }
+
         public void rawMove(Vector2 amnt)
         {
             location += amnt;
