@@ -13,11 +13,13 @@ namespace Lakeside2
         public const int TILE_SIZE = 16;
 
         public string filename;
+        public bool collision;
         Texture2D texture;
 
         public Tile(ContentManager Content, string filename)
         {
             this.filename = filename;
+            this.collision = true;
             texture = Content.Load<Texture2D>(TILE_LOCATION + filename);
             if (texture.Width != texture.Height || texture.Width != TILE_SIZE)
             {

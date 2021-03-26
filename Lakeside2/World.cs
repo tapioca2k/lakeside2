@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Lakeside2
@@ -22,13 +23,6 @@ namespace Lakeside2
         UiSystem ui;
 
         TilemapCamera camera;
-        TileMap map
-        {
-            get
-            {
-                return camera.getMap();
-            }
-        }
 
         List<IEntity> entities;
         Player player;
@@ -61,8 +55,8 @@ namespace Lakeside2
         {
             if (!editing)
             {
-                player.onInput(input);
-                ui.onInput(input);
+                bool interacting = ui.onInput(input);
+                if (!interacting) player.onInput(input);
             }
             else
             {

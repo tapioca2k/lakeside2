@@ -10,7 +10,6 @@ namespace Lakeside2
     class TileMap
     {
         public Tile[,] map;
-        bool[,] collision;
         public int width;
         public int height;
 
@@ -27,30 +26,38 @@ namespace Lakeside2
             this.width = width;
             this.height = height;
             map = new Tile[width, height];
-            collision = new bool[width, height];
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
                     map[x, y] = new Tile(Content, "unknown");
-                    collision[x, y] = true;
                 }
             }
         }
 
         // only SerializableMap.ToTilemap() should use this constructor
-        public TileMap(Tile[,] tiles, bool[,] collision)
+        public TileMap(Tile[,] tiles)
         {
             this.map = tiles;
-            this.collision = collision;
             this.width = tiles.GetLength(0);
             this.height = tiles.GetLength(1);
+        }
+
+        public Tile getTile(int x, int y)
+        {
+            if (x < 0 || x >= width || y < 0 || y >= height) return null;
+            else return map[x, y];
+        }
+        public void setTile(int x, int y, Tile tile)
+        {
+            if (x < 0 || x >= width || y < 0 || y >= height) return;
+            else map[x, y] = tile;
         }
 
         public bool checkCollision(int x, int y)
         {
             if (x < 0 || x >= width || y < 0 || y >= height) return false;
-            else return collision[x, y];
+            else return map[x, y].collision;
         }
         public bool checkCollision(Vector2 coordindates)
         {

@@ -52,16 +52,15 @@ namespace Lakeside2
         {
             int width = s.tiles.Length, height = s.tiles[0].Length;
             Tile[,] tiles = new Tile[width, height];
-            bool[,] collision = new bool[width, height];
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0;y < height; y++)
                 {
                     tiles[x, y] = new Tile(Content, s.tilenames[s.tiles[x][y]]);
-                    collision[x, y] = s.collision[x][y]; // gotta love serialization quirks :)
+                    tiles[x, y].collision = s.collision[x][y];
                 }
             }
-            return new TileMap(tiles, collision);
+            return new TileMap(tiles);
         }
 
         public static TileMap Load(ContentManager Content, string filename)

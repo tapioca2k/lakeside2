@@ -22,6 +22,11 @@ namespace Lakeside2
             Buttons.Start, Buttons.Back
         };
 
+        internal bool isKeyPressed(object escape)
+        {
+            throw new NotImplementedException();
+        }
+
         Dictionary<Keys, bool> keys;
 
         int mleft;

@@ -49,7 +49,7 @@ namespace Lakeside2.Editor
 
             cursor.onInput(input);
 
-            if (input.isKeyPressed(Keys.F2))
+            if (input.isKeyPressed(Keys.F2)) // Save
             {
                 UiElement filename = new UiTextInput().addCallback((element) =>
                 {
@@ -59,7 +59,7 @@ namespace Lakeside2.Editor
                 filename.setBackground(Color.White);
                 ui.pushElement(filename, Vector2.One);
             }
-            else if (input.isKeyPressed(Keys.F3))
+            else if (input.isKeyPressed(Keys.F3)) // Load
             {
                 UiElement filename = new UiTextInput().addCallback((element) =>
                 {
@@ -70,6 +70,22 @@ namespace Lakeside2.Editor
                 });
                 filename.setBackground(Color.White);
                 ui.pushElement(filename, Vector2.One);
+            }
+            else if (input.isKeyPressed(Keys.E)) // Edit tile properties
+            {
+                int x = (int)cursor.getTileLocation().X, y = (int)cursor.getTileLocation().Y;
+                Debug.WriteLine(x + "," + y);
+                Tile selected = map.getTile(x, y);
+                ui.pushElement(new UiTileEditor(selected, x, y).addCallback((element) =>
+                {
+                    UiTileEditor editor = (UiTileEditor)element;
+                    map.setTile(editor.x, editor.y, editor.tile);
+                    return true;
+                }), new Vector2(160, 0));
+            }
+            else if (input.isKeyPressed(Keys.M)) // Edit map meta info
+            {
+
             }
         }
 

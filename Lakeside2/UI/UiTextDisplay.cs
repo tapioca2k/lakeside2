@@ -9,6 +9,13 @@ namespace Lakeside2.UI
 {
     class UiTextDisplay : UiElement
     {
+        // I don't know where else to put this...
+        public static string YesOrNo(bool val)
+        {
+            if (val) return "Yes";
+            else return "No";
+        }
+
         public override Vector2 size
         {
             get
