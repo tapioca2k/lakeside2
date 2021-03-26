@@ -13,10 +13,35 @@ namespace Lakeside2.UI
             get;
         }
 
+        private bool done;
         public bool finished
         {
-            get;
-            set;
+            get
+            {
+                return done;
+            }
+            set
+            {
+                done = value;
+                if (done && callback != null)
+                {
+                    this.callback.Invoke(this);
+                }
+            }
+        }
+
+        private Func<UiElement, bool> callback;
+        Color background = Color.Transparent;
+
+        public UiElement addCallback(Func<UiElement, bool> callback)
+        {
+            this.callback = callback;
+            return this;
+        }
+
+        public void setBackground(Color color)
+        {
+            background = color;
         }
 
         public virtual void update(double dt)
@@ -28,6 +53,12 @@ namespace Lakeside2.UI
         }
 
         public abstract void draw(SpriteBatch spriteBatch, Vector2 location);
+
+        // TODO figure out why C# isn't letting me do the inheritance I want here...
+        protected void drawBackground(SpriteBatch spriteBatch, Vector2 location)
+        {
+            spriteBatch.Draw(Game1.WHITE_PIXEL, new Rectangle(location.ToPoint(), size.ToPoint()), background);
+        }
 
     }
 }

@@ -14,7 +14,10 @@ namespace Lakeside2.UI
             get
             {
                 string t = text;
-                return font.MeasureString(text);
+                Vector2 measured = font.MeasureString(text);
+                if (measured.X < 5) measured.X = 5;
+                if (measured.Y < 5) measured.Y = 5;
+                return measured;
             }
         }
 
@@ -32,8 +35,15 @@ namespace Lakeside2.UI
             this.text = text;
         }
 
+        public UiTextDisplay()
+        {
+            this.font = Fonts.get("Arial");
+            this.text = "";
+        }
+
         public override void draw(SpriteBatch spriteBatch, Vector2 location)
         {
+            drawBackground(spriteBatch, location);
             spriteBatch.DrawString(font, text, location, Color.Black);
         }
 

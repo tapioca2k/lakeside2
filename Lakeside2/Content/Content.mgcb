@@ -65,6 +65,9 @@
 #begin maps/default.txt
 /copy:maps/default.txt
 
+#begin maps/othermap.txt
+/copy:maps/othermap.txt
+
 #begin player.png
 /importer:TextureImporter
 /processor:TextureProcessor

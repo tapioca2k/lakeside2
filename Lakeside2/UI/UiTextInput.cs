@@ -29,6 +29,10 @@ namespace Lakeside2.UI
         {
         }
 
+        public UiTextInput() : base()
+        {
+        }
+
         public override void onInput(InputHandler input)
         {
             if (finished) return;

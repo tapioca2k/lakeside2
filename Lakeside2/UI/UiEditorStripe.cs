@@ -7,6 +7,8 @@ using System.Text;
 
 namespace Lakeside2.UI
 {
+    // UI image with hotkeys for editing mode
+    // meant to be displayed over a blank UiStripe, left position
     class UiEditorStripe : UiElement
     {
         Texture2D hotkeys;

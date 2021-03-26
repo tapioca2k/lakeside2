@@ -43,12 +43,14 @@ namespace Lakeside2.UI
             }
         }
 
-        public void onInput(InputHandler input)
+        public bool onInput(InputHandler input)
         {
             if (stack.Count > 0)
             {
                 stack[stack.Count - 1].onInput(input);
+                return true;
             }
+            return false;
         }
 
         public void pushElement(UiElement element, Vector2 location)

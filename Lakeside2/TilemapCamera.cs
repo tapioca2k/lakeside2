@@ -37,6 +37,11 @@ namespace Lakeside2
             targetLocation = Vector2.Zero;
         }
 
+        public void setMap(TileMap newMap)
+        {
+            this.map = newMap;
+        }
+
         public void rawMove(Vector2 amnt)
         {
             location += amnt;

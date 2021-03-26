@@ -29,6 +29,11 @@ namespace Lakeside2.Editor
             location = Vector2.Zero;
         }
 
+        public void setLocation(Vector2 newLocation)
+        {
+            location = newLocation;
+        }
+
         public void onInput(InputHandler input)
         {
             if (input.isKeyPressed(Keys.W)) location.Y -= Tile.TILE_SIZE;

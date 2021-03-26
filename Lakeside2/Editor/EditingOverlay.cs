@@ -1,9 +1,11 @@
 ﻿using Lakeside2.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Lakeside2.Editor
@@ -36,12 +38,34 @@ namespace Lakeside2.Editor
 
         public void onInput(InputHandler input)
         {
+            bool interactingWithUi = ui.onInput(input);
+            if (interactingWithUi) return;
+
             cursor.onInput(input);
-            ui.onInput(input);
 
             if (input.isKeyPressed(Keys.F2))
             {
-                SerializableMap.Save(Content, map, "savedmap.txt"); // TODO prompt for filename
+                UiElement filename = new UiTextInput().addCallback((element) =>
+                {
+                    SerializableMap.Save(Content, map, ((UiTextInput)element).text);
+                    return true;
+                });
+                filename.setBackground(Color.White);
+                ui.pushElement(filename, Vector2.One);
+            }
+            else if (input.isKeyPressed(Keys.F3))
+            {
+                UiElement filename = new UiTextInput().addCallback((element) =>
+                {
+                    TileMap newMap = SerializableMap.Load(Content, ((UiTextInput)element).text);
+                    this.map = newMap;
+                    // TODO this appears to draw correctly when leaving edit mode but the map in World isn't changing. WILL cause bugs.
+                    this.camera.setMap(newMap);
+                    cursor.setLocation(Vector2.Zero);
+                    return true;
+                });
+                filename.setBackground(Color.White);
+                ui.pushElement(filename, Vector2.One);
             }
         }
 

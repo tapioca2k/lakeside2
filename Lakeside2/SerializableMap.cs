@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.Json;
@@ -74,7 +75,8 @@ namespace Lakeside2
         {
             SerializableMap s = FromTilemap(map);
             string json = JsonSerializer.Serialize(s);
-            File.WriteAllText(Content.RootDirectory + MAPS_DIRECTORY + filename, json);
+            string location = Content.RootDirectory + MAPS_DIRECTORY + filename;
+            File.WriteAllText(location, json);
         }
     }
 }
