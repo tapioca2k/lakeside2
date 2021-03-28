@@ -48,10 +48,10 @@ namespace Lakeside2.UI
             this.text = "";
         }
 
-        public override void draw(SpriteBatch spriteBatch, Vector2 location)
+        public override void draw(SBWrapper wrapper)
         {
-            drawBackground(spriteBatch, location);
-            spriteBatch.DrawString(font, text, location, Color.Black);
+            drawBackground(wrapper);
+            wrapper.drawString(text, Vector2.Zero, Color.Black, font);
         }
 
     }

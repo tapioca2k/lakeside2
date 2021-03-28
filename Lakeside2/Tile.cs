@@ -37,5 +37,10 @@ namespace Lakeside2
         {
             spriteBatch.Draw(texture, location, Color.White);
         }
+
+        public void draw(SBWrapper wrapper, Vector2 location)
+        {
+            wrapper.draw(texture, location);
+        }
     }
 }

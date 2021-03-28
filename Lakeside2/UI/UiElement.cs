@@ -58,12 +58,12 @@ namespace Lakeside2.UI
         {
         }
 
-        public abstract void draw(SpriteBatch spriteBatch, Vector2 location);
+        public abstract void draw(SBWrapper wrapper);
 
         // TODO figure out why C# isn't letting me do the inheritance I want here...
-        protected void drawBackground(SpriteBatch spriteBatch, Vector2 location)
+        protected void drawBackground(SBWrapper wrapper)
         {
-            spriteBatch.Draw(Game1.WHITE_PIXEL, new Rectangle(location.ToPoint(), size.ToPoint()), background);
+            wrapper.drawRectangle(size, background);
         }
 
     }

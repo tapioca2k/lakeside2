@@ -54,18 +54,13 @@ namespace Lakeside2.UI
             }
         }
 
-        public override void draw(SpriteBatch spriteBatch, Vector2 location)
+        public override void draw(SBWrapper wrapper)
         {
-            drawBackground(spriteBatch, location);
-            tile.draw(spriteBatch, location + new Vector2(5, 5));
+            drawBackground(wrapper);
+            tile.draw(wrapper, new Vector2(5, 5));
 
-            spriteBatch.DrawString(Fonts.get("Arial"), 
-                "(T)ile: " + tile.filename, 
-                location + new Vector2(25, 5), Color.Black);
-
-            spriteBatch.DrawString(Fonts.get("Arial"), 
-                "(W)alkable: " + UiTextDisplay.YesOrNo(tile.collision), 
-                location + new Vector2(5, 25), Color.Black);
+            wrapper.drawString("(T)ile: " + tile.filename, new Vector2(25, 5));
+            wrapper.drawString("(W)alkable: " + UiTextDisplay.YesOrNo(tile.collision), new Vector2(5, 25));
         }
 
     }

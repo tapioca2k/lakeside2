@@ -66,18 +66,16 @@ namespace Lakeside2.UI
             }
         }
 
-        public override void draw(SpriteBatch spriteBatch, Vector2 location)
+        public override void draw(SBWrapper wrapper)
         {
-            drawBackground(spriteBatch, location);
+            drawBackground(wrapper);
             int n = 0;
             while (n < allTiles.Count)
             {
-                allTiles[n].draw(spriteBatch, location + new Vector2((n%10) * Tile.TILE_SIZE, (n/10) * Tile.TILE_SIZE));
+                allTiles[n].draw(wrapper, new Vector2((n%10) * Tile.TILE_SIZE, (n/10) * Tile.TILE_SIZE));
                 n++;
             }
-            spriteBatch.Draw(cursor, 
-                location + new Vector2((selected % 10) * Tile.TILE_SIZE, (selected / 10) * Tile.TILE_SIZE), 
-                Color.White);
+            wrapper.draw(cursor, new Vector2((selected % 10) * Tile.TILE_SIZE, (selected / 10) * Tile.TILE_SIZE));
         }
     }
 }

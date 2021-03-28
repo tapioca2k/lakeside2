@@ -26,9 +26,9 @@ namespace Lakeside2.UI
             hotkeys = Content.Load<Texture2D>("editorhotkeys");
         }
 
-        public override void draw(SpriteBatch spriteBatch, Vector2 location)
+        public override void draw(SBWrapper wrapper)
         {
-            spriteBatch.Draw(hotkeys, location, Color.White);
+            wrapper.draw(hotkeys);
         }
     }
 }

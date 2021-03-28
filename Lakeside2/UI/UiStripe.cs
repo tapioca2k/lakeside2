@@ -75,8 +75,9 @@ namespace Lakeside2.UI
                 spriteBatch.Draw(logo, logoPosition, Color.White);
             }
 
-            if (leftElement != null) leftElement.draw(spriteBatch, stripeLeft);
-            if (rightElement != null) rightElement.draw(spriteBatch, stripeRight);
+            SBWrapper wrapper = new SBWrapper(spriteBatch);
+            if (leftElement != null) leftElement.draw(wrapper.setOrigin(stripeLeft));
+            if (rightElement != null) rightElement.draw(wrapper.setOrigin(stripeRight));
         }
     }
 }
