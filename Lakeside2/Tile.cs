@@ -26,6 +26,14 @@ namespace Lakeside2
                 throw new Exception("Tile " + filename + " incorrect size");
             }
         }
+        
+        // for copying tiles
+        public Tile(Tile other)
+        {
+            this.filename = other.filename;
+            this.collision = other.collision;
+            this.texture = other.texture;
+        }
 
         public void setTexture(ContentManager Content, string filename)
         {

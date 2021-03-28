@@ -16,6 +16,7 @@ namespace Lakeside2.Editor
         UiSystem ui;
         Cursor cursor;
         TilemapCamera camera;
+        Tile lastEditedTile;
 
         TileMap map
         {
@@ -80,8 +81,17 @@ namespace Lakeside2.Editor
                 {
                     UiTileEditor editor = (UiTileEditor)element;
                     map.setTile(editor.x, editor.y, editor.tile);
+                    lastEditedTile = editor.tile;
                     return true;
                 }), new Vector2(160, 0));
+            }
+            else if (input.isKeyPressed(Keys.P)) // Tile painter
+            {
+                if (lastEditedTile != null)
+                {
+                    int x = (int)cursor.getTileLocation().X, y = (int)cursor.getTileLocation().Y;
+                    map.setTile(x, y, new Tile(lastEditedTile));
+                }
             }
             else if (input.isKeyPressed(Keys.M)) // Edit map meta info
             {
