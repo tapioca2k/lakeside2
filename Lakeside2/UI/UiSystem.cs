@@ -55,6 +55,7 @@ namespace Lakeside2.UI
 
         public void pushElement(UiElement element, Vector2 location)
         {
+            element.setUiSystem(this);
             stack.Add(element);
             locations.Add(location);
         }

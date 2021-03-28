@@ -76,7 +76,7 @@ namespace Lakeside2.Editor
                 int x = (int)cursor.getTileLocation().X, y = (int)cursor.getTileLocation().Y;
                 Debug.WriteLine(x + "," + y);
                 Tile selected = map.getTile(x, y);
-                ui.pushElement(new UiTileEditor(selected, x, y).addCallback((element) =>
+                ui.pushElement(new UiTileEditor(Content, selected, x, y).addCallback((element) =>
                 {
                     UiTileEditor editor = (UiTileEditor)element;
                     map.setTile(editor.x, editor.y, editor.tile);

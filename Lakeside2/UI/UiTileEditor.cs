@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -18,11 +19,13 @@ namespace Lakeside2.UI
             }
         }
 
+        ContentManager Content;
         public Tile tile;
         public int x, y;
 
-        public UiTileEditor(Tile tile, int x, int y)
+        public UiTileEditor(ContentManager Content, Tile tile, int x, int y)
         {
+            this.Content = Content;
             this.tile = tile;
             this.x = x;
             this.y = y;
@@ -31,13 +34,19 @@ namespace Lakeside2.UI
 
         public override void onInput(InputHandler input)
         {
-            if (input.isKeyPressed(Keys.E))
+            if (input.isKeyPressed(Keys.Enter) || input.isKeyPressed(Keys.E))
             {
                 finished = true;
             }
             else if (input.isKeyPressed(Keys.T))
             {
-                // TODO open tile picker
+                system.pushElement(new UiTilePicker(Content).addCallback((element) =>
+                {
+                    UiTilePicker picker = (UiTilePicker)element;
+                    Tile picked = picker.selectedTile;
+                    this.tile.setTexture(Content, picked.filename);
+                    return true;
+                }), Vector2.Zero);
             }
             else if (input.isKeyPressed(Keys.W))
             {

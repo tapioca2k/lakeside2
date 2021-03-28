@@ -27,6 +27,12 @@ namespace Lakeside2
             }
         }
 
+        public void setTexture(ContentManager Content, string filename)
+        {
+            texture = Content.Load<Texture2D>(TILE_LOCATION + filename);
+            this.filename = filename;
+        }
+
         public void draw(SpriteBatch spriteBatch, Vector2 location)
         {
             spriteBatch.Draw(texture, location, Color.White);
