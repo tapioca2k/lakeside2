@@ -62,11 +62,11 @@
 /processorParam:TextureFormat=Color
 /build:logo-default.png
 
-#begin maps/default.txt
-/copy:maps/default.txt
+#begin maps/forest.txt
+/copy:maps/forest.txt
 
-#begin maps/othermap.txt
-/copy:maps/othermap.txt
+#begin maps/house.txt
+/copy:maps/house.txt
 
 #begin player.png
 /importer:TextureImporter
@@ -199,18 +199,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:tiles/unknown.png
-
-#begin tiles/water.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:tiles/water.png
 
 #begin tiles/water.png
 /importer:TextureImporter
