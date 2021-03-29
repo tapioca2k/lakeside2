@@ -59,6 +59,7 @@ namespace Lakeside2
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Fonts.loadFont(Content, "Arial");
+            Fonts.loadFont(Content, "rainyhearts");
             colorize = Content.Load<Effect>("colorize");
 
             world = new World(Content, "default.txt");

@@ -50,6 +50,13 @@
 /processorParam:TextureFormat=Compressed
 /build:fonts/Arial.spritefont
 
+#begin fonts/rainyhearts.spritefont
+/importer:FontDescriptionImporter
+/processor:LocalizedFontProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:fonts/rainyhearts.spritefont
+
 #begin logo-default.png
 /importer:TextureImporter
 /processor:TextureProcessor

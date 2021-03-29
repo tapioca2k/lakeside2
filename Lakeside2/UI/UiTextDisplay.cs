@@ -44,7 +44,7 @@ namespace Lakeside2.UI
 
         public UiTextDisplay()
         {
-            this.font = Fonts.get("Arial");
+            this.font = Fonts.get("rainyhearts");
             this.text = "";
         }
 

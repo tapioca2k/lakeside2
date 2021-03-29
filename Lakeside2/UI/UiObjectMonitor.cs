@@ -9,7 +9,7 @@ namespace Lakeside2.UI
     {
         T obj;
         Func<T, string> lambda;
-        public UiObjectMonitor(T obj, Func<T, string> lambda) : base(Fonts.get("Arial"), "")
+        public UiObjectMonitor(T obj, Func<T, string> lambda) : base()
         {
             this.obj = obj;
             this.lambda = lambda;

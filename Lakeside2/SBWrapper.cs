@@ -74,7 +74,7 @@ namespace Lakeside2
 
         public void drawString(string text, Vector2 location, Color color)
         {
-            drawString(text, location, color, Fonts.get("Arial"));
+            drawString(text, location, color, Fonts.get("rainyhearts"));
         }
 
         public void drawString(string text, Vector2 location, Color color, SpriteFont font)
