@@ -13,7 +13,6 @@ namespace Lakeside2
     {
         const string MAPS_DIRECTORY = "/maps/";
 
-
         public string[] tilenames { get; set; }
         public int[][] tiles { get; set; }
         public bool[][] collision { get; set; }
@@ -51,7 +50,7 @@ namespace Lakeside2
         }
         
         // the above process, but in reverse
-        public static TileMap ToTilemap(ContentManager Content, SerializableMap s)
+        public static TileMap ToTilemap(ContentManager Content, string filename, SerializableMap s)
         {
             int width = s.tiles.Length, height = s.tiles[0].Length;
             Tile[,] tiles = new Tile[width, height];
@@ -63,7 +62,7 @@ namespace Lakeside2
                     tiles[x, y].collision = s.collision[x][y];
                 }
             }
-            return new TileMap(tiles, new Color(s.color));
+            return new TileMap(tiles, new Color(s.color), filename);
         }
 
         public static TileMap Load(ContentManager Content, string filename)
@@ -72,7 +71,7 @@ namespace Lakeside2
             {
                 string json = File.ReadAllText(Content.RootDirectory + MAPS_DIRECTORY + filename);
                 SerializableMap s = JsonSerializer.Deserialize<SerializableMap>(json);
-                return ToTilemap(Content, s);
+                return ToTilemap(Content, filename, s);
             }
             catch (Exception e)
             {
@@ -83,6 +82,7 @@ namespace Lakeside2
 
         public static void Save(ContentManager Content, TileMap map, string filename)
         {
+            map.filename = filename;
             SerializableMap s = FromTilemap(map);
             string json = JsonSerializer.Serialize(s);
             string location = Content.RootDirectory + MAPS_DIRECTORY + filename;

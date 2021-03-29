@@ -13,6 +13,7 @@ namespace Lakeside2
         public int width;
         public int height;
         public Color color;
+        public string filename;
 
         public static Vector2 worldToTile(Vector2 real)
         {
@@ -27,6 +28,7 @@ namespace Lakeside2
             this.width = width;
             this.height = height;
             this.color = Color.Black;
+            this.filename = "(Unsaved)";
             map = new Tile[width, height];
             for (int x = 0; x < width; x++)
             {
@@ -38,12 +40,13 @@ namespace Lakeside2
         }
 
         // only SerializableMap.ToTilemap() should use this constructor
-        public TileMap(Tile[,] tiles, Color color)
+        public TileMap(Tile[,] tiles, Color color, string filename)
         {
             this.map = tiles;
             this.width = tiles.GetLength(0);
             this.height = tiles.GetLength(1);
             this.color = color;
+            this.filename = filename;
         }
 
         public Tile getTile(int x, int y)
@@ -65,6 +68,21 @@ namespace Lakeside2
         public bool checkCollision(Vector2 coordindates)
         {
             return checkCollision((int) coordindates.X, (int) coordindates.Y);
+        }
+
+        public void resize(int newWidth, int newHeight)
+        {
+            width = newWidth;
+            height = newHeight;
+            Tile[,] newtiles = new Tile[newWidth, newHeight];
+            for (int x = 0; x < newWidth; x++)
+            {
+                for (int y = 0; y < newHeight; y++)
+                {
+                    newtiles[x, y] = map[x, y];
+                }
+            }
+            map = newtiles;
         }
 
         public void draw(SBWrapper wrapper)

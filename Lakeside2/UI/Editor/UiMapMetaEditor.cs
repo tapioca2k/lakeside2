@@ -28,7 +28,11 @@ namespace Lakeside2.UI.Editor
 
         public override void onInput(InputHandler input)
         {
-            if (input.isKeyPressed(Keys.R)) // resize map
+            if (input.isKeyPressed(Keys.Enter) || input.isKeyPressed(Keys.M))
+            {
+                finished = true;
+            }
+            else if (input.isKeyPressed(Keys.R)) // resize map
             {
                 system.pushElement(new UiTextInput().addCallback((element) => 
                 {
@@ -39,7 +43,7 @@ namespace Lakeside2.UI.Editor
                         UiTextInput heightInput = (UiTextInput)element2;
                         int newHeight = int.Parse(heightInput.text);
 
-                        // TODO actually resize the map to (newWidth, newHeight)...
+                        map.resize(newWidth, newHeight);
 
                         return true;
                     }), Vector2.Zero);
@@ -48,6 +52,7 @@ namespace Lakeside2.UI.Editor
             }
             else if (input.isKeyPressed(Keys.B))
             {
+                // push elements in reverse order
                 system.pushElement(new UiTextInput().addCallback((element) =>
                 {
                     UiTextInput input = (UiTextInput)element;
@@ -75,9 +80,10 @@ namespace Lakeside2.UI.Editor
         public override void draw(SBWrapper wrapper)
         {
             drawBackground(wrapper);
-            wrapper.drawString("Size: " + new Vector2(map.width, map.height), new Vector2(5, 5));
-            wrapper.drawString("(R)esize", new Vector2(5, 25));
-            wrapper.drawString("(B)ackground Color", new Vector2(5, 45));
+            wrapper.drawString(map.filename, new Vector2(5, 5));
+            wrapper.drawString("Size: " + new Vector2(map.width, map.height), new Vector2(5, 25));
+            wrapper.drawString("(R)esize", new Vector2(5, 45));
+            wrapper.drawString("(B)ackground Color", new Vector2(5, 65));
         }
 
 
