@@ -23,6 +23,13 @@ namespace Lakeside2
         UiSystem ui;
 
         TilemapCamera camera;
+        TileMap map
+        {
+            get
+            {
+                return camera.getMap();
+            }
+        }
 
         List<IEntity> entities;
         Player player;
@@ -94,6 +101,7 @@ namespace Lakeside2
 
         public void draw(SBWrapper wrapper)
         {
+            wrapper.drawRectangle(new Vector2(Game1.INTERNAL_WIDTH, Game1.INTERNAL_HEIGHT), map.color);
             if (editing)
             {
                 editor.draw(wrapper);

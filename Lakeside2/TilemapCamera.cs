@@ -8,7 +8,6 @@ namespace Lakeside2
 {
     class TilemapCamera
     {
-        static float SLOWNESS = 0.1f;
 
         TileMap map;
         Vector2 location;

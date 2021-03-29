@@ -12,6 +12,7 @@ namespace Lakeside2
         public Tile[,] map;
         public int width;
         public int height;
+        public Color color;
 
         public static Vector2 worldToTile(Vector2 real)
         {
@@ -25,6 +26,7 @@ namespace Lakeside2
         {
             this.width = width;
             this.height = height;
+            this.color = Color.Black;
             map = new Tile[width, height];
             for (int x = 0; x < width; x++)
             {
@@ -36,11 +38,12 @@ namespace Lakeside2
         }
 
         // only SerializableMap.ToTilemap() should use this constructor
-        public TileMap(Tile[,] tiles)
+        public TileMap(Tile[,] tiles, Color color)
         {
             this.map = tiles;
             this.width = tiles.GetLength(0);
             this.height = tiles.GetLength(1);
+            this.color = color;
         }
 
         public Tile getTile(int x, int y)

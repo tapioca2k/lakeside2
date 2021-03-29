@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lakeside2.UI
+namespace Lakeside2.UI.Editor
 {
     // UI image with hotkeys for editing mode
     // meant to be displayed over a blank UiStripe, left position

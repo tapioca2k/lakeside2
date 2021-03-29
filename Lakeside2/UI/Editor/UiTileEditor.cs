@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace Lakeside2.UI
+namespace Lakeside2.UI.Editor
 {
     class UiTileEditor : UiElement
     {

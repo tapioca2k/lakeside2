@@ -18,6 +18,8 @@ namespace Lakeside2
         public int[][] tiles { get; set; }
         public bool[][] collision { get; set; }
 
+        public uint color { get; set; }
+
         // wrestle engine-useful TileMap format into less useful (but writable) SerializableMap
         public static SerializableMap FromTilemap(TileMap map)
         {
@@ -28,6 +30,7 @@ namespace Lakeside2
 
             s.tiles = new int[map.width][];;
             s.collision = new bool[map.width][];
+            s.color = map.color.PackedValue;
 
             for (int x = 0; x < map.width; x++)
             {
@@ -60,7 +63,7 @@ namespace Lakeside2
                     tiles[x, y].collision = s.collision[x][y];
                 }
             }
-            return new TileMap(tiles);
+            return new TileMap(tiles, new Color(s.color));
         }
 
         public static TileMap Load(ContentManager Content, string filename)

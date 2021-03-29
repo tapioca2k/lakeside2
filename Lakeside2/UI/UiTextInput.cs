@@ -31,6 +31,7 @@ namespace Lakeside2.UI
 
         public UiTextInput() : base()
         {
+            setBackground(Color.White);
         }
 
         public override void onInput(InputHandler input)

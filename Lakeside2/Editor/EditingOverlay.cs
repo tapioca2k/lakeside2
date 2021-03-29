@@ -1,4 +1,5 @@
 ﻿using Lakeside2.UI;
+using Lakeside2.UI.Editor;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -57,7 +58,6 @@ namespace Lakeside2.Editor
                     SerializableMap.Save(Content, map, ((UiTextInput)element).text);
                     return true;
                 });
-                filename.setBackground(Color.White);
                 ui.pushElement(filename, Vector2.One);
             }
             else if (input.isKeyPressed(Keys.F3)) // Load
@@ -69,13 +69,11 @@ namespace Lakeside2.Editor
                     cursor.setLocation(Vector2.Zero);
                     return true;
                 });
-                filename.setBackground(Color.White);
                 ui.pushElement(filename, Vector2.One);
             }
             else if (input.isKeyPressed(Keys.E)) // Edit tile properties
             {
                 int x = (int)cursor.getTileLocation().X, y = (int)cursor.getTileLocation().Y;
-                Debug.WriteLine(x + "," + y);
                 Tile selected = map.getTile(x, y);
                 ui.pushElement(new UiTileEditor(Content, selected, x, y).addCallback((element) =>
                 {
@@ -95,7 +93,7 @@ namespace Lakeside2.Editor
             }
             else if (input.isKeyPressed(Keys.M)) // Edit map meta info
             {
-
+                ui.pushElement(new UiMapMetaEditor(map), new Vector2(160, 0));
             }
         }
 
