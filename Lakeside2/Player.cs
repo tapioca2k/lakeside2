@@ -14,7 +14,7 @@ namespace Lakeside2
         const int RUN_SPEED = 75;
 
         Texture2D texture;
-        TileMap map;
+        World world;
 
         Vector2 queuedMove;
         bool moving
@@ -45,10 +45,10 @@ namespace Lakeside2
             }
         }
 
-        public Player(ContentManager Content, TileMap map)
+        public Player(ContentManager Content, World world)
         {
             texture = Content.Load<Texture2D>("player");
-            this.map = map;
+            this.world = world;
             location = Vector2.Zero;
             queuedMove = Vector2.Zero;
         }
@@ -63,7 +63,7 @@ namespace Lakeside2
 
         void tryMove(Vector2 direction)
         {
-            if (map.checkCollision(tileLocation + direction))
+            if (world.map.checkCollision(tileLocation + direction))
             queuedMove = Vector2.Multiply(direction, Tile.TILE_SIZE);
         }
 

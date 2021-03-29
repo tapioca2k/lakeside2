@@ -23,7 +23,7 @@ namespace Lakeside2
         UiSystem ui;
 
         TilemapCamera camera;
-        TileMap map
+        public TileMap map
         {
             get
             {
@@ -42,7 +42,7 @@ namespace Lakeside2
             this.Content = Content;
 
             TileMap map = new TileMap(Content, 20, 10);
-            player = new Player(Content, map);
+            player = new Player(Content, this);
             camera = new TilemapCamera(map);
             ui = new UiSystem(Content);
 
