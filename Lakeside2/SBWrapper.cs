@@ -9,18 +9,31 @@ namespace Lakeside2
     // SpriteBatch wrapper for certain very common operations in draw calls
     class SBWrapper
     {
-        SpriteBatch spriteBatch;
-        Vector2 location;
+        public SpriteBatch spriteBatch;
+        public Vector2 location;
+
         public SBWrapper(SpriteBatch spriteBatch)
         {
             this.spriteBatch = spriteBatch;
             this.location = Vector2.Zero;
         }
 
+        public SBWrapper(SBWrapper other)
+        {
+            spriteBatch = other.spriteBatch;
+            this.location = other.location;
+        }
+
         public SBWrapper(SpriteBatch spriteBatch, Vector2 location)
         {
             this.spriteBatch = spriteBatch;
             this.location = location;
+        }
+
+        public SBWrapper(SBWrapper other, Vector2 location)
+        {
+            spriteBatch = other.spriteBatch;
+            this.location = other.location + location;
         }
 
         public SBWrapper setOrigin(Vector2 origin)

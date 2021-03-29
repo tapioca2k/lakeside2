@@ -92,16 +92,16 @@ namespace Lakeside2
             }
         }
 
-        public void draw(SpriteBatch spriteBatch)
+        public void draw(SBWrapper wrapper)
         {
             if (editing)
             {
-                editor.draw(spriteBatch);
+                editor.draw(wrapper);
             }
             else
             {
-                camera.draw(spriteBatch, entities);
-                ui.draw(spriteBatch);
+                camera.draw(wrapper, entities);
+                ui.draw(wrapper);
             }
         }
 

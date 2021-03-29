@@ -99,11 +99,12 @@ namespace Lakeside2
             this.centeredEntity = entity;
         }
 
-        public void draw(SpriteBatch spriteBatch, List<IEntity> entities)
+        public void draw(SBWrapper wrapper, List<IEntity> entities)
         {
-            map.draw(spriteBatch, -location);
+            SBWrapper cameraSpace = new SBWrapper(wrapper, -location);
+            map.draw(cameraSpace);
             foreach (IEntity entity in entities) {
-                entity.draw(spriteBatch, this);
+                entity.draw(wrapper, this);
             }
 
         }

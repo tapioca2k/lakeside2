@@ -84,7 +84,7 @@ namespace Lakeside2
             GraphicsDevice.SetRenderTarget(mainTarget);
             _spriteBatch.Begin();
             // most drawing happens here...
-            world.draw(_spriteBatch);
+            world.draw(new SBWrapper(_spriteBatch));
             _spriteBatch.End();
 
             // scale to screen size, draw to window

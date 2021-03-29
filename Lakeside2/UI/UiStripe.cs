@@ -65,17 +65,16 @@ namespace Lakeside2.UI
         }
 
 
-        public void draw(SpriteBatch spriteBatch)
+        public void draw(SBWrapper wrapper)
         {
-            spriteBatch.Draw(Game1.WHITE_PIXEL, 
-                new Rectangle(0, Game1.INTERNAL_HEIGHT - STRIPE_HEIGHT, Game1.INTERNAL_WIDTH, STRIPE_HEIGHT), 
-                Color.White);
+            SBWrapper stripeSpace = new SBWrapper(wrapper, new Vector2(0, STRIPE_START));
+            stripeSpace.drawRectangle(new Vector2(Game1.INTERNAL_WIDTH, STRIPE_HEIGHT), Color.White);
+
             if (logo != null)
             {
-                spriteBatch.Draw(logo, logoPosition, Color.White);
+                wrapper.draw(logo, logoPosition);
             }
 
-            SBWrapper wrapper = new SBWrapper(spriteBatch);
             if (leftElement != null) leftElement.draw(wrapper.setOrigin(stripeLeft));
             if (rightElement != null) rightElement.draw(wrapper.setOrigin(stripeRight));
         }

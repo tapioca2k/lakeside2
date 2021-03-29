@@ -41,11 +41,6 @@ namespace Lakeside2
             this.filename = filename;
         }
 
-        public void draw(SpriteBatch spriteBatch, Vector2 location)
-        {
-            spriteBatch.Draw(texture, location, Color.White);
-        }
-
         public void draw(SBWrapper wrapper, Vector2 location)
         {
             wrapper.draw(texture, location);

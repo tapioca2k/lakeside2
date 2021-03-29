@@ -105,10 +105,10 @@ namespace Lakeside2.Editor
             ui.update(dt);
         }
 
-        public void draw(SpriteBatch spriteBatch)
+        public void draw(SBWrapper wrapper)
         {
-            camera.draw(spriteBatch, new List<IEntity>(new IEntity[] { cursor }));
-            ui.draw(spriteBatch);
+            camera.draw(wrapper, new List<IEntity>(new IEntity[] { cursor }));
+            ui.draw(wrapper);
         }
     }
 }

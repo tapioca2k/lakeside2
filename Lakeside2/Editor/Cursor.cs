@@ -42,9 +42,9 @@ namespace Lakeside2.Editor
             else if (input.isKeyPressed(Keys.D)) location.X += Tile.TILE_SIZE;
         }
 
-        public void draw(SpriteBatch spriteBatch, TilemapCamera camera)
+        public void draw(SBWrapper wrapper, TilemapCamera camera)
         {
-            spriteBatch.Draw(texture, camera.worldToScreen(location), Color.White);
+            wrapper.draw(texture, camera.worldToScreen(location));
         }
     }
 }

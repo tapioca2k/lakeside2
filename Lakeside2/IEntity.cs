@@ -9,6 +9,6 @@ namespace Lakeside2
     interface IEntity
     {
         public Vector2 getLocation();
-        public void draw(SpriteBatch spriteBatch, TilemapCamera camera);
+        public void draw(SBWrapper wrapper, TilemapCamera camera);
     }
 }

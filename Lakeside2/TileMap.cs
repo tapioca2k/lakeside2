@@ -64,16 +64,15 @@ namespace Lakeside2
             return checkCollision((int) coordindates.X, (int) coordindates.Y);
         }
 
-        public void draw(SpriteBatch spriteBatch, Vector2 position)
+        public void draw(SBWrapper wrapper)
         {
-            int startX = Math.Max(0, (int) Math.Floor(-position.X / Tile.TILE_SIZE));
-            int startY = Math.Max(0, (int)Math.Floor(-position.Y / Tile.TILE_SIZE));
+            int startX = Math.Max(0, (int) Math.Floor(-wrapper.location.X / Tile.TILE_SIZE));
+            int startY = Math.Max(0, (int)Math.Floor(-wrapper.location.Y / Tile.TILE_SIZE));
             for (int x = startX; x < Math.Min(width, Game1.TILE_WIDTH); x++)
             {
                 for (int y = startY; y < Math.Min(height, Game1.TILE_HEIGHT); y++)
                 {
-                    Vector2 mapSpace = position + (new Vector2(x, y) * Tile.TILE_SIZE);
-                    map[x, y].draw(spriteBatch, mapSpace);
+                    map[x, y].draw(wrapper, new Vector2(x, y) * Tile.TILE_SIZE);
                 }
             }
         }

@@ -65,15 +65,14 @@ namespace Lakeside2.UI
             stripe.addElement(element, location);
         }
 
-        public void draw(SpriteBatch spriteBatch)
+        public void draw(SBWrapper wrapper)
         {
-            SBWrapper wrapper = new SBWrapper(spriteBatch);
             for (int i = 0; i < stack.Count; i++)
             {
                 stack[i].draw(wrapper.setOrigin(locations[i]));
             }
 
-            stripe.draw(spriteBatch);
+            stripe.draw(wrapper);
         }
 
     }

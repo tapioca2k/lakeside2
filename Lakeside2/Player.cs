@@ -105,9 +105,9 @@ namespace Lakeside2
             }
         }
 
-        public void draw(SpriteBatch spriteBatch, TilemapCamera camera)
+        public void draw(SBWrapper wrapper, TilemapCamera camera)
         {
-            spriteBatch.Draw(texture, camera.worldToScreen(location), Color.White);
+            wrapper.draw(texture, camera.worldToScreen(location));
         }
     }
 }
