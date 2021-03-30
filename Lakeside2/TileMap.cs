@@ -9,6 +9,7 @@ namespace Lakeside2
 {
     class TileMap
     {
+        ContentManager Content;
         public Tile[,] map;
         public int width;
         public int height;
@@ -25,6 +26,7 @@ namespace Lakeside2
         // default, empty TileMap
         public TileMap(ContentManager Content, int width, int height)
         {
+            this.Content = Content;
             this.width = width;
             this.height = height;
             this.color = Color.Black;
@@ -72,17 +74,18 @@ namespace Lakeside2
 
         public void resize(int newWidth, int newHeight)
         {
-            width = newWidth;
-            height = newHeight;
             Tile[,] newtiles = new Tile[newWidth, newHeight];
             for (int x = 0; x < newWidth; x++)
             {
                 for (int y = 0; y < newHeight; y++)
                 {
-                    newtiles[x, y] = map[x, y];
+                    if (x >= width || y >= height) newtiles[x, y] = new Tile(Content, "unknown");
+                    else newtiles[x, y] = map[x, y];
                 }
             }
             map = newtiles;
+            width = newWidth;
+            height = newHeight;
         }
 
         public void draw(SBWrapper wrapper)
