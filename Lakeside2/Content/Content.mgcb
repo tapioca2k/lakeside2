@@ -87,6 +87,9 @@
 /processorParam:TextureFormat=Color
 /build:player.png
 
+#begin scripts/dummy.lua
+/copy:scripts/dummy.lua
+
 #begin tiles/a.png
 /importer:TextureImporter
 /processor:TextureProcessor

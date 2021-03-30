@@ -12,8 +12,16 @@ namespace Lakeside2.UI
         // I don't know where else to put this...
         public static string YesOrNo(bool val)
         {
-            if (val) return "Yes";
-            else return "No";
+            return val ? "Yes" : "No";
+        }
+        public static string HasText(string val)
+        {
+            return val == "" || val == null ? "(None)" : val;
+        }
+        public static string TextOrNull(object val)
+        {
+            if (val == null) return "(None)";
+            else return val.ToString();
         }
 
         public override Vector2 size

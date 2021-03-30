@@ -52,6 +52,19 @@ namespace Lakeside2.UI.Editor
             {
                 this.tile.collision = !this.tile.collision;
             }
+            else if (input.isKeyPressed(Keys.N))
+            {
+                // TODO NPC editor
+            }
+            else if (input.isKeyPressed(Keys.S))
+            {
+                system.pushElement(new UiTextInput().addCallback((element) =>
+                {
+                    UiTextInput input = (UiTextInput)element;
+                    this.tile.setScript(input.text);
+                    return true;
+                }), Vector2.Zero);
+            }
         }
 
         public override void draw(SBWrapper wrapper)
@@ -61,6 +74,8 @@ namespace Lakeside2.UI.Editor
 
             wrapper.drawString("(T)ile: " + tile.filename, new Vector2(25, 5));
             wrapper.drawString("(W)alkable: " + UiTextDisplay.YesOrNo(tile.collision), new Vector2(5, 25));
+            wrapper.drawString("(N)PC: " + "(None)", new Vector2(5, 45));
+            wrapper.drawString("(S)cript: " + UiTextDisplay.TextOrNull(tile.script), new Vector2(5, 65));
         }
 
     }

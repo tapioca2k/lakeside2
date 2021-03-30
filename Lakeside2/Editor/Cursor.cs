@@ -42,6 +42,10 @@ namespace Lakeside2.Editor
             else if (input.isKeyPressed(Keys.D)) location.X += Tile.TILE_SIZE;
         }
 
+        public void update(double dt)
+        {
+        }
+
         public void draw(SBWrapper wrapper, TilemapCamera camera)
         {
             wrapper.draw(texture, camera.worldToScreen(location));

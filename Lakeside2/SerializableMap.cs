@@ -16,8 +16,9 @@ namespace Lakeside2
         public string[] tilenames { get; set; }
         public int[][] tiles { get; set; }
         public bool[][] collision { get; set; }
-
         public uint color { get; set; }
+        public List<LuaScript> scripts { get; set; }
+        public List<KeyValuePair<int, int>> scriptLocations { get; set; }
 
         // wrestle engine-useful TileMap format into less useful (but writable) SerializableMap
         public static SerializableMap FromTilemap(TileMap map)
@@ -31,16 +32,25 @@ namespace Lakeside2
             s.collision = new bool[map.width][];
             s.color = map.color.PackedValue;
 
+            s.scripts = new List<LuaScript>();
+            s.scriptLocations = new List<KeyValuePair<int, int>>();
+
             for (int x = 0; x < map.width; x++)
             {
                 s.tiles[x] = new int[map.height];
                 s.collision[x] = new bool[map.height];
                 for (int y = 0; y < map.height; y++)
                 {
-                    string tilename = map.map[x, y].filename;
+                    Tile tile = map.map[x, y];
+                    string tilename = tile.filename;
                     if (!tileNumbers.ContainsKey(tilename)) tileNumbers.Add(tilename, tileCount++);
                     s.tiles[x][y] = tileNumbers[tilename];
                     s.collision[x][y] = map.checkCollision(new Vector2(x, y));
+                    if (tile.script != null)
+                    {
+                        s.scripts.Add(tile.script);
+                        s.scriptLocations.Add(new KeyValuePair<int, int>(x, y));
+                    }
                 }
             }
             s.tilenames = new string[tileCount];
@@ -62,6 +72,12 @@ namespace Lakeside2
                     tiles[x, y].collision = s.collision[x][y];
                 }
             }
+            for (int i = 0; i < s.scripts.Count; i++)
+            {
+                KeyValuePair<int, int> location = s.scriptLocations[i];
+                tiles[location.Key, location.Value].script = s.scripts[i];
+            }
+
             return new TileMap(tiles, new Color(s.color), filename);
         }
 
