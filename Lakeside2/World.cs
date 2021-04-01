@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using NLua;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -37,20 +38,28 @@ namespace Lakeside2
         bool editing = false;
         EditingOverlay editor;
 
+        Lua lua;
+
+
         public World(ContentManager Content, string filename=null)
         {
             this.Content = Content;
 
             TileMap map = new TileMap(Content, 20, 10);
-            player = new Player(Content, this);
-            camera = new TilemapCamera(map);
             ui = new UiSystem(Content);
+
+            player = new Player(Content, this, lua);
+            camera = new TilemapCamera(map);
 
             camera.setCenteringEntity(player);
             camera.centerEntity(true);
 
             entities = new List<IEntity>();
             entities.Add(player);
+
+            lua = new Lua();
+            lua.LoadCLRPackage();
+            lua["api"] = new LuaAPI(this, ui, player);
 
             ui.addStripeElement(new UiObjectMonitor<Player>(player, (p) =>
             {

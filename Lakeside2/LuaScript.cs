@@ -32,9 +32,10 @@ namespace Lakeside2
             }
         }
 
-        public void execute()
+        public object[] execute(Lua lua)
         {
-            // TODO....... the api. Does this even go here?
+            object[] returnvals = lua.DoString(script);
+            return returnvals;
         }
 
         public override string ToString()

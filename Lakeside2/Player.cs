@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using NLua;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,6 +16,8 @@ namespace Lakeside2
 
         Texture2D texture;
         World world;
+
+        Lua worldLua;
 
         Vector2 queuedMove;
         bool moving
@@ -45,10 +48,11 @@ namespace Lakeside2
             }
         }
 
-        public Player(ContentManager Content, World world)
+        public Player(ContentManager Content, World world, Lua worldLua)
         {
             texture = Content.Load<Texture2D>("player");
             this.world = world;
+            this.worldLua = worldLua;
             location = Vector2.Zero;
             queuedMove = Vector2.Zero;
         }
@@ -101,6 +105,7 @@ namespace Lakeside2
                     // correct for floating point weirdness, ensure location is on the grid
                     // TODO really need to clean up floating point weirdness!!
                     location = Vector2.Round(location);
+                    world.map.stepOn(tileLocation, worldLua);
                 }
             }
         }

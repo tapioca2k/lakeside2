@@ -56,6 +56,12 @@ namespace Lakeside2.UI
             this.text = "";
         }
 
+        public UiTextDisplay(string text)
+        {
+            this.font = Fonts.get("rainyhearts");
+            this.text = text;
+        }
+
         public override void draw(SBWrapper wrapper)
         {
             drawBackground(wrapper);

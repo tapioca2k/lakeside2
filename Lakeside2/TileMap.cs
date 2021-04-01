@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using NLua;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Lakeside2
@@ -56,6 +58,11 @@ namespace Lakeside2
             if (x < 0 || x >= width || y < 0 || y >= height) return null;
             else return map[x, y];
         }
+        public Tile getTile(Vector2 tileLocation)
+        {
+            return getTile((int)tileLocation.X, (int)tileLocation.Y);
+        }
+
         public void setTile(int x, int y, Tile tile)
         {
             if (x < 0 || x >= width || y < 0 || y >= height) return;
@@ -72,6 +79,15 @@ namespace Lakeside2
             return checkCollision((int) coordindates.X, (int) coordindates.Y);
         }
 
+        public void stepOn(Vector2 tileLocation, Lua worldLua)
+        {
+            Debug.WriteLine("stepOn " + tileLocation);
+            Tile t = getTile(tileLocation);
+            Debug.WriteLine("Script " + t.script);
+            if (t.script != null) t.script.execute(worldLua);
+        }
+
+        // for the editor
         public void resize(int newWidth, int newHeight)
         {
             Tile[,] newtiles = new Tile[newWidth, newHeight];
