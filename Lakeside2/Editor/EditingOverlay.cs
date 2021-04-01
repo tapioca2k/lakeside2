@@ -73,12 +73,11 @@ namespace Lakeside2.Editor
             }
             else if (input.isKeyPressed(Keys.E)) // Edit tile properties
             {
-                int x = (int)cursor.getTileLocation().X, y = (int)cursor.getTileLocation().Y;
-                Tile selected = map.getTile(x, y);
-                ui.pushElement(new UiTileEditor(Content, selected, x, y).addCallback((element) =>
+                Tile selected = map.getTile(cursor.getTileLocation());
+                ui.pushElement(new UiTileEditor(Content, selected).addCallback((element) =>
                 {
                     UiTileEditor editor = (UiTileEditor)element;
-                    map.setTile(editor.x, editor.y, editor.tile);
+                    map.setTile(cursor.getTileLocation(), editor.tile);
                     lastEditedTile = editor.tile;
                     return true;
                 }), new Vector2(160, 0));
@@ -87,8 +86,7 @@ namespace Lakeside2.Editor
             {
                 if (lastEditedTile != null)
                 {
-                    int x = (int)cursor.getTileLocation().X, y = (int)cursor.getTileLocation().Y;
-                    map.setTile(x, y, new Tile(lastEditedTile));
+                    map.setTile(cursor.getTileLocation(), new Tile(lastEditedTile));
                 }
             }
             else if (input.isKeyPressed(Keys.M)) // Edit map meta info

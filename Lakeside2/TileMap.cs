@@ -68,6 +68,10 @@ namespace Lakeside2
             if (x < 0 || x >= width || y < 0 || y >= height) return;
             else map[x, y] = tile;
         }
+        public void setTile(Vector2 tileLocation, Tile tile)
+        {
+            setTile((int)tileLocation.X, (int)tileLocation.Y, tile);
+        }
 
         public bool checkCollision(int x, int y)
         {

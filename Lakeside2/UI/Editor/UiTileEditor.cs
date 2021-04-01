@@ -21,14 +21,11 @@ namespace Lakeside2.UI.Editor
 
         ContentManager Content;
         public Tile tile;
-        public int x, y;
 
-        public UiTileEditor(ContentManager Content, Tile tile, int x, int y)
+        public UiTileEditor(ContentManager Content, Tile tile)
         {
             this.Content = Content;
             this.tile = tile;
-            this.x = x;
-            this.y = y;
             setBackground(Color.White);
         }
 
