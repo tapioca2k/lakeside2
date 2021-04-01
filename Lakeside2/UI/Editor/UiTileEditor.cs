@@ -42,7 +42,7 @@ namespace Lakeside2.UI.Editor
                     UiTilePicker picker = (UiTilePicker)element;
                     Tile picked = picker.selectedTile;
                     this.tile.setTexture(Content, picked.filename);
-                    return true;
+
                 }), Vector2.Zero);
             }
             else if (input.isKeyPressed(Keys.W))
@@ -59,7 +59,7 @@ namespace Lakeside2.UI.Editor
                 {
                     UiTextInput input = (UiTextInput)element;
                     this.tile.setScript(input.text);
-                    return true;
+
                 }), Vector2.Zero);
             }
         }

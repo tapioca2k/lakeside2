@@ -56,6 +56,7 @@ namespace Lakeside2
 
             entities = new List<IEntity>();
             entities.Add(player);
+            //entities.AddRange(map.npcs);
 
             lua = new Lua();
             lua.LoadCLRPackage();
@@ -98,9 +99,12 @@ namespace Lakeside2
         {
             if (!editing)
             {
-                player.update(dt);
                 ui.update(dt);
                 camera.update(dt);
+                entities.ForEach((entity) =>
+                {
+                    entity.update(dt);
+                });
             }
             else
             {

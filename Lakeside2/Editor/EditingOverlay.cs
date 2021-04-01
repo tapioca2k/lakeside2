@@ -56,7 +56,7 @@ namespace Lakeside2.Editor
                 UiElement filename = new UiTextInput().addCallback((element) =>
                 {
                     SerializableMap.Save(Content, map, ((UiTextInput)element).text);
-                    return true;
+
                 });
                 ui.pushElement(filename, Vector2.One);
             }
@@ -67,7 +67,7 @@ namespace Lakeside2.Editor
                     TileMap newMap = SerializableMap.Load(Content, ((UiTextInput)element).text);
                     this.camera.setMap(newMap);
                     cursor.setLocation(Vector2.Zero);
-                    return true;
+
                 });
                 ui.pushElement(filename, Vector2.One);
             }
@@ -79,7 +79,7 @@ namespace Lakeside2.Editor
                     UiTileEditor editor = (UiTileEditor)element;
                     map.setTile(cursor.getTileLocation(), editor.tile);
                     lastEditedTile = editor.tile;
-                    return true;
+
                 }), new Vector2(160, 0));
             }
             else if (input.isKeyPressed(Keys.P)) // Tile painter

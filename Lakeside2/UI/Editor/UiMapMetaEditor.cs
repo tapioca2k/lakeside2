@@ -42,12 +42,10 @@ namespace Lakeside2.UI.Editor
                     {
                         UiTextInput heightInput = (UiTextInput)element2;
                         int newHeight = int.Parse(heightInput.text);
-
                         map.resize(newWidth, newHeight);
 
-                        return true;
                     }), Vector2.Zero);
-                    return true;
+
                 }), Vector2.Zero);
             }
             else if (input.isKeyPressed(Keys.B))
@@ -58,21 +56,21 @@ namespace Lakeside2.UI.Editor
                     UiTextInput input = (UiTextInput)element;
                     byte b = Convert.ToByte(input.text);
                     map.color.B = b;
-                    return true;
+
                 }), Vector2.Zero);
                 system.pushElement(new UiTextInput().addCallback((element) =>
                 {
                     UiTextInput input = (UiTextInput)element;
                     byte g = Convert.ToByte(input.text);
                     map.color.G = g;
-                    return true;
+
                 }), Vector2.Zero);
                 system.pushElement(new UiTextInput().addCallback((element) =>
                 {
                     UiTextInput input = (UiTextInput)element;
                     byte r = Convert.ToByte(input.text);
                     map.color.R = r;
-                    return true;
+
                 }), Vector2.Zero);
             }
         }

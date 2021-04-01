@@ -30,7 +30,7 @@ namespace Lakeside2.UI
         }
 
         private bool done;
-        private Func<UiElement, bool> callback;
+        private Action<UiElement> callback;
         Color background = Color.Transparent;
         protected UiSystem system;
 
@@ -39,7 +39,7 @@ namespace Lakeside2.UI
             this.system = system;
         }
 
-        public UiElement addCallback(Func<UiElement, bool> callback)
+        public UiElement addCallback(Action<UiElement> callback)
         {
             this.callback = callback;
             return this;
