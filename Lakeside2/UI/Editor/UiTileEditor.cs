@@ -55,7 +55,7 @@ namespace Lakeside2.UI.Editor
             }
             else if (input.isKeyPressed(Keys.S))
             {
-                system.pushElement(new UiTextInput().addCallback((element) =>
+                system.pushElement(new UiTextInput("Script: ").addCallback((element) =>
                 {
                     UiTextInput input = (UiTextInput)element;
                     this.tile.setScript(input.text);

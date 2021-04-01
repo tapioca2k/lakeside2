@@ -29,12 +29,14 @@ namespace Lakeside2.UI
             get
             {
                 string t = text;
-                Vector2 measured = font.MeasureString(text);
+                Vector2 measured = font.MeasureString(prefix + text);
                 if (measured.X < 5) measured.X = 5;
                 if (measured.Y < 5) measured.Y = 5;
                 return measured;
             }
         }
+
+        string prefix = "";
 
         public string text
         {
@@ -62,10 +64,15 @@ namespace Lakeside2.UI
             this.text = text;
         }
 
+        public void setPrefix (string prefix)
+        {
+            this.prefix = prefix;
+        }
+
         public override void draw(SBWrapper wrapper)
         {
             drawBackground(wrapper);
-            wrapper.drawString(text, Vector2.Zero, Color.Black, font);
+            wrapper.drawString(prefix + text, Vector2.Zero, Color.Black, font);
         }
 
     }

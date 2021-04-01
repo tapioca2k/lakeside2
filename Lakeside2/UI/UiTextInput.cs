@@ -34,6 +34,12 @@ namespace Lakeside2.UI
             setBackground(Color.White);
         }
 
+        public UiTextInput(string prefix) : base()
+        {
+            setBackground(Color.White);
+            setPrefix(prefix);
+        }
+
         public override void onInput(InputHandler input)
         {
             if (finished) return;

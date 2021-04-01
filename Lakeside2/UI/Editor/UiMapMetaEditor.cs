@@ -34,11 +34,11 @@ namespace Lakeside2.UI.Editor
             }
             else if (input.isKeyPressed(Keys.R)) // resize map
             {
-                system.pushElement(new UiTextInput().addCallback((element) => 
+                system.pushElement(new UiTextInput("Width: ").addCallback((element) => 
                 {
                     UiTextInput widthInput = (UiTextInput)element;
                     int newWidth = int.Parse(widthInput.text);
-                    system.pushElement(new UiTextInput().addCallback((element2) =>
+                    system.pushElement(new UiTextInput("Height: ").addCallback((element2) =>
                     {
                         UiTextInput heightInput = (UiTextInput)element2;
                         int newHeight = int.Parse(heightInput.text);
@@ -51,21 +51,21 @@ namespace Lakeside2.UI.Editor
             else if (input.isKeyPressed(Keys.B))
             {
                 // push elements in reverse order
-                system.pushElement(new UiTextInput().addCallback((element) =>
+                system.pushElement(new UiTextInput("B: ").addCallback((element) =>
                 {
                     UiTextInput input = (UiTextInput)element;
                     byte b = Convert.ToByte(input.text);
                     map.color.B = b;
 
                 }), Vector2.Zero);
-                system.pushElement(new UiTextInput().addCallback((element) =>
+                system.pushElement(new UiTextInput("G: ").addCallback((element) =>
                 {
                     UiTextInput input = (UiTextInput)element;
                     byte g = Convert.ToByte(input.text);
                     map.color.G = g;
 
                 }), Vector2.Zero);
-                system.pushElement(new UiTextInput().addCallback((element) =>
+                system.pushElement(new UiTextInput("R: ").addCallback((element) =>
                 {
                     UiTextInput input = (UiTextInput)element;
                     byte r = Convert.ToByte(input.text);

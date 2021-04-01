@@ -53,21 +53,19 @@ namespace Lakeside2.Editor
 
             if (input.isKeyPressed(Keys.F2)) // Save
             {
-                UiElement filename = new UiTextInput().addCallback((element) =>
+                UiElement filename = new UiTextInput("Save Filename: ").addCallback((element) =>
                 {
                     SerializableMap.Save(Content, map, ((UiTextInput)element).text);
-
                 });
                 ui.pushElement(filename, Vector2.One);
             }
             else if (input.isKeyPressed(Keys.F3)) // Load
             {
-                UiElement filename = new UiTextInput().addCallback((element) =>
+                UiElement filename = new UiTextInput("Load Filename: ").addCallback((element) =>
                 {
                     TileMap newMap = SerializableMap.Load(Content, ((UiTextInput)element).text);
                     this.camera.setMap(newMap);
                     cursor.setLocation(Vector2.Zero);
-
                 });
                 ui.pushElement(filename, Vector2.One);
             }
