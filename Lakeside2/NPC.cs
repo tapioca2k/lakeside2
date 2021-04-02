@@ -9,35 +9,15 @@ using System.Text;
 
 namespace Lakeside2
 {
-    class NPC : IEntity
+    class NPC : Entity
     {
-
-        Texture2D texture;
-        Vector2 location;
         public LuaScript script;
 
         public NPC(ContentManager Content, string filename, string scriptname, Vector2 location)
         {
-            this.texture = Content.Load<Texture2D>(filename);
-            this.location = location;
+            loadAnimatedTexture(Content, filename);
             this.script = new LuaScript(scriptname);
         }
-
-        public Vector2 getLocation()
-        {
-            return location;
-        }
-
-        public void update(double dt)
-        {
-            // animate, walk around, etc?
-        }
-
-        public void draw(SBWrapper wrapper, TilemapCamera camera)
-        {
-            wrapper.draw(texture, camera.worldToScreen(location));
-        }
-
 
     }
 }

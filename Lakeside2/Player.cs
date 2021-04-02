@@ -10,11 +10,10 @@ using System.Text;
 
 namespace Lakeside2
 {
-    class Player : IEntity
+    class Player : Entity
     {
         const int RUN_SPEED = 75;
 
-        Texture2D texture;
         World world;
 
         Lua worldLua;
@@ -28,32 +27,11 @@ namespace Lakeside2
             }
         }
 
-        Vector2 location;
-        public Vector2 getLocation()
-        {
-            return location;
-        }
-
-        public Vector2 tileLocation
-        {
-            get
-            {
-                return TileMap.worldToTile(location);
-            }
-            set
-            {
-                location = new Vector2(
-                    value.X * Tile.TILE_SIZE, 
-                    value.Y * Tile.TILE_SIZE);
-            }
-        }
-
         public Player(ContentManager Content, World world, Lua worldLua)
         {
-            texture = Content.Load<Texture2D>("player");
+            loadAnimatedTexture(Content, "player");
             this.world = world;
             this.worldLua = worldLua;
-            location = Vector2.Zero;
             queuedMove = Vector2.Zero;
         }
 
@@ -67,11 +45,11 @@ namespace Lakeside2
 
         void tryMove(Vector2 direction)
         {
-            if (world.map.checkCollision(tileLocation + direction))
+            if (world.map.checkCollision(getTileLocation() + direction))
             queuedMove = Vector2.Multiply(direction, Tile.TILE_SIZE);
         }
 
-        public void update(double dt)
+        public override void update(double dt)
         {
             if (moving)
             {
@@ -105,14 +83,9 @@ namespace Lakeside2
                     // correct for floating point weirdness, ensure location is on the grid
                     // TODO really need to clean up floating point weirdness!!
                     location = Vector2.Round(location);
-                    world.map.stepOn(tileLocation, worldLua);
+                    world.map.stepOn(getTileLocation(), worldLua);
                 }
             }
-        }
-
-        public void draw(SBWrapper wrapper, TilemapCamera camera)
-        {
-            wrapper.draw(texture, camera.worldToScreen(location));
         }
     }
 }

@@ -8,30 +8,12 @@ using System.Text;
 
 namespace Lakeside2.Editor
 {
-    class Cursor : IEntity
+    class Cursor : Entity
     {
-        Texture2D texture;
-        Vector2 location;
-
-        public Vector2 getLocation()
-        {
-            return location;
-        }
-
-        public Vector2 getTileLocation()
-        {
-            return new Vector2(location.X / 16, location.Y / 16);
-        }
 
         public Cursor(ContentManager Content)
         {
-            texture = Content.Load<Texture2D>("cursor");
-            location = Vector2.Zero;
-        }
-
-        public void setLocation(Vector2 newLocation)
-        {
-            location = newLocation;
+            loadAnimatedTexture(Content, "cursor");
         }
 
         public void onInput(InputHandler input)
@@ -40,15 +22,6 @@ namespace Lakeside2.Editor
             else if (input.isKeyPressed(Keys.A)) location.X -= Tile.TILE_SIZE;
             else if (input.isKeyPressed(Keys.S)) location.Y += Tile.TILE_SIZE;
             else if (input.isKeyPressed(Keys.D)) location.X += Tile.TILE_SIZE;
-        }
-
-        public void update(double dt)
-        {
-        }
-
-        public void draw(SBWrapper wrapper, TilemapCamera camera)
-        {
-            wrapper.draw(texture, camera.worldToScreen(location));
         }
     }
 }

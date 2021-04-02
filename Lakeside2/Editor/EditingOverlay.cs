@@ -101,7 +101,7 @@ namespace Lakeside2.Editor
 
         public void draw(SBWrapper wrapper)
         {
-            camera.draw(wrapper, new List<IEntity>(new IEntity[] { cursor }));
+            camera.draw(wrapper, new List<Entity>(new Entity[] { cursor }));
             ui.draw(wrapper);
         }
     }

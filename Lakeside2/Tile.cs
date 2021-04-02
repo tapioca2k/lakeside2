@@ -10,7 +10,7 @@ namespace Lakeside2
 {
     class Tile
     {
-        const string TILE_LOCATION = "tiles/";
+        const string TILES = "tiles/";
         public const int TILE_SIZE = 16;
 
         public string filename;
@@ -25,7 +25,7 @@ namespace Lakeside2
             this.filename = filename;
             this.collision = true;
             this.script = null;
-            texture = Content.Load<Texture2D>(TILE_LOCATION + filename);
+            texture = Content.Load<Texture2D>(TILES + filename);
             if (texture.Width != texture.Height || texture.Width != TILE_SIZE)
             {
                 throw new Exception("Tile " + filename + " incorrect size");
@@ -43,7 +43,7 @@ namespace Lakeside2
 
         public void setTexture(ContentManager Content, string filename)
         {
-            texture = Content.Load<Texture2D>(TILE_LOCATION + filename);
+            texture = Content.Load<Texture2D>(TILES + filename);
             this.filename = filename;
         }
 

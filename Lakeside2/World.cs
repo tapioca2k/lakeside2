@@ -32,7 +32,7 @@ namespace Lakeside2
             }
         }
 
-        List<IEntity> entities;
+        List<Entity> entities;
         Player player;
 
         bool editing = false;
@@ -54,7 +54,7 @@ namespace Lakeside2
             camera.setCenteringEntity(player);
             camera.centerEntity(true);
 
-            entities = new List<IEntity>();
+            entities = new List<Entity>();
             entities.Add(player);
             //entities.AddRange(map.npcs);
 
@@ -64,7 +64,7 @@ namespace Lakeside2
 
             ui.addStripeElement(new UiObjectMonitor<Player>(player, (p) =>
             {
-                return p.tileLocation.ToString();
+                return p.getTileLocation().ToString();
             }), 'l');
         }
 

@@ -8,7 +8,7 @@ namespace Lakeside2
 {
     class Fonts
     {
-        const string FONTS_PREFIX = "fonts/";
+        const string FONTS = "fonts/";
         static Dictionary<string, SpriteFont> fonts;
 
         static Fonts()
@@ -20,7 +20,7 @@ namespace Lakeside2
         {
             try
             {
-                SpriteFont f = Content.Load<SpriteFont>(FONTS_PREFIX + filename);
+                SpriteFont f = Content.Load<SpriteFont>(FONTS + filename);
                 fonts.Add(filename, f);
                 return f;
             }

@@ -12,7 +12,7 @@ namespace Lakeside2
         TileMap map;
         Vector2 location;
 
-        IEntity centeredEntity;
+        Entity centeredEntity;
         bool centeringEntity;
 
         bool inMove;
@@ -93,16 +93,16 @@ namespace Lakeside2
         {
             this.centeringEntity = center;
         }
-        public void setCenteringEntity(IEntity entity)
+        public void setCenteringEntity(Entity entity)
         {
             this.centeredEntity = entity;
         }
 
-        public void draw(SBWrapper wrapper, List<IEntity> entities)
+        public void draw(SBWrapper wrapper, List<Entity> entities)
         {
             SBWrapper cameraSpace = new SBWrapper(wrapper, -location);
             map.draw(cameraSpace);
-            foreach (IEntity entity in entities) {
+            foreach (Entity entity in entities) {
                 entity.draw(wrapper, this);
             }
 
