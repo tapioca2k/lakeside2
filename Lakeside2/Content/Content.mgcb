@@ -43,6 +43,9 @@
 /processorParam:TextureFormat=Color
 /build:entities/cursor.png
 
+#begin entities/entity.json
+/copy:entities/entity.json
+
 #begin entities/player.png
 /importer:TextureImporter
 /processor:TextureProcessor

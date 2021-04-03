@@ -52,6 +52,11 @@ namespace Lakeside2
             spriteBatch.Draw(texture, this.location + location, Color.White);
         }
 
+        public void draw(Texture2D texture, Vector2 location, Rectangle section)
+        {
+            spriteBatch.Draw(texture, this.location + location, section, Color.White);
+        }
+
         public void drawRectangle(Vector2 size, Texture2D pixel)
         {
             spriteBatch.Draw(pixel, new Rectangle(location.ToPoint(), size.ToPoint()), Color.White);

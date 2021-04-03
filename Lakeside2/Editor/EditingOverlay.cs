@@ -96,6 +96,7 @@ namespace Lakeside2.Editor
         public void update(double dt)
         {
             camera.update(dt);
+            cursor.update(dt);
             ui.update(dt);
         }
 

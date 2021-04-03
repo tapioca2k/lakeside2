@@ -85,9 +85,7 @@ namespace Lakeside2
 
         public void stepOn(Vector2 tileLocation, Lua worldLua)
         {
-            Debug.WriteLine("stepOn " + tileLocation);
             Tile t = getTile(tileLocation);
-            Debug.WriteLine("Script " + t.script);
             if (t.script != null) t.script.execute(worldLua);
         }
 

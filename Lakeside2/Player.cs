@@ -46,7 +46,9 @@ namespace Lakeside2
         void tryMove(Vector2 direction)
         {
             if (world.map.checkCollision(getTileLocation() + direction))
-            queuedMove = Vector2.Multiply(direction, Tile.TILE_SIZE);
+            {
+                queuedMove = Vector2.Multiply(direction, Tile.TILE_SIZE);
+            }
         }
 
         public override void update(double dt)
@@ -86,6 +88,7 @@ namespace Lakeside2
                     world.map.stepOn(getTileLocation(), worldLua);
                 }
             }
+            base.update(dt);
         }
     }
 }

@@ -3,7 +3,10 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace Lakeside2
 {
@@ -13,12 +16,13 @@ namespace Lakeside2
         const string ENTITIES = "entities/";
 
         Texture2D texture;
+        protected Animation animation;
         protected Vector2 location = Vector2.Zero;
 
         public void loadAnimatedTexture(ContentManager Content, string filename)
         {
             texture = Content.Load<Texture2D>(ENTITIES + filename);
-            // TODO load animation data
+            animation = JsonSerializer.Deserialize<Animation>(File.ReadAllText("Content/entities/entity.json"));
         }
 
         public Vector2 getLocation()
@@ -38,11 +42,12 @@ namespace Lakeside2
 
         public virtual void update(double dt)
         {
+            animation.update(dt);
         }
 
         public virtual void draw(SBWrapper wrapper, TilemapCamera camera)
         {
-            wrapper.draw(texture, camera.worldToScreen(location));
+            wrapper.draw(texture, camera.worldToScreen(location), animation.getFrame());
         }
     }
 }
