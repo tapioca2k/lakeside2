@@ -64,9 +64,10 @@ namespace Lakeside2
                 }
                 else if (queuedMove.X < 0)
                 {
+                    proposed *= -1;
                     float trueMove = Math.Max(queuedMove.X, proposed);
-                    queuedMove.X += trueMove;
-                    location.X -= trueMove;
+                    queuedMove.X -= trueMove;
+                    location.X += trueMove;
                 }
                 if (queuedMove.Y > 0)
                 {
@@ -76,15 +77,15 @@ namespace Lakeside2
                 }
                 else if (queuedMove.Y < 0)
                 {
+                    proposed *= -1;
                     float trueMove = Math.Max(queuedMove.Y, proposed);
-                    queuedMove.Y += trueMove;
-                    location.Y -= trueMove;
+                    queuedMove.Y -= trueMove;
+                    location.Y += trueMove;
                 }
                 if (!moving)
                 {
-                    // correct for floating point weirdness, ensure location is on the grid
-                    // TODO really need to clean up floating point weirdness!!
                     location = Vector2.Round(location);
+                    queuedMove = Vector2.Zero;
                     world.map.stepOn(getTileLocation(), worldLua);
                 }
             }
