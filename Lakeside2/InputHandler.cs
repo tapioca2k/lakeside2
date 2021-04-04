@@ -156,6 +156,16 @@ namespace Lakeside2
 
         }
 
+        public bool isAnyKeyPressed(params Keys[] keys)
+        {
+            return Array.Exists(keys, key => isKeyPressed(key));
+        }
+
+        public bool isAnyKeyHeld(params Keys[] keys)
+        {
+            return Array.Exists(keys, key => isKeyHeld(key));
+        }
+
         public bool isMousePressed(char b)
         {
             if (b == 'l') return (mleft == 1);

@@ -47,7 +47,13 @@ namespace Lakeside2
 
         public virtual void draw(SBWrapper wrapper, TilemapCamera camera)
         {
-            wrapper.draw(texture, camera.worldToScreen(location), animation.getFrame());
+            drawRaw(wrapper, camera.worldToScreen(location));
+        }
+
+        // draw without correcting for camera perspective
+        public void drawRaw(SBWrapper wrapper, Vector2 location)
+        {
+            wrapper.draw(texture, location, animation.getFrame());
         }
     }
 }

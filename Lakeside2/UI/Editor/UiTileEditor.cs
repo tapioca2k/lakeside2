@@ -31,7 +31,7 @@ namespace Lakeside2.UI.Editor
 
         public override void onInput(InputHandler input)
         {
-            if (input.isKeyPressed(Keys.Enter) || input.isKeyPressed(Keys.E))
+            if (input.isAnyKeyPressed(Keys.E, Keys.Enter, Keys.Escape))
             {
                 finished = true;
             }
@@ -51,7 +51,7 @@ namespace Lakeside2.UI.Editor
             }
             else if (input.isKeyPressed(Keys.N))
             {
-                // TODO NPC editor
+                system.pushElement(new UiNpcEditor(null), Vector2.Zero);
             }
             else if (input.isKeyPressed(Keys.S))
             {
@@ -69,7 +69,7 @@ namespace Lakeside2.UI.Editor
             drawBackground(wrapper);
             tile.draw(wrapper, new Vector2(5, 5));
 
-            wrapper.drawString("(T)ile: " + tile.filename, new Vector2(25, 5));
+            wrapper.drawString("(T)exture: " + tile.filename, new Vector2(25, 5));
             wrapper.drawString("(W)alkable: " + UiTextDisplay.YesOrNo(tile.collision), new Vector2(5, 25));
             wrapper.drawString("(N)PC: " + "(None)", new Vector2(5, 45));
             wrapper.drawString("(S)cript: " + UiTextDisplay.TextOrNull(tile.script), new Vector2(5, 65));

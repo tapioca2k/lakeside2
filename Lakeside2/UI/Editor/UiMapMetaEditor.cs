@@ -28,7 +28,7 @@ namespace Lakeside2.UI.Editor
 
         public override void onInput(InputHandler input)
         {
-            if (input.isKeyPressed(Keys.Enter) || input.isKeyPressed(Keys.M))
+            if (input.isAnyKeyPressed(Keys.M, Keys.Enter, Keys.Escape))
             {
                 finished = true;
             }
