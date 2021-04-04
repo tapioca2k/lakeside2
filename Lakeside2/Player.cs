@@ -37,10 +37,26 @@ namespace Lakeside2
 
         public void onInput(InputHandler input)
         {
-            if (input.isKeyHeld(Keys.W) && !moving) tryMove(new Vector2(0, -1));
-            else if (input.isKeyHeld(Keys.A) && !moving) tryMove(new Vector2(-1, 0));
-            else if (input.isKeyHeld(Keys.S) && !moving) tryMove(new Vector2(0, 1));
-            else if (input.isKeyHeld(Keys.D) && !moving) tryMove(new Vector2(1, 0));
+            if (input.isKeyHeld(Keys.W) && !moving)
+            {
+                tryMove(new Vector2(0, -1));
+                animation.set(0);
+            }
+            else if (input.isKeyHeld(Keys.A) && !moving)
+            {
+                tryMove(new Vector2(-1, 0));
+                animation.set(2);
+            }
+            else if (input.isKeyHeld(Keys.S) && !moving)
+            {
+                tryMove(new Vector2(0, 1));
+                animation.set(1);
+            }
+            else if (input.isKeyHeld(Keys.D) && !moving)
+            {
+                tryMove(new Vector2(1, 0));
+                animation.set(3);
+            }
         }
 
         void tryMove(Vector2 direction)
@@ -55,6 +71,7 @@ namespace Lakeside2
         {
             if (moving)
             {
+                base.update(dt); // only update animations if moving
                 float proposed = (float)dt * RUN_SPEED;
                 if (queuedMove.X > 0)
                 {
@@ -89,7 +106,6 @@ namespace Lakeside2
                     world.map.stepOn(getTileLocation(), worldLua);
                 }
             }
-            base.update(dt);
         }
     }
 }

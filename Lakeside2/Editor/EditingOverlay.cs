@@ -55,7 +55,8 @@ namespace Lakeside2.Editor
             {
                 UiElement filename = new UiTextInput("Save Filename: ").addCallback((element) =>
                 {
-                    SerializableMap.Save(Content, map, ((UiTextInput)element).text);
+                    UiTextInput input = (UiTextInput)element;
+                    if (input.text != "") SerializableMap.Save(Content, map, input.text);
                 });
                 ui.pushElement(filename, Vector2.One);
             }
@@ -63,22 +64,28 @@ namespace Lakeside2.Editor
             {
                 UiElement filename = new UiTextInput("Load Filename: ").addCallback((element) =>
                 {
-                    TileMap newMap = SerializableMap.Load(Content, ((UiTextInput)element).text);
-                    this.camera.setMap(newMap);
-                    cursor.setLocation(Vector2.Zero);
+                    UiTextInput input = (UiTextInput)element;
+                    if (input.text != "")
+                    {
+                        TileMap newMap = SerializableMap.Load(Content, input.text);
+                        this.camera.setMap(newMap);
+                        cursor.setLocation(Vector2.Zero);
+                    }
                 });
                 ui.pushElement(filename, Vector2.One);
             }
             else if (input.isKeyPressed(Keys.E)) // Edit tile properties
             {
                 Tile selected = map.getTile(cursor.getTileLocation());
-                ui.pushElement(new UiTileEditor(Content, selected).addCallback((element) =>
+                if (selected != null)
                 {
-                    UiTileEditor editor = (UiTileEditor)element;
-                    map.setTile(cursor.getTileLocation(), editor.tile);
-                    lastEditedTile = editor.tile;
-
-                }), new Vector2(160, 0));
+                    ui.pushElement(new UiTileEditor(Content, selected).addCallback((element) =>
+                    {
+                        UiTileEditor editor = (UiTileEditor)element;
+                        map.setTile(cursor.getTileLocation(), editor.tile);
+                        lastEditedTile = editor.tile;
+                    }), new Vector2(160, 0));
+                }
             }
             else if (input.isKeyPressed(Keys.P)) // Tile painter
             {

@@ -27,7 +27,7 @@ namespace Lakeside2
             }
         }
 
-        public void setAnimation(int n, bool reset = false)
+        public void set(int n, bool reset = false)
         {
             if (n < durations.Length)
             {

@@ -37,11 +37,13 @@ namespace Lakeside2.UI.Editor
                 system.pushElement(new UiTextInput("Width: ").addCallback((element) => 
                 {
                     UiTextInput widthInput = (UiTextInput)element;
-                    int newWidth = int.Parse(widthInput.text);
+                    int newWidth = map.width;
+                    if (widthInput.text != "") newWidth = int.Parse(widthInput.text);
                     system.pushElement(new UiTextInput("Height: ").addCallback((element2) =>
                     {
                         UiTextInput heightInput = (UiTextInput)element2;
-                        int newHeight = int.Parse(heightInput.text);
+                        int newHeight = map.height;
+                        if (heightInput.text != "") newHeight = int.Parse(heightInput.text);
                         map.resize(newWidth, newHeight);
 
                     }), Vector2.Zero);
@@ -54,23 +56,17 @@ namespace Lakeside2.UI.Editor
                 system.pushElement(new UiTextInput("B: ").addCallback((element) =>
                 {
                     UiTextInput input = (UiTextInput)element;
-                    byte b = Convert.ToByte(input.text);
-                    map.color.B = b;
-
+                    if (input.text != "") map.color.B = Convert.ToByte(input.text);
                 }), Vector2.Zero);
                 system.pushElement(new UiTextInput("G: ").addCallback((element) =>
                 {
                     UiTextInput input = (UiTextInput)element;
-                    byte g = Convert.ToByte(input.text);
-                    map.color.G = g;
-
+                    if (input.text != "") map.color.G = Convert.ToByte(input.text);
                 }), Vector2.Zero);
                 system.pushElement(new UiTextInput("R: ").addCallback((element) =>
                 {
                     UiTextInput input = (UiTextInput)element;
-                    byte r = Convert.ToByte(input.text);
-                    map.color.R = r;
-
+                    if (input.text != "") map.color.R = Convert.ToByte(input.text);
                 }), Vector2.Zero);
             }
         }

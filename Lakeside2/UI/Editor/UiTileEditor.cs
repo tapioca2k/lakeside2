@@ -58,7 +58,7 @@ namespace Lakeside2.UI.Editor
                 system.pushElement(new UiTextInput("Script: ").addCallback((element) =>
                 {
                     UiTextInput input = (UiTextInput)element;
-                    this.tile.setScript(input.text);
+                    if (input.text != "") this.tile.setScript(input.text);
 
                 }), Vector2.Zero);
             }
