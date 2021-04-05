@@ -27,5 +27,11 @@ namespace Lakeside2
             if (!script.loaded) script = null; // not a valid script
         }
 
+        public void setTexture(ContentManager Content, string filename)
+        {
+            loadAnimatedTexture(Content, filename);
+            this.filename = filename;
+        }
+
     }
 }

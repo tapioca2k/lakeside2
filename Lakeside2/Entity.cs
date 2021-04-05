@@ -11,7 +11,7 @@ using System.Text.Json;
 namespace Lakeside2
 {
     // Player, NPC, or other object that actually exists in the game world
-    abstract class Entity
+    abstract class Entity : IDrawable
     {
         const string ENTITIES = "entities/";
 
@@ -19,7 +19,7 @@ namespace Lakeside2
         protected Animation animation;
         protected Vector2 location = Vector2.Zero;
 
-        public void loadAnimatedTexture(ContentManager Content, string filename)
+        protected void loadAnimatedTexture(ContentManager Content, string filename)
         {
             texture = Content.Load<Texture2D>(ENTITIES + filename);
             animation = JsonSerializer.Deserialize<Animation>(File.ReadAllText("Content/entities/entity.json"));
@@ -47,13 +47,14 @@ namespace Lakeside2
 
         public virtual void draw(SBWrapper wrapper, TilemapCamera camera)
         {
-            drawRaw(wrapper, camera.worldToScreen(location));
+            draw(wrapper, camera.worldToScreen(location));
         }
 
         // draw without correcting for camera perspective
-        public void drawRaw(SBWrapper wrapper, Vector2 location)
+        public void draw(SBWrapper wrapper, Vector2 location)
         {
             wrapper.draw(texture, location, animation.getFrame());
         }
+
     }
 }

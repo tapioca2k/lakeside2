@@ -53,7 +53,7 @@ namespace Lakeside2.Editor
 
             if (input.isKeyPressed(Keys.F2)) // Save
             {
-                UiElement filename = new UiTextInput("Save Filename: ").addCallback((element) =>
+                UiElement filename = new UiTextInput("Save Filename: ").addCallback(element =>
                 {
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "") SerializableMap.Save(Content, map, input.text);
@@ -62,7 +62,7 @@ namespace Lakeside2.Editor
             }
             else if (input.isKeyPressed(Keys.F3)) // Load
             {
-                UiElement filename = new UiTextInput("Load Filename: ").addCallback((element) =>
+                UiElement filename = new UiTextInput("Load Filename: ").addCallback(element =>
                 {
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "")
@@ -77,12 +77,15 @@ namespace Lakeside2.Editor
             else if (input.isKeyPressed(Keys.E)) // Edit tile properties
             {
                 Tile selected = map.getTile(cursor.getTileLocation());
+                // TODO get NPC from tilemap
+                NPC npc = null;
                 if (selected != null)
                 {
-                    ui.pushElement(new UiTileEditor(Content, selected).addCallback((element) =>
+                    ui.pushElement(new UiTileEditor(Content, selected, npc).addCallback(element =>
                     {
                         UiTileEditor editor = (UiTileEditor)element;
                         map.setTile(cursor.getTileLocation(), editor.tile);
+                        // TODO set NPC on map accordingly
                         lastEditedTile = editor.tile;
                     }), new Vector2(160, 0));
                 }

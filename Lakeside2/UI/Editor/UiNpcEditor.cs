@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,15 @@ namespace Lakeside2.UI.Editor
             }
         }
 
+        ContentManager Content;
         public NPC npc;
+        public bool delete;
 
-        public UiNpcEditor(NPC npc)
+        public UiNpcEditor(ContentManager Content, NPC npc)
         {
+            this.Content = Content;
             this.npc = npc;
+            this.delete = false;
             setBackground(Color.White);
         }
 
@@ -32,7 +37,13 @@ namespace Lakeside2.UI.Editor
             }
             else if (input.isKeyPressed(Keys.T))
             {
-                // TODO open NPC texture picker
+                system.pushElement(new UiEntityPicker(Content).addCallback(element =>
+                {
+                    UiEntityPicker picker = (UiEntityPicker)element;
+                    NPC n = (NPC)picker.selected;
+                    if (this.npc == null) this.npc = new NPC(Content, n.filename, "");
+                    else this.npc.setTexture(Content, n.filename);
+                }), new Vector2(160, 0));
             }
             else if (input.isKeyPressed(Keys.S) && this.npc != null)
             {
@@ -47,9 +58,9 @@ namespace Lakeside2.UI.Editor
                 system.pushElement(new UiTextInput("Sure? (Y/N): ").addCallback(element =>
                 {
                     UiTextInput input = (UiTextInput)element;
-                    if (input.text == "Y")
+                    if (input.text.ToLower() == "y")
                     {
-                        // TODO delete npc?
+                        this.delete = true;
                         finished = true;
                     }
                 }), Vector2.Zero);
@@ -60,7 +71,7 @@ namespace Lakeside2.UI.Editor
         public override void draw(SBWrapper wrapper)
         {
             drawBackground(wrapper);
-            if (npc != null) npc.drawRaw(wrapper, new Vector2(5, 5));
+            if (npc != null) npc.draw(wrapper, new Vector2(5, 5));
             wrapper.drawString("(T)exture: " + ((npc != null) ? npc.filename : "N/A"), new Vector2(25, 5));
             wrapper.drawString("(S)cript: " + ((npc != null) ? UiTextDisplay.TextOrNull(npc.script) : "N/A"), new Vector2(5, 25));
             wrapper.drawString("(D)elete", new Vector2(5, 45));

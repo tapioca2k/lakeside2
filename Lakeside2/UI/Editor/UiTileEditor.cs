@@ -21,11 +21,13 @@ namespace Lakeside2.UI.Editor
 
         ContentManager Content;
         public Tile tile;
+        public NPC npc;
 
-        public UiTileEditor(ContentManager Content, Tile tile)
+        public UiTileEditor(ContentManager Content, Tile tile, NPC npc)
         {
             this.Content = Content;
             this.tile = tile;
+            this.npc = npc;
             setBackground(Color.White);
         }
 
@@ -37,10 +39,10 @@ namespace Lakeside2.UI.Editor
             }
             else if (input.isKeyPressed(Keys.T))
             {
-                system.pushElement(new UiTilePicker(Content).addCallback((element) =>
+                system.pushElement(new UiTilePicker(Content).addCallback(element =>
                 {
                     UiTilePicker picker = (UiTilePicker)element;
-                    Tile picked = picker.selectedTile;
+                    Tile picked = (Tile)picker.selected;
                     this.tile.setTexture(Content, picked.filename);
 
                 }), Vector2.Zero);
@@ -51,11 +53,16 @@ namespace Lakeside2.UI.Editor
             }
             else if (input.isKeyPressed(Keys.N))
             {
-                system.pushElement(new UiNpcEditor(null), Vector2.Zero);
+                system.pushElement(new UiNpcEditor(Content, null).addCallback(element =>
+                {
+                    UiNpcEditor editor = (UiNpcEditor)element;
+                    if (editor.delete) this.npc = null;
+                    else this.npc = editor.npc;
+                }), Vector2.Zero);
             }
             else if (input.isKeyPressed(Keys.S))
             {
-                system.pushElement(new UiTextInput("Script: ").addCallback((element) =>
+                system.pushElement(new UiTextInput("Script: ").addCallback(element =>
                 {
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "") this.tile.setScript(input.text);
