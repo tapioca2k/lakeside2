@@ -13,6 +13,11 @@ namespace Lakeside2
     // Player, NPC, or other object that actually exists in the game world
     abstract class Entity : IDrawable
     {
+        public const int ANIM_UP = 1;
+        public const int ANIM_DOWN = 0;
+        public const int ANIM_LEFT = 2;
+        public const int ANIM_RIGHT = 3;
+
         const string ENTITIES = "entities/";
 
         Texture2D texture;
@@ -33,6 +38,11 @@ namespace Lakeside2
         public void setLocation(Vector2 val)
         {
             location = val;
+        }
+
+        public void setTileLocation(Vector2 val)
+        {
+            setLocation(Vector2.Multiply(val, Tile.TILE_SIZE));
         }
 
         public Vector2 getTileLocation()

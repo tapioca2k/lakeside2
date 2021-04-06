@@ -46,6 +46,18 @@
 #begin entities/entity.json
 /copy:entities/entity.json
 
+#begin entities/greenman.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:entities/greenman.png
+
 #begin entities/player.png
 /importer:TextureImporter
 /processor:TextureProcessor

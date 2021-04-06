@@ -17,6 +17,7 @@ namespace Lakeside2
         public int height;
         public Color color;
         public string filename;
+        public List<NPC> npcs;
 
         public static Vector2 worldToTile(Vector2 real)
         {
@@ -33,6 +34,7 @@ namespace Lakeside2
             this.height = height;
             this.color = Color.Black;
             this.filename = "(Unsaved)";
+            npcs = new List<NPC>();
             map = new Tile[width, height];
             for (int x = 0; x < width; x++)
             {
@@ -71,6 +73,19 @@ namespace Lakeside2
         public void setTile(Vector2 tileLocation, Tile tile)
         {
             setTile((int)tileLocation.X, (int)tileLocation.Y, tile);
+        }
+
+        public void setNPC(Vector2 tileLocation, NPC npc)
+        {
+            NPC present = getNPC(tileLocation);
+            if (present != null) npcs.Remove(present);
+            npc.setTileLocation(tileLocation);
+            npcs.Add(npc);
+        }
+
+        public NPC getNPC(Vector2 tileLocation)
+        {
+            return npcs.Find(npc => npc.getTileLocation().Equals(tileLocation));
         }
 
         public bool checkCollision(int x, int y)

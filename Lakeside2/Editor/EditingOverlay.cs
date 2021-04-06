@@ -77,20 +77,19 @@ namespace Lakeside2.Editor
             else if (input.isKeyPressed(Keys.E)) // Edit tile properties
             {
                 Tile selected = map.getTile(cursor.getTileLocation());
-                // TODO get NPC from tilemap
-                NPC npc = null;
+                NPC npc = map.getNPC(cursor.getTileLocation());
                 if (selected != null)
                 {
                     ui.pushElement(new UiTileEditor(Content, selected, npc).addCallback(element =>
                     {
                         UiTileEditor editor = (UiTileEditor)element;
                         map.setTile(cursor.getTileLocation(), editor.tile);
-                        // TODO set NPC on map accordingly
+                        map.setNPC(cursor.getTileLocation(), editor.npc);
                         lastEditedTile = editor.tile;
                     }), new Vector2(160, 0));
                 }
             }
-            else if (input.isKeyPressed(Keys.P)) // Tile painter
+            else if (input.isKeyHeld(Keys.P)) // Tile painter
             {
                 if (lastEditedTile != null)
                 {
@@ -112,7 +111,10 @@ namespace Lakeside2.Editor
 
         public void draw(SBWrapper wrapper)
         {
-            camera.draw(wrapper, new List<Entity>(new Entity[] { cursor }));
+            List<Entity> entities = new List<Entity>();
+            entities.Add(cursor);
+            entities.AddRange(map.npcs);
+            camera.draw(wrapper, entities);
             ui.draw(wrapper);
         }
     }

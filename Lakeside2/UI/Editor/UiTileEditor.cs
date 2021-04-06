@@ -78,7 +78,7 @@ namespace Lakeside2.UI.Editor
 
             wrapper.drawString("(T)exture: " + tile.filename, new Vector2(25, 5));
             wrapper.drawString("(W)alkable: " + UiTextDisplay.YesOrNo(tile.collision), new Vector2(5, 25));
-            wrapper.drawString("(N)PC: " + "(None)", new Vector2(5, 45));
+            wrapper.drawString("(N)PC: " + UiTextDisplay.TextOrNull(npc), new Vector2(5, 45));
             wrapper.drawString("(S)cript: " + UiTextDisplay.TextOrNull(tile.script), new Vector2(5, 65));
         }
 

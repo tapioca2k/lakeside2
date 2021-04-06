@@ -67,7 +67,6 @@ namespace Lakeside2.UI.Editor
             }
         }
 
-
         public override void draw(SBWrapper wrapper)
         {
             drawBackground(wrapper);

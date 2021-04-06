@@ -54,9 +54,7 @@ namespace Lakeside2
             camera.setCenteringEntity(player);
             camera.centerEntity(true);
 
-            entities = new List<Entity>();
-            entities.Add(player);
-            //entities.AddRange(map.npcs);
+            resetEntities();
 
             lua = new Lua();
             lua.LoadCLRPackage();
@@ -66,6 +64,13 @@ namespace Lakeside2
             {
                 return p.getTileLocation().ToString();
             }), 'l');
+        }
+
+        void resetEntities()
+        {
+            entities = new List<Entity>();
+            entities.Add(player);
+            entities.AddRange(map.npcs);
         }
 
         public void onInput(InputHandler input)
@@ -92,6 +97,7 @@ namespace Lakeside2
                 {
                     editor = null;
                     camera.setCenteringEntity(player); // editing mode stole this
+                    resetEntities(); // reload entities for ones created in the editor
                 }
             }
         }

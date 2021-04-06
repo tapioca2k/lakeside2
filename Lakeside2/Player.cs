@@ -29,7 +29,7 @@ namespace Lakeside2
 
         public Player(ContentManager Content, World world, Lua worldLua)
         {
-            loadAnimatedTexture(Content, "player");
+            loadAnimatedTexture(Content, "greenman");
             this.world = world;
             this.worldLua = worldLua;
             queuedMove = Vector2.Zero;
@@ -40,22 +40,22 @@ namespace Lakeside2
             if (input.isKeyHeld(Keys.W) && !moving)
             {
                 tryMove(new Vector2(0, -1));
-                animation.set(0);
+                animation.set(ANIM_UP);
             }
             else if (input.isKeyHeld(Keys.A) && !moving)
             {
                 tryMove(new Vector2(-1, 0));
-                animation.set(2);
+                animation.set(ANIM_LEFT);
             }
             else if (input.isKeyHeld(Keys.S) && !moving)
             {
                 tryMove(new Vector2(0, 1));
-                animation.set(1);
+                animation.set(ANIM_DOWN);
             }
             else if (input.isKeyHeld(Keys.D) && !moving)
             {
                 tryMove(new Vector2(1, 0));
-                animation.set(3);
+                animation.set(ANIM_RIGHT);
             }
         }
 

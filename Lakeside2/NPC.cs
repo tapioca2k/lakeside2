@@ -33,5 +33,10 @@ namespace Lakeside2
             this.filename = filename;
         }
 
+        public override string ToString()
+        {
+            return filename;
+        }
+
     }
 }
