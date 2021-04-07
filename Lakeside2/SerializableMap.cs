@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Lakeside2
 {
@@ -13,12 +14,20 @@ namespace Lakeside2
     {
         const string MAPS_DIRECTORY = "/maps/";
 
+        static JsonSerializerOptions OPTIONS;
+        static SerializableMap()
+        {
+            OPTIONS = new JsonSerializerOptions();
+            OPTIONS.Converters.Add(new NPCConverter());
+        }
+
         public string[] tilenames { get; set; }
         public int[][] tiles { get; set; }
         public bool[][] collision { get; set; }
         public uint color { get; set; }
         public List<LuaScript> scripts { get; set; }
         public List<KeyValuePair<int, int>> scriptLocations { get; set; }
+        public List<NPC> npcs { get; set; }
 
         // wrestle engine-useful TileMap format into less useful (but writable) SerializableMap
         public static SerializableMap FromTilemap(TileMap map)
@@ -34,6 +43,8 @@ namespace Lakeside2
 
             s.scripts = new List<LuaScript>();
             s.scriptLocations = new List<KeyValuePair<int, int>>();
+
+            s.npcs = map.npcs;
 
             for (int x = 0; x < map.width; x++)
             {
@@ -78,7 +89,10 @@ namespace Lakeside2
                 tiles[location.Key, location.Value].script = s.scripts[i];
             }
 
-            return new TileMap(tiles, new Color(s.color), filename);
+            // load NPC textures
+            s.npcs.ForEach(npc => npc.setTexture(Content, npc.filename));
+
+            return new TileMap(tiles, new Color(s.color), filename, s.npcs);
         }
 
         public static TileMap Load(ContentManager Content, string filename)
@@ -86,7 +100,7 @@ namespace Lakeside2
             try
             {
                 string json = File.ReadAllText(Content.RootDirectory + MAPS_DIRECTORY + filename);
-                SerializableMap s = JsonSerializer.Deserialize<SerializableMap>(json);
+                SerializableMap s = JsonSerializer.Deserialize<SerializableMap>(json, OPTIONS);
                 return ToTilemap(Content, filename, s);
             }
             catch (Exception e)
@@ -100,7 +114,7 @@ namespace Lakeside2
         {
             map.filename = filename;
             SerializableMap s = FromTilemap(map);
-            string json = JsonSerializer.Serialize(s);
+            string json = JsonSerializer.Serialize(s, OPTIONS);
             string location = Content.RootDirectory + MAPS_DIRECTORY + filename;
             File.WriteAllText(location, json);
         }

@@ -21,6 +21,13 @@ namespace Lakeside2
             this.filename = filename;
         }
 
+        public NPC(string filename, string scriptname)
+        {
+            this.script = new LuaScript(scriptname);
+            this.filename = filename;
+            // defer any loading for later using the set() methods
+        }
+
         public void setScript(string filename)
         {
             script = new LuaScript(filename);

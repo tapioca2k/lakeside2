@@ -46,13 +46,14 @@ namespace Lakeside2
         }
 
         // only SerializableMap.ToTilemap() should use this constructor
-        public TileMap(Tile[,] tiles, Color color, string filename)
+        public TileMap(Tile[,] tiles, Color color, string filename, List<NPC> npcs)
         {
             this.map = tiles;
             this.width = tiles.GetLength(0);
             this.height = tiles.GetLength(1);
             this.color = color;
             this.filename = filename;
+            this.npcs = npcs;
         }
 
         public Tile getTile(int x, int y)
