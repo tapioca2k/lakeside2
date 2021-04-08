@@ -42,18 +42,21 @@ namespace Lakeside2.UI.Editor
                 {
                     UiEntityPicker picker = (UiEntityPicker)element;
                     NPC n = (NPC)picker.selected;
-                    if (this.npc == null) this.npc = new NPC(Content, n.filename, "");
+                    if (this.npc == null) this.npc = new NPC(Content, n.filename, "", false);
                     else this.npc.setTexture(Content, n.filename);
                 }), new Vector2(160, 0));
             }
             else if (input.isKeyPressed(Keys.S) && this.npc != null)
             {
-                Debug.WriteLine("Pressed S, NPC is not null");
                 system.pushElement(new UiTextInput("Script: ").addCallback(element =>
                 {
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "") this.npc.setScript(input.text);
                 }), Vector2.Zero);
+            }
+            else if (input.isKeyPressed(Keys.L) && this.npc != null)
+            {
+                this.npc.locked = !this.npc.locked;
             }
             else if (input.isKeyPressed(Keys.D) && this.npc != null)
             {
@@ -75,7 +78,8 @@ namespace Lakeside2.UI.Editor
             if (npc != null) npc.draw(wrapper, new Vector2(5, 5));
             wrapper.drawString("(T)exture: " + ((npc != null) ? npc.filename : "N/A"), new Vector2(25, 5));
             wrapper.drawString("(S)cript: " + ((npc != null) ? UiTextDisplay.TextOrNull(npc.script) : "N/A"), new Vector2(5, 25));
-            wrapper.drawString("(D)elete", new Vector2(5, 45));
+            wrapper.drawString("(L)ocked: " + ((npc != null) ? UiTextDisplay.YesOrNo(npc.locked) : "N/A"), new Vector2(5, 45));
+            wrapper.drawString("(D)elete", new Vector2(5, 65));
         }
     }
 }

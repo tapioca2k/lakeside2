@@ -27,8 +27,10 @@ namespace Lakeside2
             float y = reader.GetSingle();
             skipPropName(ref reader);
             string scriptname = reader.GetString();
+            skipPropName(ref reader);
+            bool locked = reader.GetBoolean();
             reader.Read(); // } (this is important)
-            NPC n = new NPC(filename, scriptname);
+            NPC n = new NPC(filename, scriptname, locked);
             n.setTileLocation(new Vector2(x, y));
             return n;
         }
@@ -40,6 +42,7 @@ namespace Lakeside2
             writer.WriteNumber("x", value.getTileLocation().X);
             writer.WriteNumber("y", value.getTileLocation().Y);
             writer.WriteString("script", value.script.filename);
+            writer.WriteBoolean("locked", value.locked);
             writer.WriteEndObject();
         }
     }

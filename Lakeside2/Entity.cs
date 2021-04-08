@@ -29,6 +29,30 @@ namespace Lakeside2
         protected Vector2 location = Vector2.Zero;
         protected Directions facing = Directions.down;
 
+        public static Vector2 getFacingVector(Directions direction)
+        {
+            switch (direction)
+            {
+                case Directions.up: return DIREC_UP;
+                case Directions.right: return DIREC_RIGHT;
+                case Directions.down: return DIREC_DOWN;
+                case Directions.left: return DIREC_LEFT;
+                default: return Vector2.Zero; // should never happen
+            }
+        }
+
+        public static Directions getOppositeDirection(Directions direction)
+        {
+            switch (direction)
+            {
+                case Directions.up: return Directions.down;
+                case Directions.right: return Directions.left;
+                case Directions.down: return Directions.up;
+                case Directions.left: return Directions.right;
+                default: return Directions.up; // should never happen
+            }
+        }
+
         protected void loadAnimatedTexture(ContentManager Content, string filename)
         {
             texture = Content.Load<Texture2D>(ENTITIES + filename);
@@ -57,14 +81,7 @@ namespace Lakeside2
 
         public Vector2 getFacingTile()
         {
-            switch (facing)
-            {
-                case Directions.up: return getTileLocation() + DIREC_UP;
-                case Directions.right: return getTileLocation() + DIREC_RIGHT;
-                case Directions.down: return getTileLocation() + DIREC_DOWN;
-                case Directions.left: return getTileLocation() + DIREC_LEFT;
-                default: return getTileLocation(); // should never happen
-            }
+            return getTileLocation() + getFacingVector(facing);
         }
 
         public virtual void update(double dt)

@@ -67,6 +67,7 @@ namespace Lakeside2
                 if (interacting != null)
                 {
                     interacting.interact(worldLua);
+                    interacting.setDirection(getOppositeDirection(facing));
                 }
             }
         }

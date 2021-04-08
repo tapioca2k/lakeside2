@@ -14,19 +14,22 @@ namespace Lakeside2
     {
         public LuaScript script;
         public string filename;
+        public bool locked;
 
-        public NPC(ContentManager Content, string filename, string scriptname)
+        public NPC(ContentManager Content, string filename, string scriptname, bool locked)
         {
             loadAnimatedTexture(Content, filename);
             this.script = new LuaScript(scriptname);
             this.filename = filename;
+            this.locked = locked;
         }
 
-        public NPC(string filename, string scriptname)
+        // used by NPCConverter to deserialize NPCs without immediate access to asset loading
+        public NPC(string filename, string scriptname, bool locked)
         {
             this.script = new LuaScript(scriptname);
             this.filename = filename;
-            // defer any loading for later using the set() methods
+            this.locked = locked;
         }
 
         public void setScript(string filename)
@@ -45,6 +48,13 @@ namespace Lakeside2
         {
             lua["me"] = this;
             return script.execute(lua);
+        }
+
+        public new void setDirection(Directions direction)
+        {
+            if (this.locked) return;
+            animation.set((int)direction);
+            this.facing = direction;
         }
 
         public override string ToString()

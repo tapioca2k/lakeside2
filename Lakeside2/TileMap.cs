@@ -92,6 +92,7 @@ namespace Lakeside2
         public bool checkCollision(int x, int y)
         {
             if (x < 0 || x >= width || y < 0 || y >= height) return false;
+            else if (getNPC(new Vector2(x, y)) != null) return false;
             else return map[x, y].collision;
         }
         public bool checkCollision(Vector2 coordindates)
