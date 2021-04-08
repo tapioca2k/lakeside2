@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Lakeside2.UI.Editor
@@ -47,6 +48,7 @@ namespace Lakeside2.UI.Editor
             }
             else if (input.isKeyPressed(Keys.S) && this.npc != null)
             {
+                Debug.WriteLine("Pressed S, NPC is not null");
                 system.pushElement(new UiTextInput("Script: ").addCallback(element =>
                 {
                     UiTextInput input = (UiTextInput)element;

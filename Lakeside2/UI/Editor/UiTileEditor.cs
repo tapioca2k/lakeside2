@@ -53,7 +53,7 @@ namespace Lakeside2.UI.Editor
             }
             else if (input.isKeyPressed(Keys.N))
             {
-                system.pushElement(new UiNpcEditor(Content, null).addCallback(element =>
+                system.pushElement(new UiNpcEditor(Content, npc).addCallback(element =>
                 {
                     UiNpcEditor editor = (UiNpcEditor)element;
                     if (editor.delete) this.npc = null;

@@ -13,16 +13,21 @@ namespace Lakeside2
     // Player, NPC, or other object that actually exists in the game world
     abstract class Entity : IDrawable
     {
-        public const int ANIM_UP = 1;
-        public const int ANIM_DOWN = 0;
-        public const int ANIM_LEFT = 2;
-        public const int ANIM_RIGHT = 3;
+        public enum Directions
+        {
+            down, up, left, right 
+        };
+        public static Vector2 DIREC_UP = new Vector2(0, -1);
+        public static Vector2 DIREC_RIGHT = new Vector2(1, 0);
+        public static Vector2 DIREC_DOWN = new Vector2(0, 1);
+        public static Vector2 DIREC_LEFT = new Vector2(-1, 0);
 
         const string ENTITIES = "entities/";
 
         Texture2D texture;
         protected Animation animation;
         protected Vector2 location = Vector2.Zero;
+        protected Directions facing = Directions.down;
 
         protected void loadAnimatedTexture(ContentManager Content, string filename)
         {
@@ -50,9 +55,27 @@ namespace Lakeside2
             return new Vector2((int)location.X / Tile.TILE_SIZE, (int)location.Y / Tile.TILE_SIZE);
         }
 
+        public Vector2 getFacingTile()
+        {
+            switch (facing)
+            {
+                case Directions.up: return getTileLocation() + DIREC_UP;
+                case Directions.right: return getTileLocation() + DIREC_RIGHT;
+                case Directions.down: return getTileLocation() + DIREC_DOWN;
+                case Directions.left: return getTileLocation() + DIREC_LEFT;
+                default: return getTileLocation(); // should never happen
+            }
+        }
+
         public virtual void update(double dt)
         {
             animation.update(dt);
+        }
+
+        public void setDirection(Directions direction)
+        {
+            animation.set((int)direction);
+            this.facing = direction;
         }
 
         public virtual void draw(SBWrapper wrapper, TilemapCamera camera)

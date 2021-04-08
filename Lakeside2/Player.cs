@@ -12,6 +12,7 @@ namespace Lakeside2
 {
     class Player : Entity
     {
+
         const int RUN_SPEED = 75;
 
         World world;
@@ -37,25 +38,36 @@ namespace Lakeside2
 
         public void onInput(InputHandler input)
         {
-            if (input.isKeyHeld(Keys.W) && !moving)
+            if (moving) return;
+
+            if (input.isKeyHeld(Keys.W))
             {
-                tryMove(new Vector2(0, -1));
-                animation.set(ANIM_UP);
+                tryMove(DIREC_UP);
+                setDirection(Directions.up);
             }
-            else if (input.isKeyHeld(Keys.A) && !moving)
+            else if (input.isKeyHeld(Keys.A))
             {
-                tryMove(new Vector2(-1, 0));
-                animation.set(ANIM_LEFT);
+                tryMove(DIREC_LEFT);
+                setDirection(Directions.left);
             }
-            else if (input.isKeyHeld(Keys.S) && !moving)
+            else if (input.isKeyHeld(Keys.S))
             {
-                tryMove(new Vector2(0, 1));
-                animation.set(ANIM_DOWN);
+                tryMove(DIREC_DOWN);
+                setDirection(Directions.down);
             }
-            else if (input.isKeyHeld(Keys.D) && !moving)
+            else if (input.isKeyHeld(Keys.D))
             {
-                tryMove(new Vector2(1, 0));
-                animation.set(ANIM_RIGHT);
+                tryMove(DIREC_RIGHT);
+                setDirection(Directions.right);
+            }
+
+            else if (input.isKeyPressed(Keys.E))
+            {
+                NPC interacting = world.map.getNPC(getFacingTile());
+                if (interacting != null)
+                {
+                    interacting.interact(worldLua);
+                }
             }
         }
 

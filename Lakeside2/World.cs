@@ -48,6 +48,10 @@ namespace Lakeside2
             TileMap map = new TileMap(Content, 20, 10);
             ui = new UiSystem(Content);
 
+            lua = new Lua();
+            lua.LoadCLRPackage();
+            lua["api"] = new LuaAPI(this, ui, player);
+
             player = new Player(Content, this, lua);
             camera = new TilemapCamera(map);
 
@@ -55,10 +59,6 @@ namespace Lakeside2
             camera.centerEntity(true);
 
             resetEntities();
-
-            lua = new Lua();
-            lua.LoadCLRPackage();
-            lua["api"] = new LuaAPI(this, ui, player);
 
             ui.addStripeElement(new UiObjectMonitor<Player>(player, (p) =>
             {
