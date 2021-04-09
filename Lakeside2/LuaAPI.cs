@@ -14,7 +14,7 @@ namespace Lakeside2
     {
         World world;
         UiSystem ui;
-        Player player;
+        public Player player { get; set; }
         ContentManager Content;
 
         public static Vector2 makeVector2(int x, int y)
@@ -63,6 +63,11 @@ namespace Lakeside2
                 if (option.selected == 0) f1.Call(new object[0]);
                 else if (option.selected == 1) f2.Call(new object[0]);
             }));
+        }
+
+        public UiScriptNode Function(LuaFunction func)
+        {
+            return new UiScriptNode(new FunctionNode(func));
         }
 
     }
