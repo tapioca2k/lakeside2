@@ -51,6 +51,10 @@ namespace Lakeside2
             lua = new Lua();
             lua.LoadCLRPackage();
             lua["api"] = new LuaAPI(this, ui, player);
+            lua.DoString(@"
+                import ('Lakeside2', 'Lakeside2')
+                import ('Lakeside2', 'Lakeside2.UI')
+                import ('Lakeside2', 'Lakeside2.UI.Scripting')");
 
             player = new Player(Content, this, lua);
             camera = new TilemapCamera(map);

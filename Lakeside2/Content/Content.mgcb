@@ -96,11 +96,11 @@
 /processorParam:TextureFormat=Color
 /build:logo-default.png
 
-#begin maps/forest.txt
-/copy:maps/forest.txt
+#begin maps/chain.txt
+/copy:maps/chain.txt
 
-#begin maps/house.txt
-/copy:maps/house.txt
+#begin scripts/chain.lua
+/copy:scripts/chain.lua
 
 #begin scripts/dummy.lua
 /copy:scripts/dummy.lua

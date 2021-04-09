@@ -1,4 +1,5 @@
 ﻿using Lakeside2.UI;
+using Lakeside2.UI.Scripting;
 using Microsoft.Xna.Framework;
 using NLua;
 using System;
@@ -34,6 +35,21 @@ namespace Lakeside2
         public void pushUiElement(UiElement element, int x, int y)
         {
             ui.pushElement(element, makeVector2(x, y));
+        }
+
+        public void makeDialog(params UiScriptNode[] elements)
+        {
+            for (int i = 1; i < elements.Length; i++)
+            {
+                elements[i - 1].next = elements[i];
+            }
+
+            pushUiElement(new ScriptChain(elements[0]), 0, 0);
+        }
+
+        public UiScriptNode Dialog(string text)
+        {
+            return new UiScriptNode(new UiTextBox(text));
         }
 
     }
