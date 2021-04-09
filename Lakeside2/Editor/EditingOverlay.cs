@@ -68,8 +68,11 @@ namespace Lakeside2.Editor
                     if (input.text != "")
                     {
                         TileMap newMap = SerializableMap.Load(Content, input.text);
-                        this.camera.setMap(newMap);
-                        cursor.setLocation(Vector2.Zero);
+                        if (newMap != null)
+                        {
+                            this.camera.setMap(newMap);
+                            cursor.setLocation(Vector2.Zero);
+                        }
                     }
                 });
                 ui.pushElement(filename, Vector2.One);
