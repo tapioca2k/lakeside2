@@ -50,7 +50,7 @@ namespace Lakeside2
 
             lua = new Lua();
             lua.LoadCLRPackage();
-            lua["api"] = new LuaAPI(this, ui, player);
+            lua["api"] = new LuaAPI(this, ui, player, Content);
             lua.DoString(@"
                 import ('Lakeside2', 'Lakeside2')
                 import ('Lakeside2', 'Lakeside2.UI')

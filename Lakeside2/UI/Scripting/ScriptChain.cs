@@ -53,7 +53,7 @@ namespace Lakeside2.UI.Scripting
 
         public override void draw(SBWrapper wrapper)
         {
-            head.draw(wrapper);
+            if (head != null) head.draw(wrapper);
         }
 
     }
