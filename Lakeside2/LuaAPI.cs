@@ -1,5 +1,5 @@
 ﻿using Lakeside2.UI;
-using Lakeside2.UI.Scripting;
+using Lakeside2.Scripting;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using NLua;
@@ -40,24 +40,29 @@ namespace Lakeside2
             ui.pushElement(element, makeVector2(x, y));
         }
 
-        public void makeDialog(params UiScriptNode[] elements)
+        public void queueScript(ScriptChain chain)
+        {
+            world.queueScript(chain);
+        }
+
+        public void makeDialog(params ScriptNode[] elements)
         {
             for (int i = 1; i < elements.Length; i++)
             {
                 elements[i - 1].next = elements[i];
             }
 
-            pushUiElement(new ScriptChain(elements[0]), 0, 0);
+            queueScript(new ScriptChain(elements[0]));
         }
 
-        public UiScriptNode Dialog(string text)
+        public ScriptNode Dialog(string text)
         {
-            return new UiScriptNode(new UiTextBox(text));
+            return new UiNode(ui, new UiTextBox(text));
         }
 
-        public UiScriptNode Branch(string text, string option1, string option2, LuaFunction f1, LuaFunction f2)
+        public ScriptNode Branch(string text, string option1, string option2, LuaFunction f1, LuaFunction f2)
         {
-            return new UiScriptNode(new UiOptionBox(Content, text, option1, option2).addCallback(element =>
+            return new UiNode(ui, new UiOptionBox(Content, text, option1, option2).addCallback(element =>
             {
                 UiOptionBox option = (UiOptionBox)element;
                 if (option.selected == 0) f1.Call(new object[0]);
@@ -65,9 +70,9 @@ namespace Lakeside2
             }));
         }
 
-        public UiScriptNode Function(LuaFunction func)
+        public ScriptNode Function(LuaFunction func)
         {
-            return new UiScriptNode(new FunctionNode(func));
+            return new FunctionNode(func);
         }
 
     }

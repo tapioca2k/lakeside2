@@ -1,4 +1,5 @@
 ﻿using Lakeside2.Editor;
+using Lakeside2.Scripting;
 using Lakeside2.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -40,10 +41,13 @@ namespace Lakeside2
 
         Lua lua;
 
+        Queue<ScriptChain> scripts;
 
         public World(ContentManager Content, string filename=null)
         {
             this.Content = Content;
+
+            scripts = new Queue<ScriptChain>();
 
             TileMap map = new TileMap(Content, 20, 10);
             ui = new UiSystem(Content);
@@ -57,7 +61,7 @@ namespace Lakeside2
             lua.DoString(@"
                 import ('Lakeside2', 'Lakeside2')
                 import ('Lakeside2', 'Lakeside2.UI')
-                import ('Lakeside2', 'Lakeside2.UI.Scripting')");
+                import ('Lakeside2', 'Lakeside2.Scripting')");
 
             camera = new TilemapCamera(map);
 
@@ -77,6 +81,11 @@ namespace Lakeside2
             entities = new List<Entity>();
             entities.Add(player);
             entities.AddRange(map.npcs);
+        }
+
+        public void queueScript(ScriptChain chain)
+        {
+            scripts.Enqueue(chain);
         }
 
         public void onInput(InputHandler input)
@@ -117,6 +126,11 @@ namespace Lakeside2
                 {
                     entity.update(dt);
                 });
+                if (scripts.Count > 0)
+                {
+                    scripts.Peek().update(dt);
+                    if (scripts.Peek().finished) scripts.Dequeue();
+                }
             }
             else
             {
