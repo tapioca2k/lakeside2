@@ -35,7 +35,7 @@ namespace Lakeside2.UI
             {
                 UiElement top = stack[stack.Count - 1];
                 top.update(dt);
-                if (top.finished)
+                while (stack.Count > 0 && top.finished)
                 {
                     stack.RemoveAt(stack.Count - 1);
                     locations.RemoveAt(locations.Count - 1);
