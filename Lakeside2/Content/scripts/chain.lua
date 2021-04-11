@@ -15,6 +15,6 @@ function chain_pos ()
 	end
 end
 
-api:makeDialog(api:Dialog("Let me check your position..."), api:Function(chain_pos))
+api:makeDialog(api:Dialog("Let me check your position...", chain_pos))
 
 -- api:makeDialog(api:Dialog("Hello player!"), api:Dialog("I come from the world of lua."), api:Branch("Do you love me?", "Yes", "Nope lol", chain_yes, chain_no))

@@ -22,15 +22,15 @@ namespace Lakeside2.UI
             set
             {
                 done = value;
-                if (done && callback != null)
+                if (done)
                 {
-                    this.callback.Invoke(this);
+                    this.callbacks.ForEach(action => action.Invoke(this));
                 }
             }
         }
 
         private bool done;
-        private Action<UiElement> callback;
+        private List<Action<UiElement>> callbacks = new List<Action<UiElement>>();
         Color background = Color.Transparent;
         protected UiSystem system;
 
@@ -41,7 +41,7 @@ namespace Lakeside2.UI
 
         public UiElement addCallback(Action<UiElement> callback)
         {
-            this.callback = callback;
+            this.callbacks.Add(callback);
             return this;
         }
 

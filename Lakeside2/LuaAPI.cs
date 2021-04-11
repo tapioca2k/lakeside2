@@ -60,6 +60,14 @@ namespace Lakeside2
             return new UiNode(ui, new UiTextBox(text));
         }
 
+        public ScriptNode Dialog(string text, LuaFunction callback)
+        {
+            return new UiNode(ui, new UiTextBox(text).addCallback(element =>
+            {
+                callback.Call(new object[0]);
+            }));
+        }
+
         public ScriptNode Branch(string text, string option1, string option2, LuaFunction f1, LuaFunction f2)
         {
             return new UiNode(ui, new UiOptionBox(Content, text, option1, option2).addCallback(element =>
