@@ -149,7 +149,7 @@ namespace Lakeside2
             this.facing = direction;
         }
 
-        protected void queueMove(Vector2 direction)
+        public void queueMove(Vector2 direction)
         {
             Debug.WriteLine("queueing move" + direction);
             moves.Enqueue(Vector2.Multiply(direction, Tile.TILE_SIZE));

@@ -40,27 +40,31 @@ namespace Lakeside2
             ui.pushElement(element, makeVector2(x, y));
         }
 
-        public void queueScript(ScriptChain chain)
+        public void queueMove(Entity entity, Vector2 direction)
         {
-            world.queueScript(chain);
+            // do we actually want collision detection here?
+            if (world.map.checkCollision(entity.getTileLocation() + direction))
+            {
+                entity.queueMove(direction);
+            }
         }
 
-        public void makeDialog(params ScriptNode[] elements)
+        public void makeChain(params ScriptNode[] elements)
         {
             for (int i = 1; i < elements.Length; i++)
             {
                 elements[i - 1].next = elements[i];
             }
 
-            queueScript(new ScriptChain(elements[0]));
+            world.queueScript(new ScriptChain(elements[0]));
         }
 
-        public ScriptNode Dialog(string text)
+        public ScriptNode SDialog(string text)
         {
             return new UiNode(ui, new UiTextBox(text));
         }
 
-        public ScriptNode Dialog(string text, LuaFunction callback)
+        public ScriptNode SDialog(string text, LuaFunction callback)
         {
             return new UiNode(ui, new UiTextBox(text).addCallback(element =>
             {
@@ -68,7 +72,7 @@ namespace Lakeside2
             }));
         }
 
-        public ScriptNode Branch(string text, string option1, string option2, LuaFunction f1, LuaFunction f2)
+        public ScriptNode SBranch(string text, string option1, string option2, LuaFunction f1, LuaFunction f2)
         {
             return new UiNode(ui, new UiOptionBox(Content, text, option1, option2).addCallback(element =>
             {
@@ -78,9 +82,14 @@ namespace Lakeside2
             }));
         }
 
-        public ScriptNode Function(LuaFunction func)
+        public ScriptNode SFunction(LuaFunction func)
         {
             return new FunctionNode(func);
+        }
+
+        public ScriptNode SMove(NPC entity, int x, int y)
+        {
+            return new MoveNode(entity, new Vector2[1] { makeVector2(x, y) });
         }
 
     }
