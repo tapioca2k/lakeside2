@@ -29,6 +29,19 @@ namespace Lakeside2
         protected Vector2 location = Vector2.Zero;
         protected Directions facing = Directions.down;
 
+        const int RUN_SPEED = 75;
+        Queue<Vector2> moves = new Queue<Vector2>();
+        Vector2 move = Vector2.Zero;
+        protected bool step = false;
+
+        public bool moving
+        {
+            get
+            {
+                return move != Vector2.Zero || moves.Count > 0;
+            }
+        }
+
         public static Vector2 getFacingVector(Directions direction)
         {
             switch (direction)
@@ -86,13 +99,60 @@ namespace Lakeside2
 
         public virtual void update(double dt)
         {
-            animation.update(dt);
+            step = false;
+            if (!moving) animation.update(dt/2f); // slow version of the run animation while idle
+            else if (moving && move == Vector2.Zero) move = moves.Dequeue(); // get next queued move
+
+            // work on current move
+            if (move != Vector2.Zero)
+            {
+                animation.update(dt);
+                float proposed = (float)dt * RUN_SPEED;
+                if (move.X > 0)
+                {
+                    float trueMove = Math.Min(move.X, proposed);
+                    move.X -= trueMove;
+                    location.X += trueMove;
+                }
+                else if (move.X < 0)
+                {
+                    proposed *= -1;
+                    float trueMove = Math.Max(move.X, proposed);
+                    move.X -= trueMove;
+                    location.X += trueMove;
+                }
+                if (move.Y > 0)
+                {
+                    float trueMove = Math.Min(move.Y, proposed);
+                    move.Y -= trueMove;
+                    location.Y += trueMove;
+                }
+                else if (move.Y < 0)
+                {
+                    proposed *= -1;
+                    float trueMove = Math.Max(move.Y, proposed);
+                    move.Y -= trueMove;
+                    location.Y += trueMove;
+                }
+                Debug.WriteLine(move);
+                if (!moving)
+                {
+                    location = Vector2.Round(location);
+                    step = true;
+                }
+            }
         }
 
         public void setDirection(Directions direction)
         {
             animation.set((int)direction);
             this.facing = direction;
+        }
+
+        protected void queueMove(Vector2 direction)
+        {
+            Debug.WriteLine("queueing move" + direction);
+            moves.Enqueue(Vector2.Multiply(direction, Tile.TILE_SIZE));
         }
 
         public virtual void draw(SBWrapper wrapper, TilemapCamera camera)
