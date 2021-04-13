@@ -17,10 +17,11 @@ namespace Lakeside2.Scripting
             this.func = func;
         }
 
-        public override void update(double dt)
+        public override void start()
         {
             func.Call(new object[0]);
             finished = true;
+            base.start();
         }
 
     }

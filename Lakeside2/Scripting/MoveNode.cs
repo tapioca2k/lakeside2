@@ -9,16 +9,21 @@ namespace Lakeside2.Scripting
     {
         Entity entity;
         Vector2[] directions;
+        bool initial = false;
 
         public MoveNode(Entity entity, Vector2[] directions)
         {
             this.entity = entity;
             this.directions = directions;
+        }
 
+        public override void start()
+        {
             for (int i = 0; i < directions.Length; i++)
             {
                 entity.queueMove(directions[i]);
             }
+            base.start();
         }
 
         public override void update(double dt)

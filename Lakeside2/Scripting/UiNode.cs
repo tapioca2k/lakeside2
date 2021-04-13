@@ -10,11 +10,18 @@ namespace Lakeside2.Scripting
     {
 
         UiElement element;
+        UiSystem system;
 
         public UiNode(UiSystem system, UiElement element)
         {
             this.element = element;
+            this.system = system;
+        }
+
+        public override void start()
+        {
             system.pushElement(element, Vector2.Zero);
+            base.start();
         }
 
         public override void update(double dt)

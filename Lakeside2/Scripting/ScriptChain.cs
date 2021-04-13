@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Lakeside2.Scripting
@@ -21,6 +22,8 @@ namespace Lakeside2.Scripting
         {
             if (head != null)
             {
+                if (!head.started) head.start();
+
                 head.update(dt);
                 if (head.finished)
                 {

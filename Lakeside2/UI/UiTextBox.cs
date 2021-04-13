@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Lakeside2.UI
@@ -22,8 +23,15 @@ namespace Lakeside2.UI
         {
             if (input.isKeyPressed(Keys.E))
             {
+                Debug.WriteLine("Clearing text box: " + textdisp.text);
                 finished = true;
             }
+        }
+
+        public override void update(double dt)
+        {
+            Debug.WriteLine("Updating text box: " + textdisp.text);
+            base.update(dt);
         }
 
         public override void draw(SBWrapper wrapper)

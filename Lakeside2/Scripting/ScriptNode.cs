@@ -10,8 +10,15 @@ namespace Lakeside2.Scripting
         public ScriptNode next { get; set; }
         public bool finished { get; set; }
 
+        public bool started { get; set; }
+
         public virtual void update(double dt)
         {
+        }
+
+        public virtual void start()
+        {
+            this.started = true;
         }
 
     }
