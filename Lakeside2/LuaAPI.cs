@@ -107,7 +107,10 @@ namespace Lakeside2
         // path finding move to specific tile
         public ScriptNode SMove(NPC entity, Vector2 tilePosition)
         {
-            List<Vector2> rawPath = world.map.computePath(entity.getTileLocation(), tilePosition);
+            List<Vector2> rawPath = world.map.computePath(
+                entity.getTileLocation(), 
+                tilePosition, 
+                player.getTileLocation());
             List<Vector2> path = new List<Vector2>();
             for (int i = 1; i < rawPath.Count; i++) // compute directions from raw tile positions
             {

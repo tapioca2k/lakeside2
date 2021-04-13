@@ -141,7 +141,7 @@ namespace Lakeside2
 
         // dirtiest pathfinding you've ever seen
         // TODO implement proper A* for this LOL
-        public List<Vector2> computePath(Vector2 start, Vector2 end)
+        public List<Vector2> computePath(Vector2 start, Vector2 end, Vector2 player)
         {
             if (start == end) return new List<Vector2>();
             List<List<Vector2>> allPaths = new List<List<Vector2>>();
@@ -163,7 +163,7 @@ namespace Lakeside2
                 };
                 foreach (Vector2 p in proposals)
                 {
-                    if (checkCollision(p) && !visited[(int)p.X, (int)p.Y])
+                    if (checkCollision(p) && !visited[(int)p.X, (int)p.Y] && player != p)
                     {
                         visited[(int)p.X, (int)p.Y] = true;
                         List<Vector2> newpath = new List<Vector2>(shortest);
