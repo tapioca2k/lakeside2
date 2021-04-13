@@ -13,7 +13,7 @@ namespace Lakeside2
     {
         public int Compare(List<Vector2> a, List<Vector2> b)
         {
-            return b.Count - a.Count;
+            return a.Count - b.Count;
         }
     }
 
@@ -131,9 +131,11 @@ namespace Lakeside2
             height = newHeight;
         }
 
-        // dirtiest pathfinding you've ever seen (TODO proper A* lol)
+        // dirtiest pathfinding you've ever seen
+        // TODO implemented proper A* for this LOL
         public List<Vector2> computePath(Vector2 start, Vector2 end)
         {
+            if (start == end) return new List<Vector2>();
             List<List<Vector2>> allPaths = new List<List<Vector2>>();
             allPaths.Add(new List<Vector2>(new Vector2[1] { start }));
             bool[,] visited = new bool[width, height];
@@ -143,20 +145,18 @@ namespace Lakeside2
             while (depth++ < 1000)
             {
                 allPaths.Sort(new PathComparer());
-                List<Vector2> shortest = new List<Vector2>(allPaths[allPaths.Count - 1]);
-                Vector2 head = shortest[0];
+                List<Vector2> shortest = allPaths[0];
+                Vector2 head = shortest[shortest.Count - 1];
                 Vector2[] proposals = new Vector2[4] { 
                     new Vector2(head.X + 1, head.Y), 
                     new Vector2(head.X - 1, head.Y), 
                     new Vector2(head.X, head.Y + 1), 
                     new Vector2(head.X, head.Y - 1)
                 };
-                bool deadEnd = true;
                 foreach (Vector2 p in proposals)
                 {
                     if (checkCollision(p) && !visited[(int)p.X, (int)p.Y])
                     {
-                        deadEnd = false;
                         visited[(int)p.X, (int)p.Y] = true;
                         List<Vector2> newpath = new List<Vector2>(shortest);
                         newpath.Add(p);
@@ -164,7 +164,7 @@ namespace Lakeside2
                         if (p == end) return newpath;
                     }
                 }
-                if (deadEnd) allPaths.Remove(shortest); // stop checking this path
+                allPaths.Remove(allPaths[0]);
             }
             return new List<Vector2>();
         }
