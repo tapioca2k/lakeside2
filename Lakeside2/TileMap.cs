@@ -9,6 +9,14 @@ using System.Text;
 
 namespace Lakeside2
 {
+    public class PathComparer : IComparer<List<Vector2>>
+    {
+        public int Compare(List<Vector2> a, List<Vector2> b)
+        {
+            return b.Count - a.Count;
+        }
+    }
+
     class TileMap
     {
         ContentManager Content;
@@ -121,6 +129,44 @@ namespace Lakeside2
             map = newtiles;
             width = newWidth;
             height = newHeight;
+        }
+
+        // dirtiest pathfinding you've ever seen (TODO proper A* lol)
+        public List<Vector2> computePath(Vector2 start, Vector2 end)
+        {
+            List<List<Vector2>> allPaths = new List<List<Vector2>>();
+            allPaths.Add(new List<Vector2>(new Vector2[1] { start }));
+            bool[,] visited = new bool[width, height];
+            visited[(int)start.X, (int)start.Y] = true;
+
+            int depth = 0;
+            while (depth++ < 1000)
+            {
+                allPaths.Sort(new PathComparer());
+                List<Vector2> shortest = new List<Vector2>(allPaths[allPaths.Count - 1]);
+                Vector2 head = shortest[0];
+                Vector2[] proposals = new Vector2[4] { 
+                    new Vector2(head.X + 1, head.Y), 
+                    new Vector2(head.X - 1, head.Y), 
+                    new Vector2(head.X, head.Y + 1), 
+                    new Vector2(head.X, head.Y - 1)
+                };
+                bool deadEnd = true;
+                foreach (Vector2 p in proposals)
+                {
+                    if (checkCollision(p) && !visited[(int)p.X, (int)p.Y])
+                    {
+                        deadEnd = false;
+                        visited[(int)p.X, (int)p.Y] = true;
+                        List<Vector2> newpath = new List<Vector2>(shortest);
+                        newpath.Add(p);
+                        allPaths.Add(newpath);
+                        if (p == end) return newpath;
+                    }
+                }
+                if (deadEnd) allPaths.Remove(shortest); // stop checking this path
+            }
+            return new List<Vector2>();
         }
 
         public void draw(SBWrapper wrapper)

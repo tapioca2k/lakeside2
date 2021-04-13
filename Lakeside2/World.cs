@@ -116,6 +116,7 @@ namespace Lakeside2
                 }
             }
         }
+
         public void update(double dt)
         {
             if (!editing)

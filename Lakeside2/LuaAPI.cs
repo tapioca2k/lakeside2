@@ -87,9 +87,28 @@ namespace Lakeside2
             return new FunctionNode(func);
         }
 
+        // basic movement x tiles left/right, y tiles up/down
         public ScriptNode SMove(NPC entity, int x, int y)
         {
-            return new MoveNode(entity, new Vector2[1] { makeVector2(x, y) });
+            List<Vector2> moves = new List<Vector2>();
+            for (int i = 0; i < x; i++) moves.Add(new Vector2(1, 0));
+            for (int i = 0; i > x; i--) moves.Add(new Vector2(-1, 0));
+            for (int i = 0; i < y; i++) moves.Add(new Vector2(0, 1));
+            for (int i = 0; i > y; i--) moves.Add(new Vector2(0, -1));
+
+            return new MoveNode(entity, moves.ToArray());
+        }
+
+        // path finding move to specific tile
+        public ScriptNode SMove(NPC entity, Vector2 tilePosition)
+        {
+            List<Vector2> rawPath = world.map.computePath(entity.getTileLocation(), tilePosition);
+            List<Vector2> path = new List<Vector2>();
+            for (int i = 1; i < rawPath.Count; i++) // compute directions from raw tile positions
+            {
+                path.Add(new Vector2(rawPath[i].X - rawPath[i - 1].X, rawPath[i].Y - rawPath[i - 1].Y));
+            }
+            return new MoveNode(entity, path.ToArray());
         }
 
     }
