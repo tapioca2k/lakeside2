@@ -94,7 +94,7 @@ namespace Lakeside2
             if (!editing)
             {
                 bool interacting = ui.onInput(input);
-                if (!interacting) player.onInput(input);
+                if (!interacting && scripts.Count == 0) player.onInput(input);
             }
             else
             {
