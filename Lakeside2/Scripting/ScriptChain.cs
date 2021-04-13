@@ -15,6 +15,7 @@ namespace Lakeside2.Scripting
         public ScriptChain(ScriptNode head)
         {
             this.head = head;
+            this.head.start();
             this.finished = false;
         }
 
@@ -22,18 +23,13 @@ namespace Lakeside2.Scripting
         {
             if (head != null)
             {
-                if (!head.started) head.start();
-
                 head.update(dt);
                 if (head.finished)
                 {
                     head = head.next;
+                    if (head != null) head.start(); // prevent frame gaps
+                    else finished = true;
                 }
-            }
-
-            if (head == null)
-            {
-                finished = true;
             }
         }
 

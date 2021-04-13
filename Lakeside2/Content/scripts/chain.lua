@@ -19,4 +19,6 @@ end
 
 -- api:makeChain(api:SDialog("Hello player!"), api:SDialog("I come from the world of lua."), api:SBranch("Do you love me?", "Yes", "Nope lol", chain_yes, chain_no))
 
-api:makeChain(api:SDialog("Eww, you smell!\nGet away from me!"), api:SMove(me, 0, 1), api:SDialog("Don't talk to me again!"))
+--api:makeChain(api:SDialog("Eww, you smell!\nGet away from me!"), api:SMove(me, 0, 1), api:SDialog("Don't talk to me again!"))
+
+api:makeChain(api:SDialog("Message 1"), api:SDialog("Message 2"), api:SDialog("Message 3"))

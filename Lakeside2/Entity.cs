@@ -134,8 +134,8 @@ namespace Lakeside2
                     move.Y -= trueMove;
                     location.Y += trueMove;
                 }
-                Debug.WriteLine(move);
-                if (!moving)
+
+                if (!moving) // finished with this move
                 {
                     location = Vector2.Round(location);
                     step = true;

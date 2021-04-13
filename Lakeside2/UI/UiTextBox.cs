@@ -23,14 +23,12 @@ namespace Lakeside2.UI
         {
             if (input.isKeyPressed(Keys.E))
             {
-                Debug.WriteLine("Clearing text box: " + textdisp.text);
                 finished = true;
             }
         }
 
         public override void update(double dt)
         {
-            Debug.WriteLine("Updating text box: " + textdisp.text);
             base.update(dt);
         }
 
