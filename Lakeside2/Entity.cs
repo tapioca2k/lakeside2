@@ -42,6 +42,8 @@ namespace Lakeside2
             }
         }
 
+        public abstract string name { get; }
+
         public static Vector2 getFacingVector(Directions direction)
         {
             switch (direction)

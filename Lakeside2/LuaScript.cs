@@ -19,6 +19,17 @@ namespace Lakeside2
         public LuaScript(string filename)
         {
             this.filename = filename;
+            load();
+        }
+
+        public LuaScript()
+        {
+        }
+
+        public void load()
+        {
+            if (loaded || this.filename == "" || this.filename == null) return;
+
             try
             {
                 script = File.ReadAllText(PREFIX + filename);
@@ -32,8 +43,9 @@ namespace Lakeside2
             }
         }
 
-        public object[] execute(Lua lua)
+        public object[] execute(Entity caller, Lua lua)
         {
+            lua["me"] = caller;
             object[] returnvals = lua.DoString(script);
             return returnvals;
         }

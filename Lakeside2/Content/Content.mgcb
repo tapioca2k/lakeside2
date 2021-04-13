@@ -99,6 +99,9 @@
 #begin maps/chain.txt
 /copy:maps/chain.txt
 
+#begin maps/tile.txt
+/copy:maps/tile.txt
+
 #begin pointer.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -116,6 +119,9 @@
 
 #begin scripts/dummy.lua
 /copy:scripts/dummy.lua
+
+#begin scripts/step.lua
+/copy:scripts/step.lua
 
 #begin tiles/a.png
 /importer:TextureImporter

@@ -88,13 +88,21 @@ namespace Lakeside2
         {
             NPC present = getNPC(tileLocation);
             if (present != null) npcs.Remove(present);
-            npc.setTileLocation(tileLocation);
-            npcs.Add(npc);
+            if (npc != null)
+            {
+                npc.setTileLocation(tileLocation);
+                npcs.Add(npc);
+            }
         }
 
         public NPC getNPC(Vector2 tileLocation)
         {
             return npcs.Find(npc => npc.getTileLocation().Equals(tileLocation));
+        }
+
+        public NPC getNPC(string name)
+        {
+            return npcs.Find(n => n.name == name);
         }
 
         public bool checkCollision(int x, int y)
@@ -108,10 +116,10 @@ namespace Lakeside2
             return checkCollision((int) coordindates.X, (int) coordindates.Y);
         }
 
-        public void stepOn(Vector2 tileLocation, Lua worldLua)
+        public void stepOn(Player player, Vector2 tileLocation, Lua worldLua)
         {
             Tile t = getTile(tileLocation);
-            if (t.script != null) t.script.execute(worldLua);
+            if (t.script != null) t.script.execute(player, worldLua);
         }
 
         // for the editor
@@ -132,7 +140,7 @@ namespace Lakeside2
         }
 
         // dirtiest pathfinding you've ever seen
-        // TODO implemented proper A* for this LOL
+        // TODO implement proper A* for this LOL
         public List<Vector2> computePath(Vector2 start, Vector2 end)
         {
             if (start == end) return new List<Vector2>();
@@ -160,13 +168,13 @@ namespace Lakeside2
                         visited[(int)p.X, (int)p.Y] = true;
                         List<Vector2> newpath = new List<Vector2>(shortest);
                         newpath.Add(p);
+                        if (p == end) return newpath; // shortest path start>end found!
                         allPaths.Add(newpath);
-                        if (p == end) return newpath;
                     }
                 }
                 allPaths.Remove(allPaths[0]);
             }
-            return new List<Vector2>();
+            return new List<Vector2>(); // max depth reached - give up
         }
 
         public void draw(SBWrapper wrapper)

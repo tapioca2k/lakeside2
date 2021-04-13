@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Lakeside2.Editor;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -32,7 +33,7 @@ namespace Lakeside2.UI.Editor
 
         public override void onInput(InputHandler input)
         {
-            if (input.isAnyKeyPressed(Keys.N, Keys.Enter, Keys.Escape))
+            if (input.isAnyKeyPressed(Keys.Enter, Keys.Escape))
             {
                 finished = true;
             }
@@ -42,9 +43,18 @@ namespace Lakeside2.UI.Editor
                 {
                     UiEntityPicker picker = (UiEntityPicker)element;
                     NPC n = (NPC)picker.selected;
-                    if (this.npc == null) this.npc = new NPC(Content, n.filename, "", false);
+                    if (this.npc == null) this.npc = new NPC(Content, n.filename, "", false, picker.GetHashCode() + "");
                     else this.npc.setTexture(Content, n.filename);
                 }), new Vector2(160, 0));
+            }
+            else if (input.isKeyPressed(Keys.N) && this.npc != null)
+            {
+                system.pushElement(new UiTextInput("Name: ").addCallback(element =>
+                {
+                    UiTextInput input = (UiTextInput)element;
+                    string proposed = input.text;
+                    if (proposed != "") this.npc.setName(input.text);
+                }), Vector2.Zero);
             }
             else if (input.isKeyPressed(Keys.S) && this.npc != null)
             {
@@ -77,9 +87,10 @@ namespace Lakeside2.UI.Editor
             drawBackground(wrapper);
             if (npc != null) npc.draw(wrapper, new Vector2(5, 5));
             wrapper.drawString("(T)exture: " + ((npc != null) ? npc.filename : "N/A"), new Vector2(25, 5));
-            wrapper.drawString("(S)cript: " + ((npc != null) ? UiTextDisplay.TextOrNull(npc.script) : "N/A"), new Vector2(5, 25));
-            wrapper.drawString("(L)ocked: " + ((npc != null) ? UiTextDisplay.YesOrNo(npc.locked) : "N/A"), new Vector2(5, 45));
-            wrapper.drawString("(D)elete", new Vector2(5, 65));
+            wrapper.drawString("(N)ame: " + ((npc != null) ? UiTextDisplay.TextOrNull(npc.name) : "N/A"), new Vector2(5, 25));
+            wrapper.drawString("(S)cript: " + ((npc != null) ? UiTextDisplay.TextOrNull(npc.script) : "N/A"), new Vector2(5, 45));
+            wrapper.drawString("(L)ocked: " + ((npc != null) ? UiTextDisplay.YesOrNo(npc.locked) : "N/A"), new Vector2(5, 65));
+            wrapper.drawString("(D)elete", new Vector2(5, 85));
         }
     }
 }

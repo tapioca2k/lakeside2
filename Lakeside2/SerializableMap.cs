@@ -85,6 +85,7 @@ namespace Lakeside2
             }
             for (int i = 0; i < s.scripts.Count; i++)
             {
+                s.scripts[i].load();
                 KeyValuePair<int, int> location = s.scriptLocations[i];
                 tiles[location.Key, location.Value].script = s.scripts[i];
             }
@@ -97,17 +98,19 @@ namespace Lakeside2
 
         public static TileMap Load(ContentManager Content, string filename)
         {
-            try
-            {
+            //try
+            //{
                 string json = File.ReadAllText(Content.RootDirectory + MAPS_DIRECTORY + filename);
+            Debug.WriteLine(json);
                 SerializableMap s = JsonSerializer.Deserialize<SerializableMap>(json, OPTIONS);
                 return ToTilemap(Content, filename, s);
-            }
+            /*}
             catch (Exception e)
             {
+                Debug.WriteLine(e.StackTrace);
                 Debug.WriteLine("No map file found: " + filename);
                 return null;
-            }
+            }*/
         }
 
         public static void Save(ContentManager Content, TileMap map, string filename)

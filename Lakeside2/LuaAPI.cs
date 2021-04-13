@@ -35,6 +35,11 @@ namespace Lakeside2
             this.Content = Content;
         }
 
+        public Entity getEntity(string name)
+        {
+            return world.map.getNPC(name);
+        }
+
         public void pushUiElement(UiElement element, int x, int y)
         {
             ui.pushElement(element, makeVector2(x, y));

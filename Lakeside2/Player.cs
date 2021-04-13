@@ -12,10 +12,13 @@ namespace Lakeside2
 {
     class Player : Entity
     {
+        public const string ENTITY_NAME = "player";
 
         World world;
 
         Lua worldLua;
+
+        public override string name => ENTITY_NAME;
 
         public Player(ContentManager Content, World world, Lua worldLua)
         {
@@ -73,7 +76,7 @@ namespace Lakeside2
             base.update(dt);
             if (step) // a full step was completed this update, check map scripts
             {
-                world.map.stepOn(getTileLocation(), worldLua);
+                world.map.stepOn(this, getTileLocation(), worldLua);
             }
         }
 

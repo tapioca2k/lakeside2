@@ -10,6 +10,9 @@ namespace Lakeside2.Editor
 {
     class Cursor : Entity
     {
+        public const string ENTITY_NAME = "cursor";
+
+        public override string name => ENTITY_NAME;
 
         public Cursor(ContentManager Content)
         {
