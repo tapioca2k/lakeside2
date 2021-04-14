@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Linq;
 
 namespace Lakeside2
 {
@@ -56,9 +57,14 @@ namespace Lakeside2
 
         public void makeChain(params ScriptNode[] elements)
         {
-            for (int i = 1; i < elements.Length; i++)
+            // filter out any null elements, preserving order
+            List<ScriptNode> nonNull = new List<ScriptNode>();
+            for (int i = 0; i < elements.Length; i++) 
+                if (elements[i] != null) nonNull.Add(elements[i]);
+
+            for (int i = 1; i < nonNull.Count; i++)
             {
-                elements[i - 1].next = elements[i];
+                nonNull[i - 1].next = nonNull[i];
             }
 
             world.queueScript(new ScriptChain(elements[0]));
@@ -107,6 +113,10 @@ namespace Lakeside2
         // path finding move to specific tile
         public ScriptNode SMove(NPC entity, Vector2 tilePosition)
         {
+            if (entity == null) // requested entity not found, probably due to editing
+            {
+                return null;
+            }
             List<Vector2> rawPath = world.map.computePath(
                 entity.getTileLocation(), 
                 tilePosition, 

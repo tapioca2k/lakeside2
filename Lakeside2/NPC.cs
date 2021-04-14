@@ -69,7 +69,7 @@ namespace Lakeside2
 
         public override string ToString()
         {
-            return filename;
+            return name;
         }
 
     }

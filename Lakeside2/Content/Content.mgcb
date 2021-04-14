@@ -58,6 +58,18 @@
 /processorParam:TextureFormat=Color
 /build:entities/greenman.png
 
+#begin entities/knightman.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:entities/knightman.png
+
 #begin entities/player.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -96,11 +108,8 @@
 /processorParam:TextureFormat=Color
 /build:logo-default.png
 
-#begin maps/chain.txt
-/copy:maps/chain.txt
-
-#begin maps/tile.txt
-/copy:maps/tile.txt
+#begin maps/forestguard.json
+/copy:maps/forestguard.json
 
 #begin pointer.png
 /importer:TextureImporter
@@ -113,12 +122,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:pointer.png
-
-#begin scripts/chain.lua
-/copy:scripts/chain.lua
-
-#begin scripts/dummy.lua
-/copy:scripts/dummy.lua
 
 #begin scripts/step.lua
 /copy:scripts/step.lua
