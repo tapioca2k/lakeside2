@@ -123,11 +123,11 @@ namespace Lakeside2
             if (!editing)
             {
                 ui.update(dt);
-                camera.update(dt);
                 entities.ForEach((entity) =>
                 {
                     entity.update(dt);
                 });
+                camera.update(dt);
                 if (scripts.Count > 0)
                 {
                     scripts.Peek().update(dt);
