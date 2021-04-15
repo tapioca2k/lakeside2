@@ -27,6 +27,8 @@ namespace Lakeside2
 
         public static Texture2D WHITE_PIXEL;
 
+        public static MusicManager music;
+
         RenderTarget2D mainTarget;
 
         World world;
@@ -64,6 +66,8 @@ namespace Lakeside2
             Fonts.loadFont(Content, "Arial");
             Fonts.loadFont(Content, "rainyhearts");
             colorize = Content.Load<Effect>("colorize");
+
+            music = new MusicManager(Content);
 
             world = new World(Content, "default.txt");
         }

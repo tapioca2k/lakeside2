@@ -55,6 +55,11 @@ namespace Lakeside2
             }
         }
 
+        public void playSfx(string name)
+        {
+            Game1.music.playSfx(name);
+        }
+
         public void makeChain(params ScriptNode[] elements)
         {
             // filter out any null elements, preserving order
