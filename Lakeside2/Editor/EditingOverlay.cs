@@ -16,6 +16,7 @@ namespace Lakeside2.Editor
         ContentManager Content;
         UiSystem ui;
         Cursor cursor;
+        World world;
         TilemapCamera camera;
         Tile lastEditedTile;
 
@@ -27,10 +28,10 @@ namespace Lakeside2.Editor
             }
         }
 
-        public EditingOverlay(ContentManager Content, TilemapCamera camera)
+        public EditingOverlay(ContentManager Content, World world)
         {
             this.Content = Content;
-
+            this.world = world;
             cursor = new Cursor(Content);
 
             ui = new UiSystem();
@@ -40,7 +41,7 @@ namespace Lakeside2.Editor
                 return cursor.getTileLocation().ToString();
             }), 'r');
 
-            this.camera = camera;
+            this.camera = world.camera;
             this.camera.setCenteringEntity(cursor);
         }
 
@@ -70,7 +71,7 @@ namespace Lakeside2.Editor
                         TileMap newMap = SerializableMap.Load(Content, input.text);
                         if (newMap != null)
                         {
-                            this.camera.setMap(newMap);
+                            this.world.setMap(newMap);
                             cursor.setLocation(Vector2.Zero);
                         }
                     }

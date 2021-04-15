@@ -26,6 +26,7 @@ namespace Lakeside2
         public Color color;
         public string filename;
         public List<NPC> npcs;
+        public Vector2 playerStart;
 
         public static Vector2 worldToTile(Vector2 real)
         {
@@ -42,6 +43,7 @@ namespace Lakeside2
             this.height = height;
             this.color = Color.Black;
             this.filename = "(Unsaved)";
+            this.playerStart = Vector2.Zero;
             npcs = new List<NPC>();
             map = new Tile[width, height];
             for (int x = 0; x < width; x++)
@@ -54,7 +56,7 @@ namespace Lakeside2
         }
 
         // only SerializableMap.ToTilemap() should use this constructor
-        public TileMap(Tile[,] tiles, Color color, string filename, List<NPC> npcs)
+        public TileMap(Tile[,] tiles, Color color, string filename, List<NPC> npcs, Vector2 playerStart)
         {
             this.map = tiles;
             this.width = tiles.GetLength(0);
@@ -62,6 +64,7 @@ namespace Lakeside2
             this.color = color;
             this.filename = filename;
             this.npcs = npcs;
+            this.playerStart = playerStart;
         }
 
         public Tile getTile(int x, int y)

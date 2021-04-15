@@ -24,7 +24,7 @@ namespace Lakeside2
 
         UiSystem ui;
 
-        TilemapCamera camera;
+        public TilemapCamera camera;
         public TileMap map
         {
             get
@@ -46,11 +46,8 @@ namespace Lakeside2
         public World(ContentManager Content, string filename=null)
         {
             this.Content = Content;
-
-            scripts = new Queue<ScriptChain>();
-
-            TileMap map = new TileMap(Content, 20, 10);
-            ui = new UiSystem(Content);
+            this.scripts = new Queue<ScriptChain>();
+            this.ui = new UiSystem(Content);
 
             lua = new Lua();
             lua.LoadCLRPackage();
@@ -64,8 +61,8 @@ namespace Lakeside2
                 import ('Lakeside2', 'Lakeside2.UI')
                 import ('Lakeside2', 'Lakeside2.Scripting')");
 
+            TileMap map = new TileMap(Content, 20, 10);
             camera = new TilemapCamera(map);
-
             camera.setCenteringEntity(player);
             camera.centerEntity(true);
 
@@ -77,6 +74,14 @@ namespace Lakeside2
             }), 'l');
         }
 
+        public void setMap(TileMap map)
+        {
+            camera.setMap(map);
+            player.setTileLocation(map.playerStart);
+            resetEntities();
+        }
+
+        // reset entities list
         void resetEntities()
         {
             entities = new List<Entity>();
@@ -107,7 +112,7 @@ namespace Lakeside2
                 editing = !editing;
                 if (editing)
                 {
-                    editor = new EditingOverlay(Content, camera);
+                    editor = new EditingOverlay(Content, this);
                 }
                 else
                 {

@@ -29,6 +29,8 @@ namespace Lakeside2
         public List<KeyValuePair<int, int>> scriptLocations { get; set; }
         public List<NPC> npcs { get; set; }
 
+        public KeyValuePair<int, int> playerStart { get; set; }
+
         // wrestle engine-useful TileMap format into less useful (but writable) SerializableMap
         public static SerializableMap FromTilemap(TileMap map)
         {
@@ -40,11 +42,10 @@ namespace Lakeside2
             s.tiles = new int[map.width][];;
             s.collision = new bool[map.width][];
             s.color = map.color.PackedValue;
-
             s.scripts = new List<LuaScript>();
             s.scriptLocations = new List<KeyValuePair<int, int>>();
-
             s.npcs = map.npcs;
+            s.playerStart = new KeyValuePair<int, int>((int)map.playerStart.X, (int)map.playerStart.Y);
 
             for (int x = 0; x < map.width; x++)
             {
@@ -93,7 +94,7 @@ namespace Lakeside2
             // load NPC textures
             s.npcs.ForEach(npc => npc.setTexture(Content, npc.filename));
 
-            return new TileMap(tiles, new Color(s.color), filename, s.npcs);
+            return new TileMap(tiles, new Color(s.color), filename, s.npcs, new Vector2(s.playerStart.Key, s.playerStart.Value));
         }
 
         public static TileMap Load(ContentManager Content, string filename)
@@ -101,14 +102,13 @@ namespace Lakeside2
             try
             {
                 string json = File.ReadAllText(Content.RootDirectory + MAPS_DIRECTORY + filename);
-                Debug.WriteLine(json);
                 SerializableMap s = JsonSerializer.Deserialize<SerializableMap>(json, OPTIONS);
                 return ToTilemap(Content, filename, s);
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e.StackTrace);
                 Debug.WriteLine("No map file found: " + filename);
+                //Debug.WriteLine(e.StackTrace);
                 return null;
             }
         }

@@ -55,9 +55,18 @@ namespace Lakeside2
             }
         }
 
-        public void playSfx(string name)
+        public void playSfx(string filename)
         {
-            Game1.music.playSfx(name);
+            Game1.music.playSfx(filename);
+        }
+
+        public void loadMap(string filename)
+        {
+            TileMap newMap = SerializableMap.Load(Content, filename);
+            if (newMap != null)
+            {
+                world.setMap(newMap);
+            }
         }
 
         public void makeChain(params ScriptNode[] elements)
@@ -106,6 +115,10 @@ namespace Lakeside2
         // basic movement x tiles left/right, y tiles up/down
         public ScriptNode SMove(NPC entity, int x, int y)
         {
+            if (entity == null || (x == 0 && y == 0))
+            {
+                return null;
+            }
             List<Vector2> moves = new List<Vector2>();
             for (int i = 0; i < x; i++) moves.Add(new Vector2(1, 0));
             for (int i = 0; i > x; i--) moves.Add(new Vector2(-1, 0));
@@ -118,7 +131,7 @@ namespace Lakeside2
         // path finding move to specific tile
         public ScriptNode SMove(NPC entity, Vector2 tilePosition)
         {
-            if (entity == null) // requested entity not found, probably due to editing
+            if (entity == null || tilePosition == entity.getTileLocation())
             {
                 return null;
             }
