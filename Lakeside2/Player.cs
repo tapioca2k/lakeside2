@@ -34,22 +34,22 @@ namespace Lakeside2
             if (input.isKeyHeld(Keys.W))
             {
                 tryMove(DIREC_UP);
-                setDirection(Directions.up);
+                //setDirection(Directions.up);
             }
             else if (input.isKeyHeld(Keys.A))
             {
                 tryMove(DIREC_LEFT);
-                setDirection(Directions.left);
+                //setDirection(Directions.left);
             }
             else if (input.isKeyHeld(Keys.S))
             {
                 tryMove(DIREC_DOWN);
-                setDirection(Directions.down);
+                //setDirection(Directions.down);
             }
             else if (input.isKeyHeld(Keys.D))
             {
                 tryMove(DIREC_RIGHT);
-                setDirection(Directions.right);
+                //setDirection(Directions.right);
             }
 
             else if (input.isKeyPressed(Keys.E))

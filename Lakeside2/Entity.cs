@@ -56,6 +56,24 @@ namespace Lakeside2
             }
         }
 
+        public static Directions getDirection(Vector2 v)
+        {
+            if (v.X < 0) return Directions.left;
+            else if (v.X > 0) return Directions.right;
+            else if (v.Y > 0) return Directions.down;
+            else if (v.Y < 0) return Directions.up;
+            else return Directions.down; // should never happen
+        }
+
+        public void faceEntity(Entity other)
+        {
+            Vector2 l = other.getTileLocation();
+            if (l.X < getTileLocation().X) setDirection(Directions.left);
+            else if (l.X > getTileLocation().X) setDirection(Directions.right);
+            else if (l.Y < getTileLocation().Y) setDirection(Directions.up);
+            else if (l.Y > getTileLocation().Y) setDirection(Directions.down);
+        }
+
         public static Directions getOppositeDirection(Directions direction)
         {
             switch (direction)
@@ -102,8 +120,12 @@ namespace Lakeside2
         public virtual void update(double dt)
         {
             step = false;
-            if (!moving) animation.update(dt/2f); // slow version of the run animation while idle
-            else if (moving && move == Vector2.Zero) move = moves.Dequeue(); // get next queued move
+            if (!moving) animation.update(dt / 2f); // slow version of the run animation while idle
+            else if (moving && move == Vector2.Zero)
+            {
+                move = moves.Dequeue(); // get next queued move
+                setDirection(getDirection(move));
+            }
 
             // work on current move
             if (move != Vector2.Zero)
@@ -153,7 +175,6 @@ namespace Lakeside2
 
         public void queueMove(Vector2 direction)
         {
-            Debug.WriteLine("queueing move" + direction);
             moves.Enqueue(Vector2.Multiply(direction, Tile.TILE_SIZE));
         }
 
