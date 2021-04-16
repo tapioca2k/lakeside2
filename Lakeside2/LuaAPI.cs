@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Linq;
+using Lakeside2.Serialization;
 
 namespace Lakeside2
 {

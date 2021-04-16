@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Lakeside2
+namespace Lakeside2.Serialization
 {
     class SerializableMap
     {
@@ -19,6 +19,7 @@ namespace Lakeside2
         {
             OPTIONS = new JsonSerializerOptions();
             OPTIONS.Converters.Add(new NPCConverter());
+            OPTIONS.Converters.Add(new Vector2Converter());
         }
 
         public string[] tilenames { get; set; }
@@ -26,10 +27,10 @@ namespace Lakeside2
         public bool[][] collision { get; set; }
         public uint color { get; set; }
         public List<LuaScript> scripts { get; set; }
-        public List<KeyValuePair<int, int>> scriptLocations { get; set; }
+        public List<Vector2> scriptLocations { get; set; }
         public List<NPC> npcs { get; set; }
 
-        public KeyValuePair<int, int> playerStart { get; set; }
+        public Vector2 playerStart { get; set; }
 
         // wrestle engine-useful TileMap format into less useful (but writable) SerializableMap
         public static SerializableMap FromTilemap(TileMap map)
@@ -43,9 +44,9 @@ namespace Lakeside2
             s.collision = new bool[map.width][];
             s.color = map.color.PackedValue;
             s.scripts = new List<LuaScript>();
-            s.scriptLocations = new List<KeyValuePair<int, int>>();
+            s.scriptLocations = new List<Vector2>();
             s.npcs = map.npcs;
-            s.playerStart = new KeyValuePair<int, int>((int)map.playerStart.X, (int)map.playerStart.Y);
+            s.playerStart = map.playerStart;
 
             for (int x = 0; x < map.width; x++)
             {
@@ -61,7 +62,7 @@ namespace Lakeside2
                     if (tile.script != null)
                     {
                         s.scripts.Add(tile.script);
-                        s.scriptLocations.Add(new KeyValuePair<int, int>(x, y));
+                        s.scriptLocations.Add(new Vector2(x, y));
                     }
                 }
             }
@@ -87,14 +88,14 @@ namespace Lakeside2
             for (int i = 0; i < s.scripts.Count; i++)
             {
                 s.scripts[i].load();
-                KeyValuePair<int, int> location = s.scriptLocations[i];
-                tiles[location.Key, location.Value].script = s.scripts[i];
+                Vector2 l = s.scriptLocations[i];
+                tiles[(int)l.X, (int)l.Y].script = s.scripts[i];
             }
 
             // load NPC textures
             s.npcs.ForEach(npc => npc.setTexture(Content, npc.filename));
 
-            return new TileMap(tiles, new Color(s.color), filename, s.npcs, new Vector2(s.playerStart.Key, s.playerStart.Value));
+            return new TileMap(tiles, new Color(s.color), filename, s.npcs, s.playerStart);
         }
 
         public static TileMap Load(ContentManager Content, string filename)

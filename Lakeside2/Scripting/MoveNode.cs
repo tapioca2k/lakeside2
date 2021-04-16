@@ -9,7 +9,6 @@ namespace Lakeside2.Scripting
     {
         Entity entity;
         Vector2[] directions;
-        bool initial = false;
 
         public MoveNode(Entity entity, Vector2[] directions)
         {

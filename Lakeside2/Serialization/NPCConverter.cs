@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Lakeside2
+namespace Lakeside2.Serialization
 {
     class NPCConverter : JsonConverter<NPC>
     {
