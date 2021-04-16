@@ -60,12 +60,15 @@ namespace Lakeside2
             Game1.music.playSfx(filename);
         }
 
-        public void loadMap(string filename)
+        public void changeMap(string filename)
         {
             TileMap newMap = SerializableMap.Load(Content, filename);
             if (newMap != null)
             {
-                world.setMap(newMap);
+                pushUiElement(new UiScreenFade(() =>
+                {
+                    world.setMap(newMap);
+                }), 0, 0);
             }
         }
 

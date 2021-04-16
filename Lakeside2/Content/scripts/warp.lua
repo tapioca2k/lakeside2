@@ -1,0 +1,1 @@
+﻿l:changeMap("beach.json")

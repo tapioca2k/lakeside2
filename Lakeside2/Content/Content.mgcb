@@ -108,6 +108,9 @@
 /processorParam:TextureFormat=Color
 /build:logo-default.png
 
+#begin maps/beach.json
+/copy:maps/beach.json
+
 #begin maps/forestguard.json
 /copy:maps/forestguard.json
 
@@ -125,6 +128,9 @@
 
 #begin scripts/step.lua
 /copy:scripts/step.lua
+
+#begin scripts/warp.lua
+/copy:scripts/warp.lua
 
 #begin tiles/a.png
 /importer:TextureImporter
