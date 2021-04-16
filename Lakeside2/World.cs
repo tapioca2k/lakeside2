@@ -22,7 +22,7 @@ namespace Lakeside2
 
         ContentManager Content;
 
-        UiSystem ui;
+        public UiSystem ui;
 
         public TilemapCamera camera;
         public TileMap map
@@ -120,6 +120,12 @@ namespace Lakeside2
                     camera.setCenteringEntity(player); // editing mode stole this
                     resetEntities(); // reload entities for ones created in the editor
                 }
+            }
+
+            // bring up the pause menu
+            else if (input.isKeyPressed(Keys.P))
+            {
+                ui.pushElement(new UiList(Content, new string[4] { "the", "game", "is", "paused" }), new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
             }
         }
 

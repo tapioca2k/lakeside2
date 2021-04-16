@@ -31,27 +31,13 @@ namespace Lakeside2
         {
             if (moving) return;
 
-            if (input.isKeyHeld(Keys.W))
-            {
-                tryMove(DIREC_UP);
-                //setDirection(Directions.up);
-            }
-            else if (input.isKeyHeld(Keys.A))
-            {
-                tryMove(DIREC_LEFT);
-                //setDirection(Directions.left);
-            }
-            else if (input.isKeyHeld(Keys.S))
-            {
-                tryMove(DIREC_DOWN);
-                //setDirection(Directions.down);
-            }
-            else if (input.isKeyHeld(Keys.D))
-            {
-                tryMove(DIREC_RIGHT);
-                //setDirection(Directions.right);
-            }
+            // movement
+            if (input.isKeyHeld(Keys.W)) tryMove(DIREC_UP);
+            else if (input.isKeyHeld(Keys.A)) tryMove(DIREC_LEFT);
+            else if (input.isKeyHeld(Keys.S)) tryMove(DIREC_DOWN);
+            else if (input.isKeyHeld(Keys.D)) tryMove(DIREC_RIGHT);
 
+            // interact
             else if (input.isKeyPressed(Keys.E))
             {
                 NPC interacting = world.map.getNPC(getFacingTile());
