@@ -27,7 +27,6 @@ namespace Lakeside2.Serialization
         public bool[][] collision { get; set; }
         public uint color { get; set; }
         public List<LuaScript> scripts { get; set; }
-        public List<Vector2> scriptLocations { get; set; }
         public List<NPC> npcs { get; set; }
 
         public Vector2 playerStart { get; set; }
@@ -43,8 +42,7 @@ namespace Lakeside2.Serialization
             s.tiles = new int[map.width][];;
             s.collision = new bool[map.width][];
             s.color = map.color.PackedValue;
-            s.scripts = new List<LuaScript>();
-            s.scriptLocations = new List<Vector2>();
+            s.scripts = map.tileScripts;
             s.npcs = map.npcs;
             s.playerStart = map.playerStart;
 
@@ -59,11 +57,6 @@ namespace Lakeside2.Serialization
                     if (!tileNumbers.ContainsKey(tilename)) tileNumbers.Add(tilename, tileCount++);
                     s.tiles[x][y] = tileNumbers[tilename];
                     s.collision[x][y] = map.checkCollision(new Vector2(x, y));
-                    if (tile.script != null)
-                    {
-                        s.scripts.Add(tile.script);
-                        s.scriptLocations.Add(new Vector2(x, y));
-                    }
                 }
             }
             s.tilenames = new string[tileCount];
@@ -85,17 +78,12 @@ namespace Lakeside2.Serialization
                     tiles[x, y].collision = s.collision[x][y];
                 }
             }
-            for (int i = 0; i < s.scripts.Count; i++)
-            {
-                s.scripts[i].load();
-                Vector2 l = s.scriptLocations[i];
-                tiles[(int)l.X, (int)l.Y].script = s.scripts[i];
-            }
+            s.scripts.ForEach(s => s.load());
 
             // load NPC textures
             s.npcs.ForEach(npc => npc.setTexture(Content, npc.filename));
 
-            return new TileMap(tiles, new Color(s.color), filename, s.npcs, s.playerStart);
+            return new TileMap(tiles, new Color(s.color), filename, s.npcs, s.scripts, s.playerStart);
         }
 
         public static TileMap Load(ContentManager Content, string filename)

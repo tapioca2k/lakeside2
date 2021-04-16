@@ -1,4 +1,5 @@
-﻿using NLua;
+﻿using Microsoft.Xna.Framework;
+using NLua;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,6 +14,7 @@ namespace Lakeside2
         const string PREFIX = "Content/scripts/";
 
         public string filename { get; set; }
+        public Vector2 location { get; set; }
         public bool loaded;
         string script;
 
@@ -48,6 +50,11 @@ namespace Lakeside2
             lua["me"] = caller;
             object[] returnvals = lua.DoString(script);
             return returnvals;
+        }
+
+        public Vector2 getTileLocation()
+        {
+            return location;
         }
 
         public override string ToString()

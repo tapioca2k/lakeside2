@@ -83,13 +83,15 @@ namespace Lakeside2.Editor
             {
                 Tile selected = map.getTile(cursor.getTileLocation());
                 NPC npc = map.getNPC(cursor.getTileLocation());
+                LuaScript script = map.getScript(cursor.getTileLocation());
                 if (selected != null)
                 {
-                    ui.pushElement(new UiTileEditor(Content, selected, npc).addCallback(element =>
+                    ui.pushElement(new UiTileEditor(Content, selected, npc, script).addCallback(element =>
                     {
                         UiTileEditor editor = (UiTileEditor)element;
                         map.setTile(cursor.getTileLocation(), editor.tile);
                         map.setNPC(cursor.getTileLocation(), editor.npc);
+                        map.setScript(cursor.getTileLocation(), editor.script);
                         lastEditedTile = editor.tile;
                     }), new Vector2(160, 0));
                 }

@@ -26,6 +26,7 @@ namespace Lakeside2
         public Color color;
         public string filename;
         public List<NPC> npcs;
+        public List<LuaScript> tileScripts;
         public Vector2 playerStart;
 
         public static Vector2 worldToTile(Vector2 real)
@@ -44,7 +45,8 @@ namespace Lakeside2
             this.color = Color.Black;
             this.filename = "(Unsaved)";
             this.playerStart = Vector2.Zero;
-            npcs = new List<NPC>();
+            this.npcs = new List<NPC>();
+            this.tileScripts = new List<LuaScript>();
             map = new Tile[width, height];
             for (int x = 0; x < width; x++)
             {
@@ -56,7 +58,7 @@ namespace Lakeside2
         }
 
         // only SerializableMap.ToTilemap() should use this constructor
-        public TileMap(Tile[,] tiles, Color color, string filename, List<NPC> npcs, Vector2 playerStart)
+        public TileMap(Tile[,] tiles, Color color, string filename, List<NPC> npcs, List<LuaScript> scripts, Vector2 playerStart)
         {
             this.map = tiles;
             this.width = tiles.GetLength(0);
@@ -64,6 +66,7 @@ namespace Lakeside2
             this.color = color;
             this.filename = filename;
             this.npcs = npcs;
+            this.tileScripts = scripts;
             this.playerStart = playerStart;
         }
 
@@ -108,6 +111,22 @@ namespace Lakeside2
             return npcs.Find(n => n.name == name);
         }
 
+        public LuaScript getScript(Vector2 tileLocation)
+        {
+            return tileScripts.Find(s => s.getTileLocation().Equals(tileLocation));
+        }
+
+        public void setScript(Vector2 tileLocation, LuaScript script)
+        {
+            LuaScript present = getScript(tileLocation);
+            if (present != null) tileScripts.Remove(present);
+            if (script != null)
+            {
+                script.location = tileLocation;
+                tileScripts.Add(script);
+            }
+        }
+
         public bool checkCollision(int x, int y)
         {
             if (x < 0 || x >= width || y < 0 || y >= height) return false;
@@ -122,7 +141,8 @@ namespace Lakeside2
         public void stepOn(Player player, Vector2 tileLocation, Lua worldLua)
         {
             Tile t = getTile(tileLocation);
-            if (t.script != null) t.script.execute(player, worldLua);
+            LuaScript script = getScript(tileLocation);
+            if (script != null) script.execute(player, worldLua);
         }
 
         // for the editor

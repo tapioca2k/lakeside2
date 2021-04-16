@@ -22,12 +22,14 @@ namespace Lakeside2.UI.Editor
         ContentManager Content;
         public Tile tile;
         public NPC npc;
+        public LuaScript script;
 
-        public UiTileEditor(ContentManager Content, Tile tile, NPC npc)
+        public UiTileEditor(ContentManager Content, Tile tile, NPC npc, LuaScript script)
         {
             this.Content = Content;
             this.tile = tile;
             this.npc = npc;
+            this.script = script;
             setBackground(Color.White);
         }
 
@@ -65,7 +67,11 @@ namespace Lakeside2.UI.Editor
                 system.pushElement(new UiTextInput("Script: ").addCallback(element =>
                 {
                     UiTextInput input = (UiTextInput)element;
-                    if (input.text != "") this.tile.setScript(input.text);
+                    if (input.text != "")
+                    {
+                        this.script = new LuaScript(input.text);
+                        if (!this.script.loaded) this.script = null;
+                    }
 
                 }), Vector2.Zero);
             }
@@ -79,7 +85,7 @@ namespace Lakeside2.UI.Editor
             wrapper.drawString("(T)exture: " + tile.filename, new Vector2(25, 5));
             wrapper.drawString("(W)alkable: " + UiTextDisplay.YesOrNo(tile.collision), new Vector2(5, 25));
             wrapper.drawString("(N)PC: " + UiTextDisplay.TextOrNull(npc), new Vector2(5, 45));
-            wrapper.drawString("(S)cript: " + UiTextDisplay.TextOrNull(tile.script), new Vector2(5, 65));
+            wrapper.drawString("(S)cript: " + UiTextDisplay.TextOrNull(script), new Vector2(5, 65));
         }
 
     }
