@@ -13,18 +13,48 @@ namespace Lakeside2
     class Player : Entity
     {
         public const string ENTITY_NAME = "player";
+        public override string name => ENTITY_NAME;
 
         World world;
-
         Lua worldLua;
+        Dictionary<Item, int> inventory;
 
-        public override string name => ENTITY_NAME;
 
         public Player(ContentManager Content, World world, Lua worldLua)
         {
             loadAnimatedTexture(Content, "greenman");
             this.world = world;
             this.worldLua = worldLua;
+            this.inventory = new Dictionary<Item, int>();
+        }
+
+        public int addItem(string name, int amnt)
+        {
+            Item i = Inventory.getItem(name);
+            if (inventory.ContainsKey(i)) inventory[i] += amnt;
+            else inventory.Add(i, amnt);
+
+            if (inventory[i] < 0)
+            {
+                inventory.Remove(i);
+                return 0;
+            }
+            else
+            {
+                return inventory[i];
+            }
+        }
+
+        public Item getItem(string name)
+        {
+            Item i = Inventory.getItem(name);
+            if (inventory.ContainsKey(i)) return i;
+            else return null;
+        }
+
+        public int getItemCount(string name)
+        {
+            return addItem(name, 0);
         }
 
         public void onInput(InputHandler input)

@@ -96,6 +96,9 @@
 /processorParam:TextureFormat=Compressed
 /build:fonts/rainyhearts.spritefont
 
+#begin items.json
+/copy:items.json
+
 #begin logo-default.png
 /importer:TextureImporter
 /processor:TextureProcessor
