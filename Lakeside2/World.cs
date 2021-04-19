@@ -13,7 +13,7 @@ using System.Text;
 
 namespace Lakeside2
 {
-    class World
+    class World : IGameState
     {
         public const int PORTAL_WIDTH = Game1.INTERNAL_WIDTH;
         public const int HALF_PORTAL_WIDTH = PORTAL_WIDTH / 2;
@@ -43,7 +43,7 @@ namespace Lakeside2
 
         Queue<ScriptChain> scripts;
 
-        public World(ContentManager Content, string filename=null)
+        public World(ContentManager Content)
         {
             this.Content = Content;
             this.scripts = new Queue<ScriptChain>();

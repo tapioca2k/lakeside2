@@ -31,7 +31,7 @@ namespace Lakeside2
 
         RenderTarget2D mainTarget;
 
-        World world;
+        IGameState currentState;
 
         Effect colorize;
 
@@ -66,10 +66,10 @@ namespace Lakeside2
             Fonts.loadFont(Content, "Arial");
             Fonts.loadFont(Content, "rainyhearts");
             colorize = Content.Load<Effect>("colorize");
-
             music = new MusicManager(Content);
 
-            world = new World(Content, "default.txt");
+            //currentState = new World(Content);
+            currentState = new Overworld(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -82,8 +82,8 @@ namespace Lakeside2
 
             double dt = gameTime.ElapsedGameTime.TotalSeconds;
 
-            world.onInput(input);
-            world.update(dt);
+            currentState.onInput(input);
+            currentState.update(dt);
 
             base.Update(gameTime);
         }
@@ -94,7 +94,7 @@ namespace Lakeside2
             GraphicsDevice.SetRenderTarget(mainTarget);
             _spriteBatch.Begin();
             // most drawing happens here...
-            world.draw(new SBWrapper(_spriteBatch));
+            currentState.draw(new SBWrapper(_spriteBatch));
             _spriteBatch.End();
 
             // scale to screen size, draw to window
