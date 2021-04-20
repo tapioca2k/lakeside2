@@ -9,22 +9,18 @@ namespace Lakeside2
 {
     public static class Inventory
     {
-        private class Cookbook
-        {
-            public List<Item> items { get; set; }
-        }
 
-        static Cookbook items;
+        static List<Item> items;
 
         static Inventory()
         {
             string json = File.ReadAllText("Content/items.json");
-            items = JsonSerializer.Deserialize<Cookbook>(json);
+            items = JsonSerializer.Deserialize<List<Item>>(json);
         }
 
         public static Item getItem(string name)
         {
-            IEnumerable<Item> i = from item in items.items 
+            IEnumerable<Item> i = from item in items 
                                   where item.name == name 
                                   select item;
             return i.FirstOrDefault();
