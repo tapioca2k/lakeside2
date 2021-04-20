@@ -64,8 +64,8 @@ namespace Lakeside2.Map
 
             stripe.addElement(new UiObjectMonitor<List<MapLocation>>(locations, locs =>
             {
-                return locs[index].filename;
-            }), 'l');
+                return Path.GetFileNameWithoutExtension(locs[index].filename);
+            }), 'c');
         }
 
         public void onInput(InputHandler input)

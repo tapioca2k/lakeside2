@@ -128,10 +128,12 @@ namespace Lakeside2
             }
 
             // bring up the pause menu
+            /*
             else if (input.isKeyPressed(Keys.P))
             {
                 ui.pushElement(new UiList(Content, new string[4] { "the", "game", "is", "paused" }), new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
             }
+            */
         }
 
         public void update(double dt)

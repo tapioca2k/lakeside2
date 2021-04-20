@@ -36,7 +36,7 @@ namespace Lakeside2.Editor
             cursor = new Cursor(Content);
 
             ui = new UiSystem();
-            ui.addStripeElement(new UiEditorStripe(Content), 'l');
+            ui.addStripeElement(new UiTexture(Content, "editorhotkeys"), 'l');
             ui.addStripeElement(new UiObjectMonitor<Cursor>(cursor, (cursor) =>
             {
                 return cursor.getTileLocation().ToString();

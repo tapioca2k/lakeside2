@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Lakeside2.UI
@@ -11,30 +12,17 @@ namespace Lakeside2.UI
     {
         public const int STRIPE_HEIGHT = Tile.TILE_SIZE + 4;
         public const int STRIPE_START = Game1.INTERNAL_HEIGHT - STRIPE_HEIGHT;
-        Texture2D logo;
-        Vector2 logoPosition;
 
-        public UiElement leftElement, rightElement;
-        Vector2 stripeLeft, stripeRight;
+        public UiElement leftElement, centerElement, rightElement;
+        Vector2 stripeLeft, stripeCenter, stripeRight;
 
         public UiStripe(ContentManager Content)
         {
-            try
-            {
-                logo = Content.Load<Texture2D>("logo");
-            }
-            catch (ContentLoadException e) // custom logo not found
-            {
-                logo = Content.Load<Texture2D>("logo-default");
-            }
-            logoPosition = new Vector2(Math.Max(0, (Game1.INTERNAL_WIDTH - logo.Width) / 2), 
-                Math.Max(STRIPE_START, (Game1.INTERNAL_HEIGHT - logo.Height) / 2));
+            centerElement = new UiTexture(Content, "logo-default");
         }
 
         public UiStripe()
         {
-            logo = null;
-            logoPosition = Vector2.Zero;
         }
 
         
@@ -50,6 +38,12 @@ namespace Lakeside2.UI
                 rightElement = element;
                 stripeRight = new Vector2(Game1.INTERNAL_WIDTH - rightElement.size.X, STRIPE_START);
             }
+            else if (location == 'c')
+            {
+                centerElement = element;
+                stripeCenter = new Vector2(Math.Max(0, (int)(Game1.INTERNAL_WIDTH - centerElement.size.X) / 2),
+                    Math.Max(STRIPE_START, (int)(Game1.INTERNAL_HEIGHT - centerElement.size.Y) / 2));
+            }
         }
         
         public void update(double dt)
@@ -58,8 +52,13 @@ namespace Lakeside2.UI
             if (rightElement != null)
             {
                 rightElement.update(dt);
-                // update stripeRight location in case the element changed size
                 stripeRight = new Vector2(Game1.INTERNAL_WIDTH - rightElement.size.X, STRIPE_START);
+            }
+            if (centerElement != null)
+            {
+                centerElement.update(dt);
+                stripeCenter = new Vector2(Math.Max(0, (int)(Game1.INTERNAL_WIDTH - centerElement.size.X) / 2),
+                    Math.Max(STRIPE_START, (int)(Game1.INTERNAL_HEIGHT - centerElement.size.Y) / 2));
             }
 
         }
@@ -70,13 +69,9 @@ namespace Lakeside2.UI
             SBWrapper stripeSpace = new SBWrapper(wrapper, new Vector2(0, STRIPE_START));
             stripeSpace.drawRectangle(new Vector2(Game1.INTERNAL_WIDTH, STRIPE_HEIGHT), Color.White);
 
-            if (logo != null)
-            {
-                wrapper.draw(logo, logoPosition);
-            }
-
-            if (leftElement != null) leftElement.draw(wrapper.setOrigin(stripeLeft));
-            if (rightElement != null) rightElement.draw(wrapper.setOrigin(stripeRight));
+            if (leftElement != null) leftElement.draw(new SBWrapper(wrapper, stripeLeft));
+            if (centerElement != null) centerElement.draw(new SBWrapper(wrapper, stripeCenter));
+            if (rightElement != null) rightElement.draw(new SBWrapper(wrapper, stripeRight));
         }
     }
 }
