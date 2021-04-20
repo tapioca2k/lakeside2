@@ -20,7 +20,7 @@ namespace Lakeside2.Map
         Texture2D foreground;
         UiStripe stripe;
         int width;
-        int x;
+        double x;
 
         MapPlayer player;
         List<MapLocation> locations;
@@ -60,6 +60,7 @@ namespace Lakeside2.Map
                 }
             }
             setPlayerLocation();
+            x = getCameraDesired();
 
             stripe.addElement(new UiObjectMonitor<List<MapLocation>>(locations, locs =>
             {
@@ -88,20 +89,28 @@ namespace Lakeside2.Map
         void setPlayerLocation()
         {
             player.feet = locations[index].center;
-            x = (int)Math.Max(0, player.feet.X - (Game1.INTERNAL_WIDTH / 2));
+        }
+
+        double getCameraDesired()
+        {
+            return Math.Min(width - Game1.INTERNAL_WIDTH, Math.Max(0, player.feet.X - (Game1.INTERNAL_WIDTH / 2)));
         }
 
         public void update(double dt)
         {
             stripe.update(dt);
+
+            double desired = getCameraDesired();
+            if (x > desired) x -= Math.Min(dt * 300, x - desired);
+            else if (x < desired) x += Math.Min(dt * 300, desired - x);
         }
 
         public void draw(SBWrapper wrapper)
         {
             wrapper.draw(background);
-            wrapper.draw(foreground, Vector2.Zero, new Rectangle(x, 0, Game1.INTERNAL_WIDTH, Game1.INTERNAL_HEIGHT));
+            wrapper.draw(foreground, Vector2.Zero, new Rectangle((int)x, 0, Game1.INTERNAL_WIDTH, Game1.INTERNAL_HEIGHT));
 
-            SBWrapper relative = new SBWrapper(wrapper, new Vector2(-x, 0));
+            SBWrapper relative = new SBWrapper(wrapper, new Vector2(-(int)x, 0));
             locations.ForEach(l => l.draw(relative));
             player.draw(relative);
 
