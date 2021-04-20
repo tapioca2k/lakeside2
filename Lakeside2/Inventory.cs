@@ -9,7 +9,7 @@ namespace Lakeside2
 {
     public static class Inventory
     {
-        class Cookbook
+        private class Cookbook
         {
             public List<Item> items { get; set; }
         }

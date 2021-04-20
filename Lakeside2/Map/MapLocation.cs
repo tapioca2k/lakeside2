@@ -4,15 +4,17 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Lakeside2.Map
 {
     public class MapLocation
     {
         Texture2D texture;
-        public string filename;
-        Vector2 location;
+        public string filename { get; set; }
+        public Vector2 location { get; set; }
 
+        [JsonIgnore]
         public Vector2 center
         {
             get
@@ -27,9 +29,18 @@ namespace Lakeside2.Map
 
         public MapLocation(ContentManager Content, string filename, Vector2 location)
         {
-            texture = Content.Load<Texture2D>("map/mapmarker");
             this.filename = filename;
             this.location = location;
+            load(Content);
+        }
+
+        public MapLocation()
+        {
+        }
+
+        public void load(ContentManager Content)
+        {
+            texture = Content.Load<Texture2D>("map/mapmarker");
         }
 
         public void draw(SBWrapper wrapper)

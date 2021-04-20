@@ -14,7 +14,7 @@ namespace Lakeside2.Serialization
     {
         const string MAPS_DIRECTORY = "/maps/";
 
-        static JsonSerializerOptions OPTIONS;
+        public static JsonSerializerOptions OPTIONS;
         static SerializableMap()
         {
             OPTIONS = new JsonSerializerOptions();

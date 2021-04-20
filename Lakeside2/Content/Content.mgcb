@@ -111,6 +111,9 @@
 /processorParam:TextureFormat=Color
 /build:logo-default.png
 
+#begin map/map.json
+/copy:map/map.json
+
 #begin map/mapback.png
 /importer:TextureImporter
 /processor:TextureProcessor

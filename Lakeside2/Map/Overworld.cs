@@ -1,11 +1,15 @@
-﻿using Lakeside2.UI;
+﻿using Lakeside2.Serialization;
+using Lakeside2.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace Lakeside2.Map
 {
@@ -40,9 +44,12 @@ namespace Lakeside2.Map
             x = 0;
 
             player = new MapPlayer(Content, p, Vector2.Zero);
-            locations = new List<MapLocation>(); // TODO populate from JSON
-            locations.Add(new MapLocation(Content, "forestguard.json", new Vector2(274, 116)));
-            locations.Add(new MapLocation(Content, "beach.json", new Vector2(532, 120)));
+
+            locations = new List<MapLocation>();
+            // load locations from json
+            string json = File.ReadAllText("Content/map/map.json");
+            locations = JsonSerializer.Deserialize<List<MapLocation>>(json, SerializableMap.OPTIONS);
+            locations.ForEach(l => l.load(Content));
 
             // put player in the correct spot
             for (int i = 0; i < locations.Count; i++)
