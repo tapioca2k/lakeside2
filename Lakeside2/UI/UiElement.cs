@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Lakeside2.UI
 {
-    abstract class UiElement
+    public abstract class UiElement
     {
         public abstract Vector2 size
         {

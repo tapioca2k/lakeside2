@@ -9,7 +9,7 @@ using System.Text;
 namespace Lakeside2
 {
 
-    class LuaScript
+    public class LuaScript
     {
         const string PREFIX = "Content/scripts/";
 

@@ -11,6 +11,7 @@ namespace Lakeside2.Map
 {
     class Overworld : IGameState
     {
+        Game1 game;
         Texture2D background;
         Texture2D foreground;
         UiStripe stripe;
@@ -29,22 +30,29 @@ namespace Lakeside2.Map
             }
         }
 
-        public Overworld(ContentManager Content)
+        public Overworld(ContentManager Content, Game1 game, Player p, string current)
         {
+            this.game = game;
             background = Content.Load<Texture2D>("map/background");
             foreground = Content.Load<Texture2D>("map/foreground");
             width = foreground.Width;
             stripe = new UiStripe();
             x = 0;
 
-            player = new MapPlayer(Content, Vector2.Zero);
+            player = new MapPlayer(Content, p, Vector2.Zero);
             locations = new List<MapLocation>(); // TODO populate from JSON
             locations.Add(new MapLocation(Content, "forestguard.json", new Vector2(274, 116)));
             locations.Add(new MapLocation(Content, "beach.json", new Vector2(532, 120)));
 
-            player.feet = locations[0].center;
-            index = 0;
-            x = (int)Math.Max(0, player.feet.X - (Game1.INTERNAL_WIDTH / 2));
+            // put player in the correct spot
+            for (int i = 0; i < locations.Count; i++)
+            {
+                if (locations[i].filename == current)
+                {
+                    index = i; break;
+                }
+            }
+            setPlayerLocation();
 
             stripe.addElement(new UiObjectMonitor<List<MapLocation>>(locations, locs =>
             {
@@ -54,21 +62,26 @@ namespace Lakeside2.Map
 
         public void onInput(InputHandler input)
         {
-            //if (input.isKeyHeld(Keys.A) && x > 0) x--;
-            //else if (input.isKeyHeld(Keys.D) && x < width - Game1.INTERNAL_WIDTH) x++;
-
             if (input.isKeyPressed(Keys.A) && index > 0)
             {
                 index--;
-                player.feet = locations[index].center;
-                x = (int)Math.Max(0, player.feet.X - (Game1.INTERNAL_WIDTH / 2));
+                setPlayerLocation();
             }
             else if (input.isKeyPressed(Keys.D) && index < locations.Count - 1)
             {
                 index++;
-                player.feet = locations[index].center;
-                x = (int)Math.Max(0, player.feet.X - (Game1.INTERNAL_WIDTH / 2));
+                setPlayerLocation();
             }
+            else if (input.isKeyPressed(Keys.E))
+            {
+                game.goToWorld(player.p, selected.filename);
+            }
+        }
+
+        void setPlayerLocation()
+        {
+            player.feet = locations[index].center;
+            x = (int)Math.Max(0, player.feet.X - (Game1.INTERNAL_WIDTH / 2));
         }
 
         public void update(double dt)

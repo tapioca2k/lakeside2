@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Lakeside2
 {
-    class Player : Entity
+    public class Player : Entity
     {
         public const string ENTITY_NAME = "player";
         public override string name => ENTITY_NAME;
@@ -55,6 +55,12 @@ namespace Lakeside2
         public int getItemCount(string name)
         {
             return addItem(name, 0);
+        }
+
+        public void setWorld(World w)
+        {
+            this.world = w;
+            this.worldLua = w.lua;
         }
 
         public void onInput(InputHandler input)

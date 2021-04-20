@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Lakeside2
 {
-    class Item
+    public class Item
     {
         public string filename { get; set; }
         public string name { get; set; }

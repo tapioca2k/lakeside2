@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Lakeside2.Scripting
 {
-    class ScriptChain
+    public class ScriptChain
     {
 
         ScriptNode head;

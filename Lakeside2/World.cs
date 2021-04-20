@@ -1,5 +1,6 @@
 ﻿using Lakeside2.Editor;
 using Lakeside2.Scripting;
+using Lakeside2.Serialization;
 using Lakeside2.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -13,13 +14,14 @@ using System.Text;
 
 namespace Lakeside2
 {
-    class World : IGameState
+    public class World : IGameState
     {
         public const int PORTAL_WIDTH = Game1.INTERNAL_WIDTH;
         public const int HALF_PORTAL_WIDTH = PORTAL_WIDTH / 2;
         public const int PORTAL_HEIGHT = Game1.INTERNAL_HEIGHT - 16 - 4;
         public const int HALF_PORTAL_HEIGHT = PORTAL_HEIGHT / 2;
 
+        public Game1 game;
         ContentManager Content;
 
         public UiSystem ui;
@@ -39,12 +41,13 @@ namespace Lakeside2
         bool editing = false;
         EditingOverlay editor;
 
-        Lua lua;
+        public Lua lua;
 
         Queue<ScriptChain> scripts;
 
-        public World(ContentManager Content)
+        public World(ContentManager Content, Game1 game, Player player, string filename)
         {
+            this.game = game;
             this.Content = Content;
             this.scripts = new Queue<ScriptChain>();
             this.ui = new UiSystem(Content);
@@ -52,23 +55,25 @@ namespace Lakeside2
             lua = new Lua();
             lua.LoadCLRPackage();
 
-            player = new Player(Content, this, lua);
+            this.player = player;
+            this.player.setWorld(this);
 
-            lua["l"] = new LuaAPI(this, ui, player, Content);
-            lua["player"] = player;
+            lua["l"] = new LuaAPI(this, ui, this.player, Content);
+            lua["player"] = this.player;
             lua.DoString(@"
                 import ('Lakeside2', 'Lakeside2')
                 import ('Lakeside2', 'Lakeside2.UI')
                 import ('Lakeside2', 'Lakeside2.Scripting')");
 
-            TileMap map = new TileMap(Content, 20, 10);
-            camera = new TilemapCamera(map);
-            camera.setCenteringEntity(player);
+            camera = new TilemapCamera(null);
+            TileMap map;
+            if (filename == null) map = new TileMap(Content, 20, 10);
+            else map = SerializableMap.Load(Content, filename);
+            setMap(map);
+            camera.setCenteringEntity(this.player);
             camera.centerEntity(true);
 
-            resetEntities();
-
-            ui.addStripeElement(new UiObjectMonitor<Player>(player, (p) =>
+            ui.addStripeElement(new UiObjectMonitor<Player>(this.player, (p) =>
             {
                 return p.getTileLocation().ToString();
             }), 'l');

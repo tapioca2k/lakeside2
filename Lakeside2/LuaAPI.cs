@@ -12,7 +12,7 @@ using Lakeside2.Serialization;
 
 namespace Lakeside2
 {
-    class LuaAPI
+    public class LuaAPI
     {
         World world;
         UiSystem ui;
@@ -73,6 +73,11 @@ namespace Lakeside2
             }
         }
 
+        public void goToMap()
+        {
+            world.game.goToMap(player, world.map.filename);
+        }
+
         public void makeChain(params ScriptNode[] elements)
         {
             // filter out any null elements, preserving order
@@ -106,8 +111,8 @@ namespace Lakeside2
             return new UiNode(ui, new UiOptionBox(Content, text, option1, option2).addCallback(element =>
             {
                 UiOptionBox option = (UiOptionBox)element;
-                if (option.selected == 0) f1.Call(new object[0]);
-                else if (option.selected == 1) f2.Call(new object[0]);
+                if (option.selected == 0 && f1 != null) f1.Call(new object[0]);
+                else if (option.selected == 1 && f2 != null) f2.Call(new object[0]);
             }));
         }
 

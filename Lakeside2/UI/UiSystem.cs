@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Lakeside2.UI
 {
-    class UiSystem
+    public class UiSystem
     {
         UiStripe stripe;
         List<UiElement> stack;

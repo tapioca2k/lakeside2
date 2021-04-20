@@ -17,7 +17,7 @@ namespace Lakeside2
         }
     }
 
-    class TileMap
+    public class TileMap
     {
         ContentManager Content;
         public Tile[,] map;

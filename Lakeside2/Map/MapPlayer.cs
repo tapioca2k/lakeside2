@@ -9,6 +9,7 @@ namespace Lakeside2.Map
 {
     class MapPlayer
     {
+        public Player p;
         Texture2D texture;
         Vector2 location;
 
@@ -24,9 +25,10 @@ namespace Lakeside2.Map
             }
         }
 
-        public MapPlayer(ContentManager Content, Vector2 location)
+        public MapPlayer(ContentManager Content, Player p, Vector2 location)
         {
             texture = Content.Load<Texture2D>("map/mapman");
+            this.p = p;
             this.location = location;
         }
 

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Lakeside2.Scripting
 {
-    class UiNode : ScriptNode
+    public class UiNode : ScriptNode
     {
 
         UiElement element;

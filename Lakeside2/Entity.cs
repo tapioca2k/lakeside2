@@ -11,7 +11,7 @@ using System.Text.Json;
 namespace Lakeside2
 {
     // Player, NPC, or other object that actually exists in the game world
-    abstract class Entity : IDrawable
+    public abstract class Entity : IDrawable
     {
         public enum Directions
         {

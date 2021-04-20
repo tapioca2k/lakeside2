@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Lakeside2
 {
-    class TilemapCamera
+    public class TilemapCamera
     {
 
         TileMap map;

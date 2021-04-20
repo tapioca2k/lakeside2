@@ -177,6 +177,9 @@
 /processorParam:TextureFormat=Color
 /build:pointer.png
 
+#begin scripts/overworld.lua
+/copy:scripts/overworld.lua
+
 #begin scripts/step.lua
 /copy:scripts/step.lua
 

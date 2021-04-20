@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Lakeside2
 {
-    class NPC : Entity
+    public class NPC : Entity
     {
         public LuaScript script;
         public string filename;

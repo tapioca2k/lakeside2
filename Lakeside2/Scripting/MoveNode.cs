@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lakeside2.Scripting
 {
-    class MoveNode : ScriptNode
+    public class MoveNode : ScriptNode
     {
         Entity entity;
         Vector2[] directions;

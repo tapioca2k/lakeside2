@@ -7,7 +7,7 @@ using System.Text;
 namespace Lakeside2
 {
     // SpriteBatch wrapper for certain very common operations in draw calls
-    class SBWrapper
+    public class SBWrapper
     {
         public SpriteBatch spriteBatch;
         public Vector2 location;

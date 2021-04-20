@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Lakeside2
 {
-    class Animation
+    public class Animation
     {
         public double[][] durations { get; set; }
         public int width { get; set; }

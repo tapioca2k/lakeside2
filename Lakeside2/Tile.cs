@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Lakeside2
 {
-    class Tile : IDrawable
+    public class Tile : IDrawable
     {
         const string TILES = "tiles/";
         public const int TILE_SIZE = 16;

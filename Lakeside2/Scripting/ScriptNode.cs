@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lakeside2.Scripting
 {
-    abstract class ScriptNode
+    public abstract class ScriptNode
     {
         public ScriptNode next { get; set; }
         public bool finished { get; set; }

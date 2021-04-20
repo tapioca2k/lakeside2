@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace Lakeside2
 {
-    static class Inventory
+    public static class Inventory
     {
         class Cookbook
         {

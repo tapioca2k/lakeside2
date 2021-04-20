@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Lakeside2.Map
 {
-    class MapLocation
+    public class MapLocation
     {
         Texture2D texture;
         public string filename;
