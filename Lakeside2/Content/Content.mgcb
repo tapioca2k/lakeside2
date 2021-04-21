@@ -165,6 +165,9 @@
 #begin maps/beach.json
 /copy:maps/beach.json
 
+#begin maps/desert.json
+/copy:maps/desert.json
+
 #begin maps/forestguard.json
 /copy:maps/forestguard.json
 

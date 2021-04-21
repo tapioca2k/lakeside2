@@ -67,7 +67,7 @@ namespace Lakeside2
             music = new MusicManager(Content);
 
             //currentState = new World(Content, this);
-            currentState = new Overworld(Content, this, new Player(Content, null, null), "forestguard.json");
+            currentState = new Overworld(Content, this, new Player(Content, null, null));
         }
 
         public void goToMap(Player p, string currentMap)

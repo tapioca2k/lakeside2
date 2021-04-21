@@ -14,7 +14,7 @@ namespace Lakeside2
         Vector2 location;
 
         Entity centeredEntity;
-        bool centeringEntity;
+        bool centeringEntity => centeredEntity != null;
 
         bool inMove;
         Vector2 targetLocation;
@@ -81,9 +81,9 @@ namespace Lakeside2
                 }
             }
 
+            // update camera to center to entity, bounded by the edges of the map
             if (centeringEntity)
             {
-                
                 Vector2 centerLoc = centeredEntity.getLocation();
                 if (centerLoc.X >= World.HALF_PORTAL_WIDTH && centerLoc.X <= (map.width * Tile.TILE_SIZE) - World.HALF_PORTAL_WIDTH)
                 {
@@ -96,13 +96,21 @@ namespace Lakeside2
             }
         }
 
-        public void centerEntity(bool center)
+        // force the camera to the correct position around the centered entity
+        public void forceUpdate()
         {
-            this.centeringEntity = center;
+            if (centeringEntity)
+            {
+                this.location = new Vector2(
+                    Math.Max(0, Math.Min(centeredEntity.getLocation().X - World.HALF_PORTAL_WIDTH, (map.width * Tile.TILE_SIZE) - World.PORTAL_WIDTH)),
+                    Math.Max(0, Math.Min(centeredEntity.getLocation().Y - World.HALF_PORTAL_HEIGHT, (map.height * Tile.TILE_SIZE) - World.PORTAL_HEIGHT)));
+            }
         }
+
         public void setCenteringEntity(Entity entity)
         {
             this.centeredEntity = entity;
+            forceUpdate();
         }
 
         public void draw(SBWrapper wrapper, List<Entity> entities)

@@ -71,7 +71,6 @@ namespace Lakeside2
             else map = SerializableMap.Load(Content, filename);
             setMap(map);
             camera.setCenteringEntity(this.player);
-            camera.centerEntity(true);
 
             ui.addStripeElement(new UiObjectMonitor<Player>(this.player, (p) =>
             {
@@ -84,6 +83,7 @@ namespace Lakeside2
             camera.setMap(map);
             player.setTileLocation(map.playerStart);
             resetEntities();
+            camera.forceUpdate();
         }
 
         // reset entities list

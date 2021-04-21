@@ -34,7 +34,7 @@ namespace Lakeside2.Map
             }
         }
 
-        public Overworld(ContentManager Content, Game1 game, Player p, string current)
+        public Overworld(ContentManager Content, Game1 game, Player p, string current = null)
         {
             this.game = game;
             background = Content.Load<Texture2D>("map/background");
@@ -52,11 +52,15 @@ namespace Lakeside2.Map
             locations.ForEach(l => l.load(Content));
 
             // put player in the correct spot
-            for (int i = 0; i < locations.Count; i++)
+            if (current == null) index = 0;
+            else
             {
-                if (locations[i].filename == current)
+                for (int i = 0; i < locations.Count; i++)
                 {
-                    index = i; break;
+                    if (locations[i].filename == current)
+                    {
+                        index = i; break;
+                    }
                 }
             }
             setPlayerLocation();
