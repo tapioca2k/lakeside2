@@ -19,7 +19,9 @@ namespace Lakeside2.Editor
         Cursor cursor;
         World world;
         TilemapCamera camera;
+
         Tile lastEditedTile;
+        LuaScript lastEditedScript;
 
         TileMap map
         {
@@ -93,6 +95,7 @@ namespace Lakeside2.Editor
                         map.setNPC(cursor.getTileLocation(), editor.npc);
                         map.setScript(cursor.getTileLocation(), editor.script);
                         lastEditedTile = editor.tile;
+                        lastEditedScript = editor.script;
                     }), new Vector2(160, 0));
                 }
             }
@@ -101,6 +104,8 @@ namespace Lakeside2.Editor
                 if (lastEditedTile != null)
                 {
                     map.setTile(cursor.getTileLocation(), new Tile(lastEditedTile));
+                    if (lastEditedScript != null) 
+                        map.setScript(cursor.getTileLocation(), new LuaScript(lastEditedScript.filename));
                 }
             }
             else if (input.isKeyPressed(Keys.M)) // Edit map meta info

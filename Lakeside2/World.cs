@@ -104,7 +104,13 @@ namespace Lakeside2
             if (!editing)
             {
                 bool interacting = ui.onInput(input);
-                if (!interacting && scripts.Count == 0) player.onInput(input);
+                if (!interacting && scripts.Count == 0)
+                {
+                    player.onInput(input);
+
+                    // other game controls go here...
+
+                }
             }
             else
             {
@@ -126,14 +132,6 @@ namespace Lakeside2
                     resetEntities(); // reload entities for ones created in the editor
                 }
             }
-
-            // bring up the pause menu
-            /*
-            else if (input.isKeyPressed(Keys.P))
-            {
-                ui.pushElement(new UiList(Content, new string[4] { "the", "game", "is", "paused" }), new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
-            }
-            */
         }
 
         public void update(double dt)
