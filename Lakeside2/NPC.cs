@@ -57,7 +57,8 @@ namespace Lakeside2
 
         public object[] interact(Lua lua)
         {
-            return script.execute(this, lua);
+            if (script != null) return script.execute(this, lua);
+            else return new object[0];
         }
 
         public new void setDirection(Directions direction)

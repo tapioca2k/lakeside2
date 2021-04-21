@@ -47,6 +47,7 @@ namespace Lakeside2
 
         public object[] execute(Entity caller, Lua lua)
         {
+            if (!loaded) return new object[0];
             lua["me"] = caller;
             object[] returnvals = lua.DoString(script);
             return returnvals;
