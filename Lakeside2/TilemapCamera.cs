@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Lakeside2
@@ -72,7 +73,6 @@ namespace Lakeside2
         {
             if (inMove)
             {
-                // TODO smoothness
                 rawMove(new Vector2(targetLocation.X - location.X, targetLocation.Y - location.Y));
                 if (Vector2.Distance(location, targetLocation) < 1)
                 {
@@ -83,9 +83,16 @@ namespace Lakeside2
 
             if (centeringEntity)
             {
-                location = new Vector2(
-                    centeredEntity.getLocation().X - World.HALF_PORTAL_WIDTH,
-                    centeredEntity.getLocation().Y - World.HALF_PORTAL_HEIGHT);
+                
+                Vector2 centerLoc = centeredEntity.getLocation();
+                if (centerLoc.X >= World.HALF_PORTAL_WIDTH && centerLoc.X < (map.width * Tile.TILE_SIZE) - World.HALF_PORTAL_WIDTH)
+                {
+                    location.X = centeredEntity.getLocation().X - World.HALF_PORTAL_WIDTH;
+                }
+                if (centerLoc.Y >= World.HALF_PORTAL_HEIGHT && centerLoc.Y < (map.height * Tile.TILE_SIZE) - World.HALF_PORTAL_HEIGHT)
+                {
+                    location.Y = centeredEntity.getLocation().Y - World.HALF_PORTAL_HEIGHT;
+                }
             }
         }
 

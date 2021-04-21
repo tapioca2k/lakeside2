@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,12 @@ namespace Lakeside2.UI.Editor
             }
         }
 
+        ContentManager Content;
         TileMap map;
 
-        public UiMapMetaEditor(TileMap map)
+        public UiMapMetaEditor(ContentManager Content, TileMap map)
         {
+            this.Content = Content;
             this.map = map;
             setBackground(Color.White);
         }
@@ -44,7 +47,7 @@ namespace Lakeside2.UI.Editor
                         UiTextInput heightInput = (UiTextInput)element2;
                         int newHeight = map.height;
                         if (heightInput.text != "") newHeight = int.Parse(heightInput.text);
-                        map.resize(newWidth, newHeight);
+                        map.resize(Content, newWidth, newHeight);
 
                     }), Vector2.Zero);
                 }), Vector2.Zero);

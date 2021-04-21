@@ -110,7 +110,7 @@ namespace Lakeside2.Editor
             }
             else if (input.isKeyPressed(Keys.M)) // Edit map meta info
             {
-                ui.pushElement(new UiMapMetaEditor(map), new Vector2(160, 0));
+                ui.pushElement(new UiMapMetaEditor(Content, map), new Vector2(160, 0));
             }
         }
 

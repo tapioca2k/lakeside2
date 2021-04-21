@@ -19,7 +19,6 @@ namespace Lakeside2
 
     public class TileMap
     {
-        ContentManager Content;
         public Tile[,] map;
         public int width;
         public int height;
@@ -39,7 +38,6 @@ namespace Lakeside2
         // default, empty TileMap
         public TileMap(ContentManager Content, int width, int height)
         {
-            this.Content = Content;
             this.width = width;
             this.height = height;
             this.color = Color.Black;
@@ -146,7 +144,7 @@ namespace Lakeside2
         }
 
         // for the editor
-        public void resize(int newWidth, int newHeight)
+        public void resize(ContentManager Content, int newWidth, int newHeight)
         {
             Tile[,] newtiles = new Tile[newWidth, newHeight];
             for (int x = 0; x < newWidth; x++)
