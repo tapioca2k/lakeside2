@@ -200,6 +200,7 @@ namespace Lakeside2
 
         public void draw(SBWrapper wrapper)
         {
+            /*
             int startX = Math.Max(0, (int) Math.Floor(-wrapper.location.X / Tile.TILE_SIZE));
             int startY = Math.Max(0, (int)Math.Floor(-wrapper.location.Y / Tile.TILE_SIZE));
             for (int x = startX; x < Math.Min(width, Game1.TILE_WIDTH); x++)
@@ -209,6 +210,16 @@ namespace Lakeside2
                     map[x, y].draw(wrapper, new Vector2(x, y) * Tile.TILE_SIZE);
                 }
             }
+            */
+            // TODO determine why above algorithm stopped working... drawing all tiles should work for now
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    map[x, y].draw(wrapper, new Vector2(x, y) * Tile.TILE_SIZE);
+                }
+            }
+
         }
 
     }

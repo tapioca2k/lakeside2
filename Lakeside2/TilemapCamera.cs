@@ -85,11 +85,11 @@ namespace Lakeside2
             {
                 
                 Vector2 centerLoc = centeredEntity.getLocation();
-                if (centerLoc.X >= World.HALF_PORTAL_WIDTH && centerLoc.X < (map.width * Tile.TILE_SIZE) - World.HALF_PORTAL_WIDTH)
+                if (centerLoc.X >= World.HALF_PORTAL_WIDTH && centerLoc.X <= (map.width * Tile.TILE_SIZE) - World.HALF_PORTAL_WIDTH)
                 {
                     location.X = centeredEntity.getLocation().X - World.HALF_PORTAL_WIDTH;
                 }
-                if (centerLoc.Y >= World.HALF_PORTAL_HEIGHT && centerLoc.Y < (map.height * Tile.TILE_SIZE) - World.HALF_PORTAL_HEIGHT)
+                if (centerLoc.Y >= World.HALF_PORTAL_HEIGHT && centerLoc.Y <= (map.height * Tile.TILE_SIZE) - World.HALF_PORTAL_HEIGHT)
                 {
                     location.Y = centeredEntity.getLocation().Y - World.HALF_PORTAL_HEIGHT;
                 }
