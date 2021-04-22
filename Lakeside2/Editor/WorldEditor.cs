@@ -12,7 +12,7 @@ using System.Text;
 
 namespace Lakeside2.Editor
 {
-    class EditingOverlay
+    class WorldEditor
     {
         ContentManager Content;
         UiSystem ui;
@@ -31,7 +31,7 @@ namespace Lakeside2.Editor
             }
         }
 
-        public EditingOverlay(ContentManager Content, World world)
+        public WorldEditor(ContentManager Content, World world)
         {
             this.Content = Content;
             this.world = world;

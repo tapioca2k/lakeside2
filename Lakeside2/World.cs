@@ -39,7 +39,7 @@ namespace Lakeside2
         Player player;
 
         bool editing = false;
-        EditingOverlay editor;
+        WorldEditor editor;
 
         public Lua lua;
 
@@ -123,7 +123,7 @@ namespace Lakeside2
                 editing = !editing;
                 if (editing)
                 {
-                    editor = new EditingOverlay(Content, this);
+                    editor = new WorldEditor(Content, this);
                 }
                 else
                 {

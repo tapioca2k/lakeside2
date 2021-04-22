@@ -9,16 +9,17 @@ using System.Text;
 
 namespace Lakeside2
 {
-    public class PathComparer : IComparer<List<Vector2>>
-    {
-        public int Compare(List<Vector2> a, List<Vector2> b)
-        {
-            return a.Count - b.Count;
-        }
-    }
 
     public class TileMap
     {
+        private class PathComparer : IComparer<List<Vector2>>
+        {
+            public int Compare(List<Vector2> a, List<Vector2> b)
+            {
+                return a.Count - b.Count;
+            }
+        }
+
         public Tile[,] map;
         public int width;
         public int height;

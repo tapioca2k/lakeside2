@@ -1,4 +1,5 @@
-﻿using Lakeside2.Serialization;
+﻿using Lakeside2.Editor;
+using Lakeside2.Serialization;
 using Lakeside2.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -15,15 +16,27 @@ namespace Lakeside2.Map
 {
     class Overworld : IGameState
     {
+        private class LocationComparer : IComparer<MapLocation>
+        {
+            public int Compare(MapLocation a, MapLocation b)
+            {
+                return (int)(a.location.X - b.location.X);
+            }
+        }
+
         Game1 game;
+        ContentManager Content;
         Texture2D background;
         Texture2D foreground;
         UiStripe stripe;
         int width;
         double x;
 
+        OverworldEditor editor;
+        bool editing => editor != null;
+
         MapPlayer player;
-        List<MapLocation> locations;
+        public List<MapLocation> locations;
         int index;
 
         MapLocation selected
@@ -37,6 +50,7 @@ namespace Lakeside2.Map
         public Overworld(ContentManager Content, Game1 game, Player p, string current = null)
         {
             this.game = game;
+            this.Content = Content;
             background = Content.Load<Texture2D>("map/background");
             foreground = Content.Load<Texture2D>("map/foreground");
             width = foreground.Width;
@@ -50,6 +64,7 @@ namespace Lakeside2.Map
             string json = File.ReadAllText("Content/map/map.json");
             locations = JsonSerializer.Deserialize<List<MapLocation>>(json, SerializableMap.OPTIONS);
             locations.ForEach(l => l.load(Content));
+            sortLocations();
 
             // put player in the correct spot
             if (current == null) index = 0;
@@ -74,24 +89,45 @@ namespace Lakeside2.Map
 
         public void onInput(InputHandler input)
         {
-            if (input.isKeyPressed(Keys.A) && index > 0)
+            if (editing)
             {
-                index--;
-                setPlayerLocation();
+                editor.onInput(input);
             }
-            else if (input.isKeyPressed(Keys.D) && index < locations.Count - 1)
+            else
             {
-                index++;
-                setPlayerLocation();
+                if (input.isKeyPressed(Keys.A) && index > 0)
+                {
+                    index--;
+                    setPlayerLocation();
+                }
+                else if (input.isKeyPressed(Keys.D) && index < locations.Count - 1)
+                {
+                    index++;
+                    setPlayerLocation();
+                }
+                else if (input.isKeyPressed(Keys.E))
+                {
+                    game.goToWorld(player.p, selected.filename);
+                }
             }
-            else if (input.isKeyPressed(Keys.E))
+
+            if (input.isKeyPressed(Keys.F1))
             {
-                game.goToWorld(player.p, selected.filename);
+                if (editing)
+                {
+                    editor = null;
+                }
+                else
+                {
+                    editor = new OverworldEditor(Content, this);
+                }
             }
         }
 
-        void setPlayerLocation()
+        public void setPlayerLocation()
         {
+            if (index > locations.Count) index = locations.Count - 1;
+            else if (index < 0) index = 0;
             player.feet = locations[index].center;
         }
 
@@ -100,13 +136,25 @@ namespace Lakeside2.Map
             return Math.Min(width - Game1.INTERNAL_WIDTH, Math.Max(0, player.feet.X - (Game1.INTERNAL_WIDTH / 2)));
         }
 
+        public void sortLocations()
+        {
+            locations.Sort(new LocationComparer());
+        }
+
         public void update(double dt)
         {
-            stripe.update(dt);
-
-            double desired = getCameraDesired();
-            if (x > desired) x -= Math.Min(dt * 300, x - desired);
-            else if (x < desired) x += Math.Min(dt * 300, desired - x);
+            if (editing)
+            {
+                editor.update(dt);
+                x = editor.getCameraPosition(width);
+            }
+            else
+            {
+                stripe.update(dt);
+                double desired = getCameraDesired();
+                if (x > desired) x -= Math.Min(dt * 300, x - desired);
+                else if (x < desired) x += Math.Min(dt * 300, desired - x);
+            }
         }
 
         public void draw(SBWrapper wrapper)
@@ -118,7 +166,8 @@ namespace Lakeside2.Map
             locations.ForEach(l => l.draw(relative));
             player.draw(relative);
 
-            stripe.draw(wrapper);
+            if (editing) editor.draw(wrapper, x);
+            else stripe.draw(wrapper);
         }
 
 

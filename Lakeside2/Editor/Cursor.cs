@@ -19,7 +19,7 @@ namespace Lakeside2.Editor
             loadAnimatedTexture(Content, "cursor");
         }
 
-        public void onInput(InputHandler input)
+        public virtual void onInput(InputHandler input)
         {
             if (input.isKeyPressed(Keys.W)) location.Y -= Tile.TILE_SIZE;
             else if (input.isKeyPressed(Keys.A)) location.X -= Tile.TILE_SIZE;

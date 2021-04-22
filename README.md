@@ -6,7 +6,7 @@ The name Lakeside2 derives from an older engine, Lakeside, which aimed to accomp
 ## Features
 - [X] Built-in visual map editor
 - [X] NPC scripting with Lua
-- [ ] World map editor
+- [X] World map editor
 - [ ] Complete game structure (title screen, saving, etc)
 - [ ] Support for cut-away game states (i.e. combat, minigames)
 - [ ] Documentation
