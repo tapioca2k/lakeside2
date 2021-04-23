@@ -96,6 +96,18 @@
 /processorParam:TextureFormat=Compressed
 /build:fonts/rainyhearts.spritefont
 
+#begin gmhotkeys.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gmhotkeys.png
+
 #begin items.json
 /copy:items.json
 
