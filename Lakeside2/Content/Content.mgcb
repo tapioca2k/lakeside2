@@ -168,8 +168,8 @@
 #begin maps/desert.json
 /copy:maps/desert.json
 
-#begin maps/forestguard.json
-/copy:maps/forestguard.json
+#begin maps/forest.json
+/copy:maps/forest.json
 
 #begin owhotkeys.png
 /importer:TextureImporter
