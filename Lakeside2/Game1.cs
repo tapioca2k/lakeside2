@@ -7,6 +7,7 @@ using System.IO;
 using Lakeside2.Map;
 using Lakeside2.UI;
 using Lakeside2.Serialization;
+using Lakeside2.Editor;
 
 namespace Lakeside2
 {
@@ -114,6 +115,11 @@ namespace Lakeside2
             if (input.isKeyPressed(Keys.Escape))
                 Exit();
             */
+            // Open game meta editor
+            if (input.isKeyPressed(Keys.F9) && !(currentState is GameEditor))
+            {
+                setState(new GameEditor(this, Content));
+            }
 
             double dt = gameTime.ElapsedGameTime.TotalSeconds;
 
