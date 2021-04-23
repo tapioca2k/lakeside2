@@ -14,7 +14,7 @@ using static Lakeside2.Entity;
 namespace Lakeside2.Editor
 {
 
-    class OverworldEditor
+    class OverworldEditor : IGameState
     {
 
         ContentManager Content;
@@ -78,6 +78,7 @@ namespace Lakeside2.Editor
         public void update(double dt)
         {
             ui.update(dt);
+            map.x = getCameraPosition(map.width);
         }
 
         public double getCameraPosition(int mapWidth)
@@ -85,10 +86,10 @@ namespace Lakeside2.Editor
             return Math.Max(0, Math.Min(mapWidth - World.PORTAL_WIDTH, cursor.getLocation().X - World.HALF_PORTAL_WIDTH));
         }
 
-        public void draw(SBWrapper wrapper, double x)
+        public void draw(SBWrapper wrapper)
         {
             ui.draw(wrapper);
-            cursor.draw(new SBWrapper(wrapper, new Vector2(-(int)x, 0)), cursor.getLocation());
+            cursor.draw(new SBWrapper(wrapper, new Vector2(-(int)map.x, 0)), cursor.getLocation());
         }
 
     }

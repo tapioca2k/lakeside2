@@ -9,14 +9,12 @@ namespace Lakeside2.Editor
 {
     class GameEditor : IGameState
     {
-        Game1 game;
         ContentManager Content;
 
         UiSystem ui;
 
-        public GameEditor(Game1 game, ContentManager Content)
+        public GameEditor(ContentManager Content)
         {
-            this.game = game;
             this.Content = Content;
             ui = new UiSystem();
         }
@@ -25,12 +23,6 @@ namespace Lakeside2.Editor
         {
             bool interacting = ui.onInput(input);
             if (interacting) return;
-
-            // Quit to world map
-            if (input.isKeyPressed(Keys.F8))
-            {
-                game.goToMap(new Player(Content, null, null), null);
-            }
         }
 
         public void update(double dt)

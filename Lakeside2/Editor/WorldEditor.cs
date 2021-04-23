@@ -12,7 +12,7 @@ using System.Text;
 
 namespace Lakeside2.Editor
 {
-    class WorldEditor
+    class WorldEditor : IGameState
     {
         ContentManager Content;
         UiSystem ui;

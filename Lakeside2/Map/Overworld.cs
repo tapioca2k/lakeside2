@@ -28,11 +28,11 @@ namespace Lakeside2.Map
         ContentManager Content;
         Texture2D background;
         Texture2D foreground;
-        UiStripe stripe;
-        int width;
-        double x;
+        UiSystem ui;
+        public int width;
+        public double x;
 
-        OverworldEditor editor;
+        IGameState editor;
         bool editing => editor != null;
 
         MapPlayer player;
@@ -54,7 +54,7 @@ namespace Lakeside2.Map
             background = Content.Load<Texture2D>("map/background");
             foreground = Content.Load<Texture2D>("map/foreground");
             width = foreground.Width;
-            stripe = new UiStripe();
+            ui = new UiSystem();
             x = 0;
 
             player = new MapPlayer(Content, p, Vector2.Zero);
@@ -81,7 +81,7 @@ namespace Lakeside2.Map
             setPlayerLocation();
             x = getCameraDesired();
 
-            stripe.addElement(new UiObjectMonitor<List<MapLocation>>(locations, locs =>
+            ui.addStripeElement(new UiObjectMonitor<List<MapLocation>>(locations, locs =>
             {
                 return Path.GetFileNameWithoutExtension(locs[index].filename);
             }), 'c');
@@ -95,6 +95,9 @@ namespace Lakeside2.Map
             }
             else
             {
+                bool interacting = ui.onInput(input);
+                if (interacting) return;
+
                 if (input.isKeyPressed(Keys.A) && index > 0)
                 {
                     index--;
@@ -119,7 +122,18 @@ namespace Lakeside2.Map
                 }
                 else
                 {
-                    editor = new OverworldEditor(Content, this);
+                    ui.pushElement(new UiOptionBox(Content, "Which editor?", "Overworld", "Game").addCallback(element =>
+                    {
+                        UiOptionBox option = (UiOptionBox)element;
+                        if (option.selected == 0) // overworld editor
+                        {
+                            editor = new OverworldEditor(Content, this);
+                        }
+                        else if (option.selected == 1) // game editor
+                        {
+                            editor = new GameEditor(Content);
+                        }
+                    }), Vector2.Zero);
                 }
             }
         }
@@ -146,11 +160,10 @@ namespace Lakeside2.Map
             if (editing)
             {
                 editor.update(dt);
-                x = editor.getCameraPosition(width);
             }
             else
             {
-                stripe.update(dt);
+                ui.update(dt);
                 double desired = getCameraDesired();
                 if (x > desired) x -= Math.Min(dt * 300, x - desired);
                 else if (x < desired) x += Math.Min(dt * 300, desired - x);
@@ -166,8 +179,8 @@ namespace Lakeside2.Map
             locations.ForEach(l => l.draw(relative));
             player.draw(relative);
 
-            if (editing) editor.draw(wrapper, x);
-            else stripe.draw(wrapper);
+            if (editing) editor.draw(wrapper);
+            else ui.draw(wrapper);
         }
 
 

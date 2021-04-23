@@ -115,11 +115,6 @@ namespace Lakeside2
             if (input.isKeyPressed(Keys.Escape))
                 Exit();
             */
-            // Open game meta editor
-            if (input.isKeyPressed(Keys.F9) && !(currentState is GameEditor))
-            {
-                setState(new GameEditor(this, Content));
-            }
 
             double dt = gameTime.ElapsedGameTime.TotalSeconds;
 
