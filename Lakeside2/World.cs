@@ -84,6 +84,9 @@ namespace Lakeside2
             player.setTileLocation(map.playerStart);
             resetEntities();
             camera.forceUpdate();
+
+            LuaScript startScript = map.getScript(map.playerStart);
+            if (startScript != null) startScript.execute(player, lua);
         }
 
         // reset entities list
@@ -101,15 +104,13 @@ namespace Lakeside2
 
         public void onInput(InputHandler input)
         {
+            // normal game controls
             if (!editing)
             {
                 bool interacting = ui.onInput(input);
                 if (!interacting && scripts.Count == 0)
                 {
                     player.onInput(input);
-
-                    // other game controls go here...
-
                 }
             }
             else
