@@ -99,11 +99,21 @@ namespace Lakeside2
         // force the camera to the correct position around the centered entity
         public void forceUpdate()
         {
-            if (centeringEntity)
+            if (centeringEntity && map != null)
             {
                 this.location = new Vector2(
                     Math.Max(0, Math.Min(centeredEntity.getLocation().X - World.HALF_PORTAL_WIDTH, (map.width * Tile.TILE_SIZE) - World.PORTAL_WIDTH)),
                     Math.Max(0, Math.Min(centeredEntity.getLocation().Y - World.HALF_PORTAL_HEIGHT, (map.height * Tile.TILE_SIZE) - World.PORTAL_HEIGHT)));
+                if (map.width < Game1.TILE_WIDTH)
+                {
+                    int extraTiles = (Game1.TILE_WIDTH - map.width) / 2;
+                    this.location.X = -Tile.TILE_SIZE * extraTiles;
+                }
+                if (map.width < Game1.TILE_HEIGHT)
+                {
+                    int extraTiles = (Game1.TILE_HEIGHT - map.height) / 2;
+                    this.location.Y = -Tile.TILE_SIZE * extraTiles;
+                }
             }
         }
 
