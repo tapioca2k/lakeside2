@@ -8,5 +8,5 @@ The name Lakeside2 derives from an older engine, Lakeside, which aimed to accomp
 - [X] NPC scripting with Lua
 - [X] World map editor
 - [ ] Complete game structure (title screen, saving, etc)
-- [ ] Support for cut-away game states (i.e. combat, minigames)
+- [X] Support for cut-away game states (i.e. combat, minigames)
 - [ ] Documentation
