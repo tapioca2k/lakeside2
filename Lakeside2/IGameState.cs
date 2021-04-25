@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lakeside2
 {
-    interface IGameState
+    public interface IGameState
     {
         public void onInput(InputHandler input);
         public void update(double dt);

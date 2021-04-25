@@ -122,19 +122,12 @@ namespace Lakeside2.Map
                 }
                 else
                 {
-                    ui.pushElement(new UiOptionBox(Content, "Which editor?", "Overworld", "Game").addCallback(element =>
-                    {
-                        UiOptionBox option = (UiOptionBox)element;
-                        if (option.selected == 0) // overworld editor
-                        {
-                            editor = new OverworldEditor(Content, this);
-                        }
-                        else if (option.selected == 1) // game editor
-                        {
-                            editor = new GameEditor(Content);
-                        }
-                    }), Vector2.Zero);
+                    editor = new OverworldEditor(Content, this);
                 }
+            }
+            else if (input.isKeyPressed(Keys.F2))
+            {
+                game.pushState(new GameEditor(game, Content));
             }
         }
 

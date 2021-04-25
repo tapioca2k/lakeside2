@@ -10,12 +10,14 @@ namespace Lakeside2.Editor
 {
     class GameEditor : IGameState
     {
+        Game1 game;
         ContentManager Content;
 
         UiSystem ui;
 
-        public GameEditor(ContentManager Content)
+        public GameEditor(Game1 game, ContentManager Content)
         {
+            this.game = game;
             this.Content = Content;
             ui = new UiSystem();
             ui.addStripeElement(new UiTexture(Content, "gmhotkeys"), 'l');
@@ -69,6 +71,10 @@ namespace Lakeside2.Editor
                         }
                     }), new Vector2(0, 65));
                 }), Vector2.Zero);
+            }
+            else if (input.isKeyPressed(Keys.F2))
+            {
+                game.popState();
             }
         }
 

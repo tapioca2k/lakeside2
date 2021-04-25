@@ -8,6 +8,7 @@ using Lakeside2.Map;
 using Lakeside2.UI;
 using Lakeside2.Serialization;
 using Lakeside2.Editor;
+using System.Collections;
 
 namespace Lakeside2
 {
@@ -30,7 +31,7 @@ namespace Lakeside2
         public static Texture2D WHITE_PIXEL;
         private InputHandler input;
         public static MusicManager music;
-        IGameState currentState;
+        Stack states;
         UiScreenFade fade;
 
 
@@ -67,18 +68,18 @@ namespace Lakeside2
             colorize = Content.Load<Effect>("colorize");
             music = new MusicManager(Content);
 
-            //currentState = new World(Content, this);
-            currentState = new Overworld(Content, this, new Player(Content, null, null));
+            states = new Stack();
+            states.Push(new Overworld(Content, this, new Player(Content, null, null)));
         }
 
         public void goToMap(Player p, string currentMap)
         {
-            if (currentState is Overworld)
+            if (states.Peek() is Overworld)
             {
                 throw new Exception("Already in map");
             }
 
-            fade = new UiScreenFade(() =>
+            startFade(() =>
             {
                 setState(new Overworld(Content, this, p, currentMap));
             });
@@ -86,17 +87,17 @@ namespace Lakeside2
 
         public void goToWorld(Player p, string filename)
         {
-            if (currentState is World)
+            if (states.Peek() is World)
             {
-                fade = new UiScreenFade(() =>
+                startFade(() =>
                 {
-                    World w = (World)currentState;
+                    World w = (World)states.Peek();
                     w.setMap(SerializableMap.Load(Content, filename));
                 });
             }
             else
             {
-                fade = new UiScreenFade(() =>
+                startFade(() =>
                 {
                     setState(new World(Content, this, p, filename));
                 });
@@ -105,8 +106,48 @@ namespace Lakeside2
 
         void setState(IGameState state)
         {
-            currentState = state;
+            // clear stack and set state
+            while (states.Count > 0) states.Pop();
+            states.Push(state);
         }
+
+        public void pushState(IGameState state, bool fading = false)
+        {
+            if (fading)
+            {
+                startFade(() =>
+                {
+                    states.Push(state);
+                });
+            }
+            else
+            {
+                states.Push(state);
+            }
+        }
+
+        public void popState(bool fading = false)
+        {
+            if (fading)
+            {
+                startFade(() =>
+                {
+                    states.Pop();
+                });
+            }
+            else
+            {
+                states.Pop();
+            }
+        }
+
+        void startFade(Action midpoint)
+        {
+            if (fade != null) return;
+            fade = new UiScreenFade(midpoint);
+        }
+
+
 
         protected override void Update(GameTime gameTime)
         {
@@ -118,8 +159,12 @@ namespace Lakeside2
 
             double dt = gameTime.ElapsedGameTime.TotalSeconds;
 
-            currentState.onInput(input);
-            currentState.update(dt);
+            if (states.Count > 0)
+            {
+                IGameState state = (IGameState)states.Peek();
+                state.onInput(input);
+                state.update(dt);
+            }
 
             if (fade != null) fade.update(dt);
             if (fade != null && fade.finished) fade = null;
@@ -133,7 +178,11 @@ namespace Lakeside2
             GraphicsDevice.SetRenderTarget(mainTarget);
             _spriteBatch.Begin();
             // most drawing happens here...
-            currentState.draw(new SBWrapper(_spriteBatch));
+            if (states.Count > 0)
+            {
+                IGameState state = (IGameState)states.Peek();
+                state.draw(new SBWrapper(_spriteBatch));
+            }
             if (fade != null) fade.draw(new SBWrapper(_spriteBatch));
             _spriteBatch.End();
 
