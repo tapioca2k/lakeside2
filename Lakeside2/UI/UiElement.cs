@@ -34,7 +34,7 @@ namespace Lakeside2.UI
         Color background = Color.Transparent;
         protected UiSystem system;
 
-        public void setUiSystem(UiSystem system)
+        public virtual void setUiSystem(UiSystem system)
         {
             this.system = system;
         }

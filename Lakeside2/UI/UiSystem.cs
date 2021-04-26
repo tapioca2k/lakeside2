@@ -12,6 +12,7 @@ namespace Lakeside2.UI
         UiStripe stripe;
         List<UiElement> stack;
         List<Vector2> locations;
+        public bool hasStripe => stripe != null;
 
         public UiSystem(ContentManager Content)
         {
@@ -30,7 +31,7 @@ namespace Lakeside2.UI
 
         public void update(double dt)
         {
-            if (stripe != null) stripe.update(dt);
+            if (hasStripe) stripe.update(dt);
             if (stack.Count > 0)
             {
                 UiElement top = stack[stack.Count - 1];
@@ -62,16 +63,16 @@ namespace Lakeside2.UI
 
         public void addStripeElement(UiElement element, char location)
         {
-            if (stripe != null) stripe.addElement(element, location);
+            if (hasStripe) stripe.addElement(element, location);
         }
 
         public void draw(SBWrapper wrapper)
         {
-            if (stripe != null) stripe.draw(wrapper);
             for (int i = 0; i < stack.Count; i++)
             {
                 stack[i].draw(wrapper.setOrigin(locations[i]));
             }
+            if (hasStripe) stripe.draw(wrapper);
         }
 
     }

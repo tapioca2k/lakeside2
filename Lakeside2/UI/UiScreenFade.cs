@@ -8,13 +8,14 @@ namespace Lakeside2.UI
 {
     class UiScreenFade : UiElement
     {
-        public override Vector2 size => new Vector2(Game1.INTERNAL_WIDTH, Game1.INTERNAL_HEIGHT - UiStripe.STRIPE_HEIGHT);
+        public override Vector2 size => new Vector2(Game1.INTERNAL_WIDTH, Game1.INTERNAL_HEIGHT - (fullscreen ? 0 : UiStripe.STRIPE_HEIGHT));
 
         double t = 0;
         float alpha = 0;
         float[] alphas = new float[3] { 0.33f, 0.8f, 1 };
         Action midpoint;
         bool fadingOut = true;
+        public bool fullscreen = true;
 
         public UiScreenFade(LuaFunction midpoint)
         {
@@ -24,6 +25,13 @@ namespace Lakeside2.UI
         public UiScreenFade(Action midpoint)
         {
             this.midpoint = midpoint;
+        }
+
+        public override void setUiSystem(UiSystem system)
+        {
+            base.setUiSystem(system);
+            // fade should not cover UiStripe
+            fullscreen = !system.hasStripe;
         }
 
         public override void update(double dt)

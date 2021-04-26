@@ -148,6 +148,7 @@ namespace Lakeside2
         {
             if (fade != null) return;
             fade = new UiScreenFade(midpoint);
+            fade.fullscreen = states.Peek() is TitleScreen;
         }
 
 

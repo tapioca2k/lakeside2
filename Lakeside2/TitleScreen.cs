@@ -58,8 +58,6 @@ namespace Lakeside2
                             break;
                         }
                 }
-
-
             });
 
             Vector2 center = Vector2.Round(new Vector2(
