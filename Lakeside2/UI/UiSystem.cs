@@ -21,16 +21,16 @@ namespace Lakeside2.UI
         }
 
         // create a UiSystem with no logo on the stripe (for edit mode)
-        public UiSystem()
+        public UiSystem(bool hasStripe = true)
         {
-            stripe = new UiStripe();
+            if (hasStripe) stripe = new UiStripe();
             stack = new List<UiElement>();
             locations = new List<Vector2>();
         }
 
         public void update(double dt)
         {
-            stripe.update(dt);
+            if (stripe != null) stripe.update(dt);
             if (stack.Count > 0)
             {
                 UiElement top = stack[stack.Count - 1];
@@ -62,12 +62,12 @@ namespace Lakeside2.UI
 
         public void addStripeElement(UiElement element, char location)
         {
-            stripe.addElement(element, location);
+            if (stripe != null) stripe.addElement(element, location);
         }
 
         public void draw(SBWrapper wrapper)
         {
-            stripe.draw(wrapper);
+            if (stripe != null) stripe.draw(wrapper);
             for (int i = 0; i < stack.Count; i++)
             {
                 stack[i].draw(wrapper.setOrigin(locations[i]));

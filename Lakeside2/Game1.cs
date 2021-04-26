@@ -57,6 +57,8 @@ namespace Lakeside2
             WHITE_PIXEL.SetData<Color>(new Color[] { Color.White });
 
             base.Initialize();
+
+            Window.Title = GameInfo.title;
         }
 
         protected override void LoadContent()
@@ -69,7 +71,8 @@ namespace Lakeside2
             music = new MusicManager(Content);
 
             states = new Stack();
-            states.Push(new Overworld(Content, this, new Player(Content, null, null)));
+            states.Push(new TitleScreen(this, Content));
+            //states.Push(new Overworld(Content, this, new Player(Content, null, null)));
         }
 
         public void goToMap(Player p, string currentMap)

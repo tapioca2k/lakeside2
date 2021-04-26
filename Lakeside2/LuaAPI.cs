@@ -78,6 +78,11 @@ namespace Lakeside2
             world.game.goToMap(player, world.map.filename);
         }
 
+        public void pushState(IGameState state)
+        {
+            world.game.pushState(state, true);
+        }
+
         public void makeChain(params ScriptNode[] elements)
         {
             // filter out any null elements, preserving order

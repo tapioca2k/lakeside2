@@ -32,7 +32,7 @@ namespace Lakeside2.UI
 
         Texture2D pointer;
         List<UiTextDisplay> options;
-        int selected;
+        public int selected;
 
         public UiList(ContentManager Content, string[] options)
         {

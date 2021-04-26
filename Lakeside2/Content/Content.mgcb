@@ -96,6 +96,9 @@
 /processorParam:TextureFormat=Compressed
 /build:fonts/rainyhearts.spritefont
 
+#begin game.json
+/copy:game.json
+
 #begin gmhotkeys.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -359,4 +362,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:tiles/water.png
+
+#begin titlebg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:titlebg.png
 
