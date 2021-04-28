@@ -38,11 +38,11 @@ namespace Lakeside2.Editor
             cursor = new Cursor(Content);
 
             ui = new UiSystem();
-            ui.addStripeElement(new UiTexture(Content, "editorhotkeys"), 'l');
+            ui.addStripeElement(new UiTexture(Content, "editorhotkeys"), StripePosition.Left);
             ui.addStripeElement(new UiObjectMonitor<Cursor>(cursor, (cursor) =>
             {
                 return cursor.getTileLocation().ToString();
-            }), 'r');
+            }), StripePosition.Right);
 
             this.camera = world.camera;
             this.camera.setCenteringEntity(cursor);

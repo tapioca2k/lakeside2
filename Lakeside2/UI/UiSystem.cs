@@ -21,7 +21,7 @@ namespace Lakeside2.UI
             locations = new List<Vector2>();
         }
 
-        // create a UiSystem with no logo on the stripe (for edit mode)
+        // create a UiSystem with default/no stripe (for edit mode)
         public UiSystem(bool hasStripe = true)
         {
             if (hasStripe) stripe = new UiStripe();
@@ -61,7 +61,7 @@ namespace Lakeside2.UI
             locations.Add(location);
         }
 
-        public void addStripeElement(UiElement element, char location)
+        public void addStripeElement(UiElement element, StripePosition location)
         {
             if (hasStripe) stripe.addElement(element, location);
         }

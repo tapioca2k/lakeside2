@@ -75,7 +75,7 @@ namespace Lakeside2
             ui.addStripeElement(new UiObjectMonitor<Player>(this.player, (p) =>
             {
                 return p.getTileLocation().ToString();
-            }), 'l');
+            }), StripePosition.Left);
         }
 
         public void setMap(TileMap map)

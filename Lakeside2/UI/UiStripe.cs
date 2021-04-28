@@ -8,6 +8,13 @@ using System.Text;
 
 namespace Lakeside2.UI
 {
+    public enum StripePosition
+    {
+        Left,
+        Right,
+        Center
+    };
+
     class UiStripe
     {
         public const int STRIPE_HEIGHT = Tile.TILE_SIZE + 4;
@@ -26,19 +33,19 @@ namespace Lakeside2.UI
         }
 
         
-        public void addElement(UiElement element, char location)
+        public void addElement(UiElement element, StripePosition location)
         {
-            if (location == 'l')
+            if (location == StripePosition.Left)
             {
                 leftElement = element;
                 stripeLeft = new Vector2(0, STRIPE_START);
             }
-            else if (location == 'r')
+            else if (location == StripePosition.Right)
             {
                 rightElement = element;
                 stripeRight = new Vector2(Game1.INTERNAL_WIDTH - rightElement.size.X, STRIPE_START);
             }
-            else if (location == 'c')
+            else if (location == StripePosition.Center)
             {
                 centerElement = element;
                 stripeCenter = new Vector2(Math.Max(0, (int)(Game1.INTERNAL_WIDTH - centerElement.size.X) / 2),

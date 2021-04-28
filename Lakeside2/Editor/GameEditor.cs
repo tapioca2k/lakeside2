@@ -20,7 +20,7 @@ namespace Lakeside2.Editor
             this.game = game;
             this.Content = Content;
             ui = new UiSystem(true);
-            ui.addStripeElement(new UiTexture(Content, "gmhotkeys"), 'l');
+            ui.addStripeElement(new UiTexture(Content, "gmhotkeys"), StripePosition.Left);
         }
 
         public void onInput(InputHandler input)

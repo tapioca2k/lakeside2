@@ -29,11 +29,11 @@ namespace Lakeside2.Editor
             this.cursor = new OverworldCursor(Content);
 
             ui = new UiSystem();
-            ui.addStripeElement(new UiTexture(Content, "owhotkeys"), 'l');
+            ui.addStripeElement(new UiTexture(Content, "owhotkeys"), StripePosition.Left);
             ui.addStripeElement(new UiObjectMonitor<Cursor>(this.cursor, (cursor) =>
             {
                 return cursor.getLocation().ToString();
-            }), 'r');
+            }), StripePosition.Right);
         }
 
         public void onInput(InputHandler input)
