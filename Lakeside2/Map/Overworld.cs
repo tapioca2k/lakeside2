@@ -116,18 +116,8 @@ namespace Lakeside2.Map
 
             if (input.isKeyPressed(Keys.F1))
             {
-                if (editing)
-                {
-                    editor = null;
-                }
-                else
-                {
-                    editor = new OverworldEditor(Content, this);
-                }
-            }
-            else if (input.isKeyPressed(Keys.F2))
-            {
-                game.pushState(new GameEditor(game, Content));
+                if (editing) editor = null;
+                else editor = new OverworldEditor(Content, this);
             }
         }
 

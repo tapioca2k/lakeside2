@@ -19,7 +19,7 @@ namespace Lakeside2.Editor
         {
             this.game = game;
             this.Content = Content;
-            ui = new UiSystem();
+            ui = new UiSystem(true);
             ui.addStripeElement(new UiTexture(Content, "gmhotkeys"), 'l');
         }
 
@@ -35,7 +35,7 @@ namespace Lakeside2.Editor
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "")
                     {
-                        // TODO set title screen background image to input.text
+                        GameInfo.titleBackground = input.text;
                     }
                 }), Vector2.Zero);
             }
@@ -46,7 +46,7 @@ namespace Lakeside2.Editor
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "")
                     {
-                        // TODO set game name to input.text
+                        GameInfo.title = input.text;
                     }
                 }), Vector2.Zero);
             }
@@ -60,21 +60,15 @@ namespace Lakeside2.Editor
                         UiTextInput filename = (UiTextInput)element2;
                         if (filename.text != "")
                         {
-                            if (option.selected == 0)
-                            {
-                                // TODO set game to start on the overworld at position filename.text
-                            }
-                            else if (option.selected == 1)
-                            {
-                                // TODO set game to start on tilemap filename.text
-                            }
+                            GameInfo.startMap = filename.text;
+                            GameInfo.startOverworld = (option.selected == 0);
                         }
                     }), new Vector2(0, 65));
                 }), Vector2.Zero);
             }
-            else if (input.isKeyPressed(Keys.F2))
+            else if (input.isKeyPressed(Keys.F2)) // save
             {
-                game.popState();
+                GameInfo.save();
             }
         }
 

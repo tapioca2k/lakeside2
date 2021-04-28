@@ -70,7 +70,7 @@ namespace Lakeside2.UI
         {
             for (int i = 0; i < stack.Count; i++)
             {
-                stack[i].draw(wrapper.setOrigin(locations[i]));
+                stack[i].draw(new SBWrapper(wrapper, locations[i]));
             }
             if (hasStripe) stripe.draw(wrapper);
         }

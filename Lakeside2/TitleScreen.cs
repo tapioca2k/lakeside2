@@ -1,7 +1,9 @@
-﻿using Lakeside2.UI;
+﻿using Lakeside2.Editor;
+using Lakeside2.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +16,8 @@ namespace Lakeside2
         ContentManager Content;
         Texture2D bg;
         UiSystem ui;
+        IGameState editor;
+        bool editing => editor != null;
 
         UiList mainList;
 
@@ -70,18 +74,31 @@ namespace Lakeside2
 
         public void onInput(InputHandler input)
         {
-            ui.onInput(input);
+            if (editing) editor.onInput(input);
+            else ui.onInput(input);
+
+            if (input.isKeyPressed(Keys.F1))
+            {
+                if (editing)
+                {
+                    editor = null;
+                    bg = Content.Load<Texture2D>(GameInfo.titleBackground);
+                }
+                else editor = new GameEditor(game, Content);
+            }
         }
 
         public void update(double dt)
         {
-            ui.update(dt);
+            if (editing) editor.update(dt);
+            else ui.update(dt);
         }
 
         public void draw(SBWrapper wrapper)
         {
             wrapper.draw(bg);
             ui.draw(wrapper);
+            if (editing) editor.draw(wrapper);
         }
     }
 }
