@@ -162,6 +162,7 @@ namespace Lakeside2
             */
 
             double dt = gameTime.ElapsedGameTime.TotalSeconds;
+            TimeOfDay.addSeconds(dt * 360);
 
             if (states.Count > 0)
             {

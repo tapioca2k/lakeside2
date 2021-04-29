@@ -38,6 +38,7 @@ namespace Lakeside2
                 {
                     case 0: // new game
                         {
+                            TimeOfDay.restart();
                             if (GameInfo.startOverworld)
                             {
                                 game.goToMap(new Player(Content, null, null), GameInfo.startMap);

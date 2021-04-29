@@ -85,6 +85,8 @@ namespace Lakeside2.Map
             {
                 return Path.GetFileNameWithoutExtension(locs[index].filename);
             }), StripePosition.Center);
+
+            ui.addStripeElement(new UiClock(), StripePosition.Left);
         }
 
         public void onInput(InputHandler input)
