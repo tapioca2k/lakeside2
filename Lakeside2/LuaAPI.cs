@@ -73,6 +73,18 @@ namespace Lakeside2
             }
         }
 
+        public void changeMap(string filename, Vector2 location)
+        {
+            TileMap newMap = SerializableMap.Load(Content, filename);
+            if (newMap != null)
+            {
+                pushUiElement(new UiScreenFade(() =>
+                {
+                    world.setMap(newMap, location);
+                }), 0, 0);
+            }
+        }
+
         public void goToMap()
         {
             world.game.goToMap(player, world.map.filename);
