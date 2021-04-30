@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Diagnostics;
 using System.IO;
-using Lakeside2.Map;
+using Lakeside2.WorldMap;
 using Lakeside2.UI;
 using Lakeside2.Serialization;
 using Lakeside2.Editor;
@@ -75,11 +75,11 @@ namespace Lakeside2
             //states.Push(new Overworld(Content, this, new Player(Content, null, null)));
         }
 
-        public void goToMap(Player p, string currentMap)
+        public void goToOverworld(Player p, string currentMap)
         {
             if (states.Peek() is Overworld)
             {
-                throw new Exception("Already in map");
+                throw new Exception("Already in overworld");
             }
 
             startFade(() =>

@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lakeside2.Map
+namespace Lakeside2.WorldMap
 {
-    class MapPlayer
+    class OWPlayer
     {
         public Player p;
         Texture2D texture;
@@ -25,7 +25,7 @@ namespace Lakeside2.Map
             }
         }
 
-        public MapPlayer(ContentManager Content, Player p, Vector2 location)
+        public OWPlayer(ContentManager Content, Player p, Vector2 location)
         {
             texture = Content.Load<Texture2D>("map/mapman");
             this.p = p;

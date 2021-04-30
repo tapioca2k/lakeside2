@@ -85,9 +85,9 @@ namespace Lakeside2
             }
         }
 
-        public void goToMap()
+        public void goToOverworld()
         {
-            world.game.goToMap(player, world.map.filename);
+            world.game.goToOverworld(player, world.map.filename);
         }
 
         public void pushState(IGameState state)

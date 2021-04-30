@@ -1,5 +1,5 @@
 ﻿function overworld_go()
-	l:goToMap()
+	l:goToOverworld()
 end
 
 l:makeChain(l:SBranch("Go to the world map?", "Yes", "No", overworld_go, nil))

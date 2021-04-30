@@ -1,4 +1,4 @@
-﻿using Lakeside2.Map;
+﻿using Lakeside2.WorldMap;
 using Lakeside2.Serialization;
 using Lakeside2.UI;
 using Microsoft.Xna.Framework;
@@ -45,7 +45,7 @@ namespace Lakeside2.Editor
 
             if (input.isKeyPressed(Keys.F2)) // Save
             {
-                string json = JsonSerializer.Serialize<List<MapLocation>>(map.locations, SerializableMap.OPTIONS);
+                string json = JsonSerializer.Serialize<List<OWLocation>>(map.locations, SerializableMap.OPTIONS);
                 File.WriteAllText("Content/map/map.json", json);
             }
             else if (input.isKeyPressed(Keys.E)) // Create new map location
@@ -55,7 +55,7 @@ namespace Lakeside2.Editor
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "")
                     {
-                        map.locations.Add(new MapLocation(Content, input.text, cursor.getLocation()));
+                        map.locations.Add(new OWLocation(Content, input.text, cursor.getLocation()));
                         map.sortLocations();
                         map.setPlayerLocation();
                     }

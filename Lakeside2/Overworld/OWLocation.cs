@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace Lakeside2.Map
+namespace Lakeside2.WorldMap
 {
-    public class MapLocation
+    public class OWLocation
     {
         Texture2D texture;
         public string filename { get; set; }
@@ -27,14 +27,14 @@ namespace Lakeside2.Map
             }
         }
 
-        public MapLocation(ContentManager Content, string filename, Vector2 location)
+        public OWLocation(ContentManager Content, string filename, Vector2 location)
         {
             this.filename = filename;
             this.location = location;
             load(Content);
         }
 
-        public MapLocation()
+        public OWLocation()
         {
         }
 

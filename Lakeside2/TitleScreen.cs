@@ -41,7 +41,7 @@ namespace Lakeside2
                             TimeOfDay.restart();
                             if (GameInfo.startOverworld)
                             {
-                                game.goToMap(new Player(Content, null, null), GameInfo.startMap);
+                                game.goToOverworld(new Player(Content, null, null), GameInfo.startMap);
                             }
                             else
                             {

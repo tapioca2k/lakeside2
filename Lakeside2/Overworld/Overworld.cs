@@ -12,13 +12,13 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 
-namespace Lakeside2.Map
+namespace Lakeside2.WorldMap
 {
     class Overworld : IGameState
     {
-        private class LocationComparer : IComparer<MapLocation>
+        private class LocationComparer : IComparer<OWLocation>
         {
-            public int Compare(MapLocation a, MapLocation b)
+            public int Compare(OWLocation a, OWLocation b)
             {
                 return (int)(a.location.X - b.location.X);
             }
@@ -35,11 +35,11 @@ namespace Lakeside2.Map
         IGameState editor;
         bool editing => editor != null;
 
-        MapPlayer player;
-        public List<MapLocation> locations;
+        OWPlayer player;
+        public List<OWLocation> locations;
         int index;
 
-        MapLocation selected
+        OWLocation selected
         {
             get
             {
@@ -57,12 +57,12 @@ namespace Lakeside2.Map
             ui = new UiSystem();
             x = 0;
 
-            player = new MapPlayer(Content, p, Vector2.Zero);
+            player = new OWPlayer(Content, p, Vector2.Zero);
 
-            locations = new List<MapLocation>();
+            locations = new List<OWLocation>();
             // load locations from json
             string json = File.ReadAllText("Content/map/map.json");
-            locations = JsonSerializer.Deserialize<List<MapLocation>>(json, SerializableMap.OPTIONS);
+            locations = JsonSerializer.Deserialize<List<OWLocation>>(json, SerializableMap.OPTIONS);
             locations.ForEach(l => l.load(Content));
             sortLocations();
 
@@ -81,7 +81,7 @@ namespace Lakeside2.Map
             setPlayerLocation();
             x = getCameraDesired();
 
-            ui.addStripeElement(new UiObjectMonitor<List<MapLocation>>(locations, locs =>
+            ui.addStripeElement(new UiObjectMonitor<List<OWLocation>>(locations, locs =>
             {
                 return Path.GetFileNameWithoutExtension(locs[index].filename);
             }), StripePosition.Center);
