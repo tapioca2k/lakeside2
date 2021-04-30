@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lakeside2
 {
-    class Flags
+    public static class Flags
     {
         public const int NO_VALUE = -1;
 
@@ -15,6 +15,16 @@ namespace Lakeside2
         {
             flags = new Dictionary<string, int>();
             strings = new Dictionary<string, string>();
+        }
+
+        public static Dictionary<string, int> getAllFlags()
+        {
+            return flags;
+        }
+
+        public static Dictionary<string, string> getAllStrings()
+        {
+            return strings;
         }
 
         public static int getIntFlag(string name)

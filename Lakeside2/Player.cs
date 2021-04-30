@@ -57,6 +57,11 @@ namespace Lakeside2
             return addItem(name, 0);
         }
 
+        public Dictionary<Item, int> getInventory()
+        {
+            return inventory;
+        }
+
         public void setWorld(World w)
         {
             this.world = w;
