@@ -36,4 +36,9 @@
   <ItemGroup>
     <Folder Include="Content\maps\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="save\dummy.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

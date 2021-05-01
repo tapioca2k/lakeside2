@@ -15,7 +15,6 @@ namespace Lakeside2.Serialization
         public string map { get; set; }
         public bool overworld { get; set; }
         public Dictionary<Item, int> inventory { get; set; }
-
         public Vector2 location { get; set; }
 
         public static void Save(string filename, Player player, string map, bool overworld)
@@ -38,7 +37,7 @@ namespace Lakeside2.Serialization
         {
             string json = File.ReadAllText("save/" + filename);
             SaveGame save = JsonSerializer.Deserialize<SaveGame>(json, SerializableMap.OPTIONS);
-            return save; // TODO - set flags, create player w/ inventory, place correctly
+            return save;
         }
     }
 }

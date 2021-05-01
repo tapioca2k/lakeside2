@@ -61,6 +61,10 @@ namespace Lakeside2
         {
             return inventory;
         }
+        public void setInventory(Dictionary<Item, int> inventory)
+        {
+            this.inventory = inventory;
+        }
 
         public void setWorld(World w)
         {

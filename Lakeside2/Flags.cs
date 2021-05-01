@@ -61,6 +61,12 @@ namespace Lakeside2
             else strings.Add(name, value);
         }
 
+        public static void setAllFlags(Dictionary<string, int> flags, Dictionary<string, string> strings)
+        {
+            Flags.flags = flags;
+            Flags.strings = strings;
+        }
+
 
     }
 }

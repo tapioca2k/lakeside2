@@ -1,4 +1,5 @@
 ﻿using Lakeside2.Editor;
+using Lakeside2.Serialization;
 using Lakeside2.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -51,6 +52,24 @@ namespace Lakeside2
                         }
                     case 1: // load game
                         {
+                            ui.pushElement(new UiSavePicker(Content, false).addCallback(element =>
+                            {
+                                UiSavePicker saves = (UiSavePicker)element;
+                                string chosen = saves.selectedString;
+                                if (chosen == UiSavePicker.NO_FILES) return;
+                                SaveGame game = SaveGame.Load(Content, chosen);
+
+                                // restore data from save
+                                Player player = new Player(Content, null, null);
+                                player.setInventory(game.inventory);
+                                player.setTileLocation(game.location);
+                                Flags.setAllFlags(game.flags, game.strings);
+
+                                // go to overworld or map
+                                if (game.overworld) this.game.goToOverworld(player, game.map);
+                                else this.game.goToWorld(player, game.map);
+
+                            }), new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
                             break;
                         }
                     case 2: // options

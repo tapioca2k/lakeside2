@@ -33,12 +33,18 @@ namespace Lakeside2.UI
         Texture2D pointer;
         List<UiTextDisplay> options;
         public int selected;
+        public string selectedString => options[selected].text;
 
         public UiList(ContentManager Content, string[] options)
         {
             setBackground(Color.White);
             selected = 0;
             pointer = Content.Load<Texture2D>("pointer");
+            this.setStrings(options);
+        }
+
+        protected void setStrings(string[] options)
+        {
             this.options = new List<UiTextDisplay>();
             for (int i = 0; i < options.Length; i++)
             {

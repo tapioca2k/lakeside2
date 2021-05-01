@@ -120,6 +120,39 @@ namespace Lakeside2
                 if (!interacting && scripts.Count == 0)
                 {
                     player.onInput(input);
+
+                    if (input.isKeyPressed(Keys.Escape))
+                    {
+                        ui.pushElement(new UiList(Content, new string[4] { "Resume", "Save", "Options", "Quit" }).addCallback(element =>
+                        {
+                            UiList list = (UiList)element;
+                            switch (list.selected)
+                            {
+                                case 1: // save
+                                    {
+                                        ui.pushElement(new UiSavePicker(Content, true).addCallback(element2 =>
+                                        {
+                                            UiSavePicker savePicker = (UiSavePicker)element2;
+                                            string filename = savePicker.selectedString;
+                                            if (filename == UiSavePicker.CREATE_NEW_FILE)
+                                                filename = "save" + savePicker.GetHashCode(); // create new file name
+                                            SaveGame.Save(filename + ".json", player, map.filename, false);
+                                        }), new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
+                                        break;
+                                    }
+                                case 2: // TODO options
+                                    {
+                                        break;
+                                    }
+                                case 3: // TODO quit
+                                    {
+                                        break;
+                                    }
+                            }
+                        }), new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
+                    }
+
+
                 }
             }
             else
