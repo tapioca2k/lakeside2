@@ -88,21 +88,24 @@ namespace Lakeside2
             });
         }
 
-        public void goToWorld(Player p, string filename)
+        public void goToWorld(Player p, string filename, bool resetLocation = true)
         {
             if (states.Peek() is World)
             {
                 startFade(() =>
                 {
                     World w = (World)states.Peek();
-                    w.setMap(SerializableMap.Load(Content, filename));
+                    if (resetLocation) w.setMap(SerializableMap.Load(Content, filename));
+                    else w.setMap(SerializableMap.Load(Content, filename), p.getTileLocation());
                 });
             }
             else
             {
                 startFade(() =>
                 {
+                    Vector2 oldLocation = p.getTileLocation();
                     setState(new World(Content, this, p, filename));
+                    if (!resetLocation) p.setTileLocation(oldLocation);
                 });
             }
         }

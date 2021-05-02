@@ -137,7 +137,7 @@ namespace Lakeside2
                                             if (filename == UiSavePicker.CREATE_NEW_FILE)
                                                 filename = "save" + savePicker.GetHashCode(); // create new file name
                                             SaveGame.Save(filename + ".json", player, map.filename, false);
-                                        }), new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
+                                        }), new Vector2(Tile.TILE_SIZE * 10, Tile.TILE_SIZE));
                                         break;
                                     }
                                 case 2: // TODO options
