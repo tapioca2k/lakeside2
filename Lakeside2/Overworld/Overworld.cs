@@ -114,6 +114,12 @@ namespace Lakeside2.WorldMap
                 {
                     game.goToWorld(player.p, selected.filename);
                 }
+
+                if (input.isKeyPressed(Keys.Escape))
+                {
+                    ui.pushElement(new UiPauseMenu(Content, player.p, selected.filename, true),
+                        new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
+                }
             }
 
             if (input.isKeyPressed(Keys.F1))
