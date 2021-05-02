@@ -33,7 +33,14 @@ namespace Lakeside2.UI
         Texture2D pointer;
         List<UiTextDisplay> options;
         public int selected;
-        public string selectedString => options[selected].text;
+        public string selectedString
+        {
+            get
+            {
+                if (selected == -1) return null;
+                else return options[selected].text;
+            }
+        }
 
         public UiList(ContentManager Content, string[] options)
         {
@@ -57,6 +64,11 @@ namespace Lakeside2.UI
             if (input.isKeyPressed(Keys.W) && --selected < 0) selected = this.options.Count - 1;
             else if (input.isKeyPressed(Keys.S) && ++selected == this.options.Count) selected = 0;
             else if (input.isKeyPressed(Keys.E)) finished = true;
+            else if (input.isKeyPressed(Keys.Escape))
+            {
+                selected = -1;
+                finished = true;
+            }
         }
 
         public override void draw(SBWrapper wrapper)

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Lakeside2
@@ -35,8 +36,14 @@ namespace Lakeside2
                 element.finished = false; // cancel removing the main list
                 UiList list = (UiList)element;
                 int selected = list.selected;
+                Debug.WriteLine(selected);
                 switch (selected)
                 {
+                    case -1: // thwart attempt to close the main menu
+                        {
+                            list.selected = 0;
+                            break;
+                        }
                     case 0: // new game
                         {
                             TimeOfDay.restart();
@@ -56,7 +63,7 @@ namespace Lakeside2
                             {
                                 UiSavePicker saves = (UiSavePicker)element;
                                 string chosen = saves.selectedString;
-                                if (chosen == UiSavePicker.NO_FILES) return;
+                                if (chosen == UiSavePicker.NO_FILES || chosen == null) return;
                                 SaveGame game = SaveGame.Load(Content, chosen);
                                 TimeOfDay.restart();
 

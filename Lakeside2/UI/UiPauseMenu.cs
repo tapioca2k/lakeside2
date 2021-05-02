@@ -19,18 +19,22 @@ namespace Lakeside2.UI
                 {
                     case 1: // save
                         {
+                            element.finished = false; // don't close the menu yet
                             system.pushElement(new UiSavePicker(Content, true).addCallback(element2 =>
                             {
                                 UiSavePicker savePicker = (UiSavePicker)element2;
                                 string filename = savePicker.selectedString;
-                                if (filename == UiSavePicker.CREATE_NEW_FILE)
+                                if (filename == null) return;
+                                else if (filename == UiSavePicker.CREATE_NEW_FILE)
                                     filename = "save" + savePicker.GetHashCode(); // create new file name
                                 SaveGame.Save(filename + ".json", player, map, overworld);
+                                element.finished = true; // actually, do the close menu
                             }), new Vector2(Tile.TILE_SIZE * 10, Tile.TILE_SIZE));
                             break;
                         }
                     case 2: // TODO options
                         {
+                            element.finished = false;
                             break;
                         }
                     case 3: // TODO quit
