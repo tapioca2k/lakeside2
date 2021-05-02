@@ -17,6 +17,8 @@ namespace Lakeside2.Serialization
         public Dictionary<string, int> inventory { get; set; }
         public Vector2 location { get; set; }
 
+        public double time { get; set; }
+
         public static void Save(string filename, Player player, string map, bool overworld)
         {
             // convert inventory into something serializable
@@ -33,7 +35,8 @@ namespace Lakeside2.Serialization
                 map = map,
                 overworld = overworld,
                 inventory = sInventory,
-                location = player.getTileLocation()
+                location = player.getTileLocation(),
+                time = TimeOfDay.getTime().TotalMilliseconds
             };
 
             string json = JsonSerializer.Serialize(save, SerializableMap.OPTIONS);

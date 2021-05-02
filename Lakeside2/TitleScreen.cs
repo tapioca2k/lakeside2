@@ -67,6 +67,7 @@ namespace Lakeside2
                                     player.addItem(s, game.inventory[s]);
                                 }
                                 Flags.setAllFlags(game.flags, game.strings);
+                                TimeOfDay.addMillis(game.time);
                                 player.setTileLocation(game.location);
 
                                 // go to overworld or map
