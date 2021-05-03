@@ -7,22 +7,14 @@ using System.Text;
 namespace Lakeside2.Scripting
 {
     // ScriptNode that executes a lua function on its first update
-    public class FunctionNode : ScriptNode
+    public class FunctionNode : ActionNode
     {
 
-        LuaFunction func;
-
-        public FunctionNode(LuaFunction func)
-        {
-            this.func = func;
-        }
-
-        public override void start()
+        public FunctionNode(LuaFunction func) : base(() =>
         {
             func.Call(new object[0]);
-            finished = true;
-            base.start();
-        }
+        })
+        { }
 
     }
 }

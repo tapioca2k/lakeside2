@@ -173,5 +173,18 @@ namespace Lakeside2
             return new MoveNode(entity, path.ToArray());
         }
 
+        public ScriptNode SMusic(string songName)
+        {
+            return new ActionNode(() =>
+            {
+                Game1.music.playSong(songName);
+            });
+        }
+
+        public ScriptNode SMultiplex(params ScriptNode[] nodes)
+        {
+            return new MultiplexNode(nodes);
+        }
+
     }
 }
