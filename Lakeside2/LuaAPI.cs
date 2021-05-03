@@ -181,6 +181,16 @@ namespace Lakeside2
             });
         }
 
+        // play sound effect, block chain until it's done
+        public ScriptNode SSfx(string effect)
+        {
+            double length = Game1.music.getSfxLength(effect);
+            return new MultiplexNode(new ActionNode(() =>
+            {
+                Game1.music.playSfx(effect);
+            }), new DelayNode(length));
+        }
+
         public ScriptNode SMultiplex(params ScriptNode[] nodes)
         {
             return new MultiplexNode(nodes);

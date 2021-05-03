@@ -67,5 +67,11 @@ namespace Lakeside2
             SoundEffect se = Content.Load<SoundEffect>(name);
             se.Play();
         }
+
+        public double getSfxLength(string name)
+        {
+            SoundEffect se = Content.Load<SoundEffect>(name);
+            return se.Duration.TotalMilliseconds;
+        }
     }
 }
