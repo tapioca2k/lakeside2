@@ -95,6 +95,10 @@ namespace Lakeside2
             world.game.pushState(state, true);
         }
 
+        /// <summary>
+        /// Creates and queues a ScriptChain for execution
+        /// </summary>
+        /// <param name="elements">The nodes, in order, to be a part of the chain. These should be created using the other functions in this object</param>
         public void makeChain(params ScriptNode[] elements)
         {
             // filter out any null elements, preserving order
@@ -110,11 +114,22 @@ namespace Lakeside2
             world.queueScript(new ScriptChain(elements[0]));
         }
 
+        /// <summary>
+        /// Create a script node that represents a basic text box
+        /// </summary>
+        /// <param name="text">The main text</param>
+        /// <returns>a UiNode with the text box</returns>
         public ScriptNode SDialog(string text)
         {
             return new UiNode(ui, new UiTextBox(text));
         }
 
+        /// <summary>
+        /// Create a script node that represents a basic text box with a callback function
+        /// </summary>
+        /// <param name="text">The main text</param>
+        /// <param name="callback">The callback function, executed after the text box is closed</param>
+        /// <returns>a UiNode with the text box</returns>
         public ScriptNode SDialog(string text, LuaFunction callback)
         {
             return new UiNode(ui, new UiTextBox(text).addCallback(element =>
@@ -123,6 +138,15 @@ namespace Lakeside2
             }));
         }
 
+        /// <summary>
+        /// Create a script node that represents a text box with two options
+        /// </summary>
+        /// <param name="text">The main text</param>
+        /// <param name="option1">Text of option 1</param>
+        /// <param name="option2">Text of option 2</param>
+        /// <param name="f1">Lua function executed if option 1 is selected</param>
+        /// <param name="f2">Lua function executed if option 2 is selected</param>
+        /// <returns>a UiNode with the text box</returns>
         public ScriptNode SBranch(string text, string option1, string option2, LuaFunction f1, LuaFunction f2)
         {
             return new UiNode(ui, new UiOptionBox(Content, text, option1, option2).addCallback(element =>
@@ -133,12 +157,23 @@ namespace Lakeside2
             }));
         }
 
+        /// <summary>
+        /// Create a script node that executes a Lua function
+        /// </summary>
+        /// <param name="func">The function to execute</param>
+        /// <returns>a FunctionNode with the function</returns>
         public ScriptNode SFunction(LuaFunction func)
         {
             return new FunctionNode(func);
         }
 
-        // basic movement x tiles left/right, y tiles up/down
+        /// <summary>
+        /// Create a script node that moves an NPC up/down a fixed number of tiles, ignoring collision or pathfinding
+        /// </summary>
+        /// <param name="entity">The NPC to be moved</param>
+        /// <param name="x">X component of movement</param>
+        /// <param name="y">Y component of movement</param>
+        /// <returns>a MoveNode with the moves</returns>
         public ScriptNode SMove(NPC entity, int x, int y)
         {
             if (entity == null || (x == 0 && y == 0))
@@ -154,7 +189,12 @@ namespace Lakeside2
             return new MoveNode(entity, moves.ToArray());
         }
 
-        // path finding move to specific tile
+        /// <summary>
+        /// Create a script node that moves an NPC with pathfinding
+        /// </summary>
+        /// <param name="entity">The NPC to be moved</param>
+        /// <param name="tilePosition">The location they should move to</param>
+        /// <returns>a MoveNode with the path. Empty if a path could not be found</returns>
         public ScriptNode SMove(NPC entity, Vector2 tilePosition)
         {
             if (entity == null || tilePosition == entity.getTileLocation())
@@ -173,6 +213,11 @@ namespace Lakeside2
             return new MoveNode(entity, path.ToArray());
         }
 
+        /// <summary>
+        /// Create a script node that changes the song being played
+        /// </summary>
+        /// <param name="songName">The name of the song to be played</param>
+        /// <returns>ActionNode that starts the song</returns>
         public ScriptNode SMusic(string songName)
         {
             return new ActionNode(() =>
@@ -181,7 +226,11 @@ namespace Lakeside2
             });
         }
 
-        // play sound effect, block chain until it's done
+        /// <summary>
+        /// Create a script node that blocks on playing a sound effect
+        /// </summary>
+        /// <param name="effect">The name of the sound effect to be played</param>
+        /// <returns>MultiplexNode containing the sound effect play and accompanying delay</returns>
         public ScriptNode SSfx(string effect)
         {
             double length = Game1.music.getSfxLength(effect);
@@ -191,6 +240,11 @@ namespace Lakeside2
             }), new DelayNode(length));
         }
 
+        /// <summary>
+        ///  Create a script node for running multiple ScriptNodes simultaneously
+        /// </summary>
+        /// <param name="nodes">The nodes to be multiplexed</param>
+        /// <returns>MultiplexNode containing the parameter nodes</returns>
         public ScriptNode SMultiplex(params ScriptNode[] nodes)
         {
             return new MultiplexNode(nodes);
