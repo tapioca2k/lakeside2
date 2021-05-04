@@ -30,7 +30,7 @@ namespace Lakeside2.UI.Editor
             this.tile = tile;
             this.npc = npc;
             this.script = script;
-            setBackground(Color.White);
+            setBackground(Color.White, false);
         }
 
         public override void onInput(InputHandler input)

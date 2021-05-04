@@ -1959,6 +1959,12 @@ references:
   commentId: M:Lakeside2.SBWrapper.drawRectangle(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)
   fullName: Lakeside2.SBWrapper.drawRectangle(Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color)
   nameWithType: SBWrapper.drawRectangle(Vector2, Color)
+- uid: Lakeside2.SBWrapper.drawRectangle(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Vector2)
+  name: drawRectangle(Vector2, Color, Vector2)
+  href: api/Lakeside2.SBWrapper.html#Lakeside2_SBWrapper_drawRectangle_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_Microsoft_Xna_Framework_Vector2_
+  commentId: M:Lakeside2.SBWrapper.drawRectangle(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Vector2)
+  fullName: Lakeside2.SBWrapper.drawRectangle(Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Color, Microsoft.Xna.Framework.Vector2)
+  nameWithType: SBWrapper.drawRectangle(Vector2, Color, Vector2)
 - uid: Lakeside2.SBWrapper.drawRectangle(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.Texture2D)
   name: drawRectangle(Vector2, Texture2D)
   href: api/Lakeside2.SBWrapper.html#Lakeside2_SBWrapper_drawRectangle_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Graphics_Texture2D_
@@ -3148,12 +3154,12 @@ references:
   isSpec: "True"
   fullName: Lakeside2.UI.UiElement.onInput
   nameWithType: UiElement.onInput
-- uid: Lakeside2.UI.UiElement.setBackground(Microsoft.Xna.Framework.Color)
-  name: setBackground(Color)
-  href: api/Lakeside2.UI.UiElement.html#Lakeside2_UI_UiElement_setBackground_Microsoft_Xna_Framework_Color_
-  commentId: M:Lakeside2.UI.UiElement.setBackground(Microsoft.Xna.Framework.Color)
-  fullName: Lakeside2.UI.UiElement.setBackground(Microsoft.Xna.Framework.Color)
-  nameWithType: UiElement.setBackground(Color)
+- uid: Lakeside2.UI.UiElement.setBackground(Microsoft.Xna.Framework.Color,System.Boolean)
+  name: setBackground(Color, Boolean)
+  href: api/Lakeside2.UI.UiElement.html#Lakeside2_UI_UiElement_setBackground_Microsoft_Xna_Framework_Color_System_Boolean_
+  commentId: M:Lakeside2.UI.UiElement.setBackground(Microsoft.Xna.Framework.Color,System.Boolean)
+  fullName: Lakeside2.UI.UiElement.setBackground(Microsoft.Xna.Framework.Color, System.Boolean)
+  nameWithType: UiElement.setBackground(Color, Boolean)
 - uid: Lakeside2.UI.UiElement.setBackground*
   name: setBackground
   href: api/Lakeside2.UI.UiElement.html#Lakeside2_UI_UiElement_setBackground_

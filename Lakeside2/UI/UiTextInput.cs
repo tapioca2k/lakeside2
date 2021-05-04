@@ -25,18 +25,22 @@ namespace Lakeside2.UI
             { Keys.OemPeriod, '.' }
         };
 
+        /*
         public UiTextInput(SpriteFont font) : base(font, "")
         {
+            border = true;
         }
 
         public UiTextInput() : base()
         {
             setBackground(Color.White);
+            border = true;
         }
+        */
 
         public UiTextInput(string prefix) : base()
         {
-            setBackground(Color.White);
+            setBackground(Color.White, true);
             setPrefix(prefix);
         }
 

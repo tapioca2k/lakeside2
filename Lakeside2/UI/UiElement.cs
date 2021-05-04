@@ -31,7 +31,8 @@ namespace Lakeside2.UI
 
         private bool done;
         private List<Action<UiElement>> callbacks = new List<Action<UiElement>>();
-        Color background = Color.Transparent;
+        private Color background = Color.Transparent;
+        private bool border = false;
         protected UiSystem system;
 
         public virtual void setUiSystem(UiSystem system)
@@ -45,9 +46,10 @@ namespace Lakeside2.UI
             return this;
         }
 
-        public void setBackground(Color color)
+        public void setBackground(Color color, bool border)
         {
             background = color;
+            this.border = border;
         }
 
         public virtual void update(double dt)
@@ -60,9 +62,9 @@ namespace Lakeside2.UI
 
         public abstract void draw(SBWrapper wrapper);
 
-        // TODO figure out why C# isn't letting me do the inheritance I want here...
         protected void drawBackground(SBWrapper wrapper)
         {
+            if (border) wrapper.drawRectangle(size + new Vector2(2, 2), Color.Black, wrapper.location - Vector2.One);
             wrapper.drawRectangle(size, background);
         }
 

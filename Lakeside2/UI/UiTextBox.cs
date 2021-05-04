@@ -15,7 +15,7 @@ namespace Lakeside2.UI
 
         public UiTextBox(string text)
         {
-            setBackground(Color.White);
+            setBackground(Color.White, true);
             textdisp = new UiTextDisplay(text);
         }
 

@@ -26,7 +26,7 @@ namespace Lakeside2.UI.Editor
         {
             this.Content = Content;
             this.map = map;
-            setBackground(Color.White);
+            setBackground(Color.White, false);
         }
 
         public override void onInput(InputHandler input)

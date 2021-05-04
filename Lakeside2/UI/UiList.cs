@@ -44,7 +44,7 @@ namespace Lakeside2.UI
 
         public UiList(ContentManager Content, string[] options)
         {
-            setBackground(Color.White);
+            setBackground(Color.White, true);
             selected = 0;
             pointer = Content.Load<Texture2D>("pointer");
             this.setStrings(options);

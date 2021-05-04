@@ -64,6 +64,11 @@ namespace Lakeside2
 
         public void drawRectangle(Vector2 size, Color color)
         {
+            drawRectangle(size, color, this.location);
+        }
+
+        public void drawRectangle(Vector2 size, Color color, Vector2 location)
+        {
             spriteBatch.Draw(Game1.WHITE_PIXEL, new Rectangle(location.ToPoint(), size.ToPoint()), color);
         }
 
