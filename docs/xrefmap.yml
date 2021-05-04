@@ -466,6 +466,19 @@ references:
   commentId: F:Lakeside2.Flags.NO_VALUE
   fullName: Lakeside2.Flags.NO_VALUE
   nameWithType: Flags.NO_VALUE
+- uid: Lakeside2.Flags.reset
+  name: reset()
+  href: api/Lakeside2.Flags.html#Lakeside2_Flags_reset
+  commentId: M:Lakeside2.Flags.reset
+  fullName: Lakeside2.Flags.reset()
+  nameWithType: Flags.reset()
+- uid: Lakeside2.Flags.reset*
+  name: reset
+  href: api/Lakeside2.Flags.html#Lakeside2_Flags_reset_
+  commentId: Overload:Lakeside2.Flags.reset
+  isSpec: "True"
+  fullName: Lakeside2.Flags.reset
+  nameWithType: Flags.reset
 - uid: Lakeside2.Flags.setAllFlags(System.Collections.Generic.Dictionary{System.String,System.Int32},System.Collections.Generic.Dictionary{System.String,System.String})
   name: setAllFlags(Dictionary<String, Int32>, Dictionary<String, String>)
   href: api/Lakeside2.Flags.html#Lakeside2_Flags_setAllFlags_System_Collections_Generic_Dictionary_System_String_System_Int32__System_Collections_Generic_Dictionary_System_String_System_String__
