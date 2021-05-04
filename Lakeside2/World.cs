@@ -58,7 +58,7 @@ namespace Lakeside2
             this.player = player;
             this.player.setWorld(this);
 
-            lua["l"] = new LuaAPI(this, ui, this.player, Content);
+            lua["l"] = new LuaAPI(game, this, ui, this.player, Content);
             lua["player"] = this.player;
             lua.DoString(@"
                 import ('Lakeside2', 'Lakeside2')

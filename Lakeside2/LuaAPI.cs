@@ -14,10 +14,11 @@ namespace Lakeside2
 {
     public class LuaAPI
     {
+        Game1 game;
         World world;
         UiSystem ui;
-        public Player player { get; set; }
         ContentManager Content;
+        public Player player;
 
         public static Vector2 makeVector2(int x, int y)
         {
@@ -29,8 +30,9 @@ namespace Lakeside2
             return new Color(r, g, b);
         }
 
-        public LuaAPI(World world, UiSystem ui, Player player, ContentManager Content)
+        public LuaAPI(Game1 game, World world, UiSystem ui, Player player, ContentManager Content)
         {
+            this.game = game;
             this.world = world;
             this.ui = ui;
             this.player = player;
@@ -87,12 +89,12 @@ namespace Lakeside2
 
         public void goToOverworld()
         {
-            world.game.goToOverworld(player, world.map.filename);
+            game.goToOverworld(player, world.map.filename);
         }
 
         public void pushState(IGameState state)
         {
-            world.game.pushState(state, true);
+            game.pushState(state, true);
         }
 
         /// <summary>

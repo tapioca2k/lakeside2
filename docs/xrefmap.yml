@@ -1123,12 +1123,12 @@ references:
   commentId: T:Lakeside2.LuaAPI
   fullName: Lakeside2.LuaAPI
   nameWithType: LuaAPI
-- uid: Lakeside2.LuaAPI.#ctor(Lakeside2.World,Lakeside2.UI.UiSystem,Lakeside2.Player,Microsoft.Xna.Framework.Content.ContentManager)
-  name: LuaAPI(World, UiSystem, Player, ContentManager)
-  href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI__ctor_Lakeside2_World_Lakeside2_UI_UiSystem_Lakeside2_Player_Microsoft_Xna_Framework_Content_ContentManager_
-  commentId: M:Lakeside2.LuaAPI.#ctor(Lakeside2.World,Lakeside2.UI.UiSystem,Lakeside2.Player,Microsoft.Xna.Framework.Content.ContentManager)
-  fullName: Lakeside2.LuaAPI.LuaAPI(Lakeside2.World, Lakeside2.UI.UiSystem, Lakeside2.Player, Microsoft.Xna.Framework.Content.ContentManager)
-  nameWithType: LuaAPI.LuaAPI(World, UiSystem, Player, ContentManager)
+- uid: Lakeside2.LuaAPI.#ctor(Lakeside2.Game1,Lakeside2.World,Lakeside2.UI.UiSystem,Lakeside2.Player,Microsoft.Xna.Framework.Content.ContentManager)
+  name: LuaAPI(Game1, World, UiSystem, Player, ContentManager)
+  href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI__ctor_Lakeside2_Game1_Lakeside2_World_Lakeside2_UI_UiSystem_Lakeside2_Player_Microsoft_Xna_Framework_Content_ContentManager_
+  commentId: M:Lakeside2.LuaAPI.#ctor(Lakeside2.Game1,Lakeside2.World,Lakeside2.UI.UiSystem,Lakeside2.Player,Microsoft.Xna.Framework.Content.ContentManager)
+  fullName: Lakeside2.LuaAPI.LuaAPI(Lakeside2.Game1, Lakeside2.World, Lakeside2.UI.UiSystem, Lakeside2.Player, Microsoft.Xna.Framework.Content.ContentManager)
+  nameWithType: LuaAPI.LuaAPI(Game1, World, UiSystem, Player, ContentManager)
 - uid: Lakeside2.LuaAPI.#ctor*
   name: LuaAPI
   href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI__ctor_
@@ -1223,19 +1223,6 @@ references:
   isSpec: "True"
   fullName: Lakeside2.LuaAPI.makeVector2
   nameWithType: LuaAPI.makeVector2
-- uid: Lakeside2.LuaAPI.player
-  name: player
-  href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI_player
-  commentId: P:Lakeside2.LuaAPI.player
-  fullName: Lakeside2.LuaAPI.player
-  nameWithType: LuaAPI.player
-- uid: Lakeside2.LuaAPI.player*
-  name: player
-  href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI_player_
-  commentId: Overload:Lakeside2.LuaAPI.player
-  isSpec: "True"
-  fullName: Lakeside2.LuaAPI.player
-  nameWithType: LuaAPI.player
 - uid: Lakeside2.LuaAPI.playSfx(System.String)
   name: playSfx(String)
   href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI_playSfx_System_String_
