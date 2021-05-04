@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace Lakeside2
 {
@@ -140,6 +141,10 @@ namespace Lakeside2
                     {
                         gamepad[tb] = true;
                     }
+                }
+                else
+                {
+                    gamepad.Remove(tb);
                 }
             }
         }
