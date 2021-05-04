@@ -21,7 +21,7 @@ namespace Lakeside2.UI
 
         public override void onInput(InputHandler input)
         {
-            if (input.isKeyPressed(Keys.E))
+            if (input.isCommandPressed("interact"))
             {
                 finished = true;
             }

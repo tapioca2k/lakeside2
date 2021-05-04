@@ -61,10 +61,10 @@ namespace Lakeside2.UI
 
         public override void onInput(InputHandler input)
         {
-            if (input.isKeyPressed(Keys.W) && --selected < 0) selected = this.options.Count - 1;
-            else if (input.isKeyPressed(Keys.S) && ++selected == this.options.Count) selected = 0;
-            else if (input.isKeyPressed(Keys.E)) finished = true;
-            else if (input.isKeyPressed(Keys.Escape))
+            if (input.isCommandPressed("move_up") && --selected < 0) selected = this.options.Count - 1;
+            else if (input.isCommandPressed("move_down") && ++selected == this.options.Count) selected = 0;
+            else if (input.isCommandPressed("interact")) finished = true;
+            else if (input.isCommandPressed("escape"))
             {
                 selected = -1;
                 finished = true;

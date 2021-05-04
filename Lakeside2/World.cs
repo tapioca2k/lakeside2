@@ -121,7 +121,7 @@ namespace Lakeside2
                 {
                     player.onInput(input);
 
-                    if (input.isKeyPressed(Keys.Escape))
+                    if (input.isCommandPressed("escape"))
                     {
                         ui.pushElement(new UiPauseMenu(Content, player, map.filename, false), 
                             new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));

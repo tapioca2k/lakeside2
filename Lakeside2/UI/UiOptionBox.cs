@@ -25,11 +25,11 @@ namespace Lakeside2.UI
 
         public override void onInput(InputHandler input)
         {
-            if (input.isKeyPressed(Keys.E))
+            if (input.isCommandPressed("interact"))
             {
                 finished = true;
             }
-            else if (input.isAnyKeyPressed(Keys.W, Keys.S))
+            else if (input.isCommandPressed("move_up") || input.isCommandPressed("move_down"))
             {
                 selected = Math.Abs(--selected);
             }
