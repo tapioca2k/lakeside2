@@ -9,9 +9,13 @@ namespace Lakeside2.UI
 {
     class UiPauseMenu : UiList
     {
-        public UiPauseMenu(ContentManager Content, Player player, string map, bool overworld)
+        Game1 game;
+        ContentManager Content;
+        public UiPauseMenu(Game1 game, ContentManager Content, Player player, string map, bool overworld)
             : base(Content, new string[4] { "Resume", "Save", "Options", "Quit"})
         {
+            this.game = game;
+            this.Content = Content;
             addCallback(element =>
             {
                 UiList list = (UiList)element;
@@ -39,6 +43,15 @@ namespace Lakeside2.UI
                         }
                     case 3: // TODO quit
                         {
+                            system.pushElement(new UiOptionBox(Content, "Quit? Unsaved progress will be lost.", "No", "Yes")
+                            .addCallback(element =>
+                            {
+                                UiOptionBox option = (UiOptionBox)element;
+                                if (option.selected == 1)
+                                {
+                                    game.goToTitle();
+                                }
+                            }), Vector2.Zero);
                             break;
                         }
                 }

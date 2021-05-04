@@ -12,13 +12,15 @@ namespace Lakeside2.Editor
     {
         Game1 game;
         ContentManager Content;
+        TitleScreen titleScreen;
 
         UiSystem ui;
 
-        public GameEditor(Game1 game, ContentManager Content)
+        public GameEditor(Game1 game, ContentManager Content, TitleScreen titleScreen)
         {
             this.game = game;
             this.Content = Content;
+            this.titleScreen = titleScreen;
             ui = new UiSystem(true);
             ui.addStripeElement(new UiTexture(Content, "gmhotkeys"), StripePosition.Left);
         }
@@ -36,6 +38,7 @@ namespace Lakeside2.Editor
                     if (input.text != "")
                     {
                         GameInfo.titleBackground = input.text;
+                        titleScreen.updateBackground();
                     }
                 }), Vector2.Zero);
             }

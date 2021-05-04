@@ -13,6 +13,11 @@ namespace Lakeside2
 
         static Flags()
         {
+            reset();
+        }
+
+        public static void reset()
+        {
             flags = new Dictionary<string, int>();
             strings = new Dictionary<string, string>();
         }

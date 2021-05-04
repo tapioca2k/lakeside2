@@ -572,6 +572,19 @@ references:
   isSpec: "True"
   fullName: Lakeside2.Game1.goToOverworld
   nameWithType: Game1.goToOverworld
+- uid: Lakeside2.Game1.goToTitle
+  name: goToTitle()
+  href: api/Lakeside2.Game1.html#Lakeside2_Game1_goToTitle
+  commentId: M:Lakeside2.Game1.goToTitle
+  fullName: Lakeside2.Game1.goToTitle()
+  nameWithType: Game1.goToTitle()
+- uid: Lakeside2.Game1.goToTitle*
+  name: goToTitle
+  href: api/Lakeside2.Game1.html#Lakeside2_Game1_goToTitle_
+  commentId: Overload:Lakeside2.Game1.goToTitle
+  isSpec: "True"
+  fullName: Lakeside2.Game1.goToTitle
+  nameWithType: Game1.goToTitle
 - uid: Lakeside2.Game1.goToWorld(Lakeside2.Player,System.String,System.Boolean)
   name: goToWorld(Player, String, Boolean)
   href: api/Lakeside2.Game1.html#Lakeside2_Game1_goToWorld_Lakeside2_Player_System_String_System_Boolean_

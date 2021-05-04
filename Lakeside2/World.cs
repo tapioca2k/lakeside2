@@ -123,7 +123,7 @@ namespace Lakeside2
 
                     if (input.isCommandPressed("escape"))
                     {
-                        ui.pushElement(new UiPauseMenu(Content, player, map.filename, false), 
+                        ui.pushElement(new UiPauseMenu(game, Content, player, map.filename, false), 
                             new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
                     }
 

@@ -47,6 +47,7 @@ namespace Lakeside2
                     case 0: // new game
                         {
                             TimeOfDay.restart();
+                            Flags.reset();
                             if (GameInfo.startOverworld)
                             {
                                 game.goToOverworld(new Player(Content, null, null), GameInfo.startMap);
@@ -66,6 +67,7 @@ namespace Lakeside2
                                 if (chosen == UiSavePicker.NO_FILES || chosen == null) return;
                                 SaveGame game = SaveGame.Load(Content, chosen);
                                 TimeOfDay.restart();
+                                Flags.reset();
 
                                 // restore data from save
                                 Player player = new Player(Content, null, null);
@@ -103,6 +105,11 @@ namespace Lakeside2
             ui.pushElement(mainList, center);
         }
 
+        public void updateBackground()
+        {
+            bg = Content.Load<Texture2D>(GameInfo.titleBackground);
+        }
+
 
         public void onInput(InputHandler input)
         {
@@ -114,9 +121,8 @@ namespace Lakeside2
                 if (editing)
                 {
                     editor = null;
-                    bg = Content.Load<Texture2D>(GameInfo.titleBackground);
                 }
-                else editor = new GameEditor(game, Content);
+                else editor = new GameEditor(game, Content, this);
             }
         }
 

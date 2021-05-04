@@ -117,7 +117,7 @@ namespace Lakeside2.WorldMap
 
                 if (input.isCommandPressed("escape"))
                 {
-                    ui.pushElement(new UiPauseMenu(Content, player.p, selected.filename, true),
+                    ui.pushElement(new UiPauseMenu(game, Content, player.p, selected.filename, true),
                         new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
                 }
             }

@@ -71,7 +71,6 @@ namespace Lakeside2
 
             states = new Stack();
             states.Push(new TitleScreen(this, Content));
-            //states.Push(new Overworld(Content, this, new Player(Content, null, null)));
         }
 
         public void goToOverworld(Player p, string currentMap)
@@ -84,7 +83,7 @@ namespace Lakeside2
             startFade(() =>
             {
                 setState(new Overworld(Content, this, p, currentMap));
-            });
+            }, states.Peek() is TitleScreen);
         }
 
         public void goToWorld(Player p, string filename, bool resetLocation = true)
@@ -96,7 +95,7 @@ namespace Lakeside2
                     World w = (World)states.Peek();
                     if (resetLocation) w.setMap(SerializableMap.Load(Content, filename));
                     else w.setMap(SerializableMap.Load(Content, filename), p.getTileLocation());
-                });
+                }, false);
             }
             else
             {
@@ -105,8 +104,16 @@ namespace Lakeside2
                     Vector2 oldLocation = p.getTileLocation();
                     setState(new World(Content, this, p, filename));
                     if (!resetLocation) p.setTileLocation(oldLocation);
-                });
+                }, states.Peek() is TitleScreen);
             }
+        }
+
+        public void goToTitle()
+        {
+            startFade(() =>
+            {
+                setState(new TitleScreen(this, Content));
+            }, true);
         }
 
         void setState(IGameState state)
@@ -123,7 +130,7 @@ namespace Lakeside2
                 startFade(() =>
                 {
                     states.Push(state);
-                });
+                }, false);
             }
             else
             {
@@ -138,7 +145,7 @@ namespace Lakeside2
                 startFade(() =>
                 {
                     states.Pop();
-                });
+                }, false);
             }
             else
             {
@@ -146,11 +153,11 @@ namespace Lakeside2
             }
         }
 
-        void startFade(Action midpoint)
+        void startFade(Action midpoint, bool fullscreen)
         {
             if (fade != null) return;
             fade = new UiScreenFade(midpoint);
-            fade.fullscreen = states.Peek() is TitleScreen;
+            fade.fullscreen = fullscreen;
         }
 
 
