@@ -905,6 +905,32 @@ references:
   isSpec: "True"
   fullName: Lakeside2.InputHandler.isButtonPressed
   nameWithType: InputHandler.isButtonPressed
+- uid: Lakeside2.InputHandler.isCommandHeld(System.String)
+  name: isCommandHeld(String)
+  href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_isCommandHeld_System_String_
+  commentId: M:Lakeside2.InputHandler.isCommandHeld(System.String)
+  fullName: Lakeside2.InputHandler.isCommandHeld(System.String)
+  nameWithType: InputHandler.isCommandHeld(String)
+- uid: Lakeside2.InputHandler.isCommandHeld*
+  name: isCommandHeld
+  href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_isCommandHeld_
+  commentId: Overload:Lakeside2.InputHandler.isCommandHeld
+  isSpec: "True"
+  fullName: Lakeside2.InputHandler.isCommandHeld
+  nameWithType: InputHandler.isCommandHeld
+- uid: Lakeside2.InputHandler.isCommandPressed(System.String)
+  name: isCommandPressed(String)
+  href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_isCommandPressed_System_String_
+  commentId: M:Lakeside2.InputHandler.isCommandPressed(System.String)
+  fullName: Lakeside2.InputHandler.isCommandPressed(System.String)
+  nameWithType: InputHandler.isCommandPressed(String)
+- uid: Lakeside2.InputHandler.isCommandPressed*
+  name: isCommandPressed
+  href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_isCommandPressed_
+  commentId: Overload:Lakeside2.InputHandler.isCommandPressed
+  isSpec: "True"
+  fullName: Lakeside2.InputHandler.isCommandPressed
+  nameWithType: InputHandler.isCommandPressed
 - uid: Lakeside2.InputHandler.isGamePadConnected(System.Int32)
   name: isGamePadConnected(Int32)
   href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_isGamePadConnected_System_Int32_

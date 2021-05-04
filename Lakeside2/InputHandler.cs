@@ -22,11 +22,6 @@ namespace Lakeside2
             Buttons.Start, Buttons.Back
         };
 
-        internal bool isKeyPressed(object escape)
-        {
-            throw new NotImplementedException();
-        }
-
         Dictionary<Keys, bool> keys;
 
         int mleft;
@@ -37,8 +32,11 @@ namespace Lakeside2
         Dictionary<Buttons, bool>[] gamepads;
         Vector2[] stickPositions;
 
+        InputBindings bindings;
+
         public InputHandler()
         {
+            bindings = new InputBindings();
             keys = new Dictionary<Keys, bool>();
             mleft = 0;
             mright = 0;
@@ -197,6 +195,28 @@ namespace Lakeside2
             n *= 2;
             if (s == 'r') n++;
             return stickPositions[n];
+        }
+
+        public bool isCommandPressed(string command)
+        {
+            List<object> inputs = bindings.getInputs(command);
+            foreach (object o in inputs)
+            {
+                if (o is Keys && isKeyPressed((Keys)o)) return true;
+                else if (o is Buttons && isButtonPressed(0, (Buttons)o)) return true;
+            }
+            return false;
+        }
+
+        public bool isCommandHeld(string command)
+        {
+            List<object> inputs = bindings.getInputs(command);
+            foreach (object o in inputs)
+            {
+                if (o is Keys && isKeyHeld((Keys)o)) return true;
+                else if (o is Buttons && isButtonHeld(0, (Buttons)o)) return true;
+            }
+            return false;
         }
 
     }
