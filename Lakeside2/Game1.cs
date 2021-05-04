@@ -30,7 +30,6 @@ namespace Lakeside2
 
         public static Texture2D WHITE_PIXEL;
         private InputHandler input;
-        public static MusicManager music;
         Stack states;
         UiScreenFade fade;
 
@@ -68,7 +67,7 @@ namespace Lakeside2
             Fonts.loadFont(Content, "Arial");
             Fonts.loadFont(Content, "rainyhearts");
             colorize = Content.Load<Effect>("colorize");
-            music = new MusicManager(Content);
+            MusicManager.init(Content);
 
             states = new Stack();
             states.Push(new TitleScreen(this, Content));

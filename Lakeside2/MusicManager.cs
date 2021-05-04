@@ -9,23 +9,28 @@ using System.Threading.Tasks;
 namespace Lakeside2
 {
     // juggles soundeffects like they're songs
-    public class MusicManager
+    public static class MusicManager
     {
-        ContentManager Content;
-        Dictionary<string, SoundEffect> songs;
-        SoundEffectInstance current;
-        public float volume;
+        static ContentManager Content;
+        static Dictionary<string, SoundEffect> songs;
+        static SoundEffectInstance current;
+        public static float volume;
 
-        public MusicManager(ContentManager c)
+        static MusicManager()
         {
-            Content = c;
             songs = new Dictionary<string, SoundEffect>();
             volume = 1f;
         }
 
-        public bool loadSong(string name)
+        public static void init(ContentManager Content)
         {
-            if (songs.ContainsKey(name)) return true;
+            MusicManager.Content = Content;
+        }
+
+        public static bool loadSong(string name)
+        {
+            if (Content == null) return false;
+            else if (songs.ContainsKey(name)) return true;
             else
             {
                 try
@@ -40,12 +45,12 @@ namespace Lakeside2
             }
         }
 
-        public void stopSong()
+        public static void stopSong()
         {
             if (current != null) current.Stop();
         }
 
-        public bool playSong(string name, bool loop = true)
+        public static bool playSong(string name, bool loop = true)
         {
 
             if (!songs.ContainsKey(name))
@@ -62,14 +67,16 @@ namespace Lakeside2
             return true;
         }
 
-        public void playSfx(string name)
+        public static void playSfx(string name)
         {
+            if (Content == null) return;
             SoundEffect se = Content.Load<SoundEffect>(name);
             se.Play();
         }
 
-        public double getSfxLength(string name)
+        public static double getSfxLength(string name)
         {
+            if (Content == null) return -1;
             SoundEffect se = Content.Load<SoundEffect>(name);
             return se.Duration.TotalMilliseconds;
         }

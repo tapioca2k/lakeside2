@@ -623,12 +623,6 @@ references:
   isSpec: "True"
   fullName: Lakeside2.Game1.LoadContent
   nameWithType: Game1.LoadContent
-- uid: Lakeside2.Game1.music
-  name: music
-  href: api/Lakeside2.Game1.html#Lakeside2_Game1_music
-  commentId: F:Lakeside2.Game1.music
-  fullName: Lakeside2.Game1.music
-  nameWithType: Game1.music
 - uid: Lakeside2.Game1.popState(System.Boolean)
   name: popState(Boolean)
   href: api/Lakeside2.Game1.html#Lakeside2_Game1_popState_System_Boolean_
@@ -1223,6 +1217,12 @@ references:
   isSpec: "True"
   fullName: Lakeside2.LuaAPI.makeVector2
   nameWithType: LuaAPI.makeVector2
+- uid: Lakeside2.LuaAPI.player
+  name: player
+  href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI_player
+  commentId: F:Lakeside2.LuaAPI.player
+  fullName: Lakeside2.LuaAPI.player
+  nameWithType: LuaAPI.player
 - uid: Lakeside2.LuaAPI.playSfx(System.String)
   name: playSfx(String)
   href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI_playSfx_System_String_
@@ -1496,19 +1496,6 @@ references:
   commentId: T:Lakeside2.MusicManager
   fullName: Lakeside2.MusicManager
   nameWithType: MusicManager
-- uid: Lakeside2.MusicManager.#ctor(Microsoft.Xna.Framework.Content.ContentManager)
-  name: MusicManager(ContentManager)
-  href: api/Lakeside2.MusicManager.html#Lakeside2_MusicManager__ctor_Microsoft_Xna_Framework_Content_ContentManager_
-  commentId: M:Lakeside2.MusicManager.#ctor(Microsoft.Xna.Framework.Content.ContentManager)
-  fullName: Lakeside2.MusicManager.MusicManager(Microsoft.Xna.Framework.Content.ContentManager)
-  nameWithType: MusicManager.MusicManager(ContentManager)
-- uid: Lakeside2.MusicManager.#ctor*
-  name: MusicManager
-  href: api/Lakeside2.MusicManager.html#Lakeside2_MusicManager__ctor_
-  commentId: Overload:Lakeside2.MusicManager.#ctor
-  isSpec: "True"
-  fullName: Lakeside2.MusicManager.MusicManager
-  nameWithType: MusicManager.MusicManager
 - uid: Lakeside2.MusicManager.getSfxLength(System.String)
   name: getSfxLength(String)
   href: api/Lakeside2.MusicManager.html#Lakeside2_MusicManager_getSfxLength_System_String_
@@ -1522,6 +1509,19 @@ references:
   isSpec: "True"
   fullName: Lakeside2.MusicManager.getSfxLength
   nameWithType: MusicManager.getSfxLength
+- uid: Lakeside2.MusicManager.init(Microsoft.Xna.Framework.Content.ContentManager)
+  name: init(ContentManager)
+  href: api/Lakeside2.MusicManager.html#Lakeside2_MusicManager_init_Microsoft_Xna_Framework_Content_ContentManager_
+  commentId: M:Lakeside2.MusicManager.init(Microsoft.Xna.Framework.Content.ContentManager)
+  fullName: Lakeside2.MusicManager.init(Microsoft.Xna.Framework.Content.ContentManager)
+  nameWithType: MusicManager.init(ContentManager)
+- uid: Lakeside2.MusicManager.init*
+  name: init
+  href: api/Lakeside2.MusicManager.html#Lakeside2_MusicManager_init_
+  commentId: Overload:Lakeside2.MusicManager.init
+  isSpec: "True"
+  fullName: Lakeside2.MusicManager.init
+  nameWithType: MusicManager.init
 - uid: Lakeside2.MusicManager.loadSong(System.String)
   name: loadSong(String)
   href: api/Lakeside2.MusicManager.html#Lakeside2_MusicManager_loadSong_System_String_

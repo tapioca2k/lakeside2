@@ -60,7 +60,7 @@ namespace Lakeside2
 
         public void playSfx(string filename)
         {
-            Game1.music.playSfx(filename);
+            MusicManager.playSfx(filename);
         }
 
         public void changeMap(string filename)
@@ -224,7 +224,7 @@ namespace Lakeside2
         {
             return new ActionNode(() =>
             {
-                Game1.music.playSong(songName);
+                MusicManager.playSong(songName);
             });
         }
 
@@ -235,10 +235,10 @@ namespace Lakeside2
         /// <returns>MultiplexNode containing the sound effect play and accompanying delay</returns>
         public ScriptNode SSfx(string effect)
         {
-            double length = Game1.music.getSfxLength(effect);
+            double length = MusicManager.getSfxLength(effect);
             return new MultiplexNode(new ActionNode(() =>
             {
-                Game1.music.playSfx(effect);
+                MusicManager.playSfx(effect);
             }), new DelayNode(length));
         }
 
