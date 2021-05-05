@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Lakeside2.SBWrapper.html",
-          "hash": "STGlXsuOVB48WeeLh/E31Sws3c6ygpTMKuAGUKUjAJ4="
+          "hash": "BIWd+pely3LmZPiKDZH4jzrnMiqJ5p0qeEKMo8BFMbA="
         }
       },
       "is_incremental": true,
@@ -477,7 +477,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Lakeside2.html",
-          "hash": "+xgaFiZRBs/Hu4D3f0oKi2s06zw0+GMsIBMTV7dgKeY="
+          "hash": "kOn+Q0sJV/CAnk3/IV9t/9m0AKFl9Pz1F4lFFNbx19w="
         }
       },
       "is_incremental": true,
@@ -509,35 +509,11 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/intro.md",
-      "output": {
-        ".html": {
-          "relative_path": "articles/intro.html",
-          "hash": "g+ykCCDuLi/sva4p56YnC8R5R8oJo+Z0YCMK5CD/zl8="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "Toc",
-      "source_relative_path": "articles/toc.yml",
-      "output": {
-        ".html": {
-          "relative_path": "articles/toc.html",
-          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "Cq4NO2SAhm8eUCY78tuw5mfCzAKcHD8caYqx2qqy2dw="
+          "hash": "5OXXrAX8t9KIcIBY3nmJLaJxlDq8AJ4UPVYGLSJf7Q8="
         }
       },
       "is_incremental": true,
@@ -549,7 +525,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "WSuRrYiGwKKMbtdG9z8W9fXmLoCyTnGg9AxbPKLXm2Y="
+          "hash": "s+UecGKJLe11K3w4+MJjx6QoiqktkO8teeQG06lk8L0="
         }
       },
       "is_incremental": false,
@@ -568,8 +544,8 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 3,
-          "skipped_file_count": 3
+          "total_file_count": 2,
+          "skipped_file_count": 2
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
