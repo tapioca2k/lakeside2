@@ -39,6 +39,7 @@ namespace Lakeside2.UI
                     case 2: // TODO options
                         {
                             element.finished = false;
+                            system.pushElement(new UiLeftRightPicker(Content, new string[3] { "1x", "4x", "16x" }), new Vector2(100, 100));
                             break;
                         }
                     case 3: // TODO quit
