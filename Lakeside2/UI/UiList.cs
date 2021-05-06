@@ -64,7 +64,7 @@ namespace Lakeside2.UI
             if (input.isCommandPressed("move_up") && --selected < 0) selected = this.options.Count - 1;
             else if (input.isCommandPressed("move_down") && ++selected == this.options.Count) selected = 0;
             else if (input.isCommandPressed("interact")) finished = true;
-            else if (input.isCommandPressed("escape"))
+            else if (input.isCommandPressed("back"))
             {
                 selected = -1;
                 finished = true;

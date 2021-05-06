@@ -57,6 +57,16 @@ namespace Lakeside2.UI
                 }
             });
         }
+
+        public override void onInput(InputHandler input)
+        {
+            base.onInput(input);
+            if (input.isCommandPressed("start"))
+            {
+                selected = -1;
+                finished = true;
+            }
+        }
     }
 
 }

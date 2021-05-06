@@ -21,7 +21,8 @@ namespace Lakeside2
             setKeybinds("move_right", Keys.D, Keys.Right, Buttons.DPadRight);
 
             setKeybinds("interact", Keys.E, Buttons.A);
-            setKeybinds("escape", Keys.Escape, Buttons.B);
+            setKeybinds("start", Keys.Escape, Buttons.Start);
+            setKeybinds("back", Keys.Back, Buttons.B);
         }
 
         void setKeybinds(string command, params object[] inputs)
