@@ -20,10 +20,10 @@ namespace Lakeside2
         public static Color BG_COLOR = new Color(140, 145, 0);
         RenderTarget2D mainTarget;
 
-        const int SCREEN_WIDTH = 1280;
-        const int SCREEN_HEIGHT = 720;
         public const int INTERNAL_WIDTH = 320;
         public const int INTERNAL_HEIGHT = 180;
+        public static int SCREEN_WIDTH = INTERNAL_WIDTH * GameInfo.getResolutionScale();
+        public static int SCREEN_HEIGHT = INTERNAL_HEIGHT * GameInfo.getResolutionScale();
         public const int TILE_WIDTH = INTERNAL_WIDTH / Tile.TILE_SIZE;
         public const int TILE_HEIGHT = INTERNAL_HEIGHT / Tile.TILE_SIZE;
         const bool FULLSCREEN = false;
@@ -43,10 +43,7 @@ namespace Lakeside2
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferWidth = SCREEN_WIDTH;
-            _graphics.PreferredBackBufferHeight = SCREEN_HEIGHT;
-            _graphics.IsFullScreen = FULLSCREEN;
-            _graphics.ApplyChanges();
+            setResolution();
 
             mainTarget = new RenderTarget2D(GraphicsDevice, INTERNAL_WIDTH, INTERNAL_HEIGHT);
 
@@ -71,6 +68,17 @@ namespace Lakeside2
 
             states = new Stack();
             states.Push(new TitleScreen(this, Content));
+        }
+
+        public void setResolution()
+        {
+            SCREEN_WIDTH = INTERNAL_WIDTH * GameInfo.getResolutionScale();
+            SCREEN_HEIGHT = INTERNAL_HEIGHT * GameInfo.getResolutionScale();
+
+            _graphics.PreferredBackBufferWidth = SCREEN_WIDTH;
+            _graphics.PreferredBackBufferHeight = SCREEN_HEIGHT;
+            _graphics.IsFullScreen = FULLSCREEN;
+            _graphics.ApplyChanges();
         }
 
         public void goToOverworld(Player p, string currentMap)

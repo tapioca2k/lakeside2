@@ -39,7 +39,11 @@ namespace Lakeside2.UI
                     case 2: // TODO options
                         {
                             element.finished = false;
-                            system.pushElement(new UiLeftRightPicker(Content, new string[3] { "1x", "4x", "16x" }), new Vector2(100, 100));
+                            system.pushElement(new UiOptionsMenu(game, Content),
+                                new Vector2(
+                                    Game1.INTERNAL_WIDTH / 2 - UiOptionsMenu.WIDTH / 2,
+                                    Game1.INTERNAL_HEIGHT / 2 - UiOptionsMenu.HEIGHT / 2)
+                                );
                             break;
                         }
                     case 3: // TODO quit

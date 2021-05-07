@@ -13,7 +13,7 @@ namespace Lakeside2
         public static string titleBackground { get; set; }
         public static string startMap { get; set; }
         public static bool startOverworld { get; set; }
-
+        public static int resolution { get; set; }
 
         static GameInfo()
         {
@@ -24,6 +24,7 @@ namespace Lakeside2
             titleBackground = gi.titleBackground;
             startMap = gi.startMap;
             startOverworld = gi.startOverworld;
+            resolution = gi.resolution;
         }
 
         public static void save()
@@ -33,9 +34,22 @@ namespace Lakeside2
             gi.titleBackground = titleBackground;
             gi.startMap = startMap;
             gi.startOverworld = startOverworld;
+            gi.resolution = resolution;
 
             string json = JsonSerializer.Serialize(gi);
             File.WriteAllText("Content/game.json", json);
+        }
+
+        public static int getResolutionScale()
+        {
+            switch (resolution)
+            {
+                case 0: return 1;
+                case 1: return 2;
+                case 2: return 4;
+                case 3: return 6;
+                default: return 1;
+            }
         }
 
     }

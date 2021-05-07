@@ -88,6 +88,11 @@ namespace Lakeside2
                         }
                     case 2: // options
                         {
+                            ui.pushElement(new UiOptionsMenu(game, Content),
+                                new Vector2(
+                                    Game1.INTERNAL_WIDTH / 2 - UiOptionsMenu.WIDTH / 2,
+                                    Game1.INTERNAL_HEIGHT / 2 - UiOptionsMenu.HEIGHT / 2)
+                                );
                             break;
                         }
                     case 3: // quit

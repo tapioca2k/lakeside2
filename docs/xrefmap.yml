@@ -675,6 +675,31 @@ references:
   isSpec: "True"
   fullName: Lakeside2.Game1.pushState
   nameWithType: Game1.pushState
+- uid: Lakeside2.Game1.SCREEN_HEIGHT
+  name: SCREEN_HEIGHT
+  href: api/Lakeside2.Game1.html#Lakeside2_Game1_SCREEN_HEIGHT
+  commentId: F:Lakeside2.Game1.SCREEN_HEIGHT
+  fullName: Lakeside2.Game1.SCREEN_HEIGHT
+  nameWithType: Game1.SCREEN_HEIGHT
+- uid: Lakeside2.Game1.SCREEN_WIDTH
+  name: SCREEN_WIDTH
+  href: api/Lakeside2.Game1.html#Lakeside2_Game1_SCREEN_WIDTH
+  commentId: F:Lakeside2.Game1.SCREEN_WIDTH
+  fullName: Lakeside2.Game1.SCREEN_WIDTH
+  nameWithType: Game1.SCREEN_WIDTH
+- uid: Lakeside2.Game1.setResolution
+  name: setResolution()
+  href: api/Lakeside2.Game1.html#Lakeside2_Game1_setResolution
+  commentId: M:Lakeside2.Game1.setResolution
+  fullName: Lakeside2.Game1.setResolution()
+  nameWithType: Game1.setResolution()
+- uid: Lakeside2.Game1.setResolution*
+  name: setResolution
+  href: api/Lakeside2.Game1.html#Lakeside2_Game1_setResolution_
+  commentId: Overload:Lakeside2.Game1.setResolution
+  isSpec: "True"
+  fullName: Lakeside2.Game1.setResolution
+  nameWithType: Game1.setResolution
 - uid: Lakeside2.Game1.TILE_HEIGHT
   name: TILE_HEIGHT
   href: api/Lakeside2.Game1.html#Lakeside2_Game1_TILE_HEIGHT
@@ -712,6 +737,32 @@ references:
   commentId: T:Lakeside2.GameInfo
   fullName: Lakeside2.GameInfo
   nameWithType: GameInfo
+- uid: Lakeside2.GameInfo.getResolutionScale
+  name: getResolutionScale()
+  href: api/Lakeside2.GameInfo.html#Lakeside2_GameInfo_getResolutionScale
+  commentId: M:Lakeside2.GameInfo.getResolutionScale
+  fullName: Lakeside2.GameInfo.getResolutionScale()
+  nameWithType: GameInfo.getResolutionScale()
+- uid: Lakeside2.GameInfo.getResolutionScale*
+  name: getResolutionScale
+  href: api/Lakeside2.GameInfo.html#Lakeside2_GameInfo_getResolutionScale_
+  commentId: Overload:Lakeside2.GameInfo.getResolutionScale
+  isSpec: "True"
+  fullName: Lakeside2.GameInfo.getResolutionScale
+  nameWithType: GameInfo.getResolutionScale
+- uid: Lakeside2.GameInfo.resolution
+  name: resolution
+  href: api/Lakeside2.GameInfo.html#Lakeside2_GameInfo_resolution
+  commentId: P:Lakeside2.GameInfo.resolution
+  fullName: Lakeside2.GameInfo.resolution
+  nameWithType: GameInfo.resolution
+- uid: Lakeside2.GameInfo.resolution*
+  name: resolution
+  href: api/Lakeside2.GameInfo.html#Lakeside2_GameInfo_resolution_
+  commentId: Overload:Lakeside2.GameInfo.resolution
+  isSpec: "True"
+  fullName: Lakeside2.GameInfo.resolution
+  nameWithType: GameInfo.resolution
 - uid: Lakeside2.GameInfo.save
   name: save()
   href: api/Lakeside2.GameInfo.html#Lakeside2_GameInfo_save
@@ -2424,6 +2475,19 @@ references:
   commentId: T:Lakeside2.Serialization.SerializableGameInfo
   fullName: Lakeside2.Serialization.SerializableGameInfo
   nameWithType: SerializableGameInfo
+- uid: Lakeside2.Serialization.SerializableGameInfo.resolution
+  name: resolution
+  href: api/Lakeside2.Serialization.SerializableGameInfo.html#Lakeside2_Serialization_SerializableGameInfo_resolution
+  commentId: P:Lakeside2.Serialization.SerializableGameInfo.resolution
+  fullName: Lakeside2.Serialization.SerializableGameInfo.resolution
+  nameWithType: SerializableGameInfo.resolution
+- uid: Lakeside2.Serialization.SerializableGameInfo.resolution*
+  name: resolution
+  href: api/Lakeside2.Serialization.SerializableGameInfo.html#Lakeside2_Serialization_SerializableGameInfo_resolution_
+  commentId: Overload:Lakeside2.Serialization.SerializableGameInfo.resolution
+  isSpec: "True"
+  fullName: Lakeside2.Serialization.SerializableGameInfo.resolution
+  nameWithType: SerializableGameInfo.resolution
 - uid: Lakeside2.Serialization.SerializableGameInfo.startMap
   name: startMap
   href: api/Lakeside2.Serialization.SerializableGameInfo.html#Lakeside2_Serialization_SerializableGameInfo_startMap

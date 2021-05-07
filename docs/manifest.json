@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Lakeside2.Game1.html",
-          "hash": "DYukJTbmGhRuaQETXdDCD7w6hCXwtdI+jR16EwrItV0="
+          "hash": "PjHXlmuANyQc7nNjHCJmHv+0Y5b2UpzmkBQea6vF8Y4="
         }
       },
       "is_incremental": true,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Lakeside2.GameInfo.html",
-          "hash": "X7TTpLjK/g0F6zZVdD7gBsZVBJkPkhX51i2hYNQQ9+s="
+          "hash": "cSb6S6PMx54E5rtd+W0YAZXGZeG0ahaEHKhTTxnuvWM="
         }
       },
       "is_incremental": true,
@@ -321,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Lakeside2.Serialization.SerializableGameInfo.html",
-          "hash": "Fz7MvAUPZb/olQY25bpGNWZZPRswaulocCqYDgxyj6E="
+          "hash": "daVwn+Ds4X7H5DoFSpGOd7iPnF2amnJSByoj4d3Kxkw="
         }
       },
       "is_incremental": true,

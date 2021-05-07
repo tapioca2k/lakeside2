@@ -11,5 +11,6 @@ namespace Lakeside2.Serialization
         public string titleBackground { get; set; }
         public string startMap { get; set; }
         public bool startOverworld { get; set; }
+        public int resolution { get; set; }
     }
 }

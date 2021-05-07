@@ -15,17 +15,29 @@ namespace Lakeside2.UI
         public override Vector2 size => new Vector2(lSize.X + (20 * 2), 16 + 2);
 
         Texture2D leftArrow, rightArrow;
-
         string[] options;
-        int selected;
-        string selectedString
+        int index;
+        public int selected
         {
             get
             {
-                if (selected < 0 || selected >= options.Length) return null;
+                return index;
+            }
+            set
+            {
+                index = value;
+                this.text = selectedString;
+            }
+        }
+        public string selectedString
+        {
+            get
+            {
+                if (options == null || selected < 0 || selected >= options.Length) return null;
                 else return options[selected];
             }
         }
+        public bool enabled { get; set; }
 
         public UiLeftRightPicker(ContentManager Content, string[] options) : base()
         {
@@ -34,6 +46,7 @@ namespace Lakeside2.UI
             this.options = options;
             this.selected = 0;
             this.text = selectedString;
+            enabled = false;
 
             // calculate the size of the element only one time
             largestString = selectedString;
@@ -54,9 +67,8 @@ namespace Lakeside2.UI
             else if (input.isCommandPressed("move_right")) selected++;
             if (selected < 0) selected = options.Length - 1;
             else if (selected >= options.Length) selected = 0;
-            this.text = selectedString;
 
-            if (input.isCommandPressed("select")) finished = true;
+            if (input.isCommandPressed("interact")) finished = true;
             else if (input.isCommandPressed("back"))
             {
                 finished = true;
@@ -66,9 +78,12 @@ namespace Lakeside2.UI
 
         public override void draw(SBWrapper wrapper)
         {
-            wrapper.draw(leftArrow, new Vector2(2, 1));
+            if (enabled)
+            {
+                wrapper.draw(leftArrow, new Vector2(2, 1));
+                wrapper.draw(rightArrow, new Vector2(20 + lSize.X + 2, 1));
+            }
             base.draw(new SBWrapper(wrapper, new Vector2(20, 0)));
-            wrapper.draw(rightArrow, new Vector2(20 + lSize.X + 2, 1));
         }
 
     }
