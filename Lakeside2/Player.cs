@@ -77,13 +77,13 @@ namespace Lakeside2
             if (moving) return;
 
             // movement
-            if (input.isCommandHeld("move_up")) tryMove(DIREC_UP);
-            else if (input.isCommandHeld("move_left")) tryMove(DIREC_LEFT);
-            else if (input.isCommandHeld("move_down")) tryMove(DIREC_DOWN);
-            else if (input.isCommandHeld("move_right")) tryMove(DIREC_RIGHT);
+            if (input.isCommandHeld(Bindings.Up)) tryMove(DIREC_UP);
+            else if (input.isCommandHeld(Bindings.Left)) tryMove(DIREC_LEFT);
+            else if (input.isCommandHeld(Bindings.Down)) tryMove(DIREC_DOWN);
+            else if (input.isCommandHeld(Bindings.Right)) tryMove(DIREC_RIGHT);
 
             // interact
-            else if (input.isCommandPressed("interact"))
+            else if (input.isCommandPressed(Bindings.Interact))
             {
                 NPC interacting = world.map.getNPC(getFacingTile());
                 if (interacting != null)

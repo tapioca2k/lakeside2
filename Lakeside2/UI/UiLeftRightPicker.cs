@@ -63,13 +63,13 @@ namespace Lakeside2.UI
 
         public override void onInput(InputHandler input)
         {
-            if (input.isCommandPressed("move_left")) selected--;
-            else if (input.isCommandPressed("move_right")) selected++;
+            if (input.isCommandPressed(Bindings.Left)) selected--;
+            else if (input.isCommandPressed(Bindings.Right)) selected++;
             if (selected < 0) selected = options.Length - 1;
             else if (selected >= options.Length) selected = 0;
 
-            if (input.isCommandPressed("interact")) finished = true;
-            else if (input.isCommandPressed("back"))
+            if (input.isCommandPressed(Bindings.Interact)) finished = true;
+            else if (input.isCommandPressed(Bindings.Back))
             {
                 finished = true;
                 selected = -1;

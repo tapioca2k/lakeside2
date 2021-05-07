@@ -202,7 +202,7 @@ namespace Lakeside2
             return stickPositions[n];
         }
 
-        public bool isCommandPressed(string command)
+        public bool isCommandPressed(Bindings command)
         {
             List<object> inputs = bindings.getInputs(command);
             foreach (object o in inputs)
@@ -213,7 +213,7 @@ namespace Lakeside2
             return false;
         }
 
-        public bool isCommandHeld(string command)
+        public bool isCommandHeld(Bindings command)
         {
             List<object> inputs = bindings.getInputs(command);
             foreach (object o in inputs)

@@ -66,7 +66,7 @@ namespace Lakeside2.UI
         public override void onInput(InputHandler input)
         {
             base.onInput(input);
-            if (input.isCommandPressed("start"))
+            if (input.isCommandPressed(Bindings.Start))
             {
                 selected = -1;
                 finished = true;

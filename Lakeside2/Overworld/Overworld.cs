@@ -100,22 +100,22 @@ namespace Lakeside2.WorldMap
                 bool interacting = ui.onInput(input);
                 if (interacting) return;
 
-                if (input.isCommandPressed("move_left") && index > 0)
+                if (input.isCommandPressed(Bindings.Left) && index > 0)
                 {
                     index--;
                     setPlayerLocation();
                 }
-                else if (input.isCommandPressed("move_right") && index < locations.Count - 1)
+                else if (input.isCommandPressed(Bindings.Right) && index < locations.Count - 1)
                 {
                     index++;
                     setPlayerLocation();
                 }
-                else if (input.isCommandPressed("interact"))
+                else if (input.isCommandPressed(Bindings.Interact))
                 {
                     game.goToWorld(player.p, selected.filename);
                 }
 
-                if (input.isCommandPressed("start"))
+                if (input.isCommandPressed(Bindings.Start))
                 {
                     ui.pushElement(new UiPauseMenu(game, Content, player.p, selected.filename, true),
                         new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));

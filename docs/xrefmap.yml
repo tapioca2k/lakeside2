@@ -91,6 +91,54 @@ references:
   isSpec: "True"
   fullName: Lakeside2.Animation.width
   nameWithType: Animation.width
+- uid: Lakeside2.Bindings
+  name: Bindings
+  href: api/Lakeside2.Bindings.html
+  commentId: T:Lakeside2.Bindings
+  fullName: Lakeside2.Bindings
+  nameWithType: Bindings
+- uid: Lakeside2.Bindings.Back
+  name: Back
+  href: api/Lakeside2.Bindings.html#Lakeside2_Bindings_Back
+  commentId: F:Lakeside2.Bindings.Back
+  fullName: Lakeside2.Bindings.Back
+  nameWithType: Bindings.Back
+- uid: Lakeside2.Bindings.Down
+  name: Down
+  href: api/Lakeside2.Bindings.html#Lakeside2_Bindings_Down
+  commentId: F:Lakeside2.Bindings.Down
+  fullName: Lakeside2.Bindings.Down
+  nameWithType: Bindings.Down
+- uid: Lakeside2.Bindings.Interact
+  name: Interact
+  href: api/Lakeside2.Bindings.html#Lakeside2_Bindings_Interact
+  commentId: F:Lakeside2.Bindings.Interact
+  fullName: Lakeside2.Bindings.Interact
+  nameWithType: Bindings.Interact
+- uid: Lakeside2.Bindings.Left
+  name: Left
+  href: api/Lakeside2.Bindings.html#Lakeside2_Bindings_Left
+  commentId: F:Lakeside2.Bindings.Left
+  fullName: Lakeside2.Bindings.Left
+  nameWithType: Bindings.Left
+- uid: Lakeside2.Bindings.Right
+  name: Right
+  href: api/Lakeside2.Bindings.html#Lakeside2_Bindings_Right
+  commentId: F:Lakeside2.Bindings.Right
+  fullName: Lakeside2.Bindings.Right
+  nameWithType: Bindings.Right
+- uid: Lakeside2.Bindings.Start
+  name: Start
+  href: api/Lakeside2.Bindings.html#Lakeside2_Bindings_Start
+  commentId: F:Lakeside2.Bindings.Start
+  fullName: Lakeside2.Bindings.Start
+  nameWithType: Bindings.Start
+- uid: Lakeside2.Bindings.Up
+  name: Up
+  href: api/Lakeside2.Bindings.html#Lakeside2_Bindings_Up
+  commentId: F:Lakeside2.Bindings.Up
+  fullName: Lakeside2.Bindings.Up
+  nameWithType: Bindings.Up
 - uid: Lakeside2.Entity
   name: Entity
   href: api/Lakeside2.Entity.html
@@ -982,12 +1030,12 @@ references:
   isSpec: "True"
   fullName: Lakeside2.InputHandler.isButtonPressed
   nameWithType: InputHandler.isButtonPressed
-- uid: Lakeside2.InputHandler.isCommandHeld(System.String)
-  name: isCommandHeld(String)
-  href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_isCommandHeld_System_String_
-  commentId: M:Lakeside2.InputHandler.isCommandHeld(System.String)
-  fullName: Lakeside2.InputHandler.isCommandHeld(System.String)
-  nameWithType: InputHandler.isCommandHeld(String)
+- uid: Lakeside2.InputHandler.isCommandHeld(Lakeside2.Bindings)
+  name: isCommandHeld(Bindings)
+  href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_isCommandHeld_Lakeside2_Bindings_
+  commentId: M:Lakeside2.InputHandler.isCommandHeld(Lakeside2.Bindings)
+  fullName: Lakeside2.InputHandler.isCommandHeld(Lakeside2.Bindings)
+  nameWithType: InputHandler.isCommandHeld(Bindings)
 - uid: Lakeside2.InputHandler.isCommandHeld*
   name: isCommandHeld
   href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_isCommandHeld_
@@ -995,12 +1043,12 @@ references:
   isSpec: "True"
   fullName: Lakeside2.InputHandler.isCommandHeld
   nameWithType: InputHandler.isCommandHeld
-- uid: Lakeside2.InputHandler.isCommandPressed(System.String)
-  name: isCommandPressed(String)
-  href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_isCommandPressed_System_String_
-  commentId: M:Lakeside2.InputHandler.isCommandPressed(System.String)
-  fullName: Lakeside2.InputHandler.isCommandPressed(System.String)
-  nameWithType: InputHandler.isCommandPressed(String)
+- uid: Lakeside2.InputHandler.isCommandPressed(Lakeside2.Bindings)
+  name: isCommandPressed(Bindings)
+  href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_isCommandPressed_Lakeside2_Bindings_
+  commentId: M:Lakeside2.InputHandler.isCommandPressed(Lakeside2.Bindings)
+  fullName: Lakeside2.InputHandler.isCommandPressed(Lakeside2.Bindings)
+  nameWithType: InputHandler.isCommandPressed(Bindings)
 - uid: Lakeside2.InputHandler.isCommandPressed*
   name: isCommandPressed
   href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_isCommandPressed_

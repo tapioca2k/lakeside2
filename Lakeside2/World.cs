@@ -121,7 +121,7 @@ namespace Lakeside2
                 {
                     player.onInput(input);
 
-                    if (input.isCommandPressed("start"))
+                    if (input.isCommandPressed(Bindings.Start))
                     {
                         ui.pushElement(new UiPauseMenu(game, Content, player, map.filename, false), 
                             new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));

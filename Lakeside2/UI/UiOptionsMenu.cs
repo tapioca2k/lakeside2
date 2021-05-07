@@ -61,9 +61,9 @@ namespace Lakeside2.UI
             }
             else // interact with sections
             {
-                if (input.isCommandPressed("move_up")) index--;
-                else if (input.isCommandPressed("move_down")) index++;
-                else if (input.isCommandPressed("interact"))
+                if (input.isCommandPressed(Bindings.Up)) index--;
+                else if (input.isCommandPressed(Bindings.Down)) index++;
+                else if (input.isCommandPressed(Bindings.Interact))
                 {
                     switch (index)
                     {
