@@ -16,6 +16,15 @@ namespace Lakeside2.WorldMap
 {
     class Overworld : IGameState
     {
+
+        // serialization of overworld data
+        private class OverworldMeta
+        {
+            public List<OWLocation> locations { get; set; }
+            public List<string> layers { get; set; }
+        }
+
+        // sorts locations by X coordinate for ordering
         private class LocationComparer : IComparer<OWLocation>
         {
             public int Compare(OWLocation a, OWLocation b)
@@ -26,12 +35,27 @@ namespace Lakeside2.WorldMap
 
         Game1 game;
         ContentManager Content;
-        Texture2D background;
-        Texture2D foreground;
+        List<Texture2D> layers;
         UiSystem ui;
         public int width;
-        public double x;
-
+        List<double> parallax;
+        List<double> scrollValues;
+        public double x
+        {
+            get
+            {
+                return parallax[parallax.Count - 1];
+            }
+            set
+            {
+                double pct = value / width;
+                for (int i = 0; i < layers.Count; i++)
+                {
+                    parallax[i] = layers[i].Width * pct;
+                }
+                bindParallax();
+            }
+        }
         IGameState editor;
         bool editing => editor != null;
 
@@ -51,20 +75,32 @@ namespace Lakeside2.WorldMap
         {
             this.game = game;
             this.Content = Content;
-            background = Content.Load<Texture2D>("map/background");
-            foreground = Content.Load<Texture2D>("map/foreground");
-            width = foreground.Width;
             ui = new UiSystem();
-            x = 0;
 
             player = new OWPlayer(Content, p, Vector2.Zero);
 
             locations = new List<OWLocation>();
-            // load locations from json
+            // load locations and texture layers from json
             string json = File.ReadAllText("Content/map/map.json");
-            locations = JsonSerializer.Deserialize<List<OWLocation>>(json, SerializableMap.OPTIONS);
+            OverworldMeta meta = JsonSerializer.Deserialize<OverworldMeta>(json, SerializableMap.OPTIONS);
+            this.locations = meta.locations;
             locations.ForEach(l => l.load(Content));
             sortLocations();
+            layers = new List<Texture2D>();
+            parallax = new List<double>();
+            scrollValues = new List<double>();
+            meta.layers.ForEach(filename =>
+            {
+                layers.Add(Content.Load<Texture2D>("map/" + filename));
+                parallax.Add(0);
+            });
+            width = layers[layers.Count - 1].Width;
+
+            // calculate how much each layer should scroll per update
+            for (int i = 0; i < layers.Count; i++)
+            {
+                scrollValues.Add((layers[i].Width - Game1.INTERNAL_WIDTH) / (double)(width - Game1.INTERNAL_WIDTH));
+            }
 
             // put player in the correct spot
             if (current == null) index = 0;
@@ -136,9 +172,19 @@ namespace Lakeside2.WorldMap
             player.feet = locations[index].center;
         }
 
+        // get location the camera desires to be at
         double getCameraDesired()
         {
             return Math.Min(width - Game1.INTERNAL_WIDTH, Math.Max(0, player.feet.X - (Game1.INTERNAL_WIDTH / 2)));
+        }
+
+        // bind parallax values to within texture bounds to prevent weird stretching
+        void bindParallax()
+        {
+            for (int i = 0; i < layers.Count; i++)
+            {
+                parallax[i] = Math.Max(0, Math.Min(parallax[i], layers[i].Width - Game1.INTERNAL_WIDTH));
+            }
         }
 
         public void sortLocations()
@@ -156,15 +202,34 @@ namespace Lakeside2.WorldMap
             {
                 ui.update(dt);
                 double desired = getCameraDesired();
-                if (x > desired) x -= Math.Min(dt * 300, x - desired);
-                else if (x < desired) x += Math.Min(dt * 300, desired - x);
+                if (x > desired)
+                {
+                    double fgScroll = Math.Min(dt * 300, x - desired);
+                    for (int i = 0; i < parallax.Count; i++)
+                    {
+                        parallax[i] -= fgScroll * scrollValues[i];
+                    }
+                }
+                else if (x < desired)
+                {
+                    double fgScroll = Math.Min(dt * 300, desired - x);
+                    for (int i = 0; i < parallax.Count; i++)
+                    {
+                        parallax[i] += fgScroll * scrollValues[i];
+                    }
+                }
+                bindParallax();
             }
         }
 
         public void draw(SBWrapper wrapper)
         {
-            wrapper.draw(background);
-            wrapper.draw(foreground, Vector2.Zero, new Rectangle((int)x, 0, Game1.INTERNAL_WIDTH, Game1.INTERNAL_HEIGHT));
+            for (int i = 0; i < layers.Count; i++)
+            {
+                wrapper.draw(layers[i], Vector2.Zero, new Rectangle((int)parallax[i], 0, Game1.INTERNAL_WIDTH, Game1.INTERNAL_HEIGHT));
+            }
+            //wrapper.draw(background);
+            //wrapper.draw(foreground, Vector2.Zero, new Rectangle((int)x, 0, Game1.INTERNAL_WIDTH, Game1.INTERNAL_HEIGHT));
 
             SBWrapper relative = new SBWrapper(wrapper, new Vector2(-(int)x, 0));
             locations.ForEach(l => l.draw(relative));
