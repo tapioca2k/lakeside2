@@ -91,28 +91,13 @@ namespace Lakeside2.WorldMap
 
             player = new OWPlayer(Content, p, Vector2.Zero);
 
-            locations = new List<OWLocation>();
             // load locations and texture layers from json
             string json = File.ReadAllText("Content/map/map.json");
             meta = JsonSerializer.Deserialize<OverworldMeta>(json, SerializableMap.OPTIONS);
             this.locations = meta.locations;
             locations.ForEach(l => l.load(Content));
             sortLocations();
-            layers = new List<Texture2D>();
-            parallax = new List<double>();
-            scrollValues = new List<double>();
-            meta.layers.ForEach(filename =>
-            {
-                layers.Add(Content.Load<Texture2D>("map/" + filename));
-                parallax.Add(0);
-            });
-            width = layers[layers.Count - 1].Width;
-
-            // calculate how much each layer should scroll per update
-            for (int i = 0; i < layers.Count; i++)
-            {
-                scrollValues.Add((layers[i].Width - Game1.INTERNAL_WIDTH) / (double)(width - Game1.INTERNAL_WIDTH));
-            }
+            reloadLayers();
 
             // put player in the correct spot
             if (current == null) index = 0;
@@ -135,6 +120,27 @@ namespace Lakeside2.WorldMap
             }), StripePosition.Center);
 
             ui.addStripeElement(new UiClock(), StripePosition.Left);
+        }
+
+        public void reloadLayers()
+        {
+            // load textures
+            layers = new List<Texture2D>();
+            parallax = new List<double>();
+            scrollValues = new List<double>();
+            meta.layers.ForEach(filename =>
+            {
+                layers.Add(Content.Load<Texture2D>("map/" + filename));
+                parallax.Add(0);
+            });
+            width = layers[layers.Count - 1].Width;
+
+            // calculate how much each layer should scroll per update
+            for (int i = 0; i < layers.Count; i++)
+            {
+                scrollValues.Add((layers[i].Width - Game1.INTERNAL_WIDTH) / (double)(width - Game1.INTERNAL_WIDTH));
+            }
+
         }
 
         public void onInput(InputHandler input)

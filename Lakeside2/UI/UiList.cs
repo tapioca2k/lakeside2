@@ -50,7 +50,7 @@ namespace Lakeside2.UI
             this.setStrings(options);
         }
 
-        protected void setStrings(string[] options)
+        public void setStrings(string[] options)
         {
             this.options = new List<UiTextDisplay>();
             for (int i = 0; i < options.Length; i++)

@@ -10,6 +10,7 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 using static Lakeside2.Entity;
+using Lakeside2.UI.Editor;
 
 namespace Lakeside2.Editor
 {
@@ -73,6 +74,15 @@ namespace Lakeside2.Editor
                     }
                 }
             }
+            else if (input.isKeyPressed(Keys.L)) // Layer editor
+            {
+                ui.pushElement(new UiLayerEditor(Content, map.meta.layers).addCallback(element =>
+                {
+                    UiLayerEditor le = (UiLayerEditor)element;
+                    map.meta.layers = le.layers;
+                    map.reloadLayers();
+                }), new Vector2(10, 30));
+            }
         }
 
         public void update(double dt)
@@ -88,8 +98,8 @@ namespace Lakeside2.Editor
 
         public void draw(SBWrapper wrapper)
         {
-            ui.draw(wrapper);
             cursor.draw(new SBWrapper(wrapper, new Vector2(-(int)map.x, 0)), cursor.getLocation());
+            ui.draw(wrapper);
         }
 
     }
