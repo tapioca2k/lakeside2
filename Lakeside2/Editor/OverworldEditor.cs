@@ -45,7 +45,7 @@ namespace Lakeside2.Editor
 
             if (input.isKeyPressed(Keys.F2)) // Save
             {
-                string json = JsonSerializer.Serialize<List<OWLocation>>(map.locations, SerializableMap.OPTIONS);
+                string json = JsonSerializer.Serialize<OverworldMeta>(map.meta, SerializableMap.OPTIONS);
                 File.WriteAllText("Content/map/map.json", json);
             }
             else if (input.isKeyPressed(Keys.E)) // Create new map location
@@ -55,7 +55,7 @@ namespace Lakeside2.Editor
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "")
                     {
-                        map.locations.Add(new OWLocation(Content, input.text, cursor.getLocation()));
+                        map.meta.locations.Add(new OWLocation(Content, input.text, cursor.getLocation()));
                         map.sortLocations();
                         map.setPlayerLocation();
                     }
@@ -63,11 +63,11 @@ namespace Lakeside2.Editor
             }
             else if (input.isKeyPressed(Keys.R)) // Delete map location
             {
-                for (int i = 0; i < map.locations.Count; i++)
+                for (int i = 0; i < map.meta.locations.Count; i++)
                 {
-                    if (Vector2.Distance(map.locations[i].center, cursor.center) < 10)
+                    if (Vector2.Distance(map.meta.locations[i].center, cursor.center) < 10)
                     {
-                        map.locations.RemoveAt(i);
+                        map.meta.locations.RemoveAt(i);
                         map.setPlayerLocation();
                         break;
                     }

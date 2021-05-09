@@ -14,15 +14,15 @@ using System.Text.Json;
 
 namespace Lakeside2.WorldMap
 {
+    // serialization of overworld data
+    class OverworldMeta
+    {
+        public List<OWLocation> locations { get; set; }
+        public List<string> layers { get; set; }
+    }
+
     class Overworld : IGameState
     {
-
-        // serialization of overworld data
-        private class OverworldMeta
-        {
-            public List<OWLocation> locations { get; set; }
-            public List<string> layers { get; set; }
-        }
 
         // sorts locations by X coordinate for ordering
         private class LocationComparer : IComparer<OWLocation>
@@ -35,11 +35,17 @@ namespace Lakeside2.WorldMap
 
         Game1 game;
         ContentManager Content;
-        List<Texture2D> layers;
+        public OverworldMeta meta;
+        IGameState editor;
         UiSystem ui;
+        OWPlayer player;
+        List<Texture2D> layers;
         public int width;
         List<double> parallax;
         List<double> scrollValues;
+        int index;
+
+        bool editing => editor != null;
         public double x
         {
             get
@@ -56,12 +62,18 @@ namespace Lakeside2.WorldMap
                 bindParallax();
             }
         }
-        IGameState editor;
-        bool editing => editor != null;
 
-        OWPlayer player;
-        public List<OWLocation> locations;
-        int index;
+        List<OWLocation> locations
+        {
+            get
+            {
+                return meta.locations;
+            }
+            set
+            {
+                meta.locations = value;
+            }
+        }
 
         OWLocation selected
         {
@@ -82,7 +94,7 @@ namespace Lakeside2.WorldMap
             locations = new List<OWLocation>();
             // load locations and texture layers from json
             string json = File.ReadAllText("Content/map/map.json");
-            OverworldMeta meta = JsonSerializer.Deserialize<OverworldMeta>(json, SerializableMap.OPTIONS);
+            meta = JsonSerializer.Deserialize<OverworldMeta>(json, SerializableMap.OPTIONS);
             this.locations = meta.locations;
             locations.ForEach(l => l.load(Content));
             sortLocations();
