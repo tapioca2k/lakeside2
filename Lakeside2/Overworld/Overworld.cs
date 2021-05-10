@@ -54,10 +54,9 @@ namespace Lakeside2.WorldMap
             }
             set
             {
-                double pct = value / width;
-                for (int i = 0; i < layers.Count; i++)
+                for (int i = 0; i < parallax.Count; i++)
                 {
-                    parallax[i] = layers[i].Width * pct;
+                    parallax[i] = value * scrollValues[i];
                 }
                 bindParallax();
             }
