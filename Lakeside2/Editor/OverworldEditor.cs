@@ -76,12 +76,7 @@ namespace Lakeside2.Editor
             }
             else if (input.isKeyPressed(Keys.L)) // Layer editor
             {
-                ui.pushElement(new UiLayerEditor(Content, map.meta.layers).addCallback(element =>
-                {
-                    UiLayerEditor le = (UiLayerEditor)element;
-                    map.meta.layers = le.layers;
-                    map.reloadLayers();
-                }), new Vector2(10, 30));
+                ui.pushElement(new UiLayerEditor(Content, map), new Vector2(10, 30));
             }
         }
 

@@ -1,1 +1,1 @@
-{"locations":[{"filename":"desert.json","location":{"x":121,"y":116}},{"filename":"forest.json","location":{"x":274,"y":116}},{"filename":"beach.json","location":{"x":532,"y":120}}],"layers":["background","stationaryLogo","foreground"]}
+{"locations":[{"filename":"desert.json","location":{"x":121,"y":116}},{"filename":"forest.json","location":{"x":274,"y":116}},{"filename":"beach.json","location":{"x":532,"y":120}}],"layers":["background","stationaryLogo","foreground"],"baseLayer":2}

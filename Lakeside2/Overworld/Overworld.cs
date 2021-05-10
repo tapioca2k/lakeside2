@@ -19,6 +19,8 @@ namespace Lakeside2.WorldMap
     {
         public List<OWLocation> locations { get; set; }
         public List<string> layers { get; set; }
+
+        public int baseLayer { get; set; }
     }
 
     class Overworld : IGameState
@@ -40,17 +42,17 @@ namespace Lakeside2.WorldMap
         UiSystem ui;
         OWPlayer player;
         List<Texture2D> layers;
-        public int width;
         List<double> parallax;
         List<double> scrollValues;
         int index;
 
         bool editing => editor != null;
+        public int width => layers[meta.baseLayer].Width;
         public double x
         {
             get
             {
-                return parallax[parallax.Count - 1];
+                return parallax[meta.baseLayer];
             }
             set
             {
@@ -132,7 +134,6 @@ namespace Lakeside2.WorldMap
                 layers.Add(Content.Load<Texture2D>("map/" + filename));
                 parallax.Add(0);
             });
-            width = layers[layers.Count - 1].Width;
 
             // calculate how much each layer should scroll per update
             for (int i = 0; i < layers.Count; i++)

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Lakeside2.WorldMap;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
@@ -8,27 +9,36 @@ namespace Lakeside2.UI.Editor
 {
     class UiLayerEditor : UiElement
     {
+        enum Mode
+        {
+            Adding, Deleting, SetBase, Inactive
+        };
+
         public override Vector2 size => Vector2.Zero;
+
+        Overworld o;
         public List<string> layers;
 
         UiList layerList;
         UiList commandList;
-        bool adding, deleting;
-        bool selecting => adding || deleting;
+        Mode mode = Mode.Inactive;
+        bool selecting => mode != Mode.Inactive;
 
-        public UiLayerEditor(ContentManager Content, List<string> layers)
+        public UiLayerEditor(ContentManager Content, Overworld o)
         {
-            this.layers = layers;
+            this.o = o;
+            this.layers = o.meta.layers;
             layerList = new UiList(Content, layers.ToArray());
-            commandList = new UiList(Content, new string[3] { "Add", "Delete", "Exit" });
+            commandList = new UiList(Content, new string[4] { "Add", "Delete", "Set Base", "Exit" });
             commandList.addCallback(element =>
             {
                 commandList.finished = false;
                 switch (commandList.selected)
                 {
-                    case 0: adding = true; layerList.setStrings(getLayerStrings().ToArray()); break;
-                    case 1: deleting = true; layerList.setStrings(getLayerStrings().ToArray()); break;
-                    case 2: finished = true; break;
+                    case 0: mode = Mode.Adding; genLayerStrings(); layerList.selected = 0; break;
+                    case 1: mode = Mode.Deleting; genLayerStrings(); layerList.selected = 0; break;
+                    case 2: mode = Mode.SetBase; genLayerStrings(); layerList.selected = o.meta.baseLayer; break;
+                    case 3: finished = true; break;
                 }
             });
             layerList.addCallback(element =>
@@ -36,7 +46,7 @@ namespace Lakeside2.UI.Editor
                 layerList.finished = false;
                 if (layerList.selected != -1)
                 {
-                    if (adding)
+                    if (mode == Mode.Adding)
                     {
                         system.pushElement(new UiTextInput("Filename: ").addCallback(input =>
                         {
@@ -45,25 +55,31 @@ namespace Lakeside2.UI.Editor
                             {
                                 layers.Insert(layerList.selected, textInput.text);
                                 layerList.setStrings(layers.ToArray());
-                                adding = false;
+                                o.reloadLayers();
                             }
                         }), Vector2.Zero);
                     }
-                    else if (deleting)
+                    else if (mode == Mode.Deleting)
                     {
                         layers.RemoveAt(layerList.selected);
                         layerList.setStrings(layers.ToArray());
-                        deleting = false;
+                        o.reloadLayers();
                     }
+                    else if (mode == Mode.SetBase)
+                    {
+                        o.meta.baseLayer = layerList.selected;
+                        o.reloadLayers();
+                    }
+                    mode = Mode.Inactive;
                 }
             });
         }
 
-        List<string> getLayerStrings()
+        void genLayerStrings()
         {
             List<string> l = new List<string>(layers);
-            if (adding) l.Add(" ");
-            return l;
+            if (mode == Mode.Adding) l.Add(" ");
+            layerList.setStrings(l.ToArray());
         }
 
         public override void update(double dt)
@@ -89,7 +105,7 @@ namespace Lakeside2.UI.Editor
         public override void draw(SBWrapper wrapper)
         {
             commandList.draw(new SBWrapper(wrapper, Vector2.Zero));
-            layerList.draw(new SBWrapper(wrapper, new Vector2(75, 0)));
+            layerList.draw(new SBWrapper(wrapper, new Vector2(100, 0)));
         }
     }
 }
