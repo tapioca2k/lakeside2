@@ -1984,6 +1984,19 @@ references:
   isSpec: "True"
   fullName: Lakeside2.Player.setInventory
   nameWithType: Player.setInventory
+- uid: Lakeside2.Player.setItemCount(System.String,System.Int32)
+  name: setItemCount(String, Int32)
+  href: api/Lakeside2.Player.html#Lakeside2_Player_setItemCount_System_String_System_Int32_
+  commentId: M:Lakeside2.Player.setItemCount(System.String,System.Int32)
+  fullName: Lakeside2.Player.setItemCount(System.String, System.Int32)
+  nameWithType: Player.setItemCount(String, Int32)
+- uid: Lakeside2.Player.setItemCount*
+  name: setItemCount
+  href: api/Lakeside2.Player.html#Lakeside2_Player_setItemCount_
+  commentId: Overload:Lakeside2.Player.setItemCount
+  isSpec: "True"
+  fullName: Lakeside2.Player.setItemCount
+  nameWithType: Player.setItemCount
 - uid: Lakeside2.Player.setWorld(Lakeside2.World)
   name: setWorld(World)
   href: api/Lakeside2.Player.html#Lakeside2_Player_setWorld_Lakeside2_World_

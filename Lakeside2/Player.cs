@@ -34,7 +34,7 @@ namespace Lakeside2
             if (inventory.ContainsKey(i)) inventory[i] += amnt;
             else inventory.Add(i, amnt);
 
-            if (inventory[i] < 0)
+            if (inventory[i] <= 0)
             {
                 inventory.Remove(i);
                 return 0;
@@ -43,6 +43,11 @@ namespace Lakeside2
             {
                 return inventory[i];
             }
+        }
+
+        public void setItemCount(string name, int amnt)
+        {
+            addItem(name, amnt - getItemCount(name));
         }
 
         public Item getItem(string name)
@@ -61,6 +66,7 @@ namespace Lakeside2
         {
             return inventory;
         }
+
         public void setInventory(Dictionary<Item, int> inventory)
         {
             this.inventory = inventory;

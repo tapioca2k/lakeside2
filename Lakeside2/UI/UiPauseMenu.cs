@@ -11,16 +11,27 @@ namespace Lakeside2.UI
     {
         Game1 game;
         ContentManager Content;
+        Player player;
+
         public UiPauseMenu(Game1 game, ContentManager Content, Player player, string map, bool overworld)
-            : base(Content, new string[4] { "Resume", "Save", "Options", "Quit"})
+            : base(Content, new string[4] { "Items", "Save", "Options", "Quit"})
         {
             this.game = game;
             this.Content = Content;
+            this.player = player;
+
             addCallback(element =>
             {
                 UiList list = (UiList)element;
                 switch (list.selected)
                 {
+                    case 0: // inventory
+                        {
+                            element.finished = false;
+                            system.pushElement(new UiInventory(Content, player), 
+                                new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
+                            break;
+                        }
                     case 1: // save
                         {
                             element.finished = false; // don't close the menu yet
