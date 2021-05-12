@@ -282,6 +282,19 @@ references:
   isSpec: "True"
   fullName: Lakeside2.Entity.getFacingVector
   nameWithType: Entity.getFacingVector
+- uid: Lakeside2.Entity.getFollower
+  name: getFollower()
+  href: api/Lakeside2.Entity.html#Lakeside2_Entity_getFollower
+  commentId: M:Lakeside2.Entity.getFollower
+  fullName: Lakeside2.Entity.getFollower()
+  nameWithType: Entity.getFollower()
+- uid: Lakeside2.Entity.getFollower*
+  name: getFollower
+  href: api/Lakeside2.Entity.html#Lakeside2_Entity_getFollower_
+  commentId: Overload:Lakeside2.Entity.getFollower
+  isSpec: "True"
+  fullName: Lakeside2.Entity.getFollower
+  nameWithType: Entity.getFollower
 - uid: Lakeside2.Entity.getLocation
   name: getLocation()
   href: api/Lakeside2.Entity.html#Lakeside2_Entity_getLocation
@@ -392,6 +405,19 @@ references:
   isSpec: "True"
   fullName: Lakeside2.Entity.setDirection
   nameWithType: Entity.setDirection
+- uid: Lakeside2.Entity.setFollower(Lakeside2.Entity)
+  name: setFollower(Entity)
+  href: api/Lakeside2.Entity.html#Lakeside2_Entity_setFollower_Lakeside2_Entity_
+  commentId: M:Lakeside2.Entity.setFollower(Lakeside2.Entity)
+  fullName: Lakeside2.Entity.setFollower(Lakeside2.Entity)
+  nameWithType: Entity.setFollower(Entity)
+- uid: Lakeside2.Entity.setFollower*
+  name: setFollower
+  href: api/Lakeside2.Entity.html#Lakeside2_Entity_setFollower_
+  commentId: Overload:Lakeside2.Entity.setFollower
+  isSpec: "True"
+  fullName: Lakeside2.Entity.setFollower
+  nameWithType: Entity.setFollower
 - uid: Lakeside2.Entity.setLocation(Microsoft.Xna.Framework.Vector2)
   name: setLocation(Vector2)
   href: api/Lakeside2.Entity.html#Lakeside2_Entity_setLocation_Microsoft_Xna_Framework_Vector2_
@@ -1300,6 +1326,19 @@ references:
   isSpec: "True"
   fullName: Lakeside2.LuaAPI.changeMap
   nameWithType: LuaAPI.changeMap
+- uid: Lakeside2.LuaAPI.followPlayer(Lakeside2.Entity)
+  name: followPlayer(Entity)
+  href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI_followPlayer_Lakeside2_Entity_
+  commentId: M:Lakeside2.LuaAPI.followPlayer(Lakeside2.Entity)
+  fullName: Lakeside2.LuaAPI.followPlayer(Lakeside2.Entity)
+  nameWithType: LuaAPI.followPlayer(Entity)
+- uid: Lakeside2.LuaAPI.followPlayer*
+  name: followPlayer
+  href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI_followPlayer_
+  commentId: Overload:Lakeside2.LuaAPI.followPlayer
+  isSpec: "True"
+  fullName: Lakeside2.LuaAPI.followPlayer
+  nameWithType: LuaAPI.followPlayer
 - uid: Lakeside2.LuaAPI.getEntity(System.String)
   name: getEntity(String)
   href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI_getEntity_System_String_
@@ -1326,6 +1365,19 @@ references:
   isSpec: "True"
   fullName: Lakeside2.LuaAPI.goToOverworld
   nameWithType: LuaAPI.goToOverworld
+- uid: Lakeside2.LuaAPI.isFollowingPlayer(Lakeside2.Entity)
+  name: isFollowingPlayer(Entity)
+  href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI_isFollowingPlayer_Lakeside2_Entity_
+  commentId: M:Lakeside2.LuaAPI.isFollowingPlayer(Lakeside2.Entity)
+  fullName: Lakeside2.LuaAPI.isFollowingPlayer(Lakeside2.Entity)
+  nameWithType: LuaAPI.isFollowingPlayer(Entity)
+- uid: Lakeside2.LuaAPI.isFollowingPlayer*
+  name: isFollowingPlayer
+  href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI_isFollowingPlayer_
+  commentId: Overload:Lakeside2.LuaAPI.isFollowingPlayer
+  isSpec: "True"
+  fullName: Lakeside2.LuaAPI.isFollowingPlayer
+  nameWithType: LuaAPI.isFollowingPlayer
 - uid: Lakeside2.LuaAPI.makeChain(Lakeside2.Scripting.ScriptNode[])
   name: makeChain(ScriptNode[])
   href: api/Lakeside2.LuaAPI.html#Lakeside2_LuaAPI_makeChain_Lakeside2_Scripting_ScriptNode___

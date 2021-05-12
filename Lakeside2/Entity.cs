@@ -34,6 +34,8 @@ namespace Lakeside2
         Vector2 move = Vector2.Zero;
         protected bool step = false;
 
+        Entity follower;
+
         public bool moving
         {
             get
@@ -176,9 +178,28 @@ namespace Lakeside2
         public void queueMove(Vector2 direction)
         {
             moves.Enqueue(Vector2.Multiply(direction, Tile.TILE_SIZE));
+            if (follower != null)
+            {
+                // stand still if entities are overlapping, for now.
+                if (follower.getTileLocation() != this.getTileLocation())
+                {
+                    Vector2 rawFacingDirection = this.getTileLocation() - follower.getTileLocation();
+                    follower.queueMove(getFacingVector(getDirection(rawFacingDirection)));
+                }
+            }
         }
 
-        public virtual void draw(SBWrapper wrapper, TilemapCamera camera)
+        public void setFollower(Entity follower)
+        {
+            this.follower = follower;
+        }
+
+        public Entity getFollower()
+        {
+            return follower;
+        }
+
+        public void draw(SBWrapper wrapper, TilemapCamera camera)
         {
             draw(wrapper, camera.worldToScreen(location));
         }

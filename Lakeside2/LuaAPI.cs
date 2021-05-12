@@ -98,6 +98,24 @@ namespace Lakeside2
         }
 
         /// <summary>
+        /// Sets an entity to follow the player as they walk around
+        /// </summary>
+        /// <param name="follower">Entity to follow player</param>
+        public void followPlayer(Entity follower)
+        {
+            player.setFollower(follower);
+        }
+        /// <summary>
+        /// Return true if a given entity is currently following the player
+        /// </summary>
+        /// <param name="follower">The entity to check</param>
+        /// <returns></returns>
+        public bool isFollowingPlayer(Entity follower)
+        {
+            return player.getFollower() == follower;
+        }
+
+        /// <summary>
         /// Creates and queues a ScriptChain for execution
         /// </summary>
         /// <param name="elements">The nodes, in order, to be a part of the chain. These should be created using the other functions in this object</param>

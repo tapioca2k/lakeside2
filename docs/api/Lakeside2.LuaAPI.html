@@ -248,6 +248,35 @@
   </table>
   
   
+  <a id="Lakeside2_LuaAPI_followPlayer_" data-uid="Lakeside2.LuaAPI.followPlayer*"></a>
+  <h4 id="Lakeside2_LuaAPI_followPlayer_Lakeside2_Entity_" data-uid="Lakeside2.LuaAPI.followPlayer(Lakeside2.Entity)">followPlayer(Entity)</h4>
+  <div class="markdown level1 summary"><p>Sets an entity to follow the player as they walk around</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void followPlayer(Entity follower)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Lakeside2.Entity.html">Entity</a></td>
+        <td><span class="parametername">follower</span></td>
+        <td><p>Entity to follow player</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Lakeside2_LuaAPI_getEntity_" data-uid="Lakeside2.LuaAPI.getEntity*"></a>
   <h4 id="Lakeside2_LuaAPI_getEntity_System_String_" data-uid="Lakeside2.LuaAPI.getEntity(System.String)">getEntity(String)</h4>
   <div class="markdown level1 summary"></div>
@@ -298,6 +327,50 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void goToOverworld()</code></pre>
   </div>
+  
+  
+  <a id="Lakeside2_LuaAPI_isFollowingPlayer_" data-uid="Lakeside2.LuaAPI.isFollowingPlayer*"></a>
+  <h4 id="Lakeside2_LuaAPI_isFollowingPlayer_Lakeside2_Entity_" data-uid="Lakeside2.LuaAPI.isFollowingPlayer(Lakeside2.Entity)">isFollowingPlayer(Entity)</h4>
+  <div class="markdown level1 summary"><p>Return true if a given entity is currently following the player</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool isFollowingPlayer(Entity follower)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Lakeside2.Entity.html">Entity</a></td>
+        <td><span class="parametername">follower</span></td>
+        <td><p>The entity to check</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="Lakeside2_LuaAPI_makeChain_" data-uid="Lakeside2.LuaAPI.makeChain*"></a>

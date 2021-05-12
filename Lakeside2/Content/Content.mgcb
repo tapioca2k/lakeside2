@@ -246,6 +246,9 @@
 /processorParam:TextureFormat=Color
 /build:pointer-left.png
 
+#begin scripts/knight.lua
+/copy:scripts/knight.lua
+
 #begin scripts/overworld.lua
 /copy:scripts/overworld.lua
 
