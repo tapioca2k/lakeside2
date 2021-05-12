@@ -10,7 +10,10 @@ using System.Text.Json;
 
 namespace Lakeside2
 {
-    // Player, NPC, or other object that actually exists in the game world
+    /// <summary>
+    /// Entity is the base class from which the player, NPCs, and all other
+    /// interactable, movable game objects are derived.
+    /// </summary>
     public abstract class Entity : IDrawable
     {
         public enum Directions
@@ -46,6 +49,11 @@ namespace Lakeside2
 
         public abstract string name { get; }
 
+        /// <summary>
+        /// Returns a unit vector in the specified direction
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public static Vector2 getFacingVector(Directions direction)
         {
             switch (direction)
@@ -58,6 +66,13 @@ namespace Lakeside2
             }
         }
 
+        /// <summary>
+        /// Returns a direction based on the specified vector.
+        /// Direction is biased in the x direction, meaning it will return left
+        /// or right if the vector has both non-zero x and y components.
+        /// </summary>
+        /// <param name="v"></param>
+        /// <returns></returns>
         public static Directions getDirection(Vector2 v)
         {
             if (v.X < 0) return Directions.left;
@@ -67,15 +82,11 @@ namespace Lakeside2
             else return Directions.down; // should never happen
         }
 
-        public void faceEntity(Entity other)
-        {
-            Vector2 l = other.getTileLocation();
-            if (l.X < getTileLocation().X) setDirection(Directions.left);
-            else if (l.X > getTileLocation().X) setDirection(Directions.right);
-            else if (l.Y < getTileLocation().Y) setDirection(Directions.up);
-            else if (l.Y > getTileLocation().Y) setDirection(Directions.down);
-        }
-
+        /// <summary>
+        /// Return a direction that is opposite the one specified
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public static Directions getOppositeDirection(Directions direction)
         {
             switch (direction)
@@ -88,32 +99,75 @@ namespace Lakeside2
             }
         }
 
+
+        /// <summary>
+        /// Set this entity's direction to be facing another
+        /// </summary>
+        /// <param name="other">Enity to face</param>
+        public void faceEntity(Entity other)
+        {
+            Vector2 l = other.getTileLocation();
+            if (l.X < getTileLocation().X) setDirection(Directions.left);
+            else if (l.X > getTileLocation().X) setDirection(Directions.right);
+            else if (l.Y < getTileLocation().Y) setDirection(Directions.up);
+            else if (l.Y > getTileLocation().Y) setDirection(Directions.down);
+        }
+
+        /// <summary>
+        /// Load this entity's texture sheet and animation metadata.
+        /// This should always be called in an entity's constructor.
+        /// </summary>
+        /// <param name="Content"></param>
+        /// <param name="filename">Filename of texture, inside Content/entities/</param>
         protected void loadAnimatedTexture(ContentManager Content, string filename)
         {
             texture = Content.Load<Texture2D>(ENTITIES + filename);
             animation = JsonSerializer.Deserialize<Animation>(File.ReadAllText("Content/entities/entity.json"));
         }
 
+        /// <summary>
+        /// Get the precise location of this entity.
+        /// See <see cref="getTileLocation()"/> to get the entity's location in tile-space.
+        /// </summary>
+        /// <returns></returns>
         public Vector2 getLocation()
         {
             return location;
         }
 
+        /// <summary>
+        /// Set the precise location of this entity.
+        /// See <see cref="getTileLocation()"/> to set the entity's location in tile-space.
+        /// </summary>
+        /// <param name="val"></param>
         public void setLocation(Vector2 val)
         {
             location = val;
         }
 
-        public void setTileLocation(Vector2 val)
-        {
-            setLocation(Vector2.Multiply(val, Tile.TILE_SIZE));
-        }
-
+        /// <summary>
+        /// Get the location of this entity in tile-space
+        /// </summary>
+        /// <returns></returns>
         public Vector2 getTileLocation()
         {
             return new Vector2((int)location.X / Tile.TILE_SIZE, (int)location.Y / Tile.TILE_SIZE);
         }
 
+        /// <summary>
+        /// Set the location of this entity in tile-space
+        /// </summary>
+        /// <param name="val"></param>
+        public void setTileLocation(Vector2 val)
+        {
+            setLocation(Vector2.Multiply(val, Tile.TILE_SIZE));
+        }
+
+        /// <summary>
+        /// Get the location of the tile in front of this entity, 
+        /// i.e. the tile it is facing
+        /// </summary>
+        /// <returns></returns>
         public Vector2 getFacingTile()
         {
             return getTileLocation() + getFacingVector(facing);
@@ -169,12 +223,21 @@ namespace Lakeside2
             }
         }
 
+        /// <summary>
+        /// Set the direction being faced by this entity
+        /// </summary>
+        /// <param name="direction"></param>
         public void setDirection(Directions direction)
         {
             animation.set((int)direction);
             this.facing = direction;
         }
 
+        /// <summary>
+        /// Add a new move to this entity's movement queue
+        /// </summary>
+        /// <param name="direction">A direction unit vector to move in, 
+        /// probably generated by <see cref="getFacingVector(Directions)"/></param>
         public void queueMove(Vector2 direction)
         {
             moves.Enqueue(Vector2.Multiply(direction, Tile.TILE_SIZE));
@@ -189,22 +252,39 @@ namespace Lakeside2
             }
         }
 
+        /// <summary>
+        /// Set an entity to follow the player around the world
+        /// </summary>
+        /// <param name="follower"></param>
         public void setFollower(Entity follower)
         {
             this.follower = follower;
         }
 
+        /// <summary>
+        /// Get the entity following this one, if any
+        /// </summary>
+        /// <returns></returns>
         public Entity getFollower()
         {
             return follower;
         }
 
+        /// <summary>
+        /// Draw this entity in world-space using a <see cref="TilemapCamera"/>
+        /// </summary>
+        /// <param name="wrapper"></param>
+        /// <param name="camera"></param>
         public void draw(SBWrapper wrapper, TilemapCamera camera)
         {
             draw(wrapper, camera.worldToScreen(location));
         }
 
-        // draw without correcting for camera perspective
+        /// <summary>
+        /// Draw this entity at a screen location, without camera perspective
+        /// </summary>
+        /// <param name="wrapper"></param>
+        /// <param name="location"></param>
         public void draw(SBWrapper wrapper, Vector2 location)
         {
             wrapper.draw(texture, location, animation.getFrame());

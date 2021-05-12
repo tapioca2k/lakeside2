@@ -73,7 +73,9 @@
   
   <h1 id="Lakeside2_Entity" data-uid="Lakeside2.Entity" class="text-break">Class Entity
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Entity is the base class from which the player, NPCs, and all other
+interactable, movable game objects are derived.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -364,7 +366,8 @@
   
   <a id="Lakeside2_Entity_draw_" data-uid="Lakeside2.Entity.draw*"></a>
   <h4 id="Lakeside2_Entity_draw_Lakeside2_SBWrapper_Lakeside2_TilemapCamera_" data-uid="Lakeside2.Entity.draw(Lakeside2.SBWrapper,Lakeside2.TilemapCamera)">draw(SBWrapper, TilemapCamera)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Draw this entity in world-space using a <a class="xref" href="Lakeside2.TilemapCamera.html">TilemapCamera</a></p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -396,7 +399,8 @@
   
   <a id="Lakeside2_Entity_draw_" data-uid="Lakeside2.Entity.draw*"></a>
   <h4 id="Lakeside2_Entity_draw_Lakeside2_SBWrapper_Microsoft_Xna_Framework_Vector2_" data-uid="Lakeside2.Entity.draw(Lakeside2.SBWrapper,Microsoft.Xna.Framework.Vector2)">draw(SBWrapper, Vector2)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Draw this entity at a screen location, without camera perspective</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -428,7 +432,8 @@
   
   <a id="Lakeside2_Entity_faceEntity_" data-uid="Lakeside2.Entity.faceEntity*"></a>
   <h4 id="Lakeside2_Entity_faceEntity_Lakeside2_Entity_" data-uid="Lakeside2.Entity.faceEntity(Lakeside2.Entity)">faceEntity(Entity)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Set this entity's direction to be facing another</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -447,7 +452,8 @@
       <tr>
         <td><a class="xref" href="Lakeside2.Entity.html">Entity</a></td>
         <td><span class="parametername">other</span></td>
-        <td></td>
+        <td><p>Enity to face</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -455,7 +461,10 @@
   
   <a id="Lakeside2_Entity_getDirection_" data-uid="Lakeside2.Entity.getDirection*"></a>
   <h4 id="Lakeside2_Entity_getDirection_Microsoft_Xna_Framework_Vector2_" data-uid="Lakeside2.Entity.getDirection(Microsoft.Xna.Framework.Vector2)">getDirection(Vector2)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns a direction based on the specified vector.
+Direction is biased in the x direction, meaning it will return left
+or right if the vector has both non-zero x and y components.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -497,7 +506,9 @@
   
   <a id="Lakeside2_Entity_getFacingTile_" data-uid="Lakeside2.Entity.getFacingTile*"></a>
   <h4 id="Lakeside2_Entity_getFacingTile" data-uid="Lakeside2.Entity.getFacingTile">getFacingTile()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Get the location of the tile in front of this entity,
+i.e. the tile it is facing</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -522,7 +533,8 @@
   
   <a id="Lakeside2_Entity_getFacingVector_" data-uid="Lakeside2.Entity.getFacingVector*"></a>
   <h4 id="Lakeside2_Entity_getFacingVector_Lakeside2_Entity_Directions_" data-uid="Lakeside2.Entity.getFacingVector(Lakeside2.Entity.Directions)">getFacingVector(Entity.Directions)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns a unit vector in the specified direction</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -564,7 +576,8 @@
   
   <a id="Lakeside2_Entity_getFollower_" data-uid="Lakeside2.Entity.getFollower*"></a>
   <h4 id="Lakeside2_Entity_getFollower" data-uid="Lakeside2.Entity.getFollower">getFollower()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Get the entity following this one, if any</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -589,7 +602,9 @@
   
   <a id="Lakeside2_Entity_getLocation_" data-uid="Lakeside2.Entity.getLocation*"></a>
   <h4 id="Lakeside2_Entity_getLocation" data-uid="Lakeside2.Entity.getLocation">getLocation()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Get the precise location of this entity.
+See <a class="xref" href="Lakeside2.Entity.html#Lakeside2_Entity_getTileLocation">getTileLocation()</a> to get the entity's location in tile-space.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -614,7 +629,8 @@
   
   <a id="Lakeside2_Entity_getOppositeDirection_" data-uid="Lakeside2.Entity.getOppositeDirection*"></a>
   <h4 id="Lakeside2_Entity_getOppositeDirection_Lakeside2_Entity_Directions_" data-uid="Lakeside2.Entity.getOppositeDirection(Lakeside2.Entity.Directions)">getOppositeDirection(Entity.Directions)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Return a direction that is opposite the one specified</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -656,7 +672,8 @@
   
   <a id="Lakeside2_Entity_getTileLocation_" data-uid="Lakeside2.Entity.getTileLocation*"></a>
   <h4 id="Lakeside2_Entity_getTileLocation" data-uid="Lakeside2.Entity.getTileLocation">getTileLocation()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Get the location of this entity in tile-space</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -681,7 +698,9 @@
   
   <a id="Lakeside2_Entity_loadAnimatedTexture_" data-uid="Lakeside2.Entity.loadAnimatedTexture*"></a>
   <h4 id="Lakeside2_Entity_loadAnimatedTexture_Microsoft_Xna_Framework_Content_ContentManager_System_String_" data-uid="Lakeside2.Entity.loadAnimatedTexture(Microsoft.Xna.Framework.Content.ContentManager,System.String)">loadAnimatedTexture(ContentManager, String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Load this entity's texture sheet and animation metadata.
+This should always be called in an entity's constructor.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -705,7 +724,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">filename</span></td>
-        <td></td>
+        <td><p>Filename of texture, inside Content/entities/</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -713,7 +733,8 @@
   
   <a id="Lakeside2_Entity_queueMove_" data-uid="Lakeside2.Entity.queueMove*"></a>
   <h4 id="Lakeside2_Entity_queueMove_Microsoft_Xna_Framework_Vector2_" data-uid="Lakeside2.Entity.queueMove(Microsoft.Xna.Framework.Vector2)">queueMove(Vector2)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Add a new move to this entity's movement queue</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -732,7 +753,9 @@
       <tr>
         <td><span class="xref">Microsoft.Xna.Framework.Vector2</span></td>
         <td><span class="parametername">direction</span></td>
-        <td></td>
+        <td><p>A direction unit vector to move in,
+probably generated by <a class="xref" href="Lakeside2.Entity.html#Lakeside2_Entity_getFacingVector_Lakeside2_Entity_Directions_">getFacingVector(Entity.Directions)</a></p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -740,7 +763,8 @@
   
   <a id="Lakeside2_Entity_setDirection_" data-uid="Lakeside2.Entity.setDirection*"></a>
   <h4 id="Lakeside2_Entity_setDirection_Lakeside2_Entity_Directions_" data-uid="Lakeside2.Entity.setDirection(Lakeside2.Entity.Directions)">setDirection(Entity.Directions)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Set the direction being faced by this entity</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -767,7 +791,8 @@
   
   <a id="Lakeside2_Entity_setFollower_" data-uid="Lakeside2.Entity.setFollower*"></a>
   <h4 id="Lakeside2_Entity_setFollower_Lakeside2_Entity_" data-uid="Lakeside2.Entity.setFollower(Lakeside2.Entity)">setFollower(Entity)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Set an entity to follow the player around the world</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -794,7 +819,9 @@
   
   <a id="Lakeside2_Entity_setLocation_" data-uid="Lakeside2.Entity.setLocation*"></a>
   <h4 id="Lakeside2_Entity_setLocation_Microsoft_Xna_Framework_Vector2_" data-uid="Lakeside2.Entity.setLocation(Microsoft.Xna.Framework.Vector2)">setLocation(Vector2)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Set the precise location of this entity.
+See <a class="xref" href="Lakeside2.Entity.html#Lakeside2_Entity_getTileLocation">getTileLocation()</a> to set the entity's location in tile-space.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -821,7 +848,8 @@
   
   <a id="Lakeside2_Entity_setTileLocation_" data-uid="Lakeside2.Entity.setTileLocation*"></a>
   <h4 id="Lakeside2_Entity_setTileLocation_Microsoft_Xna_Framework_Vector2_" data-uid="Lakeside2.Entity.setTileLocation(Microsoft.Xna.Framework.Vector2)">setTileLocation(Vector2)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Set the location of this entity in tile-space</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
