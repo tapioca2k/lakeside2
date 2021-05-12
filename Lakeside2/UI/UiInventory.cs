@@ -11,7 +11,6 @@ namespace Lakeside2.UI
     {
         static string[] COMMANDS = new string[3] { "Use", "Examine", "Discard" };
         static Vector2 COMMAND_LOCATION = new Vector2(Tile.TILE_SIZE * 10, Tile.TILE_SIZE);
-        static Vector2 CONFIRM_LOCATION = new Vector2(Tile.TILE_SIZE * 12, Tile.TILE_SIZE * 3);
 
         ContentManager Content;
         Player player;
@@ -47,15 +46,15 @@ namespace Lakeside2.UI
                                 }
                             case 2: // Discard
                                 {
-                                    system.pushElement(new UiList(Content, new string[2] { "No", "Yes" }).addCallback(yesno =>
+                                    system.pushElement(new UiOptionBox(Content, "Really discard this?", "No", "Yes").addCallback(o =>
                                     {
-                                        UiList yn = (UiList)yesno;
-                                        if (yn.selected == 1)
+                                        UiOptionBox option = (UiOptionBox)o;
+                                        if (option.selected == 1)
                                         {
                                             player.setItemCount(selectedItem.name, 0);
                                             this.resetMenu();
                                         }
-                                    }), CONFIRM_LOCATION);
+                                    }), Vector2.Zero);
                                     break;
                                 }
                         }
