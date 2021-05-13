@@ -36,7 +36,6 @@ namespace Lakeside2
                 element.finished = false; // cancel removing the main list
                 UiList list = (UiList)element;
                 int selected = list.selected;
-                Debug.WriteLine(selected);
                 switch (selected)
                 {
                     case -1: // thwart attempt to close the main menu

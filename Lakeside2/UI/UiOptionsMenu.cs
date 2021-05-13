@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Lakeside2.UI
@@ -39,7 +40,12 @@ namespace Lakeside2.UI
             resolution.selected = GameInfo.resolution;
             resolution.addCallback(element =>
             {
+                resolution.finished = false;
                 resolution.enabled = false;
+                if (resolution.selected == -1)
+                {
+                    resolution.selected = GameInfo.resolution;
+                }
             });
 
             this.addCallback(element =>
@@ -78,7 +84,7 @@ namespace Lakeside2.UI
                     {
                         case 0: resolution.enabled = true; break;
                         case 1: finished = true; break;
-                        case 2: finished = true; discard = true; break;
+                        case 2: discard = true; finished = true; break;
                     }
                 }
 

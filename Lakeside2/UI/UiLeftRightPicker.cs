@@ -84,8 +84,8 @@ namespace Lakeside2.UI
             else if (input.isCommandPressed(Bindings.Back))
             {
                 MusicManager.playSfx("back");
-                finished = true;
                 selected = -1;
+                finished = true;
             }
         }
 
