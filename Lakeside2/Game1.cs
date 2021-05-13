@@ -173,10 +173,6 @@ namespace Lakeside2
         protected override void Update(GameTime gameTime)
         {
             input.update();
-            /*
-            if (input.isKeyPressed(Keys.Escape))
-                Exit();
-            */
 
             double dt = gameTime.ElapsedGameTime.TotalSeconds;
             TimeOfDay.addSeconds(dt * 360);

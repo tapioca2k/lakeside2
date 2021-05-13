@@ -141,7 +141,7 @@ namespace Lakeside2
         /// <returns>a UiNode with the text box</returns>
         public ScriptNode SDialog(string text)
         {
-            return new UiNode(ui, new UiTextBox(text));
+            return new UiNode(ui, new UiTextBox(text, true));
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace Lakeside2
         /// <returns>a UiNode with the text box</returns>
         public ScriptNode SDialog(string text, LuaFunction callback)
         {
-            return new UiNode(ui, new UiTextBox(text).addCallback(element =>
+            return new UiNode(ui, new UiTextBox(text, true).addCallback(element =>
             {
                 callback.Call(new object[0]);
             }));

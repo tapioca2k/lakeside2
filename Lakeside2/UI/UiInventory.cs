@@ -41,7 +41,7 @@ namespace Lakeside2.UI
                             case 0: break; // TODO Use item
                             case 1: // Examine
                                 {
-                                    system.pushElement(new UiTextBox(selectedItem.description), Vector2.Zero);
+                                    system.pushElement(new UiTextBox(selectedItem.description, false), Vector2.Zero);
                                     break;
                                 }
                             case 2: // Discard

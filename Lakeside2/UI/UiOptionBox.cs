@@ -15,7 +15,7 @@ namespace Lakeside2.UI
         public int selected;
         Texture2D pointer;
 
-        public UiOptionBox(ContentManager Content, string text, string option1, string option2) : base(text)
+        public UiOptionBox(ContentManager Content, string text, string option1, string option2) : base(text, false)
         {
             this.option1 = option1;
             this.option2 = option2;
