@@ -11,6 +11,8 @@ namespace Lakeside2
     // juggles soundeffects like they're songs
     public static class MusicManager
     {
+        public const string SFX = "sfx/";
+
         static ContentManager Content;
         static Dictionary<string, SoundEffect> songs;
         static SoundEffectInstance current;
@@ -70,14 +72,14 @@ namespace Lakeside2
         public static void playSfx(string name)
         {
             if (Content == null) return;
-            SoundEffect se = Content.Load<SoundEffect>(name);
+            SoundEffect se = Content.Load<SoundEffect>(SFX + name);
             se.Play();
         }
 
         public static double getSfxLength(string name)
         {
             if (Content == null) return -1;
-            SoundEffect se = Content.Load<SoundEffect>(name);
+            SoundEffect se = Content.Load<SoundEffect>(SFX + name);
             return se.Duration.TotalMilliseconds;
         }
     }

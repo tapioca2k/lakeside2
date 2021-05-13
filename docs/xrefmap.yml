@@ -1764,6 +1764,12 @@ references:
   isSpec: "True"
   fullName: Lakeside2.MusicManager.playSong
   nameWithType: MusicManager.playSong
+- uid: Lakeside2.MusicManager.SFX
+  name: SFX
+  href: api/Lakeside2.MusicManager.html#Lakeside2_MusicManager_SFX
+  commentId: F:Lakeside2.MusicManager.SFX
+  fullName: Lakeside2.MusicManager.SFX
+  nameWithType: MusicManager.SFX
 - uid: Lakeside2.MusicManager.stopSong
   name: stopSong()
   href: api/Lakeside2.MusicManager.html#Lakeside2_MusicManager_stopSong

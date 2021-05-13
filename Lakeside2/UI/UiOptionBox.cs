@@ -27,11 +27,13 @@ namespace Lakeside2.UI
         {
             if (input.isCommandPressed(Bindings.Interact))
             {
+                MusicManager.playSfx("select");
                 finished = true;
             }
             else if (input.isCommandPressed(Bindings.Up) || input.isCommandPressed(Bindings.Down))
             {
                 selected = Math.Abs(--selected);
+                MusicManager.playSfx("cursor");
             }
         }
 

@@ -258,6 +258,24 @@
 #begin scripts/warp.lua
 /copy:scripts/warp.lua
 
+#begin sfx/back.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/back.wav
+
+#begin sfx/cursor.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/cursor.wav
+
+#begin sfx/select.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/select.wav
+
 #begin tiles/a.png
 /importer:TextureImporter
 /processor:TextureProcessor

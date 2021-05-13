@@ -61,10 +61,19 @@ namespace Lakeside2.UI
             }
             else // interact with sections
             {
-                if (input.isCommandPressed(Bindings.Up)) index--;
-                else if (input.isCommandPressed(Bindings.Down)) index++;
+                if (input.isCommandPressed(Bindings.Up))
+                {
+                    index--;
+                    MusicManager.playSfx("cursor");
+                }
+                else if (input.isCommandPressed(Bindings.Down))
+                {
+                    index++;
+                    MusicManager.playSfx("cursor");
+                }
                 else if (input.isCommandPressed(Bindings.Interact))
                 {
+                    MusicManager.playSfx("select");
                     switch (index)
                     {
                         case 0: resolution.enabled = true; break;

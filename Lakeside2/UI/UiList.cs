@@ -61,11 +61,24 @@ namespace Lakeside2.UI
 
         public override void onInput(InputHandler input)
         {
-            if (input.isCommandPressed(Bindings.Up) && --selected < 0) selected = this.options.Count - 1;
-            else if (input.isCommandPressed(Bindings.Down) && ++selected == this.options.Count) selected = 0;
-            else if (input.isCommandPressed(Bindings.Interact)) finished = true;
+            if (input.isCommandPressed(Bindings.Up))
+            {
+                MusicManager.playSfx("cursor");
+                if (--selected < 0) selected = this.options.Count - 1;
+            }
+            else if (input.isCommandPressed(Bindings.Down))
+            {
+                MusicManager.playSfx("cursor");
+                if (++selected == this.options.Count) selected = 0;
+            }
+            else if (input.isCommandPressed(Bindings.Interact))
+            {
+                MusicManager.playSfx("select");
+                finished = true;
+            }
             else if (input.isCommandPressed(Bindings.Back))
             {
+                MusicManager.playSfx("back");
                 selected = -1;
                 finished = true;
             }
