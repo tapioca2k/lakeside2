@@ -1,7 +1,12 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Lakeside2.Serialization;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Linq;
 
 namespace Lakeside2
 {
@@ -11,22 +16,25 @@ namespace Lakeside2
         Interact, Start, Back
     }
 
-
     // mix buttons and keys together into a rebindable input system
     class InputBindings
     {
-        Dictionary<Bindings, List<object>> boundInputs;
 
-        public InputBindings()
+        List<SerializableBinding> boundInputs;
+
+        public InputBindings(bool defaults)
         {
-            boundInputs = new Dictionary<Bindings, List<object>>();
+            if (defaults) loadDefaults();
+            else loadKeybinds("Content/input.json");
+        }
 
-            // TODO - load these from JSON, have a user interface for viewing and setting them
+        void loadDefaults()
+        {
+            boundInputs = new List<SerializableBinding>();
             setKeybinds(Bindings.Up, Keys.W, Keys.Up, Buttons.DPadUp);
             setKeybinds(Bindings.Down, Keys.S, Keys.Down, Buttons.DPadDown);
             setKeybinds(Bindings.Left, Keys.A, Keys.Left, Buttons.DPadLeft);
             setKeybinds(Bindings.Right, Keys.D, Keys.Right, Buttons.DPadRight);
-
             setKeybinds(Bindings.Interact, Keys.E, Buttons.A);
             setKeybinds(Bindings.Start, Keys.Escape, Buttons.Start);
             setKeybinds(Bindings.Back, Keys.Back, Buttons.B);
@@ -34,22 +42,43 @@ namespace Lakeside2
 
         void setKeybinds(Bindings command, params object[] inputs)
         {
-            List<object> binds = new List<object>();
+            boundInputs.RemoveAll(b => b.binding == command);
+
+            List<Keys> k = new List<Keys>();
+            List<Buttons> g = new List<Buttons>();
+
             foreach (object o in inputs)
             {
-                if (o is Keys || o is Buttons)
-                {
-                    binds.Add(o);
-                }
+                if (o is Keys) k.Add((Keys)o);
+                else if (o is Buttons) g.Add((Buttons)o);
             }
-            if (boundInputs.ContainsKey(command)) boundInputs[command] = binds;
-            else boundInputs.Add(command, binds);
+
+            boundInputs.Add(new SerializableBinding(command, k, g));
         }
 
         public List<object> getInputs(Bindings command)
         {
-            if (!boundInputs.ContainsKey(command)) return new List<object>();
-            else return boundInputs[command];
+            SerializableBinding b = (from binding
+                                     in boundInputs
+                                     where binding.binding == command
+                                     select binding).First();
+            List<object> allBindings = new List<object>();
+            b.keys.ForEach(k => allBindings.Add(k));
+            b.buttons.ForEach(g => allBindings.Add(g));
+
+            return allBindings;
+        }
+
+        public void saveKeybinds(string path)
+        {
+            string json = JsonSerializer.Serialize(boundInputs);
+            File.WriteAllText(path, json);
+        }
+
+        public void loadKeybinds(string path)
+        {
+            string json = File.ReadAllText(path);
+            boundInputs = JsonSerializer.Deserialize<List<SerializableBinding>>(json);
         }
 
     }

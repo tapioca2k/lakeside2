@@ -111,6 +111,9 @@
 /processorParam:TextureFormat=Color
 /build:gmhotkeys.png
 
+#begin input.json
+/copy:input.json
+
 #begin items.json
 /copy:items.json
 

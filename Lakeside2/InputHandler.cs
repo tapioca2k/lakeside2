@@ -37,7 +37,7 @@ namespace Lakeside2
 
         public InputHandler()
         {
-            bindings = new InputBindings();
+            bindings = new InputBindings(false);
             keys = new Dictionary<Keys, bool>();
             mleft = 0;
             mright = 0;
