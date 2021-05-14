@@ -54,6 +54,7 @@ namespace Lakeside2.UI.Editor
                             if (textInput.text != null)
                             {
                                 layers.Insert(layerList.selected, textInput.text);
+                                if (layerList.selected >= o.meta.baseLayer) o.meta.baseLayer++;
                                 layerList.setStrings(layers.ToArray());
                                 o.reloadLayers();
                             }
@@ -62,6 +63,7 @@ namespace Lakeside2.UI.Editor
                     else if (mode == Mode.Deleting)
                     {
                         layers.RemoveAt(layerList.selected);
+                        if (layerList.selected <= o.meta.baseLayer) o.meta.baseLayer--;
                         layerList.setStrings(layers.ToArray());
                         o.reloadLayers();
                     }
