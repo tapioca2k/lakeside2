@@ -44,7 +44,7 @@ namespace Lakeside2.UI
             set;
         }
 
-        protected SpriteFont font;
+        public SpriteFont font;
 
         public UiTextDisplay(SpriteFont font, string text)
         {
