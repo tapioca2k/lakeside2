@@ -947,6 +947,80 @@ references:
   isSpec: "True"
   fullName: Lakeside2.IGameState.update
   nameWithType: IGameState.update
+- uid: Lakeside2.InputBindings
+  name: InputBindings
+  href: api/Lakeside2.InputBindings.html
+  commentId: T:Lakeside2.InputBindings
+  fullName: Lakeside2.InputBindings
+  nameWithType: InputBindings
+- uid: Lakeside2.InputBindings.getInputs(Lakeside2.Bindings)
+  name: getInputs(Bindings)
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_getInputs_Lakeside2_Bindings_
+  commentId: M:Lakeside2.InputBindings.getInputs(Lakeside2.Bindings)
+  fullName: Lakeside2.InputBindings.getInputs(Lakeside2.Bindings)
+  nameWithType: InputBindings.getInputs(Bindings)
+- uid: Lakeside2.InputBindings.getInputs*
+  name: getInputs
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_getInputs_
+  commentId: Overload:Lakeside2.InputBindings.getInputs
+  isSpec: "True"
+  fullName: Lakeside2.InputBindings.getInputs
+  nameWithType: InputBindings.getInputs
+- uid: Lakeside2.InputBindings.loadDefaults
+  name: loadDefaults()
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_loadDefaults
+  commentId: M:Lakeside2.InputBindings.loadDefaults
+  fullName: Lakeside2.InputBindings.loadDefaults()
+  nameWithType: InputBindings.loadDefaults()
+- uid: Lakeside2.InputBindings.loadDefaults*
+  name: loadDefaults
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_loadDefaults_
+  commentId: Overload:Lakeside2.InputBindings.loadDefaults
+  isSpec: "True"
+  fullName: Lakeside2.InputBindings.loadDefaults
+  nameWithType: InputBindings.loadDefaults
+- uid: Lakeside2.InputBindings.loadKeybinds(System.String)
+  name: loadKeybinds(String)
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_loadKeybinds_System_String_
+  commentId: M:Lakeside2.InputBindings.loadKeybinds(System.String)
+  fullName: Lakeside2.InputBindings.loadKeybinds(System.String)
+  nameWithType: InputBindings.loadKeybinds(String)
+- uid: Lakeside2.InputBindings.loadKeybinds*
+  name: loadKeybinds
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_loadKeybinds_
+  commentId: Overload:Lakeside2.InputBindings.loadKeybinds
+  isSpec: "True"
+  fullName: Lakeside2.InputBindings.loadKeybinds
+  nameWithType: InputBindings.loadKeybinds
+- uid: Lakeside2.InputBindings.saveKeybinds(System.String)
+  name: saveKeybinds(String)
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_saveKeybinds_System_String_
+  commentId: M:Lakeside2.InputBindings.saveKeybinds(System.String)
+  fullName: Lakeside2.InputBindings.saveKeybinds(System.String)
+  nameWithType: InputBindings.saveKeybinds(String)
+- uid: Lakeside2.InputBindings.saveKeybinds*
+  name: saveKeybinds
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_saveKeybinds_
+  commentId: Overload:Lakeside2.InputBindings.saveKeybinds
+  isSpec: "True"
+  fullName: Lakeside2.InputBindings.saveKeybinds
+  nameWithType: InputBindings.saveKeybinds
+- uid: Lakeside2.InputBindings.setKeybinds(Lakeside2.Bindings,System.Object[])
+  name: setKeybinds(Bindings, Object[])
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_setKeybinds_Lakeside2_Bindings_System_Object___
+  commentId: M:Lakeside2.InputBindings.setKeybinds(Lakeside2.Bindings,System.Object[])
+  name.vb: setKeybinds(Bindings, Object())
+  fullName: Lakeside2.InputBindings.setKeybinds(Lakeside2.Bindings, System.Object[])
+  fullName.vb: Lakeside2.InputBindings.setKeybinds(Lakeside2.Bindings, System.Object())
+  nameWithType: InputBindings.setKeybinds(Bindings, Object[])
+  nameWithType.vb: InputBindings.setKeybinds(Bindings, Object())
+- uid: Lakeside2.InputBindings.setKeybinds*
+  name: setKeybinds
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_setKeybinds_
+  commentId: Overload:Lakeside2.InputBindings.setKeybinds
+  isSpec: "True"
+  fullName: Lakeside2.InputBindings.setKeybinds
+  nameWithType: InputBindings.setKeybinds
 - uid: Lakeside2.InputHandler
   name: InputHandler
   href: api/Lakeside2.InputHandler.html

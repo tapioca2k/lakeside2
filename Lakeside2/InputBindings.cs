@@ -17,18 +17,18 @@ namespace Lakeside2
     }
 
     // mix buttons and keys together into a rebindable input system
-    class InputBindings
+    public static class InputBindings
     {
+        const string INPUTS_JSON = "Content/input.json";
 
-        List<SerializableBinding> boundInputs;
+        static List<SerializableBinding> boundInputs;
 
-        public InputBindings(bool defaults)
+        static InputBindings()
         {
-            if (defaults) loadDefaults();
-            else loadKeybinds("Content/input.json");
+            loadKeybinds();
         }
 
-        void loadDefaults()
+        public static void loadDefaults()
         {
             boundInputs = new List<SerializableBinding>();
             setKeybinds(Bindings.Up, Keys.W, Keys.Up, Buttons.DPadUp);
@@ -40,7 +40,7 @@ namespace Lakeside2
             setKeybinds(Bindings.Back, Keys.Back, Buttons.B);
         }
 
-        void setKeybinds(Bindings command, params object[] inputs)
+        public static void setKeybinds(Bindings command, params object[] inputs)
         {
             boundInputs.RemoveAll(b => b.binding == command);
 
@@ -56,7 +56,7 @@ namespace Lakeside2
             boundInputs.Add(new SerializableBinding(command, k, g));
         }
 
-        public List<object> getInputs(Bindings command)
+        public static List<object> getInputs(Bindings command)
         {
             SerializableBinding b = (from binding
                                      in boundInputs
@@ -69,13 +69,13 @@ namespace Lakeside2
             return allBindings;
         }
 
-        public void saveKeybinds(string path)
+        public static void saveKeybinds(string path = INPUTS_JSON)
         {
             string json = JsonSerializer.Serialize(boundInputs);
             File.WriteAllText(path, json);
         }
 
-        public void loadKeybinds(string path)
+        public static void loadKeybinds(string path = INPUTS_JSON)
         {
             string json = File.ReadAllText(path);
             boundInputs = JsonSerializer.Deserialize<List<SerializableBinding>>(json);

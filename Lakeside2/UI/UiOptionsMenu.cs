@@ -11,10 +11,11 @@ namespace Lakeside2.UI
     class UiOptionsMenu : UiElement
     {
         public const int WIDTH = 155;
-        public const int HEIGHT = 80;
+        public const int HEIGHT = 100;
         public override Vector2 size => new Vector2(WIDTH, HEIGHT);
 
         Game1 game;
+        ContentManager Content;
         Texture2D pointer;
         UiElement[] sections;
         UiLeftRightPicker resolution;
@@ -24,11 +25,13 @@ namespace Lakeside2.UI
         public UiOptionsMenu(Game1 game, ContentManager Content)
         {
             this.game = game;
+            this.Content = Content;
             setBackground(Color.White, true);
             pointer = Content.Load<Texture2D>("pointer");
-            sections = new UiElement[3]
+            sections = new UiElement[4]
             {
                 new UiTextDisplay("Resolution"),
+                new UiTextDisplay("Rebind inputs..."),
                 new UiTextDisplay("Save changes"),
                 new UiTextDisplay("Discard changes")
             };
@@ -83,8 +86,16 @@ namespace Lakeside2.UI
                     switch (index)
                     {
                         case 0: resolution.enabled = true; break;
-                        case 1: finished = true; break;
-                        case 2: discard = true; finished = true; break;
+                        case 1:
+                            {
+                                UiInputBinding bindingEditor = new UiInputBinding(Content);
+                                system.pushElement(bindingEditor, new Vector2(
+                                    Game1.INTERNAL_WIDTH / 2 - (int)bindingEditor.size.X / 2,
+                                    Game1.INTERNAL_HEIGHT / 2 - (int)bindingEditor.size.Y / 2));
+                                break;
+                            }
+                        case 2: finished = true; break;
+                        case 3: discard = true; finished = true; break;
                     }
                 }
 
@@ -100,7 +111,8 @@ namespace Lakeside2.UI
             resolution.draw(new SBWrapper(wrapper, new Vector2(15, 20)));
             sections[1].draw(new SBWrapper(wrapper, new Vector2(20, 40)));
             sections[2].draw(new SBWrapper(wrapper, new Vector2(20, 60)));
-            wrapper.draw(pointer, new Vector2(1, 40 * index - (index == sections.Length - 1 ? 20: 0)));
+            sections[3].draw(new SBWrapper(wrapper, new Vector2(20, 80)));
+            wrapper.draw(pointer, new Vector2(1, 20 * index + (index > 0 ? 20 : 0)));
         }
 
 

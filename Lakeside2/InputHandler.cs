@@ -33,11 +33,8 @@ namespace Lakeside2
         Dictionary<Buttons, bool>[] gamepads;
         Vector2[] stickPositions;
 
-        InputBindings bindings;
-
         public InputHandler()
         {
-            bindings = new InputBindings(false);
             keys = new Dictionary<Keys, bool>();
             mleft = 0;
             mright = 0;
@@ -204,7 +201,7 @@ namespace Lakeside2
 
         public bool isCommandPressed(Bindings command)
         {
-            List<object> inputs = bindings.getInputs(command);
+            List<object> inputs = InputBindings.getInputs(command);
             foreach (object o in inputs)
             {
                 if (o is Keys && isKeyPressed((Keys)o)) return true;
@@ -215,7 +212,7 @@ namespace Lakeside2
 
         public bool isCommandHeld(Bindings command)
         {
-            List<object> inputs = bindings.getInputs(command);
+            List<object> inputs = InputBindings.getInputs(command);
             foreach (object o in inputs)
             {
                 if (o is Keys && isKeyHeld((Keys)o)) return true;
