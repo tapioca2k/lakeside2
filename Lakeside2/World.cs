@@ -71,15 +71,6 @@ namespace Lakeside2
             else map = SerializableMap.Load(Content, filename);
             setMap(map);
             camera.setCenteringEntity(this.player);
-
-            /*
-            ui.addStripeElement(new UiObjectMonitor<Player>(this.player, (p) =>
-            {
-                return p.getTileLocation().ToString();
-            }), StripePosition.Left);
-            */
-
-            ui.addStripeElement(new UiClock(), StripePosition.Left);
         }
 
         public void setMap(TileMap map)

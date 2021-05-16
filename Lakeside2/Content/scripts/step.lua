@@ -4,7 +4,7 @@ end
 
 function step_no()
 	l:followPlayer(l:getEntity("knight"))
-	l:makeChain(l:SDialog("I'm not leaving you alone until you say howdy,\npal."))
+	l:makeChain(l:SDialog("I'm not leaving you alone until you say howdy, pal."))
 end
 
 function step_faceplayer()

@@ -1,5 +1,5 @@
 function talk_howdy()
-	l:makeChain(l:SDialog("Howdy partner!\nWas that so hard?"))
+	l:makeChain(l:SDialog("Howdy partner! Was that so hard?"))
 	l:followPlayer(nil)
 end
 
