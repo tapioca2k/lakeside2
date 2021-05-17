@@ -1005,6 +1005,22 @@ references:
   isSpec: "True"
   fullName: Lakeside2.InputBindings.saveKeybinds
   nameWithType: InputBindings.saveKeybinds
+- uid: Lakeside2.InputBindings.setGamepadBinds(Lakeside2.Bindings,Microsoft.Xna.Framework.Input.Buttons[])
+  name: setGamepadBinds(Bindings, Buttons[])
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_setGamepadBinds_Lakeside2_Bindings_Microsoft_Xna_Framework_Input_Buttons___
+  commentId: M:Lakeside2.InputBindings.setGamepadBinds(Lakeside2.Bindings,Microsoft.Xna.Framework.Input.Buttons[])
+  name.vb: setGamepadBinds(Bindings, Buttons())
+  fullName: Lakeside2.InputBindings.setGamepadBinds(Lakeside2.Bindings, Microsoft.Xna.Framework.Input.Buttons[])
+  fullName.vb: Lakeside2.InputBindings.setGamepadBinds(Lakeside2.Bindings, Microsoft.Xna.Framework.Input.Buttons())
+  nameWithType: InputBindings.setGamepadBinds(Bindings, Buttons[])
+  nameWithType.vb: InputBindings.setGamepadBinds(Bindings, Buttons())
+- uid: Lakeside2.InputBindings.setGamepadBinds*
+  name: setGamepadBinds
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_setGamepadBinds_
+  commentId: Overload:Lakeside2.InputBindings.setGamepadBinds
+  isSpec: "True"
+  fullName: Lakeside2.InputBindings.setGamepadBinds
+  nameWithType: InputBindings.setGamepadBinds
 - uid: Lakeside2.InputBindings.setKeybinds(Lakeside2.Bindings,System.Object[])
   name: setKeybinds(Bindings, Object[])
   href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_setKeybinds_Lakeside2_Bindings_System_Object___
@@ -1021,6 +1037,22 @@ references:
   isSpec: "True"
   fullName: Lakeside2.InputBindings.setKeybinds
   nameWithType: InputBindings.setKeybinds
+- uid: Lakeside2.InputBindings.setKeyboardBinds(Lakeside2.Bindings,Microsoft.Xna.Framework.Input.Keys[])
+  name: setKeyboardBinds(Bindings, Keys[])
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_setKeyboardBinds_Lakeside2_Bindings_Microsoft_Xna_Framework_Input_Keys___
+  commentId: M:Lakeside2.InputBindings.setKeyboardBinds(Lakeside2.Bindings,Microsoft.Xna.Framework.Input.Keys[])
+  name.vb: setKeyboardBinds(Bindings, Keys())
+  fullName: Lakeside2.InputBindings.setKeyboardBinds(Lakeside2.Bindings, Microsoft.Xna.Framework.Input.Keys[])
+  fullName.vb: Lakeside2.InputBindings.setKeyboardBinds(Lakeside2.Bindings, Microsoft.Xna.Framework.Input.Keys())
+  nameWithType: InputBindings.setKeyboardBinds(Bindings, Keys[])
+  nameWithType.vb: InputBindings.setKeyboardBinds(Bindings, Keys())
+- uid: Lakeside2.InputBindings.setKeyboardBinds*
+  name: setKeyboardBinds
+  href: api/Lakeside2.InputBindings.html#Lakeside2_InputBindings_setKeyboardBinds_
+  commentId: Overload:Lakeside2.InputBindings.setKeyboardBinds
+  isSpec: "True"
+  fullName: Lakeside2.InputBindings.setKeyboardBinds
+  nameWithType: InputBindings.setKeyboardBinds
 - uid: Lakeside2.InputHandler
   name: InputHandler
   href: api/Lakeside2.InputHandler.html
@@ -1040,12 +1072,62 @@ references:
   isSpec: "True"
   fullName: Lakeside2.InputHandler.InputHandler
   nameWithType: InputHandler.InputHandler
+- uid: Lakeside2.InputHandler.activeInput
+  name: activeInput
+  href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_activeInput
+  commentId: F:Lakeside2.InputHandler.activeInput
+  fullName: Lakeside2.InputHandler.activeInput
+  nameWithType: InputHandler.activeInput
+- uid: Lakeside2.InputHandler.ActiveInput
+  name: InputHandler.ActiveInput
+  href: api/Lakeside2.InputHandler.ActiveInput.html
+  commentId: T:Lakeside2.InputHandler.ActiveInput
+  fullName: Lakeside2.InputHandler.ActiveInput
+  nameWithType: InputHandler.ActiveInput
+- uid: Lakeside2.InputHandler.ActiveInput.Gamepad
+  name: Gamepad
+  href: api/Lakeside2.InputHandler.ActiveInput.html#Lakeside2_InputHandler_ActiveInput_Gamepad
+  commentId: F:Lakeside2.InputHandler.ActiveInput.Gamepad
+  fullName: Lakeside2.InputHandler.ActiveInput.Gamepad
+  nameWithType: InputHandler.ActiveInput.Gamepad
+- uid: Lakeside2.InputHandler.ActiveInput.Keyboard
+  name: Keyboard
+  href: api/Lakeside2.InputHandler.ActiveInput.html#Lakeside2_InputHandler_ActiveInput_Keyboard
+  commentId: F:Lakeside2.InputHandler.ActiveInput.Keyboard
+  fullName: Lakeside2.InputHandler.ActiveInput.Keyboard
+  nameWithType: InputHandler.ActiveInput.Keyboard
 - uid: Lakeside2.InputHandler.DEADZONE
   name: DEADZONE
   href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_DEADZONE
   commentId: F:Lakeside2.InputHandler.DEADZONE
   fullName: Lakeside2.InputHandler.DEADZONE
   nameWithType: InputHandler.DEADZONE
+- uid: Lakeside2.InputHandler.getPressedButtons(System.Int32)
+  name: getPressedButtons(Int32)
+  href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_getPressedButtons_System_Int32_
+  commentId: M:Lakeside2.InputHandler.getPressedButtons(System.Int32)
+  fullName: Lakeside2.InputHandler.getPressedButtons(System.Int32)
+  nameWithType: InputHandler.getPressedButtons(Int32)
+- uid: Lakeside2.InputHandler.getPressedButtons*
+  name: getPressedButtons
+  href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_getPressedButtons_
+  commentId: Overload:Lakeside2.InputHandler.getPressedButtons
+  isSpec: "True"
+  fullName: Lakeside2.InputHandler.getPressedButtons
+  nameWithType: InputHandler.getPressedButtons
+- uid: Lakeside2.InputHandler.getPressedKeys
+  name: getPressedKeys()
+  href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_getPressedKeys
+  commentId: M:Lakeside2.InputHandler.getPressedKeys
+  fullName: Lakeside2.InputHandler.getPressedKeys()
+  nameWithType: InputHandler.getPressedKeys()
+- uid: Lakeside2.InputHandler.getPressedKeys*
+  name: getPressedKeys
+  href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_getPressedKeys_
+  commentId: Overload:Lakeside2.InputHandler.getPressedKeys
+  isSpec: "True"
+  fullName: Lakeside2.InputHandler.getPressedKeys
+  nameWithType: InputHandler.getPressedKeys
 - uid: Lakeside2.InputHandler.heldButtons(System.Int32)
   name: heldButtons(Int32)
   href: api/Lakeside2.InputHandler.html#Lakeside2_InputHandler_heldButtons_System_Int32_

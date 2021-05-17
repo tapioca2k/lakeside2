@@ -28,6 +28,15 @@ namespace Lakeside2
             loadKeybinds();
         }
 
+        static SerializableBinding getSerializableBinding(Bindings command)
+        {
+            SerializableBinding b = (from binding
+                         in boundInputs
+                                     where binding.binding == command
+                                     select binding).First();
+            return b;
+        }
+
         public static void loadDefaults()
         {
             boundInputs = new List<SerializableBinding>();
@@ -56,12 +65,21 @@ namespace Lakeside2
             boundInputs.Add(new SerializableBinding(command, k, g));
         }
 
+        public static void setKeyboardBinds(Bindings command, params Keys[] keys)
+        {
+            SerializableBinding b = getSerializableBinding(command);
+            b.keys = new List<Keys>(keys);
+        }
+
+        public static void setGamepadBinds(Bindings command, params Buttons[] buttons)
+        {
+            SerializableBinding b = getSerializableBinding(command);
+            b.buttons = new List<Buttons>(buttons);
+        }
+
         public static List<object> getInputs(Bindings command)
         {
-            SerializableBinding b = (from binding
-                                     in boundInputs
-                                     where binding.binding == command
-                                     select binding).First();
+            SerializableBinding b = getSerializableBinding(command);
             List<object> allBindings = new List<object>();
             b.keys.ForEach(k => allBindings.Add(k));
             b.buttons.ForEach(g => allBindings.Add(g));

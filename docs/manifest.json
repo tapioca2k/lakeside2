@@ -105,7 +105,19 @@
       "output": {
         ".html": {
           "relative_path": "api/Lakeside2.InputBindings.html",
-          "hash": "W4V3BlncxzBhd1fvPMjE4KDH2DHF44BZm3nnhW6z2xU="
+          "hash": "ZkaVALanU09i9QXLFDBup6GDFkqaQ+ftjt9NlP8ZUPI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Lakeside2.InputHandler.ActiveInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Lakeside2.InputHandler.ActiveInput.html",
+          "hash": "cWXNjH3ra4nm9L/S+QAALeWcapfUEMR+7GQw/0ycpCw="
         }
       },
       "is_incremental": true,
@@ -117,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Lakeside2.InputHandler.html",
-          "hash": "teal2sHs1cs6Dab+2k4Grg7rTjDT5Ku7r9U4Jz/qqbw="
+          "hash": "dATht/OesTqJSUPI6/jiBqFHs1LJSgF4bB8C+PEC6FM="
         }
       },
       "is_incremental": true,
@@ -501,7 +513,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Lakeside2.html",
-          "hash": "m/bmMRG18b8GxjfP1elnm4/CGrnGAApZTAWE0lslI3Q="
+          "hash": "h7T/YUMjQ2za7Zeao0zRiQSY5NHzhq+tXaWM1ISCUDk="
         }
       },
       "is_incremental": true,
@@ -525,7 +537,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "YL88grLIniREyipuqbCGi1uEgSeu6J3UUcKWyglrctg="
+          "hash": "3Fuzu+mxdFHJBhf0MiwONPOIt9o1pThFifnqbymmK8g="
         }
       },
       "is_incremental": false,
@@ -574,8 +586,8 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 42,
-          "skipped_file_count": 42
+          "total_file_count": 43,
+          "skipped_file_count": 43
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

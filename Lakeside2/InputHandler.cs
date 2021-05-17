@@ -20,14 +20,21 @@ namespace Lakeside2
             Buttons.DPadUp, Buttons.DPadRight, Buttons.DPadDown, Buttons.DPadLeft,
             Buttons.LeftShoulder, Buttons.RightShoulder,
             Buttons.LeftTrigger, Buttons.RightTrigger,
+            Buttons.LeftStick, Buttons.RightStick,
             Buttons.Start, Buttons.Back
         };
+
+        public enum ActiveInput
+        {
+            Keyboard, Gamepad
+        }
 
         Dictionary<Keys, bool> keys;
 
         int mleft;
         int mright;
         public Vector2 mousePosition;
+        public ActiveInput activeInput; // n.b. gamepad always takes priority
 
 
         Dictionary<Buttons, bool>[] gamepads;
@@ -58,6 +65,24 @@ namespace Lakeside2
             get { return keys.Keys.ToList<Keys>(); }
         }
 
+        public Keys[] getPressedKeys()
+        {
+            IEnumerable<Keys> pk = from k
+                                   in keys.Keys
+                                   where keys[k]
+                                   select k;
+            return new List<Keys>(pk).ToArray();
+        }
+
+        public Buttons[] getPressedButtons(int n)
+        {
+            IEnumerable<Buttons> buttons = from b
+                                           in gamepads[n].Keys
+                                           where gamepads[n][b]
+                                           select b;
+            return new List<Buttons>(buttons).ToArray();
+        }
+
         public void update()
         {
             updateKeyboard();
@@ -72,6 +97,7 @@ namespace Lakeside2
         {
             KeyboardState state = Keyboard.GetState();
             Keys[] pressed = state.GetPressedKeys();
+            if (pressed.Length > 0) activeInput = ActiveInput.Keyboard;
             Keys[] handledKeys = keys.Keys.ToArray<Keys>();
             foreach (Keys k in handledKeys)
             {
@@ -95,7 +121,7 @@ namespace Lakeside2
 
         public void updateMouse()
         {
-            MouseState mouse = Microsoft.Xna.Framework.Input.Mouse.GetState(); // static reference to avoid confusion
+            MouseState mouse = Mouse.GetState();
             mousePosition = new Vector2(mouse.X, mouse.Y);
             if (mouse.LeftButton == ButtonState.Pressed) mleft++;
             else mleft = 0;
@@ -130,6 +156,7 @@ namespace Lakeside2
             {
                 if (state.IsButtonDown(tb))
                 {
+                    activeInput = ActiveInput.Gamepad;
                     if (handledButtons.Contains(tb) && gamepad[tb])
                     {
                         gamepad[tb] = false;
