@@ -23,6 +23,8 @@ namespace Lakeside2.Editor
         Tile lastEditedTile;
         LuaScript lastEditedScript;
 
+        public Color background => world.background;
+
         TileMap map
         {
             get

@@ -16,6 +16,8 @@ namespace Lakeside2.Editor
 
         UiSystem ui;
 
+        public Color background => titleScreen.background;
+
         public GameEditor(Game1 game, ContentManager Content, TitleScreen titleScreen)
         {
             this.game = game;

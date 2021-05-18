@@ -45,6 +45,7 @@ namespace Lakeside2.WorldMap
         List<double> parallax;
         List<double> scrollValues;
         int index;
+        public Color background => Game1.BG_COLOR;
 
         bool editing => editor != null;
         public int width => layers[meta.baseLayer].Width;

@@ -21,6 +21,8 @@ namespace Lakeside2
         public const int PORTAL_HEIGHT = Game1.INTERNAL_HEIGHT - 16 - 4;
         public const int HALF_PORTAL_HEIGHT = PORTAL_HEIGHT / 2;
 
+        public Color background => map.color;
+
         public Game1 game;
         ContentManager Content;
 

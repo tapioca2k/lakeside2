@@ -23,6 +23,8 @@ namespace Lakeside2
 
         UiList mainList;
 
+        public Color background => Game1.BG_COLOR;
+
         public TitleScreen(Game1 game, ContentManager Content)
         {
             this.game = game;

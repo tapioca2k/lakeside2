@@ -908,6 +908,19 @@ references:
   commentId: T:Lakeside2.IGameState
   fullName: Lakeside2.IGameState
   nameWithType: IGameState
+- uid: Lakeside2.IGameState.background
+  name: background
+  href: api/Lakeside2.IGameState.html#Lakeside2_IGameState_background
+  commentId: P:Lakeside2.IGameState.background
+  fullName: Lakeside2.IGameState.background
+  nameWithType: IGameState.background
+- uid: Lakeside2.IGameState.background*
+  name: background
+  href: api/Lakeside2.IGameState.html#Lakeside2_IGameState_background_
+  commentId: Overload:Lakeside2.IGameState.background
+  isSpec: "True"
+  fullName: Lakeside2.IGameState.background
+  nameWithType: IGameState.background
 - uid: Lakeside2.IGameState.draw(Lakeside2.SBWrapper)
   name: draw(SBWrapper)
   href: api/Lakeside2.IGameState.html#Lakeside2_IGameState_draw_Lakeside2_SBWrapper_
@@ -3699,6 +3712,19 @@ references:
   isSpec: "True"
   fullName: Lakeside2.World.World
   nameWithType: World.World
+- uid: Lakeside2.World.background
+  name: background
+  href: api/Lakeside2.World.html#Lakeside2_World_background
+  commentId: P:Lakeside2.World.background
+  fullName: Lakeside2.World.background
+  nameWithType: World.background
+- uid: Lakeside2.World.background*
+  name: background
+  href: api/Lakeside2.World.html#Lakeside2_World_background_
+  commentId: Overload:Lakeside2.World.background
+  isSpec: "True"
+  fullName: Lakeside2.World.background
+  nameWithType: World.background
 - uid: Lakeside2.World.camera
   name: camera
   href: api/Lakeside2.World.html#Lakeside2_World_camera

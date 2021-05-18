@@ -23,6 +23,8 @@ namespace Lakeside2.Editor
         UiSystem ui;
         OverworldCursor cursor;
 
+        public Color background => map.background;
+
         public OverworldEditor(ContentManager Content, Overworld map)
         {
             this.Content = Content;

@@ -206,7 +206,14 @@ namespace Lakeside2
 
             // scale to screen size, draw to window
             GraphicsDevice.SetRenderTarget(null);
-            GraphicsDevice.Clear(BG_COLOR);
+            if (states.Count > 0)
+            {
+                GraphicsDevice.Clear(((IGameState)states.Peek()).background);
+            }
+            else
+            {
+                GraphicsDevice.Clear(Game1.BG_COLOR);
+            }
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: colorize);
             _spriteBatch.Draw(mainTarget, new Rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT), Color.White);
             _spriteBatch.End();
