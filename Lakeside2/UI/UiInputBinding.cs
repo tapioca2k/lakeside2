@@ -52,7 +52,7 @@ namespace Lakeside2.UI
             });
         }
 
-        string[] buildStrings( int rebindIndex)
+        string[] buildStrings(int rebindIndex)
         {
             List<string> bindings = new List<string>();
             for (int i = 0; i < bindingOrder.Count; i++)
@@ -60,7 +60,8 @@ namespace Lakeside2.UI
                 Bindings command = bindingOrder[i];
                 if (i == rebindIndex)
                 {
-                    bindings.Add("Waiting for input...");
+                    bindings.Add(command + ": " + 
+                        "Waiting for input...");
                 }
                 else
                 {
@@ -80,6 +81,7 @@ namespace Lakeside2.UI
             if (rebindTime > 3) // keybinding timeout
             {
                 rebindTime = -1;
+                setStrings(buildStrings(-1));
             }
             else if (rebindTime >= 0) // waiting for rebind...
             {
