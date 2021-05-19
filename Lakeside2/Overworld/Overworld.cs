@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using NLua;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -37,6 +38,7 @@ namespace Lakeside2.WorldMap
 
         Game1 game;
         ContentManager Content;
+        Lua overworldLua;
         public OverworldMeta meta;
         IGameState editor;
         UiSystem ui;
@@ -90,7 +92,6 @@ namespace Lakeside2.WorldMap
             this.game = game;
             this.Content = Content;
             ui = new UiSystem();
-
             player = new OWPlayer(Content, p, Vector2.Zero);
 
             // load locations and texture layers from json
@@ -100,6 +101,15 @@ namespace Lakeside2.WorldMap
             locations.ForEach(l => l.load(Content));
             sortLocations();
             reloadLayers();
+
+            // add extra locations via lua script
+            overworldLua = new Lua();
+            overworldLua.LoadCLRPackage();
+            overworldLua.DoString("import ('Lakeside2', 'Lakeside2')");
+            overworldLua["player"] = p;
+            overworldLua["overworld"] = this;
+            LuaScript locationScript = new LuaScript("map.lua");
+            locationScript.execute(null, overworldLua);
 
             // put player in the correct spot
             if (current == null) index = 0;
@@ -141,6 +151,12 @@ namespace Lakeside2.WorldMap
                 scrollValues.Add((layers[i].Width - Game1.INTERNAL_WIDTH) / (double)(width - Game1.INTERNAL_WIDTH));
             }
 
+        }
+
+        public void addLocation(string filename, Vector2 location)
+        {
+            locations.Add(new OWLocation(Content, filename, location));
+            sortLocations();
         }
 
         public void onInput(InputHandler input)

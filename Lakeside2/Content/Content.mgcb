@@ -252,6 +252,9 @@
 #begin scripts/knight.lua
 /copy:scripts/knight.lua
 
+#begin scripts/map.lua
+/copy:scripts/map.lua
+
 #begin scripts/overworld.lua
 /copy:scripts/overworld.lua
 

@@ -58,8 +58,7 @@ namespace Lakeside2.Editor
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "")
                     {
-                        map.meta.locations.Add(new OWLocation(Content, input.text, cursor.getLocation()));
-                        map.sortLocations();
+                        map.addLocation(input.text, cursor.getLocation());
                         map.setPlayerLocation();
                     }
                 }), Vector2.Zero);

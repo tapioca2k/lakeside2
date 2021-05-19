@@ -1,5 +1,7 @@
 function talk_howdy()
-	l:makeChain(l:SDialog("Howdy partner! Was that so hard?"))
+	Flags.setBooleanFlag("said_howdy", true)
+	l:makeChain(l:SDialog("Howdy partner! Was that so hard?"), 
+				l:SDialog("I'm going into town. You should come visit me, seeing as we're friends now and all!"))
 	l:followPlayer(nil)
 end
 
