@@ -69,7 +69,7 @@ namespace Lakeside2.Editor
                 {
                     if (Vector2.Distance(map.meta.locations[i].center, cursor.center) < 10)
                     {
-                        map.meta.locations.RemoveAt(i);
+                        map.meta.locations.Remove(map.meta.locations[i]);
                         map.setPlayerLocation();
                         break;
                     }

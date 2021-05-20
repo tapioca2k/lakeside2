@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 
@@ -157,6 +158,16 @@ namespace Lakeside2.WorldMap
         {
             locations.Add(new OWLocation(Content, filename, location));
             sortLocations();
+        }
+
+        public void removeLocation(string filename)
+        {
+            removeLocation((from l in meta.locations where l.filename == filename select l).First());
+        }
+
+        public void removeLocation(OWLocation location)
+        {
+            locations.Remove(location);
         }
 
         public void onInput(InputHandler input)
