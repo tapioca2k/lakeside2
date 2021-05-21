@@ -39,6 +39,11 @@ namespace Lakeside2
             return TimeSpan.FromMilliseconds(t);
         }
 
+        public static double getMillis()
+        {
+            return t;
+        }
+
         public static void restart()
         {
             t = 0;

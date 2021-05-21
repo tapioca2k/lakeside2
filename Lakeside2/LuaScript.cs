@@ -53,6 +53,14 @@ namespace Lakeside2
             return returnvals;
         }
 
+        public object[] callFunction(string name, Lua lua)
+        {
+            if (!loaded) return new object[0];
+            LuaFunction fn = lua.GetFunction(name);
+            if (fn != null) return fn.Call(new object[0]);
+            else return new object[0];
+        }
+
         public Vector2 getTileLocation()
         {
             return location;

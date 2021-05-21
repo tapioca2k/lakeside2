@@ -129,6 +129,18 @@
 /processorParam:TextureFormat=Color
 /build:logo-default.png
 
+#begin map/logowhite.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:map/logowhite.png
+
 #begin map/map.json
 /copy:map/map.json
 
@@ -143,6 +155,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:map/mapback.png;map/background.png
+
+#begin map/mapbacknight.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:map/mapbacknight.png
 
 #begin map/mapfront.png
 /importer:TextureImporter
@@ -179,6 +203,9 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:map/mapmarker.png
+
+#begin map/mapnight.json
+/copy:map/mapnight.json
 
 #begin map/stationaryLogo.png
 /importer:TextureImporter

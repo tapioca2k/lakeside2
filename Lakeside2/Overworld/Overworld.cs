@@ -95,15 +95,7 @@ namespace Lakeside2.WorldMap
             ui = new UiSystem();
             player = new OWPlayer(Content, p, Vector2.Zero);
 
-            // load locations and texture layers from json
-            string json = File.ReadAllText("Content/map/map.json");
-            meta = JsonSerializer.Deserialize<OverworldMeta>(json, SerializableMap.OPTIONS);
-            this.locations = meta.locations;
-            locations.ForEach(l => l.load(Content));
-            sortLocations();
-            reloadLayers();
-
-            // add extra locations via lua script
+            // load map
             overworldLua = new Lua();
             overworldLua.LoadCLRPackage();
             overworldLua.DoString("import ('Lakeside2', 'Lakeside2')");
@@ -112,7 +104,7 @@ namespace Lakeside2.WorldMap
             LuaScript locationScript = new LuaScript("map.lua");
             locationScript.execute(null, overworldLua);
 
-            // put player in the correct spot
+            // put player in the correct spot (the area they're coming out of)
             if (current == null) index = 0;
             else
             {
@@ -124,6 +116,8 @@ namespace Lakeside2.WorldMap
                     }
                 }
             }
+
+            // physically move player to index, set camera
             setPlayerLocation();
             x = getCameraDesired();
 
@@ -132,6 +126,17 @@ namespace Lakeside2.WorldMap
                 return Path.GetFileNameWithoutExtension(locs[index].filename);
             }), StripePosition.Center);
 
+        }
+
+        public void loadMap(string filename)
+        {
+            // load locations and texture layers from json
+            string json = File.ReadAllText(filename);
+            meta = JsonSerializer.Deserialize<OverworldMeta>(json, SerializableMap.OPTIONS);
+            this.locations = meta.locations;
+            locations.ForEach(l => l.load(Content));
+            sortLocations();
+            reloadLayers();
         }
 
         public void reloadLayers()

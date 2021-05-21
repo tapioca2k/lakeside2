@@ -1778,6 +1778,19 @@ references:
   isSpec: "True"
   fullName: Lakeside2.LuaScript.LuaScript
   nameWithType: LuaScript.LuaScript
+- uid: Lakeside2.LuaScript.callFunction(System.String,NLua.Lua)
+  name: callFunction(String, Lua)
+  href: api/Lakeside2.LuaScript.html#Lakeside2_LuaScript_callFunction_System_String_NLua_Lua_
+  commentId: M:Lakeside2.LuaScript.callFunction(System.String,NLua.Lua)
+  fullName: Lakeside2.LuaScript.callFunction(System.String, NLua.Lua)
+  nameWithType: LuaScript.callFunction(String, Lua)
+- uid: Lakeside2.LuaScript.callFunction*
+  name: callFunction
+  href: api/Lakeside2.LuaScript.html#Lakeside2_LuaScript_callFunction_
+  commentId: Overload:Lakeside2.LuaScript.callFunction
+  isSpec: "True"
+  fullName: Lakeside2.LuaScript.callFunction
+  nameWithType: LuaScript.callFunction
 - uid: Lakeside2.LuaScript.execute(Lakeside2.Entity,NLua.Lua)
   name: execute(Entity, Lua)
   href: api/Lakeside2.LuaScript.html#Lakeside2_LuaScript_execute_Lakeside2_Entity_NLua_Lua_
@@ -3389,6 +3402,19 @@ references:
   isSpec: "True"
   fullName: Lakeside2.TimeOfDay.addSeconds
   nameWithType: TimeOfDay.addSeconds
+- uid: Lakeside2.TimeOfDay.getMillis
+  name: getMillis()
+  href: api/Lakeside2.TimeOfDay.html#Lakeside2_TimeOfDay_getMillis
+  commentId: M:Lakeside2.TimeOfDay.getMillis
+  fullName: Lakeside2.TimeOfDay.getMillis()
+  nameWithType: TimeOfDay.getMillis()
+- uid: Lakeside2.TimeOfDay.getMillis*
+  name: getMillis
+  href: api/Lakeside2.TimeOfDay.html#Lakeside2_TimeOfDay_getMillis_
+  commentId: Overload:Lakeside2.TimeOfDay.getMillis
+  isSpec: "True"
+  fullName: Lakeside2.TimeOfDay.getMillis
+  nameWithType: TimeOfDay.getMillis
 - uid: Lakeside2.TimeOfDay.getTime
   name: getTime()
   href: api/Lakeside2.TimeOfDay.html#Lakeside2_TimeOfDay_getTime
