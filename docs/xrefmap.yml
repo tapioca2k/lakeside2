@@ -3402,6 +3402,19 @@ references:
   isSpec: "True"
   fullName: Lakeside2.TimeOfDay.addSeconds
   nameWithType: TimeOfDay.addSeconds
+- uid: Lakeside2.TimeOfDay.getHours
+  name: getHours()
+  href: api/Lakeside2.TimeOfDay.html#Lakeside2_TimeOfDay_getHours
+  commentId: M:Lakeside2.TimeOfDay.getHours
+  fullName: Lakeside2.TimeOfDay.getHours()
+  nameWithType: TimeOfDay.getHours()
+- uid: Lakeside2.TimeOfDay.getHours*
+  name: getHours
+  href: api/Lakeside2.TimeOfDay.html#Lakeside2_TimeOfDay_getHours_
+  commentId: Overload:Lakeside2.TimeOfDay.getHours
+  isSpec: "True"
+  fullName: Lakeside2.TimeOfDay.getHours
+  nameWithType: TimeOfDay.getHours
 - uid: Lakeside2.TimeOfDay.getMillis
   name: getMillis()
   href: api/Lakeside2.TimeOfDay.html#Lakeside2_TimeOfDay_getMillis
@@ -3415,6 +3428,32 @@ references:
   isSpec: "True"
   fullName: Lakeside2.TimeOfDay.getMillis
   nameWithType: TimeOfDay.getMillis
+- uid: Lakeside2.TimeOfDay.getMinutes
+  name: getMinutes()
+  href: api/Lakeside2.TimeOfDay.html#Lakeside2_TimeOfDay_getMinutes
+  commentId: M:Lakeside2.TimeOfDay.getMinutes
+  fullName: Lakeside2.TimeOfDay.getMinutes()
+  nameWithType: TimeOfDay.getMinutes()
+- uid: Lakeside2.TimeOfDay.getMinutes*
+  name: getMinutes
+  href: api/Lakeside2.TimeOfDay.html#Lakeside2_TimeOfDay_getMinutes_
+  commentId: Overload:Lakeside2.TimeOfDay.getMinutes
+  isSpec: "True"
+  fullName: Lakeside2.TimeOfDay.getMinutes
+  nameWithType: TimeOfDay.getMinutes
+- uid: Lakeside2.TimeOfDay.getSeconds
+  name: getSeconds()
+  href: api/Lakeside2.TimeOfDay.html#Lakeside2_TimeOfDay_getSeconds
+  commentId: M:Lakeside2.TimeOfDay.getSeconds
+  fullName: Lakeside2.TimeOfDay.getSeconds()
+  nameWithType: TimeOfDay.getSeconds()
+- uid: Lakeside2.TimeOfDay.getSeconds*
+  name: getSeconds
+  href: api/Lakeside2.TimeOfDay.html#Lakeside2_TimeOfDay_getSeconds_
+  commentId: Overload:Lakeside2.TimeOfDay.getSeconds
+  isSpec: "True"
+  fullName: Lakeside2.TimeOfDay.getSeconds
+  nameWithType: TimeOfDay.getSeconds
 - uid: Lakeside2.TimeOfDay.getTime
   name: getTime()
   href: api/Lakeside2.TimeOfDay.html#Lakeside2_TimeOfDay_getTime

@@ -44,6 +44,21 @@ namespace Lakeside2
             return t;
         }
 
+        public static double getSeconds()
+        {
+            return getTime().TotalSeconds;
+        }
+
+        public static double getMinutes()
+        {
+            return getTime().TotalMinutes;
+        }
+
+        public static double getHours()
+        {
+            return getTime().TotalHours;
+        }
+
         public static void restart()
         {
             t = 0;

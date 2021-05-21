@@ -1,5 +1,5 @@
 -- decide which map to load
-if TimeOfDay.getMillis() < (1000 * 60 * 60 * 8) then
+if TimeOfDay.getHours() < 6 or TimeOfDay.getHours() > 20 then
 	overworld:loadMap("Content/map/mapnight.json")
 else
 	overworld:loadMap("Content/map/map.json")
