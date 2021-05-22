@@ -48,8 +48,29 @@ namespace Lakeside2.Editor
 
             if (input.isKeyPressed(Keys.F2)) // Save
             {
-                string json = JsonSerializer.Serialize<OverworldMeta>(map.meta, SerializableMap.OPTIONS);
-                File.WriteAllText("Content/map/map.json", json);
+                UiElement filename = new UiTextInput("Save Filename: ").addCallback(element =>
+                {
+                    UiTextInput input = (UiTextInput)element;
+                    if (input.text != "")
+                    {
+                        string json = JsonSerializer.Serialize<OverworldMeta>(map.meta, SerializableMap.OPTIONS);
+                        File.WriteAllText("Content/map/" + input.text, json);
+                    }
+                });
+                ui.pushElement(filename, Vector2.One);
+            }
+            else if (input.isKeyPressed(Keys.F3)) // Load
+            {
+                UiElement filename = new UiTextInput("Load Filename: ").addCallback(element =>
+                {
+                    UiTextInput input = (UiTextInput)element;
+                    if (input.text != "")
+                    {
+                        map.loadMap("Content/map/" + input.text);
+                        map.setPlayerLocation();
+                    }
+                });
+                ui.pushElement(filename, Vector2.One);
             }
             else if (input.isKeyPressed(Keys.E)) // Create new map location
             {
