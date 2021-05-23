@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using static Lakeside2.InputBindings;
 
 namespace Lakeside2
 {

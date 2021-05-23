@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using static Lakeside2.InputBindings;
 
 namespace Lakeside2.WorldMap
 {

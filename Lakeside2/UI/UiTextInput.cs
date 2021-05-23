@@ -59,7 +59,7 @@ namespace Lakeside2.UI
             }
             else
             {
-                foreach (Keys k in input.heldKeys)
+                foreach (Keys k in input.getHeldKeys())
                 {
                     if (input.isKeyPressed(k))
                     {

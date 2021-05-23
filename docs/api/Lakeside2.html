@@ -90,9 +90,20 @@ interactable, movable game objects are derived.</p>
       <h4><a class="xref" href="Lakeside2.GameInfo.html">GameInfo</a></h4>
       <section></section>
       <h4><a class="xref" href="Lakeside2.InputBindings.html">InputBindings</a></h4>
-      <section></section>
+      <section><p>InputBindings mixes keys and gamepad buttons together and
+abstracts them behind <a class="xref" href="Lakeside2.InputBindings.Bindings.html">InputBindings.Bindings</a>.</p>
+</section>
       <h4><a class="xref" href="Lakeside2.InputHandler.html">InputHandler</a></h4>
-      <section></section>
+      <section><p>InputHandler manages the state of the keyboard, mouse, and gamepad.
+Only one instance of InputHandler is needed, and it should only be
+updated once per frame.</p>
+<p>InputHandler uses the terminology &quot;Pressed&quot; to refer to a key or
+button being pressed down for the first frame (i.e. rising edge),
+and &quot;Held&quot; for a key or button staying pressed down after that.</p>
+<p>To support rebindable controls, <a class="xref" href="Lakeside2.InputHandler.html#Lakeside2_InputHandler_isCommandHeld_Lakeside2_InputBindings_Bindings_">isCommandHeld(InputBindings.Bindings)</a>
+and <a class="xref" href="Lakeside2.InputHandler.html#Lakeside2_InputHandler_isCommandPressed_Lakeside2_InputBindings_Bindings_">isCommandPressed(InputBindings.Bindings)</a> should be used over the
+raw key/gamepad check functions.</p>
+</section>
       <h4><a class="xref" href="Lakeside2.Inventory.html">Inventory</a></h4>
       <section></section>
       <h4><a class="xref" href="Lakeside2.Item.html">Item</a></h4>
@@ -130,10 +141,11 @@ be done when drawing multiple elements relative to non-zero origin points.</p>
       <section></section>
     <h3 id="enums">Enums
   </h3>
-      <h4><a class="xref" href="Lakeside2.Bindings.html">Bindings</a></h4>
-      <section></section>
       <h4><a class="xref" href="Lakeside2.Entity.Directions.html">Entity.Directions</a></h4>
       <section></section>
+      <h4><a class="xref" href="Lakeside2.InputBindings.Bindings.html">InputBindings.Bindings</a></h4>
+      <section><p>Input commands to bind to</p>
+</section>
       <h4><a class="xref" href="Lakeside2.InputHandler.ActiveInput.html">InputHandler.ActiveInput</a></h4>
       <section></section>
 </article>

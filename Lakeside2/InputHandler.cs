@@ -6,14 +6,34 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
+using static Lakeside2.InputBindings;
 
 namespace Lakeside2
 {
-
-
+    /// <summary>
+    /// InputHandler manages the state of the keyboard, mouse, and gamepad.
+    /// Only one instance of InputHandler is needed, and it should only be 
+    /// updated once per frame.
+    /// 
+    /// InputHandler uses the terminology "Pressed" to refer to a key or
+    /// button being pressed down for the first frame (i.e. rising edge),
+    /// and "Held" for a key or button staying pressed down after that.
+    /// 
+    /// To support rebindable controls, <see cref="isCommandHeld(Bindings)"/> 
+    /// and <see cref="isCommandPressed(Bindings)"/> should be used over the 
+    /// raw key/gamepad check functions.
+    /// </summary>
     public class InputHandler
     {
+        /// <summary>
+        /// Gamepad analog stick deadzone. Any reading below this value will 
+        /// be truncated to zero.
+        /// </summary>
         public static float DEADZONE = 0.1f;
+
+        /// <summary>
+        /// Gamepad buttons tracked by InputHandler
+        /// </summary>
         public static Buttons[] TRACKED_BUTTONS = new Buttons[]
         {
             Buttons.A, Buttons.B, Buttons.Y, Buttons.X,
@@ -33,8 +53,17 @@ namespace Lakeside2
 
         int mleft;
         int mright;
+
+        /// <summary>
+        /// Mouse position vector2
+        /// </summary>
         public Vector2 mousePosition;
-        public ActiveInput activeInput; // n.b. gamepad always takes priority
+
+        /// <summary>
+        /// Which input type is active right now, i.e. KB/M or Gamepad.
+        /// If both are being used on the same frame, gamepad will take priority.
+        /// </summary>
+        public ActiveInput activeInput;
 
 
         Dictionary<Buttons, bool>[] gamepads;
@@ -55,16 +84,29 @@ namespace Lakeside2
             };
         }
 
-        public List<Buttons> heldButtons(int n)
+        /// <summary>
+        /// Buttons currently being held
+        /// </summary>
+        /// <param name="n">Gamepad number 1-4</param>
+        /// <returns></returns>
+        public List<Buttons> getHeldButtons(int n)
         {
             return gamepads[n].Keys.ToList<Buttons>();
         }
 
-        public List<Keys> heldKeys
+        /// <summary>
+        /// Keys currently being held
+        /// </summary>
+        /// <returns></returns>
+        public List<Keys> getHeldKeys()
         {
-            get { return keys.Keys.ToList<Keys>(); }
+            return keys.Keys.ToList<Keys>();
         }
 
+        /// <summary>
+        /// Keys currently being pressed
+        /// </summary>
+        /// <returns></returns>
         public Keys[] getPressedKeys()
         {
             IEnumerable<Keys> pk = from k
@@ -74,6 +116,11 @@ namespace Lakeside2
             return new List<Keys>(pk).ToArray();
         }
 
+        /// <summary>
+        /// Buttons currently being pressed
+        /// </summary>
+        /// <param name="n">Gamepad number 1-4</param>
+        /// <returns></returns>
         public Buttons[] getPressedButtons(int n)
         {
             IEnumerable<Buttons> buttons = from b
@@ -83,6 +130,10 @@ namespace Lakeside2
             return new List<Buttons>(buttons).ToArray();
         }
 
+        /// <summary>
+        /// Update the state of the keyboard, mouse, and four gamepads.
+        /// This should only be called once per frame.
+        /// </summary>
         public void update()
         {
             updateKeyboard();
@@ -93,7 +144,7 @@ namespace Lakeside2
             updateGamepad(3, GamePad.GetState(PlayerIndex.Four));
         }
 
-        public void updateKeyboard()
+        void updateKeyboard()
         {
             KeyboardState state = Keyboard.GetState();
             Keys[] pressed = state.GetPressedKeys();
@@ -119,7 +170,7 @@ namespace Lakeside2
             }
         }
 
-        public void updateMouse()
+        void updateMouse()
         {
             MouseState mouse = Mouse.GetState();
             mousePosition = new Vector2(mouse.X, mouse.Y);
@@ -129,12 +180,7 @@ namespace Lakeside2
             else mright = 0;
         }
 
-        public bool isGamePadConnected(int n)
-        {
-            return GamePad.GetState(n).IsConnected;
-        }
-
-        public void updateGamepad(int n, GamePadState state)
+        void updateGamepad(int n, GamePadState state)
         {
             Dictionary<Buttons, bool> gamepad = gamepads[n];
             List<Buttons> handledButtons = new List<Buttons>(gamepad.Keys);
@@ -173,6 +219,16 @@ namespace Lakeside2
             }
         }
 
+        /// <summary>
+        /// Is gamepad connected
+        /// </summary>
+        /// <param name="n">Gamepad number 1-4</param>
+        /// <returns></returns>
+        public bool isGamePadConnected(int n)
+        {
+            return GamePad.GetState(n).IsConnected;
+        }
+
         public bool isKeyPressed(Keys k)
         {
             return (keys.Keys.Contains(k) && keys[k]);
@@ -183,11 +239,21 @@ namespace Lakeside2
 
         }
 
+        /// <summary>
+        /// Return true if any of the parameter keys are pressed
+        /// </summary>
+        /// <param name="keys">Keys to check</param>
+        /// <returns></returns>
         public bool isAnyKeyPressed(params Keys[] keys)
         {
             return Array.Exists(keys, key => isKeyPressed(key));
         }
 
+        /// <summary>
+        /// Return true if any of the parameter keys are held
+        /// </summary>
+        /// <param name="keys">Keys to check</param>
+        /// <returns></returns>
         public bool isAnyKeyHeld(params Keys[] keys)
         {
             return Array.Exists(keys, key => isKeyHeld(key));
@@ -219,6 +285,13 @@ namespace Lakeside2
             Dictionary<Buttons, bool> gamepad = gamepads[n];
             return (gamepad.ContainsKey(b));
         }
+
+        /// <summary>
+        /// Return position of an analog stick
+        /// </summary>
+        /// <param name="n">Gamepad number 1-4</param>
+        /// <param name="s">Which stick</param>
+        /// <returns></returns>
         public Vector2 stickPosition(int n, char s)
         {
             n *= 2;
@@ -226,6 +299,11 @@ namespace Lakeside2
             return stickPositions[n];
         }
 
+        /// <summary>
+        /// Return true if an <see cref="InputBindings"/> command is being pressed
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         public bool isCommandPressed(Bindings command)
         {
             List<object> inputs = InputBindings.getInputs(command);
@@ -237,6 +315,11 @@ namespace Lakeside2
             return false;
         }
 
+        /// <summary>
+        /// Return true if an <see cref="InputBindings"/> command is being held
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         public bool isCommandHeld(Bindings command)
         {
             List<object> inputs = InputBindings.getInputs(command);

@@ -73,7 +73,9 @@
   
   <h1 id="Lakeside2_InputBindings" data-uid="Lakeside2.InputBindings" class="text-break">Class InputBindings
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>InputBindings mixes keys and gamepad buttons together and
+abstracts them behind <a class="xref" href="Lakeside2.InputBindings.Bindings.html">InputBindings.Bindings</a>.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -115,12 +117,13 @@
   
   
   <a id="Lakeside2_InputBindings_getInputs_" data-uid="Lakeside2.InputBindings.getInputs*"></a>
-  <h4 id="Lakeside2_InputBindings_getInputs_Lakeside2_Bindings_" data-uid="Lakeside2.InputBindings.getInputs(Lakeside2.Bindings)">getInputs(Bindings)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="Lakeside2_InputBindings_getInputs_Lakeside2_InputBindings_Bindings_" data-uid="Lakeside2.InputBindings.getInputs(Lakeside2.InputBindings.Bindings)">getInputs(InputBindings.Bindings)</h4>
+  <div class="markdown level1 summary"><p>Get all inputs bound to a command</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static List&lt;object&gt; getInputs(Bindings command)</code></pre>
+    <pre><code class="lang-csharp hljs">public static List&lt;object&gt; getInputs(InputBindings.Bindings command)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -133,9 +136,10 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Lakeside2.Bindings.html">Bindings</a></td>
+        <td><a class="xref" href="Lakeside2.InputBindings.Bindings.html">InputBindings.Bindings</a></td>
         <td><span class="parametername">command</span></td>
-        <td></td>
+        <td><p><a class="xref" href="Lakeside2.InputBindings.Bindings.html">InputBindings.Bindings</a></p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -158,7 +162,8 @@
   
   <a id="Lakeside2_InputBindings_loadDefaults_" data-uid="Lakeside2.InputBindings.loadDefaults*"></a>
   <h4 id="Lakeside2_InputBindings_loadDefaults" data-uid="Lakeside2.InputBindings.loadDefaults">loadDefaults()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Load hard-coded default input bindings</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -168,7 +173,9 @@
   
   <a id="Lakeside2_InputBindings_loadKeybinds_" data-uid="Lakeside2.InputBindings.loadKeybinds*"></a>
   <h4 id="Lakeside2_InputBindings_loadKeybinds_System_String_" data-uid="Lakeside2.InputBindings.loadKeybinds(System.String)">loadKeybinds(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Load input bindings from a file. The current bindings will be
+overwritten.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -187,7 +194,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>Filename</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -195,7 +203,8 @@
   
   <a id="Lakeside2_InputBindings_saveKeybinds_" data-uid="Lakeside2.InputBindings.saveKeybinds*"></a>
   <h4 id="Lakeside2_InputBindings_saveKeybinds_System_String_" data-uid="Lakeside2.InputBindings.saveKeybinds(System.String)">saveKeybinds(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Save current input bindings to a file</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -214,19 +223,22 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>Filename</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
   <a id="Lakeside2_InputBindings_setGamepadBinds_" data-uid="Lakeside2.InputBindings.setGamepadBinds*"></a>
-  <h4 id="Lakeside2_InputBindings_setGamepadBinds_Lakeside2_Bindings_Microsoft_Xna_Framework_Input_Buttons___" data-uid="Lakeside2.InputBindings.setGamepadBinds(Lakeside2.Bindings,Microsoft.Xna.Framework.Input.Buttons[])">setGamepadBinds(Bindings, Buttons[])</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="Lakeside2_InputBindings_setGamepadBinds_Lakeside2_InputBindings_Bindings_Microsoft_Xna_Framework_Input_Buttons___" data-uid="Lakeside2.InputBindings.setGamepadBinds(Lakeside2.InputBindings.Bindings,Microsoft.Xna.Framework.Input.Buttons[])">setGamepadBinds(InputBindings.Bindings, Buttons[])</h4>
+  <div class="markdown level1 summary"><p>Bind gamepad buttons to an input command. Any existing key bindings
+will be preserved.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void setGamepadBinds(Bindings command, params Buttons[] buttons)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void setGamepadBinds(InputBindings.Bindings command, params Buttons[] buttons)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -239,9 +251,10 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Lakeside2.Bindings.html">Bindings</a></td>
+        <td><a class="xref" href="Lakeside2.InputBindings.Bindings.html">InputBindings.Bindings</a></td>
         <td><span class="parametername">command</span></td>
-        <td></td>
+        <td><p><a class="xref" href="Lakeside2.InputBindings.Bindings.html">InputBindings.Bindings</a> to bind to</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Microsoft.Xna.Framework.Input.Buttons</span>[]</td>
@@ -253,12 +266,14 @@
   
   
   <a id="Lakeside2_InputBindings_setKeybinds_" data-uid="Lakeside2.InputBindings.setKeybinds*"></a>
-  <h4 id="Lakeside2_InputBindings_setKeybinds_Lakeside2_Bindings_System_Object___" data-uid="Lakeside2.InputBindings.setKeybinds(Lakeside2.Bindings,System.Object[])">setKeybinds(Bindings, Object[])</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="Lakeside2_InputBindings_setKeybinds_Lakeside2_InputBindings_Bindings_System_Object___" data-uid="Lakeside2.InputBindings.setKeybinds(Lakeside2.InputBindings.Bindings,System.Object[])">setKeybinds(InputBindings.Bindings, Object[])</h4>
+  <div class="markdown level1 summary"><p>Bind keys and buttons to an input command. Any old bindings will
+be removed.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void setKeybinds(Bindings command, params object[] inputs)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void setKeybinds(InputBindings.Bindings command, params object[] inputs)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -271,26 +286,30 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Lakeside2.Bindings.html">Bindings</a></td>
+        <td><a class="xref" href="Lakeside2.InputBindings.Bindings.html">InputBindings.Bindings</a></td>
         <td><span class="parametername">command</span></td>
-        <td></td>
+        <td><p><a class="xref" href="Lakeside2.InputBindings.Bindings.html">InputBindings.Bindings</a> to bind to</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Object</span>[]</td>
         <td><span class="parametername">inputs</span></td>
-        <td></td>
+        <td><p>Keys and Gamepad buttons to bind</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
   <a id="Lakeside2_InputBindings_setKeyboardBinds_" data-uid="Lakeside2.InputBindings.setKeyboardBinds*"></a>
-  <h4 id="Lakeside2_InputBindings_setKeyboardBinds_Lakeside2_Bindings_Microsoft_Xna_Framework_Input_Keys___" data-uid="Lakeside2.InputBindings.setKeyboardBinds(Lakeside2.Bindings,Microsoft.Xna.Framework.Input.Keys[])">setKeyboardBinds(Bindings, Keys[])</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="Lakeside2_InputBindings_setKeyboardBinds_Lakeside2_InputBindings_Bindings_Microsoft_Xna_Framework_Input_Keys___" data-uid="Lakeside2.InputBindings.setKeyboardBinds(Lakeside2.InputBindings.Bindings,Microsoft.Xna.Framework.Input.Keys[])">setKeyboardBinds(InputBindings.Bindings, Keys[])</h4>
+  <div class="markdown level1 summary"><p>Bind keys to an input command. Any existing gamepad bindings
+will be preserved.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void setKeyboardBinds(Bindings command, params Keys[] keys)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void setKeyboardBinds(InputBindings.Bindings command, params Keys[] keys)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -303,14 +322,16 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Lakeside2.Bindings.html">Bindings</a></td>
+        <td><a class="xref" href="Lakeside2.InputBindings.Bindings.html">InputBindings.Bindings</a></td>
         <td><span class="parametername">command</span></td>
-        <td></td>
+        <td><p><a class="xref" href="Lakeside2.InputBindings.Bindings.html">InputBindings.Bindings</a> to bind to</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Microsoft.Xna.Framework.Input.Keys</span>[]</td>
         <td><span class="parametername">keys</span></td>
-        <td></td>
+        <td><p>Keys to bind</p>
+</td>
       </tr>
     </tbody>
   </table>
