@@ -31,6 +31,30 @@
 /processorParam:TextureFormat=Color
 /build:editorhotkeys.png
 
+#begin entities/amogusblue.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:entities/amogusblue.png
+
+#begin entities/amogusred.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:entities/amogusred.png
+
 #begin entities/cursor.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -128,6 +152,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:logo-default.png
+
+#begin mafiabg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:mafiabg.png
+
+#begin mafialogo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:mafialogo.png
 
 #begin map/logowhite.png
 /importer:TextureImporter
@@ -279,6 +327,12 @@
 #begin scripts/knight.lua
 /copy:scripts/knight.lua
 
+#begin scripts/mafiastep.lua
+/copy:scripts/mafiastep.lua
+
+#begin scripts/mafiatalk.lua
+/copy:scripts/mafiatalk.lua
+
 #begin scripts/map.lua
 /copy:scripts/map.lua
 
@@ -381,6 +435,18 @@
 /processorParam:TextureFormat=Color
 /build:tiles/carpet.png
 
+#begin tiles/darkgrey.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:tiles/darkgrey.png
+
 #begin tiles/grass.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -392,6 +458,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:tiles/grass.png
+
+#begin tiles/lightgrey.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:tiles/lightgrey.png
 
 #begin tiles/sand.png
 /importer:TextureImporter
