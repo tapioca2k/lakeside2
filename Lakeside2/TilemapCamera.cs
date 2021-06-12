@@ -127,10 +127,10 @@ namespace Lakeside2
         {
             SBWrapper cameraSpace = new SBWrapper(wrapper, -location);
             map.draw(cameraSpace);
-            foreach (Entity entity in entities) {
-                entity.draw(wrapper, this);
+            for (int i = 0; i < entities.Count; i++)
+            {
+                entities[i].draw(wrapper, this);
             }
-
         }
 
     }

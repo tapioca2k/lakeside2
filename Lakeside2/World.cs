@@ -165,6 +165,19 @@ namespace Lakeside2
             {
                 editor.update(dt);
             }
+
+            // sort entities (for perspective)
+            for (int i = 1; i < entities.Count; i++)
+            {
+                Entity key = entities[i];
+                int j = i - 1;
+                while (j >= 0 && entities[j].getLocation().Y > key.getLocation().Y)
+                {
+                    entities[j + 1] = entities[j];
+                    j = j - 1;
+                }
+                entities[j + 1] = key;
+            }
         }
 
         public void draw(SBWrapper wrapper)
