@@ -23,7 +23,7 @@ namespace Lakeside2
 
         public Player(ContentManager Content, World world, Lua worldLua)
         {
-            loadAnimatedTexture(Content, "greenman");
+            loadAnimatedTexture(Content, "iateyourpie");
             this.world = world;
             this.worldLua = worldLua;
             this.inventory = new Dictionary<Item, int>();

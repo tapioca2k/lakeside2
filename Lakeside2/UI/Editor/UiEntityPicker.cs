@@ -20,7 +20,7 @@ namespace Lakeside2.UI.Editor
                 if (Path.GetExtension(file) != ".json") // ignore animation files
                 {
                     string cleaned = Path.GetFileNameWithoutExtension(file);
-                    npcs.Add(new NPC(Content, cleaned, "", false, cleaned));
+                    npcs.Add(new NPC(Content, cleaned, "", false, cleaned, ""));
                 }
             }
             return npcs;

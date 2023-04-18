@@ -124,7 +124,7 @@ namespace Lakeside2.WorldMap
 
             ui.addStripeElement(new UiObjectMonitor<List<OWLocation>>(locations, locs =>
             {
-                return Path.GetFileNameWithoutExtension(locs[index].filename);
+                return Path.GetFileNameWithoutExtension(locs[index].name);
             }), StripePosition.Center);
 
         }
@@ -218,7 +218,7 @@ namespace Lakeside2.WorldMap
 
         public void setPlayerLocation()
         {
-            if (index > locations.Count) index = locations.Count - 1;
+            if (index >= locations.Count) index = locations.Count - 1;
             else if (index < 0) index = 0;
             player.feet = locations[index].center;
         }

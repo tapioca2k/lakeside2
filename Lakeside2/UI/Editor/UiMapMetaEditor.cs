@@ -35,6 +35,14 @@ namespace Lakeside2.UI.Editor
             {
                 finished = true;
             }
+            else if (input.isKeyPressed(Keys.N)) // rename map
+            {
+                system.pushElement(new UiTextInput("Name: ").addCallback((element) =>
+                {
+                    UiTextInput input = (UiTextInput)element;
+                    if (input.text != "") map.name = input.text;
+                }), Vector2.Zero);
+            }
             else if (input.isKeyPressed(Keys.R)) // resize map
             {
                 system.pushElement(new UiTextInput("Width: ").addCallback((element) => 
@@ -94,11 +102,12 @@ namespace Lakeside2.UI.Editor
         {
             drawBackground(wrapper);
             wrapper.drawString(map.filename, new Vector2(5, 5));
-            wrapper.drawString("Size: " + new Vector2(map.width, map.height), new Vector2(5, 25));
-            wrapper.drawString("(R)esize (" + map.width + "," + map.height + ")", new Vector2(5, 45));
-            wrapper.drawString("(B)ackground color: ", new Vector2(5, 65));
-            wrapper.drawString("" + Vector3.Multiply(map.color.ToVector3(), 255), new Vector2(25, 85));
-            wrapper.drawString("(S)tart: " + map.playerStart, new Vector2(5, 105));
+            wrapper.drawString("(N)ame: " + map.name, new Vector2(5, 25));
+            wrapper.drawString("Size: " + new Vector2(map.width, map.height), new Vector2(5, 45));
+            wrapper.drawString("(R)esize (" + map.width + "," + map.height + ")", new Vector2(5, 65));
+            wrapper.drawString("(B)ackground color: ", new Vector2(5, 85));
+            wrapper.drawString("" + Vector3.Multiply(map.color.ToVector3(), 255), new Vector2(25, 105), map.color);
+            wrapper.drawString("(S)tart: " + map.playerStart, new Vector2(5, 125));
         }
 
 

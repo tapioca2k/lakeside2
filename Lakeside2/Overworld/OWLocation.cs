@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Lakeside2.Serialization;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -11,8 +13,11 @@ namespace Lakeside2.WorldMap
     public class OWLocation
     {
         Texture2D texture;
+        public string name;
+
         public string filename { get; set; }
         public Vector2 location { get; set; }
+
 
         [JsonIgnore]
         public Vector2 center
@@ -41,6 +46,7 @@ namespace Lakeside2.WorldMap
         public void load(ContentManager Content)
         {
             texture = Content.Load<Texture2D>("map/mapmarker");
+            name = SerializableMap.Load(Content, filename).name;
         }
 
         public void draw(SBWrapper wrapper)

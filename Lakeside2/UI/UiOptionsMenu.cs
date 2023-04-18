@@ -40,7 +40,7 @@ namespace Lakeside2.UI
             index = 0;
 
             resolution = new UiLeftRightPicker(Content,
-                new string[4] { "x1 (320x180)", "x2 (640x320)", "x4 (1280x720)", "x6 (1920x1080)" });
+                new string[4] { "x1 (320x180)", "x2 (640x360)", "x4 (1280x720)", "x6 (1920x1080)" });
             resolution.selected = GameInfo.resolution;
             resolution.addCallback(element =>
             {

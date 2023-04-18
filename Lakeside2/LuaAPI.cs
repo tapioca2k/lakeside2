@@ -145,6 +145,17 @@ namespace Lakeside2
         }
 
         /// <summary>
+        /// Create a script node that represents a text box with spoken words from an NPC
+        /// </summary>
+        /// <param name="npc">The speaking NPC</param>
+        /// <param name="text">The main text</param>
+        /// <returns>a UiNode with the text box</returns>
+        public ScriptNode SNPCDialog(NPC npc, string text)
+        {
+            return new UiNode(ui, new UiNPCTextBox(npc, text));
+        }
+
+        /// <summary>
         /// Create a script node that represents a basic text box with a callback function
         /// </summary>
         /// <param name="text">The main text</param>

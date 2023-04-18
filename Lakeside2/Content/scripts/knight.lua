@@ -6,7 +6,7 @@ function talk_howdy()
 end
 
 if l:isFollowingPlayer(me) then
-	l:makeChain(l:SBranch("Want to to leave you alone? Say it.", "Howdy.", "I refuse.", talk_howdy, talk_refuse))
+	l:makeChain(l:SBranch("Want me to leave you alone? Say it.", "Howdy.", "I refuse.", talk_howdy, talk_refuse))
 else
 	l:makeChain(l:SDialog("Lovely weather we're having today!"))
 end

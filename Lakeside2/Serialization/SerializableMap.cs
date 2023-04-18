@@ -22,6 +22,7 @@ namespace Lakeside2.Serialization
             OPTIONS.Converters.Add(new Vector2Converter());
         }
 
+        public string name { get; set; }
         public string[] tilenames { get; set; }
         public int[][] tiles { get; set; }
         public bool[][] collision { get; set; }
@@ -39,6 +40,7 @@ namespace Lakeside2.Serialization
             Dictionary<string, int> tileNumbers = new Dictionary<string, int>();
             int tileCount = 0;
 
+            s.name = map.name;
             s.tiles = new int[map.width][];;
             s.collision = new bool[map.width][];
             s.color = map.color.PackedValue;
@@ -68,6 +70,7 @@ namespace Lakeside2.Serialization
         // the above process, but in reverse
         public static TileMap ToTilemap(ContentManager Content, string filename, SerializableMap s)
         {
+            string name = s.name;
             int width = s.tiles.Length, height = s.tiles[0].Length;
             Tile[,] tiles = new Tile[width, height];
             for (int x = 0; x < width; x++)
@@ -83,7 +86,7 @@ namespace Lakeside2.Serialization
             // load NPC textures
             s.npcs.ForEach(npc => npc.setTexture(Content, npc.filename));
 
-            return new TileMap(tiles, new Color(s.color), filename, s.npcs, s.scripts, s.playerStart);
+            return new TileMap(name, tiles, new Color(s.color), filename, s.npcs, s.scripts, s.playerStart);
         }
 
         public static TileMap Load(ContentManager Content, string filename)

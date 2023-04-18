@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -14,6 +15,9 @@ namespace Lakeside2.Serialization
         {
             reader.Read();
             reader.Read();
+            //string checkName = reader.GetString();
+            //if (checkName != propName)
+            //throw new Exception("Unexpected JSON propname: " + checkName + "(Expected " + propName + ")");
         }
 
         public override NPC Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -31,8 +35,10 @@ namespace Lakeside2.Serialization
             bool locked = reader.GetBoolean();
             skipPropName(ref reader);
             string entityName = reader.GetString();
+            skipPropName(ref reader);
+            string realName = reader.GetString();
             reader.Read(); // } (this is important)
-            NPC n = new NPC(filename, scriptname, locked, entityName);
+            NPC n = new NPC(filename, scriptname, locked, entityName, realName);
             n.setTileLocation(new Vector2(x, y));
             return n;
         }
@@ -46,6 +52,7 @@ namespace Lakeside2.Serialization
             writer.WriteString("script", value.script.filename);
             writer.WriteBoolean("locked", value.locked);
             writer.WriteString("name", value.name);
+            writer.WriteString("realname", value.realName);
             writer.WriteEndObject();
         }
     }

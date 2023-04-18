@@ -106,7 +106,7 @@ namespace Lakeside2
 
             Vector2 center = Vector2.Round(new Vector2(
                 Game1.INTERNAL_WIDTH / 2 - mainList.size.X / 2, 
-                (Game1.INTERNAL_HEIGHT / 2 - mainList.size.Y / 2) + 20));
+                (Game1.INTERNAL_HEIGHT / 2 - mainList.size.Y / 2) + 40));
 
             ui.pushElement(mainList, center);
         }

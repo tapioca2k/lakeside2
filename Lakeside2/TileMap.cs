@@ -20,6 +20,7 @@ namespace Lakeside2
             }
         }
 
+        public string name;
         public Tile[,] map;
         public int width;
         public int height;
@@ -57,8 +58,9 @@ namespace Lakeside2
         }
 
         // only SerializableMap.ToTilemap() should use this constructor
-        public TileMap(Tile[,] tiles, Color color, string filename, List<NPC> npcs, List<LuaScript> scripts, Vector2 playerStart)
+        public TileMap(string name, Tile[,] tiles, Color color, string filename, List<NPC> npcs, List<LuaScript> scripts, Vector2 playerStart)
         {
+            this.name = name;
             this.map = tiles;
             this.width = tiles.GetLength(0);
             this.height = tiles.GetLength(1);
