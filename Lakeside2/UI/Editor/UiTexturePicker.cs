@@ -35,7 +35,7 @@ namespace Lakeside2.UI.Editor
 
         public UiTexturePicker(ContentManager Content)
         {
-            setBackground(Color.White, false);
+            setBackground(Game1.BG_COLOR, false);
             all = populateList(Content);
             cursor = Content.Load<Texture2D>("entities/cursor");
             index = 0;

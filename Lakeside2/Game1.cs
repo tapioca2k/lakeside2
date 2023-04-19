@@ -16,8 +16,7 @@ namespace Lakeside2
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        Effect colorize;
-        public static Color BG_COLOR = new Color(140, 145, 0);
+        public static Color BG_COLOR = new Color(240, 255, 255); // "Lakeside Blue"
         RenderTarget2D mainTarget;
 
         public const int INTERNAL_WIDTH = 320;
@@ -63,7 +62,6 @@ namespace Lakeside2
 
             Fonts.loadFont(Content, "Arial");
             Fonts.loadFont(Content, "rainyhearts");
-            colorize = Content.Load<Effect>("colorize");
             MusicManager.init(Content);
 
             states = new Stack();
@@ -214,7 +212,7 @@ namespace Lakeside2
             {
                 GraphicsDevice.Clear(Game1.BG_COLOR);
             }
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: colorize);
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             _spriteBatch.Draw(mainTarget, new Rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT), Color.White);
             _spriteBatch.End();
 

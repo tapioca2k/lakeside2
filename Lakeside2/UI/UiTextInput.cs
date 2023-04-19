@@ -40,7 +40,7 @@ namespace Lakeside2.UI
 
         public UiTextInput(string prefix) : base()
         {
-            setBackground(Color.White, true);
+            setBackground(Game1.BG_COLOR, true);
             setPrefix(prefix);
         }
 

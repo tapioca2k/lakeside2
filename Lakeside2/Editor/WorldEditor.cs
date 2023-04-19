@@ -114,6 +114,20 @@ namespace Lakeside2.Editor
             {
                 ui.pushElement(new UiMapMetaEditor(Content, map), new Vector2(160, 0));
             }
+            else if (input.isKeyPressed(Keys.R)) // Row insert
+            {
+                if (input.isKeyHeld(Keys.LeftShift) || input.isKeyHeld(Keys.RightShift))
+                    map.deleteRow((int)cursor.getTileLocation().Y);
+                else
+                    map.insertRow(Content, (int)cursor.getTileLocation().Y);
+            }
+            else if (input.isKeyPressed(Keys.C)) // Column insert
+            {
+                if (input.isKeyHeld(Keys.LeftShift) || input.isKeyHeld(Keys.RightShift))
+                    map.deleteColumn((int)cursor.getTileLocation().X);
+                else
+                    map.insertColumn(Content, (int)cursor.getTileLocation().X);
+            }
         }
 
         public void update(double dt)

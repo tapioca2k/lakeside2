@@ -28,7 +28,7 @@ namespace Lakeside2.UI.Editor
             this.Content = Content;
             this.npc = npc;
             this.delete = false;
-            setBackground(Color.White, false);
+            setBackground(Game1.BG_COLOR, false);
         }
 
         public override void onInput(InputHandler input)

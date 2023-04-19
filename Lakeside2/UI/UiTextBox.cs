@@ -77,7 +77,7 @@ namespace Lakeside2.UI
 
         public UiTextBox(string text, bool scroll)
         {
-            setBackground(Color.White, true);
+            setBackground(Game1.BG_COLOR, true);
             textdisp = new UiTextDisplay("");
             fullText = WrapString(text, textdisp.font, Game1.INTERNAL_WIDTH - 10);
             if (scroll) cursor = 0;

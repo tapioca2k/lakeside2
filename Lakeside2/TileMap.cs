@@ -163,6 +163,70 @@ namespace Lakeside2
             height = newHeight;
         }
 
+        public void insertRow(ContentManager Content, int position)
+        {
+            resize(Content, width, height + 1);
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = height - 1; y > position; y--)
+                {
+                    map[x, y] = map[x, y - 1];
+                }
+            }
+            for (int x = 0; x < width; x++)
+            {
+                map[x, position] = new Tile(Content, "unknown");
+            }
+        }
+
+        public void deleteRow(int position)
+        {
+            Tile[,] newtiles = new Tile[width, height - 1];
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height - 1; y++)
+                {
+                    Tile t = map[x, y];
+                    if (y >= position) t = map[x, y + 1];
+                    newtiles[x, y] = t;
+                }
+            }
+            map = newtiles;
+            height--;
+        }
+
+        public void insertColumn(ContentManager Content, int position)
+        {
+            resize(Content, width + 1, height);
+            for (int x = width - 1; x > position; x--)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    map[x, y] = map[x - 1, y];
+                }
+            }
+            for (int y = 0; y < height; y++)
+            {
+                map[position, y] = new Tile(Content, "unknown");
+            }
+        }
+
+        public void deleteColumn(int position)
+        {
+            Tile[,] newtiles = new Tile[width - 1, height];
+            for (int x = 0; x < width - 1; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    Tile t = map[x, y];
+                    if (x >= position) t = map[x + 1, y];
+                    newtiles[x, y] = t;
+                }
+            }
+            map = newtiles;
+            width--;
+        }
+
         // dirtiest pathfinding you've ever seen
         // TODO implement proper A* for this LOL
         public List<Vector2> computePath(Vector2 start, Vector2 end, Vector2 player)

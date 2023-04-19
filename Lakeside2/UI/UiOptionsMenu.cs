@@ -27,7 +27,7 @@ namespace Lakeside2.UI
         {
             this.game = game;
             this.Content = Content;
-            setBackground(Color.White, true);
+            setBackground(Game1.BG_COLOR, true);
             pointer = Content.Load<Texture2D>("pointer");
             sections = new UiElement[4]
             {

@@ -74,7 +74,7 @@ namespace Lakeside2.UI
         public void draw(SBWrapper wrapper)
         {
             SBWrapper stripeSpace = new SBWrapper(wrapper, new Vector2(0, STRIPE_START));
-            stripeSpace.drawRectangle(new Vector2(Game1.INTERNAL_WIDTH, STRIPE_HEIGHT), Color.White);
+            stripeSpace.drawRectangle(new Vector2(Game1.INTERNAL_WIDTH, STRIPE_HEIGHT), Game1.BG_COLOR);
 
             if (leftElement != null) leftElement.draw(new SBWrapper(wrapper, stripeLeft));
             if (centerElement != null) centerElement.draw(new SBWrapper(wrapper, stripeCenter));
