@@ -15,6 +15,11 @@ namespace Lakeside2.UI
         
         public UiTexture(ContentManager Content, string filename)
         {
+            setTexture(Content, filename);
+        }
+
+        public void setTexture(ContentManager Content, string filename)
+        {
             texture = Content.Load<Texture2D>(filename);
         }
 
@@ -22,5 +27,6 @@ namespace Lakeside2.UI
         {
             wrapper.draw(texture);
         }
+
     }
 }

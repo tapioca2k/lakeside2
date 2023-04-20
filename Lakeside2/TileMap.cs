@@ -52,7 +52,7 @@ namespace Lakeside2
             {
                 for (int y = 0; y < height; y++)
                 {
-                    map[x, y] = new Tile(Content, "unknown");
+                    map[x, y] = Tile.EmptyTile(Content);
                 }
             }
         }
@@ -154,7 +154,7 @@ namespace Lakeside2
             {
                 for (int y = 0; y < newHeight; y++)
                 {
-                    if (x >= width || y >= height) newtiles[x, y] = new Tile(Content, "unknown");
+                    if (x >= width || y >= height) newtiles[x, y] = Tile.EmptyTile(Content);
                     else newtiles[x, y] = map[x, y];
                 }
             }
@@ -175,7 +175,7 @@ namespace Lakeside2
             }
             for (int x = 0; x < width; x++)
             {
-                map[x, position] = new Tile(Content, "unknown");
+                map[x, position] = Tile.EmptyTile(Content);
             }
         }
 
@@ -207,7 +207,7 @@ namespace Lakeside2
             }
             for (int y = 0; y < height; y++)
             {
-                map[position, y] = new Tile(Content, "unknown");
+                map[position, y] = Tile.EmptyTile(Content);
             }
         }
 

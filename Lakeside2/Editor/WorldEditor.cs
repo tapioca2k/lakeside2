@@ -14,6 +14,13 @@ namespace Lakeside2.Editor
 {
     class WorldEditor : IGameState
     {
+        public enum MarkMode
+        {
+            NONE, MARKING, COPYING
+        }
+
+        public const string HELP_STRING = "Press \"H\" for help.";
+
         ContentManager Content;
         UiSystem ui;
         Cursor cursor;
@@ -22,6 +29,12 @@ namespace Lakeside2.Editor
 
         Tile lastEditedTile;
         LuaScript lastEditedScript;
+
+        MarkMode copymode = MarkMode.NONE;
+        TileBuffer copybuffer;
+
+        UiTextDisplay statusLine;
+        double t = 0;
 
         public Color background => world.background;
 
@@ -39,8 +52,9 @@ namespace Lakeside2.Editor
             this.world = world;
             cursor = new Cursor(Content);
 
+            statusLine = new UiTextDisplay(HELP_STRING);
             ui = new UiSystem();
-            ui.addStripeElement(new UiTexture(Content, "editorhotkeys"), StripePosition.Left);
+            ui.addStripeElement(statusLine, StripePosition.Left);
             ui.addStripeElement(new UiObjectMonitor<Cursor>(cursor, (cursor) =>
             {
                 return cursor.getTileLocation().ToString();
@@ -48,6 +62,8 @@ namespace Lakeside2.Editor
 
             this.camera = world.camera;
             this.camera.setCenteringEntity(cursor);
+
+            copybuffer = new TileBuffer();
         }
 
         public void onInput(InputHandler input)
@@ -116,17 +132,52 @@ namespace Lakeside2.Editor
             }
             else if (input.isKeyPressed(Keys.R)) // Row insert
             {
-                if (input.isKeyHeld(Keys.LeftShift) || input.isKeyHeld(Keys.RightShift))
+                if (input.isKeyHeld(Keys.LeftControl) || input.isKeyHeld(Keys.RightControl))
                     map.deleteRow((int)cursor.getTileLocation().Y);
                 else
                     map.insertRow(Content, (int)cursor.getTileLocation().Y);
             }
             else if (input.isKeyPressed(Keys.C)) // Column insert
             {
-                if (input.isKeyHeld(Keys.LeftShift) || input.isKeyHeld(Keys.RightShift))
+                if (input.isKeyHeld(Keys.LeftControl) || input.isKeyHeld(Keys.RightControl))
                     map.deleteColumn((int)cursor.getTileLocation().X);
                 else
                     map.insertColumn(Content, (int)cursor.getTileLocation().X);
+            }
+            else if (input.isKeyPressed(Keys.B)) // Buffer control (Copying, etc)
+            {
+                // Start building buffer
+                if (copymode == MarkMode.NONE)
+                {
+                    copymode = MarkMode.MARKING;
+                    copybuffer.setStart(cursor.getTileLocation().ToPoint());
+                    statusLine.text = "Buffer mode: " + copymode.ToString();
+                }
+                else if (copymode == MarkMode.MARKING)
+                {
+                    copymode = MarkMode.COPYING;
+                    copybuffer.setStop(map, cursor.getTileLocation().ToPoint());
+                    statusLine.text = "Buffer mode: " + copymode.ToString();
+                }
+                else if (copymode == MarkMode.COPYING)
+                {
+                    copymode = MarkMode.NONE;
+                    copybuffer.clear();
+                    statusLine.text = "";
+                }
+            }
+            else if (input.isKeyPressed(Keys.V) && 
+                (input.isKeyHeld(Keys.LeftControl) || input.isKeyHeld(Keys.RightControl)) && 
+                copymode == MarkMode.COPYING) // Paste
+            {
+                copybuffer.paste(map, cursor.getTileLocation().ToPoint());
+            }
+            else if (input.isKeyPressed(Keys.X) &&
+                (input.isKeyHeld(Keys.LeftControl) || input.isKeyHeld(Keys.RightControl)) &&
+                copymode == MarkMode.COPYING) // Cut
+            {
+                copybuffer.delete(map, Content);
+                copybuffer.paste(map, cursor.getTileLocation().ToPoint());
             }
         }
 
@@ -135,6 +186,12 @@ namespace Lakeside2.Editor
             camera.update(dt);
             cursor.update(dt);
             ui.update(dt);
+
+            t += dt;
+            if (t > 3 && statusLine.text == HELP_STRING)
+            {
+                statusLine.text = "";
+            }
         }
 
         public void draw(SBWrapper wrapper)

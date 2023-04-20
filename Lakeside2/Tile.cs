@@ -18,6 +18,11 @@ namespace Lakeside2
 
         Texture2D texture;
 
+        public static Tile EmptyTile(ContentManager Content)
+        {
+            return new Tile(Content, "unknown");
+        }
+
         public Tile(ContentManager Content, string filename)
         {
             this.filename = filename;
