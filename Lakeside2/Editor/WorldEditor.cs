@@ -19,7 +19,10 @@ namespace Lakeside2.Editor
             NONE, MARKING, COPYING
         }
 
-        public const string HELP_STRING = "Press \"H\" for help.";
+        public const string HELP_HOTKEY = "Press \"H\" for help.";
+        public const string HELP_STRING = 
+            "WASD: Cursor / M: Metadata / E: Edit tile / P: Paint last tile / " +
+            "B: Copy Buffer / F1-2-3: Exit-Save-Load";
 
         ContentManager Content;
         UiSystem ui;
@@ -52,7 +55,7 @@ namespace Lakeside2.Editor
             this.world = world;
             cursor = new Cursor(Content);
 
-            statusLine = new UiTextDisplay(HELP_STRING);
+            statusLine = new UiTextDisplay(HELP_HOTKEY);
             ui = new UiSystem();
             ui.addStripeElement(statusLine, StripePosition.Left);
             ui.addStripeElement(new UiObjectMonitor<Cursor>(cursor, (cursor) =>
@@ -72,8 +75,11 @@ namespace Lakeside2.Editor
             if (interactingWithUi) return;
 
             cursor.onInput(input);
-
-            if (input.isKeyPressed(Keys.F2)) // Save
+            if (input.isKeyPressed(Keys.H))
+            {
+                ui.pushElement(new UiTextBox(HELP_STRING, false), Vector2.Zero);
+            }
+            else if (input.isKeyPressed(Keys.F2)) // Save
             {
                 UiElement filename = new UiTextInput("Save Filename: ").addCallback(element =>
                 {
@@ -188,7 +194,7 @@ namespace Lakeside2.Editor
             ui.update(dt);
 
             t += dt;
-            if (t > 3 && statusLine.text == HELP_STRING)
+            if (t > 3 && statusLine.text == HELP_HOTKEY)
             {
                 statusLine.text = "";
             }

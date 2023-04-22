@@ -53,7 +53,7 @@ namespace Lakeside2.UI
                 finished = true;
                 text = "";
             }
-            else if (input.isKeyPressed(Keys.Back))
+            else if (input.isKeyPressed(Keys.Back) && text.Length > 0)
             {
                 text = text.Substring(0, text.Length - 1);
             }

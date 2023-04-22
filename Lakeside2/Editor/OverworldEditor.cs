@@ -17,6 +17,10 @@ namespace Lakeside2.Editor
 
     class OverworldEditor : IGameState
     {
+        public const string HELP_HOTKEY = "Press \"H\" for help.";
+        public const string HELP_STRING =
+            "WASD: Cursor / E: New loc / R: Delete loc / L: Layers / " +
+            "F1-2-3: Exit-Save-Load";
 
         ContentManager Content;
         Overworld map;
@@ -25,14 +29,18 @@ namespace Lakeside2.Editor
 
         public Color background => map.background;
 
+        UiTextDisplay statusLine;
+        double t = 0;
+
         public OverworldEditor(ContentManager Content, Overworld map)
         {
             this.Content = Content;
             this.map = map;
             this.cursor = new OverworldCursor(Content);
 
-            ui = new UiSystem();
-            ui.addStripeElement(new UiTexture(Content, "owhotkeys"), StripePosition.Left);
+            statusLine = new UiTextDisplay(HELP_HOTKEY);
+            ui = new UiSystem(true);
+            ui.addStripeElement(statusLine, StripePosition.Left);
             ui.addStripeElement(new UiObjectMonitor<Cursor>(this.cursor, (cursor) =>
             {
                 return cursor.getLocation().ToString();
@@ -46,7 +54,11 @@ namespace Lakeside2.Editor
 
             cursor.onInput(input);
 
-            if (input.isKeyPressed(Keys.F2)) // Save
+            if (input.isKeyPressed(Keys.H))
+            {
+                ui.pushElement(new UiTextBox(HELP_STRING, false), Vector2.Zero);
+            }
+            else if (input.isKeyPressed(Keys.F2)) // Save
             {
                 UiElement filename = new UiTextInput("Save Filename: ").addCallback(element =>
                 {
@@ -106,6 +118,12 @@ namespace Lakeside2.Editor
         {
             ui.update(dt);
             map.x = getCameraPosition(map.width);
+
+            t += dt;
+            if (t > 3 && statusLine.text == HELP_HOTKEY)
+            {
+                statusLine.text = "";
+            }
         }
 
         public double getCameraPosition(int mapWidth)

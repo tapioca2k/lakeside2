@@ -14,6 +14,7 @@ namespace Lakeside2.UI
         List<Vector2> locations;
         public bool hasStripe => stripe != null;
 
+        // UiSystem with a stripe that shows the logo
         public UiSystem(ContentManager Content)
         {
             stripe = new UiStripe(Content);
@@ -21,12 +22,17 @@ namespace Lakeside2.UI
             locations = new List<Vector2>();
         }
 
-        // create a UiSystem with default/no stripe (for edit mode)
+        // create a UiSystem with default/no stripe (for edit mode & other things)
         public UiSystem(bool hasStripe = true)
         {
             if (hasStripe) stripe = new UiStripe();
             stack = new List<UiElement>();
             locations = new List<Vector2>();
+        }
+
+        public int getElementCount()
+        {
+            return stack.Count;
         }
 
         public void update(double dt)
