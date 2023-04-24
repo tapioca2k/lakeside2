@@ -15,11 +15,8 @@ namespace Lakeside2.Editor
 
         public override void onInput(InputHandler input)
         {
-            if (input.isKeyHeld(Keys.W)) location.Y--;
-            else if (input.isKeyHeld(Keys.S)) location.Y++;
-
-            if (input.isKeyHeld(Keys.A)) location.X--;
-            else if (input.isKeyHeld(Keys.D)) location.X++;
+            location = input.mousePosition / GameInfo.getResolutionScale();
+            location.Round(); // int locations only
         }
 
         public Vector2 center

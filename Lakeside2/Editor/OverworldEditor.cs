@@ -19,7 +19,7 @@ namespace Lakeside2.Editor
     {
         public const string HELP_HOTKEY = "Press \"H\" for help.";
         public const string HELP_STRING =
-            "WASD: Cursor / E: New loc / R: Delete loc / L: Layers / " +
+            "A&D: Camera / E: New loc / R: Delete loc / L: Layers / " +
             "F1-2-3: Exit-Save-Load";
 
         ContentManager Content;
@@ -53,6 +53,9 @@ namespace Lakeside2.Editor
             if (interacting) return;
 
             cursor.onInput(input);
+
+            if (input.isKeyHeld(Keys.A)) map.x -= 5;
+            else if (input.isKeyHeld(Keys.D)) map.x += 5;
 
             if (input.isKeyPressed(Keys.H))
             {
@@ -91,16 +94,17 @@ namespace Lakeside2.Editor
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "")
                     {
-                        map.addLocation(input.text, cursor.getLocation());
+                        map.addLocation(input.text, cursor.getLocation() + new Vector2((float)map.x, 0));
                         map.setPlayerLocation();
                     }
                 }), Vector2.Zero);
             }
             else if (input.isKeyPressed(Keys.R)) // Delete map location
             {
+                Vector2 cursorCenter = cursor.center + new Vector2((float)map.x, 0);
                 for (int i = 0; i < map.meta.locations.Count; i++)
                 {
-                    if (Vector2.Distance(map.meta.locations[i].center, cursor.center) < 10)
+                    if (Vector2.Distance(map.meta.locations[i].center, cursorCenter) < 10)
                     {
                         map.meta.locations.Remove(map.meta.locations[i]);
                         map.setPlayerLocation();
@@ -117,7 +121,6 @@ namespace Lakeside2.Editor
         public void update(double dt)
         {
             ui.update(dt);
-            map.x = getCameraPosition(map.width);
 
             t += dt;
             if (t > 3 && statusLine.text == HELP_HOTKEY)
@@ -133,7 +136,7 @@ namespace Lakeside2.Editor
 
         public void draw(SBWrapper wrapper)
         {
-            cursor.draw(new SBWrapper(wrapper, new Vector2(-(int)map.x, 0)), cursor.getLocation());
+            cursor.draw(wrapper, cursor.getLocation());
             ui.draw(wrapper);
         }
 
