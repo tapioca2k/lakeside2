@@ -54,10 +54,11 @@ namespace Lakeside2.Editor
 
             cursor.onInput(input);
 
+            // Scroll the map
             if (input.isKeyHeld(Keys.A)) map.x -= 5;
             else if (input.isKeyHeld(Keys.D)) map.x += 5;
 
-            if (input.isKeyPressed(Keys.H))
+            if (input.isKeyPressed(Keys.H)) // Help
             {
                 ui.pushElement(new UiTextBox(HELP_STRING, false), Vector2.Zero);
             }
@@ -94,7 +95,7 @@ namespace Lakeside2.Editor
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "")
                     {
-                        map.addLocation(input.text, cursor.getLocation() + new Vector2((float)map.x, 0));
+                        map.addLocation(input.text, cursor.getLocation().ToPoint() + new Point((int)map.x, 0));
                         map.setPlayerLocation();
                     }
                 }), Vector2.Zero);
@@ -127,11 +128,6 @@ namespace Lakeside2.Editor
             {
                 statusLine.text = "";
             }
-        }
-
-        public double getCameraPosition(int mapWidth)
-        {
-            return Math.Max(0, Math.Min(mapWidth - World.PORTAL_WIDTH, cursor.getLocation().X - World.HALF_PORTAL_WIDTH));
         }
 
         public void draw(SBWrapper wrapper)

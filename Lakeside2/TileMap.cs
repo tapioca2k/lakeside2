@@ -12,9 +12,9 @@ namespace Lakeside2
 
     public class TileMap
     {
-        private class PathComparer : IComparer<List<Vector2>>
+        private class PathComparer : IComparer<List<Point>>
         {
-            public int Compare(List<Vector2> a, List<Vector2> b)
+            public int Compare(List<Point> a, List<Point> b)
             {
                 return a.Count - b.Count;
             }
@@ -28,11 +28,11 @@ namespace Lakeside2
         public string filename;
         public List<NPC> npcs;
         public List<LuaScript> tileScripts;
-        public Vector2 playerStart;
+        public Point playerStart;
 
-        public static Vector2 worldToTile(Vector2 real)
+        public static Point worldToTile(Vector2 real)
         {
-            return new Vector2(
+            return new Point(
                 (int)real.X / Tile.TILE_SIZE,
                 (int)real.Y / Tile.TILE_SIZE);
         }
@@ -44,7 +44,7 @@ namespace Lakeside2
             this.height = height;
             this.color = Color.Black;
             this.filename = "(Unsaved)";
-            this.playerStart = Vector2.Zero;
+            this.playerStart = Point.Zero;
             this.npcs = new List<NPC>();
             this.tileScripts = new List<LuaScript>();
             map = new Tile[width, height];
@@ -58,7 +58,7 @@ namespace Lakeside2
         }
 
         // only SerializableMap.ToTilemap() should use this constructor
-        public TileMap(string name, Tile[,] tiles, Color color, string filename, List<NPC> npcs, List<LuaScript> scripts, Vector2 playerStart)
+        public TileMap(string name, Tile[,] tiles, Color color, string filename, List<NPC> npcs, List<LuaScript> scripts, Point playerStart)
         {
             this.name = name;
             this.map = tiles;
@@ -76,9 +76,9 @@ namespace Lakeside2
             if (x < 0 || x >= width || y < 0 || y >= height) return null;
             else return map[x, y];
         }
-        public Tile getTile(Vector2 tileLocation)
+        public Tile getTile(Point tileLocation)
         {
-            return getTile((int)tileLocation.X, (int)tileLocation.Y);
+            return getTile(tileLocation.X, tileLocation.Y);
         }
 
         public void setTile(int x, int y, Tile tile)
@@ -86,12 +86,12 @@ namespace Lakeside2
             if (x < 0 || x >= width || y < 0 || y >= height) return;
             else map[x, y] = tile;
         }
-        public void setTile(Vector2 tileLocation, Tile tile)
+        public void setTile(Point tileLocation, Tile tile)
         {
-            setTile((int)tileLocation.X, (int)tileLocation.Y, tile);
+            setTile(tileLocation.X, tileLocation.Y, tile);
         }
 
-        public void setNPC(Vector2 tileLocation, NPC npc)
+        public void setNPC(Point tileLocation, NPC npc)
         {
             NPC present = getNPC(tileLocation);
             if (present != null) npcs.Remove(present);
@@ -102,7 +102,7 @@ namespace Lakeside2
             }
         }
 
-        public NPC getNPC(Vector2 tileLocation)
+        public NPC getNPC(Point tileLocation)
         {
             return npcs.Find(npc => npc.getTileLocation().Equals(tileLocation));
         }
@@ -112,12 +112,12 @@ namespace Lakeside2
             return npcs.Find(n => n.name == name);
         }
 
-        public LuaScript getScript(Vector2 tileLocation)
+        public LuaScript getScript(Point tileLocation)
         {
             return tileScripts.Find(s => s.getTileLocation().Equals(tileLocation));
         }
 
-        public void setScript(Vector2 tileLocation, LuaScript script)
+        public void setScript(Point tileLocation, LuaScript script)
         {
             LuaScript present = getScript(tileLocation);
             if (present != null) tileScripts.Remove(present);
@@ -131,15 +131,16 @@ namespace Lakeside2
         public bool checkCollision(int x, int y)
         {
             if (x < 0 || x >= width || y < 0 || y >= height) return false;
-            else if (getNPC(new Vector2(x, y)) != null) return false;
+            else if (getNPC(new Point(x, y)) != null) return false;
             else return map[x, y].collision;
         }
-        public bool checkCollision(Vector2 coordindates)
+
+        public bool checkCollision(Point coordindates)
         {
-            return checkCollision((int) coordindates.X, (int) coordindates.Y);
+            return checkCollision(coordindates.X, coordindates.Y);
         }
 
-        public void stepOn(Player player, Vector2 tileLocation, Lua worldLua)
+        public void stepOn(Player player, Point tileLocation, Lua worldLua)
         {
             Tile t = getTile(tileLocation);
             LuaScript script = getScript(tileLocation);
@@ -229,32 +230,32 @@ namespace Lakeside2
 
         // dirtiest pathfinding you've ever seen
         // TODO implement proper A* for this LOL
-        public List<Vector2> computePath(Vector2 start, Vector2 end, Vector2 player)
+        public List<Point> computePath(Point start, Point end, Point player)
         {
-            if (start == end) return new List<Vector2>();
-            List<List<Vector2>> allPaths = new List<List<Vector2>>();
-            allPaths.Add(new List<Vector2>(new Vector2[1] { start }));
+            if (start == end) return new List<Point>();
+            List<List<Point>> allPaths = new List<List<Point>>();
+            allPaths.Add(new List<Point>(new Point[1] { start }));
             bool[,] visited = new bool[width, height];
-            visited[(int)start.X, (int)start.Y] = true;
+            visited[start.X, start.Y] = true;
 
             int depth = 0;
             while (depth++ < 1000)
             {
                 allPaths.Sort(new PathComparer());
-                List<Vector2> shortest = allPaths[0];
-                Vector2 head = shortest[shortest.Count - 1];
-                Vector2[] proposals = new Vector2[4] { 
-                    new Vector2(head.X + 1, head.Y), 
-                    new Vector2(head.X - 1, head.Y), 
-                    new Vector2(head.X, head.Y + 1), 
-                    new Vector2(head.X, head.Y - 1)
+                List<Point> shortest = allPaths[0];
+                Point head = shortest[shortest.Count - 1];
+                Point[] proposals = new Point[4] { 
+                    new Point(head.X + 1, head.Y), 
+                    new Point(head.X - 1, head.Y), 
+                    new Point(head.X, head.Y + 1), 
+                    new Point(head.X, head.Y - 1)
                 };
-                foreach (Vector2 p in proposals)
+                foreach (Point p in proposals)
                 {
-                    if (checkCollision(p) && !visited[(int)p.X, (int)p.Y] && player != p)
+                    if (checkCollision(p) && !visited[p.X, p.Y] && player != p)
                     {
-                        visited[(int)p.X, (int)p.Y] = true;
-                        List<Vector2> newpath = new List<Vector2>(shortest);
+                        visited[p.X, p.Y] = true;
+                        List<Point> newpath = new List<Point>(shortest);
                         newpath.Add(p);
                         if (p == end) return newpath; // shortest path start>end found!
                         allPaths.Add(newpath);
@@ -262,7 +263,7 @@ namespace Lakeside2
                 }
                 allPaths.Remove(allPaths[0]);
             }
-            return new List<Vector2>(); // max depth reached - give up
+            return new List<Point>(); // max depth reached - give up
         }
 
         public void draw(SBWrapper wrapper)

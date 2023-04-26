@@ -15,7 +15,7 @@ namespace Lakeside2.Serialization
         public string map { get; set; }
         public bool overworld { get; set; }
         public Dictionary<string, int> inventory { get; set; }
-        public Vector2 location { get; set; }
+        public Point location { get; set; }
 
         public double time { get; set; }
 

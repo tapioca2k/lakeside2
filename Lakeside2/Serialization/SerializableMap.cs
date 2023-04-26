@@ -30,7 +30,7 @@ namespace Lakeside2.Serialization
         public List<LuaScript> scripts { get; set; }
         public List<NPC> npcs { get; set; }
 
-        public Vector2 playerStart { get; set; }
+        public Point playerStart { get; set; }
 
         // wrestle engine-useful TileMap format into less useful (but writable) SerializableMap
         public static SerializableMap FromTilemap(TileMap map)
@@ -58,7 +58,7 @@ namespace Lakeside2.Serialization
                     string tilename = tile.filename;
                     if (!tileNumbers.ContainsKey(tilename)) tileNumbers.Add(tilename, tileCount++);
                     s.tiles[x][y] = tileNumbers[tilename];
-                    s.collision[x][y] = map.checkCollision(new Vector2(x, y));
+                    s.collision[x][y] = map.checkCollision(new Point(x, y));
                 }
             }
             s.tilenames = new string[tileCount];

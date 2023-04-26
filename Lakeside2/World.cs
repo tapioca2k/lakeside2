@@ -81,7 +81,7 @@ namespace Lakeside2
             setMap(map, map.playerStart);
         }
 
-        public void setMap(TileMap map, Vector2 location)
+        public void setMap(TileMap map, Point location)
         {
             camera.setMap(map);
             player.setTileLocation(location);

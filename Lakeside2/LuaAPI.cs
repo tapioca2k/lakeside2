@@ -25,6 +25,11 @@ namespace Lakeside2
             return new Vector2(x, y);
         }
 
+        public static Point makePoint(int x, int y)
+        {
+            return new Point(x, y);
+        }
+
         public static Color makeColor(int r, int g, int b)
         {
             return new Color(r, g, b);
@@ -49,7 +54,7 @@ namespace Lakeside2
             ui.pushElement(element, makeVector2(x, y));
         }
 
-        public void queueMove(Entity entity, Vector2 direction)
+        public void queueMove(Entity entity, Point direction)
         {
             // do we actually want collision detection here?
             if (world.map.checkCollision(entity.getTileLocation() + direction))
@@ -75,7 +80,7 @@ namespace Lakeside2
             }
         }
 
-        public void changeMap(string filename, Vector2 location)
+        public void changeMap(string filename, Point location)
         {
             TileMap newMap = SerializableMap.Load(Content, filename);
             if (newMap != null)
@@ -211,11 +216,11 @@ namespace Lakeside2
             {
                 return null;
             }
-            List<Vector2> moves = new List<Vector2>();
-            for (int i = 0; i < x; i++) moves.Add(new Vector2(1, 0));
-            for (int i = 0; i > x; i--) moves.Add(new Vector2(-1, 0));
-            for (int i = 0; i < y; i++) moves.Add(new Vector2(0, 1));
-            for (int i = 0; i > y; i--) moves.Add(new Vector2(0, -1));
+            List<Point> moves = new List<Point>();
+            for (int i = 0; i < x; i++) moves.Add(new Point(1, 0));
+            for (int i = 0; i > x; i--) moves.Add(new Point(-1, 0));
+            for (int i = 0; i < y; i++) moves.Add(new Point(0, 1));
+            for (int i = 0; i > y; i--) moves.Add(new Point(0, -1));
 
             return new MoveNode(entity, moves.ToArray());
         }
@@ -226,20 +231,20 @@ namespace Lakeside2
         /// <param name="entity">The NPC to be moved</param>
         /// <param name="tilePosition">The location they should move to</param>
         /// <returns>a MoveNode with the path. Empty if a path could not be found</returns>
-        public ScriptNode SMove(NPC entity, Vector2 tilePosition)
+        public ScriptNode SMove(NPC entity, Point tilePosition)
         {
             if (entity == null || tilePosition == entity.getTileLocation())
             {
                 return null;
             }
-            List<Vector2> rawPath = world.map.computePath(
+            List<Point> rawPath = world.map.computePath(
                 entity.getTileLocation(), 
                 tilePosition, 
                 player.getTileLocation());
-            List<Vector2> path = new List<Vector2>();
+            List<Point> path = new List<Point>();
             for (int i = 1; i < rawPath.Count; i++) // compute directions from raw tile positions
             {
-                path.Add(new Vector2(rawPath[i].X - rawPath[i - 1].X, rawPath[i].Y - rawPath[i - 1].Y));
+                path.Add(new Point(rawPath[i].X - rawPath[i - 1].X, rawPath[i].Y - rawPath[i - 1].Y));
             }
             return new MoveNode(entity, path.ToArray());
         }

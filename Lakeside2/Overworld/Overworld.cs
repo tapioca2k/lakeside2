@@ -160,7 +160,7 @@ namespace Lakeside2.WorldMap
 
         }
 
-        public void addLocation(string filename, Vector2 location)
+        public void addLocation(string filename, Point location)
         {
             locations.Add(new OWLocation(Content, filename, location));
             sortLocations();
@@ -279,8 +279,6 @@ namespace Lakeside2.WorldMap
             {
                 wrapper.draw(layers[i], Vector2.Zero, new Rectangle((int)parallax[i], 0, Game1.INTERNAL_WIDTH, Game1.INTERNAL_HEIGHT));
             }
-            //wrapper.draw(background);
-            //wrapper.draw(foreground, Vector2.Zero, new Rectangle((int)x, 0, Game1.INTERNAL_WIDTH, Game1.INTERNAL_HEIGHT));
 
             SBWrapper relative = new SBWrapper(wrapper, new Vector2(-(int)x, 0));
             locations.ForEach(l => l.draw(relative));

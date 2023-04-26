@@ -89,6 +89,11 @@ namespace Lakeside2
             spriteBatch.Draw(texture, this.location + location, Color.White);
         }
 
+        public void draw(Texture2D texture, Point location)
+        {
+            draw(texture, location.ToVector2());
+        }
+
         /// <summary>
         /// Draw a section of a texture at an offset from the origin
         /// </summary>

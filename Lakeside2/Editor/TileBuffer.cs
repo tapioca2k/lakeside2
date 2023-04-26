@@ -40,7 +40,7 @@ namespace Lakeside2.Editor
             {
                 for (int y = 0; y < tiles.GetLength(1); y++)
                 {
-                    tiles[x, y] = map.getTile(start.ToVector2() + new Vector2(x, y));
+                    tiles[x, y] = map.getTile(start + new Point(x, y));
                 }
             }
         }
@@ -52,7 +52,7 @@ namespace Lakeside2.Editor
             {
                 for (int y = start.Y; y < stop.Y; y++)
                 {
-                    map.setTile(new Vector2(x, y), Tile.EmptyTile(Content));
+                    map.setTile(new Point(x, y), Tile.EmptyTile(Content));
                 }
             }
         }
@@ -64,7 +64,7 @@ namespace Lakeside2.Editor
             {
                 for (int y = 0; y < tiles.GetLength(1); y++)
                 {
-                    map.setTile(loc.ToVector2() + new Vector2(x, y), new Tile(tiles[x, y]));
+                    map.setTile(loc + new Point(x, y), new Tile(tiles[x, y]));
                 }
             }
         }

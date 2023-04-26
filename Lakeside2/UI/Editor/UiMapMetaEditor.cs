@@ -84,14 +84,14 @@ namespace Lakeside2.UI.Editor
                 system.pushElement(new UiTextInput("X: ").addCallback((element) =>
                 {
                     UiTextInput xi = (UiTextInput)element;
-                    int x = (int)map.playerStart.X;
+                    int x = map.playerStart.X;
                     if (xi.text != "") x = int.Parse(xi.text);
                     system.pushElement(new UiTextInput("Y: ").addCallback((element2) =>
                     {
                         UiTextInput yi = (UiTextInput)element2;
-                        int y = (int)map.playerStart.Y;
+                        int y = map.playerStart.Y;
                         if (yi.text != "") y = int.Parse(yi.text);
-                        map.playerStart = new Vector2(x, y);
+                        map.playerStart = new Point(x, y);
 
                     }), new Vector2(0, 20));
                 }), Vector2.Zero);

@@ -7,7 +7,7 @@ if Flags.getIntFlag("feed_gumshoe") == 1 then
 	l:makeChain(
 		l:SDialog("Yeah, that's where I left my food for Gumshoe. Cheese curds!"),
 		l:SNPCDialog(gumshoe, "Bark! Bark!"),
-		l:SMove(gumshoe, LuaAPI.makeVector2(9, 3)),
+		l:SMove(gumshoe, LuaAPI.makePoint(9, 3)),
 		l:SFunction(gumshoe_facetv),
 		l:SDialog("It seems like Gumshoe noticed something on TV.")
 	)

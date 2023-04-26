@@ -139,16 +139,16 @@ namespace Lakeside2.Editor
             else if (input.isKeyPressed(Keys.R)) // Row insert
             {
                 if (input.isKeyHeld(Keys.LeftControl) || input.isKeyHeld(Keys.RightControl))
-                    map.deleteRow((int)cursor.getTileLocation().Y);
+                    map.deleteRow(cursor.getTileLocation().Y);
                 else
-                    map.insertRow(Content, (int)cursor.getTileLocation().Y);
+                    map.insertRow(Content, cursor.getTileLocation().Y);
             }
             else if (input.isKeyPressed(Keys.C)) // Column insert
             {
                 if (input.isKeyHeld(Keys.LeftControl) || input.isKeyHeld(Keys.RightControl))
-                    map.deleteColumn((int)cursor.getTileLocation().X);
+                    map.deleteColumn(cursor.getTileLocation().X);
                 else
-                    map.insertColumn(Content, (int)cursor.getTileLocation().X);
+                    map.insertColumn(Content, cursor.getTileLocation().X);
             }
             else if (input.isKeyPressed(Keys.B)) // Buffer control (Copying, etc)
             {
@@ -156,13 +156,13 @@ namespace Lakeside2.Editor
                 if (copymode == MarkMode.NONE)
                 {
                     copymode = MarkMode.MARKING;
-                    copybuffer.setStart(cursor.getTileLocation().ToPoint());
+                    copybuffer.setStart(cursor.getTileLocation());
                     statusLine.text = "Buffer mode: " + copymode.ToString();
                 }
                 else if (copymode == MarkMode.MARKING)
                 {
                     copymode = MarkMode.COPYING;
-                    copybuffer.setStop(map, cursor.getTileLocation().ToPoint());
+                    copybuffer.setStop(map, cursor.getTileLocation());
                     statusLine.text = "Buffer mode: " + copymode.ToString();
                 }
                 else if (copymode == MarkMode.COPYING)
@@ -176,14 +176,14 @@ namespace Lakeside2.Editor
                 (input.isKeyHeld(Keys.LeftControl) || input.isKeyHeld(Keys.RightControl)) && 
                 copymode == MarkMode.COPYING) // Paste
             {
-                copybuffer.paste(map, cursor.getTileLocation().ToPoint());
+                copybuffer.paste(map, cursor.getTileLocation());
             }
             else if (input.isKeyPressed(Keys.X) &&
                 (input.isKeyHeld(Keys.LeftControl) || input.isKeyHeld(Keys.RightControl)) &&
                 copymode == MarkMode.COPYING) // Cut
             {
                 copybuffer.delete(map, Content);
-                copybuffer.paste(map, cursor.getTileLocation().ToPoint());
+                copybuffer.paste(map, cursor.getTileLocation());
             }
         }
 

@@ -22,6 +22,6 @@ Flags.setBooleanFlag("started_game", true)
 -- add extra locations
 --[[
 if Flags.getBooleanFlag("said_howdy") then
-	overworld:addLocation("town.json", LuaAPI.makeVector2(400, 100))
+	overworld:addLocation("town.json", LuaAPI.makePoint(400, 100))
 end
 ]]

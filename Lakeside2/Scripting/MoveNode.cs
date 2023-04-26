@@ -8,9 +8,9 @@ namespace Lakeside2.Scripting
     public class MoveNode : ScriptNode
     {
         Entity entity;
-        Vector2[] directions;
+        Point[] directions;
 
-        public MoveNode(Entity entity, Vector2[] directions)
+        public MoveNode(Entity entity, Point[] directions)
         {
             this.entity = entity;
             this.directions = directions;

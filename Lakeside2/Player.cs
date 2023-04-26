@@ -101,7 +101,7 @@ namespace Lakeside2
             }
         }
 
-        void tryMove(Vector2 direction)
+        void tryMove(Point direction)
         {
             setDirection(getDirection(direction)); // face direction even if collision check fails
             if (world.map.checkCollision(getTileLocation() + direction))

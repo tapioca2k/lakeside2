@@ -16,7 +16,7 @@ namespace Lakeside2.WorldMap
         public string name;
 
         public string filename { get; set; }
-        public Vector2 location { get; set; }
+        public Point location { get; set; }
 
 
         [JsonIgnore]
@@ -28,11 +28,11 @@ namespace Lakeside2.WorldMap
             }
             set
             {
-                location = new Vector2(value.X - (texture.Width / 2), value.Y - (texture.Height / 2));
+                location = new Point((int)value.X - (texture.Width / 2), (int)value.Y - (texture.Height / 2));
             }
         }
 
-        public OWLocation(ContentManager Content, string filename, Vector2 location)
+        public OWLocation(ContentManager Content, string filename, Point location)
         {
             this.filename = filename;
             this.location = location;

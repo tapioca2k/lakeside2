@@ -107,7 +107,7 @@ namespace Lakeside2
             {
                 startFade(() =>
                 {
-                    Vector2 oldLocation = p.getTileLocation();
+                    Point oldLocation = p.getTileLocation();
                     setState(new World(Content, this, p, filename));
                     if (!resetLocation) p.setTileLocation(oldLocation);
                 }, states.Peek() is TitleScreen);

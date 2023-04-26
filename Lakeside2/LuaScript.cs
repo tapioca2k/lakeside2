@@ -14,7 +14,7 @@ namespace Lakeside2
         const string PREFIX = "Content/scripts/";
 
         public string filename { get; set; }
-        public Vector2 location { get; set; }
+        public Point location { get; set; }
         public bool loaded;
         string script;
 
@@ -61,7 +61,7 @@ namespace Lakeside2
             else return new object[0];
         }
 
-        public Vector2 getTileLocation()
+        public Point getTileLocation()
         {
             return location;
         }

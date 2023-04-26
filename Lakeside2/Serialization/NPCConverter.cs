@@ -26,9 +26,9 @@ namespace Lakeside2.Serialization
             skipPropName(ref reader);
             string filename = reader.GetString();
             skipPropName(ref reader);
-            float x = reader.GetSingle();
+            int x = reader.GetInt32();
             skipPropName(ref reader);
-            float y = reader.GetSingle();
+            int y = reader.GetInt32();
             skipPropName(ref reader);
             string scriptname = reader.GetString();
             skipPropName(ref reader);
@@ -39,7 +39,7 @@ namespace Lakeside2.Serialization
             string realName = reader.GetString();
             reader.Read(); // } (this is important)
             NPC n = new NPC(filename, scriptname, locked, entityName, realName);
-            n.setTileLocation(new Vector2(x, y));
+            n.setTileLocation(new Point(x, y));
             return n;
         }
 
