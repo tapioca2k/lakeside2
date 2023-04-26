@@ -20,6 +20,7 @@ namespace Lakeside2.Serialization
             OPTIONS = new JsonSerializerOptions();
             OPTIONS.Converters.Add(new NPCConverter());
             OPTIONS.Converters.Add(new Vector2Converter());
+            OPTIONS.Converters.Add(new PointConverter());
         }
 
         public string name { get; set; }
