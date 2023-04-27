@@ -45,7 +45,7 @@ namespace Lakeside2.Editor
                                     GameInfo.titleBackground = input.text;
                                     titleScreen.updateBackground();
                                 }
-                            }), Vector2.Zero);
+                            }), Point.Zero);
                             break;
                         }
                     case 1: // Menu BG
@@ -57,7 +57,7 @@ namespace Lakeside2.Editor
                                 {
                                     GameInfo.title = input.text;
                                 }
-                            }), Vector2.Zero);
+                            }), Point.Zero);
                             break;
                         }
                     case 2: // Starting Map
@@ -73,8 +73,8 @@ namespace Lakeside2.Editor
                                         GameInfo.startMap = filename.text;
                                         GameInfo.startOverworld = (option.selected == 0);
                                     }
-                                }), new Vector2(0, 65));
-                            }), Vector2.Zero);
+                                }), new Point(0, 65));
+                            }), Point.Zero);
                             break;
                         }
                     case 3: // Save
@@ -85,7 +85,7 @@ namespace Lakeside2.Editor
                     default: break; // Tried to close the menu, just allow it
                 }
             });
-            ui.pushElement(list, Vector2.One * 5);
+            ui.pushElement(list, new Point(5, 5));
         }
 
         public void onInput(InputHandler input)

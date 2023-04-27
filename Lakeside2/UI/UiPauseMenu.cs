@@ -30,7 +30,7 @@ namespace Lakeside2.UI
                         {
                             element.finished = false;
                             system.pushElement(new UiInventory(Content, player), 
-                                new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
+                                new Point(Tile.TILE_SIZE, Tile.TILE_SIZE));
                             break;
                         }
                     case 1: // save
@@ -45,14 +45,14 @@ namespace Lakeside2.UI
                                     filename = "save" + savePicker.GetHashCode(); // create new file name
                                 SaveGame.Save(filename + ".json", player, map, overworld);
                                 element.finished = true; // actually, do the close menu
-                            }), new Vector2(Tile.TILE_SIZE * 10, Tile.TILE_SIZE));
+                            }), new Point(Tile.TILE_SIZE * 10, Tile.TILE_SIZE));
                             break;
                         }
                     case 2: // TODO options
                         {
                             element.finished = false;
                             system.pushElement(new UiOptionsMenu(game, Content),
-                                new Vector2(
+                                new Point(
                                     Game1.INTERNAL_WIDTH / 2 - UiOptionsMenu.WIDTH / 2,
                                     Game1.INTERNAL_HEIGHT / 2 - UiOptionsMenu.HEIGHT / 2)
                                 );
@@ -68,7 +68,7 @@ namespace Lakeside2.UI
                                 {
                                     game.goToTitle();
                                 }
-                            }), Vector2.Zero);
+                            }), Point.Zero);
                             break;
                         }
                 }

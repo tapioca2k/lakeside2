@@ -45,7 +45,7 @@ namespace Lakeside2.UI.Editor
                     NPC n = (NPC)picker.selected;
                     if (this.npc == null) this.npc = new NPC(Content, n.filename, "", false, picker.GetHashCode() + "", picker.GetHashCode() + "");
                     else this.npc.setTexture(Content, n.filename);
-                }), new Vector2(160, 0));
+                }), new Point(160, 0));
             }
             else if (input.isKeyPressed(Keys.N) && this.npc != null)
             {
@@ -54,7 +54,7 @@ namespace Lakeside2.UI.Editor
                     UiTextInput input = (UiTextInput)element;
                     string proposed = input.text;
                     if (proposed != "") this.npc.realName = input.text;
-                }), Vector2.Zero);
+                }), Point.Zero);
             }
             else if (input.isKeyPressed(Keys.C) && this.npc != null)
             {
@@ -63,7 +63,7 @@ namespace Lakeside2.UI.Editor
                     UiTextInput input = (UiTextInput)element;
                     string proposed = input.text;
                     if (proposed != "") this.npc.setName(input.text);
-                }), Vector2.Zero);
+                }), Point.Zero);
             }
             else if (input.isKeyPressed(Keys.S) && this.npc != null)
             {
@@ -71,7 +71,7 @@ namespace Lakeside2.UI.Editor
                 {
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "") this.npc.setScript(input.text);
-                }), Vector2.Zero);
+                }), Point.Zero);
             }
             else if (input.isKeyPressed(Keys.L) && this.npc != null)
             {
@@ -87,7 +87,7 @@ namespace Lakeside2.UI.Editor
                         this.delete = true;
                         finished = true;
                     }
-                }), Vector2.Zero);
+                }), Point.Zero);
             }
         }
 

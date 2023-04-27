@@ -11,7 +11,7 @@ namespace Lakeside2.UI
     {
         UiStripe stripe;
         List<UiElement> stack;
-        List<Vector2> locations;
+        List<Point> locations;
         public bool hasStripe => stripe != null;
 
         // UiSystem with a stripe that shows the logo
@@ -19,7 +19,7 @@ namespace Lakeside2.UI
         {
             stripe = new UiStripe(Content);
             stack = new List<UiElement>();
-            locations = new List<Vector2>();
+            locations = new List<Point>();
         }
 
         // create a UiSystem with default/no stripe (for edit mode & other things)
@@ -27,7 +27,7 @@ namespace Lakeside2.UI
         {
             if (hasStripe) stripe = new UiStripe();
             stack = new List<UiElement>();
-            locations = new List<Vector2>();
+            locations = new List<Point>();
         }
 
         public int getElementCount()
@@ -60,7 +60,7 @@ namespace Lakeside2.UI
             return false;
         }
 
-        public void pushElement(UiElement element, Vector2 location)
+        public void pushElement(UiElement element, Point location)
         {
             element.setUiSystem(this);
             stack.Add(element);
@@ -76,7 +76,7 @@ namespace Lakeside2.UI
         {
             for (int i = 0; i < stack.Count; i++)
             {
-                stack[i].draw(new SBWrapper(wrapper, locations[i]));
+                stack[i].draw(new SBWrapper(wrapper, locations[i].ToVector2()));
             }
             if (hasStripe) stripe.draw(wrapper);
         }

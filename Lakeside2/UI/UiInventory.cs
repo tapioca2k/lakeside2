@@ -10,7 +10,7 @@ namespace Lakeside2.UI
     class UiInventory : UiList
     {
         static string[] COMMANDS = new string[3] { "Use", "Examine", "Discard" };
-        static Vector2 COMMAND_LOCATION = new Vector2(Tile.TILE_SIZE * 10, Tile.TILE_SIZE);
+        static Point COMMAND_LOCATION = new Point(Tile.TILE_SIZE * 10, Tile.TILE_SIZE);
 
         ContentManager Content;
         Player player;
@@ -41,7 +41,7 @@ namespace Lakeside2.UI
                             case 0: break; // TODO Use item
                             case 1: // Examine
                                 {
-                                    system.pushElement(new UiTextBox(selectedItem.description, false), Vector2.Zero);
+                                    system.pushElement(new UiTextBox(selectedItem.description, false), Point.Zero);
                                     break;
                                 }
                             case 2: // Discard
@@ -54,7 +54,7 @@ namespace Lakeside2.UI
                                             player.setItemCount(selectedItem.name, 0);
                                             this.resetMenu();
                                         }
-                                    }), Vector2.Zero);
+                                    }), Point.Zero);
                                     break;
                                 }
                         }

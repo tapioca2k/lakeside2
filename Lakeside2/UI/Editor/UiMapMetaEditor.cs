@@ -41,7 +41,7 @@ namespace Lakeside2.UI.Editor
                 {
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "") map.name = input.text;
-                }), Vector2.Zero);
+                }), Point.Zero);
             }
             else if (input.isKeyPressed(Keys.R)) // resize map
             {
@@ -57,8 +57,8 @@ namespace Lakeside2.UI.Editor
                         if (heightInput.text != "") newHeight = int.Parse(heightInput.text);
                         map.resize(Content, newWidth, newHeight);
 
-                    }), new Vector2(0, 20));
-                }), Vector2.Zero);
+                    }), new Point(0, 20));
+                }), Point.Zero);
             }
             else if (input.isKeyPressed(Keys.B))
             {
@@ -67,17 +67,17 @@ namespace Lakeside2.UI.Editor
                 {
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "") map.color.B = Convert.ToByte(input.text);
-                }), new Vector2(0, 40));
+                }), new Point(0, 40));
                 system.pushElement(new UiTextInput("G: ").addCallback((element) =>
                 {
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "") map.color.G = Convert.ToByte(input.text);
-                }), new Vector2(0, 20));
+                }), new Point(0, 20));
                 system.pushElement(new UiTextInput("R: ").addCallback((element) =>
                 {
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "") map.color.R = Convert.ToByte(input.text);
-                }), Vector2.Zero);
+                }), Point.Zero);
             }
             else if (input.isKeyPressed(Keys.S))
             {
@@ -93,8 +93,8 @@ namespace Lakeside2.UI.Editor
                         if (yi.text != "") y = int.Parse(yi.text);
                         map.playerStart = new Point(x, y);
 
-                    }), new Vector2(0, 20));
-                }), Vector2.Zero);
+                    }), new Point(0, 20));
+                }), Point.Zero);
             }
         }
 

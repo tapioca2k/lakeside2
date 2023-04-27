@@ -58,7 +58,7 @@ namespace Lakeside2.UI.Editor
                                 layerList.setStrings(layers.ToArray());
                                 o.reloadLayers();
                             }
-                        }), Vector2.Zero);
+                        }), Point.Zero);
                     }
                     else if (mode == Mode.Deleting)
                     {

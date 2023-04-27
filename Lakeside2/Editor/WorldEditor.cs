@@ -77,7 +77,7 @@ namespace Lakeside2.Editor
             cursor.onInput(input);
             if (input.isKeyPressed(Keys.H))
             {
-                ui.pushElement(new UiTextBox(HELP_STRING, false), Vector2.Zero);
+                ui.pushElement(new UiTextBox(HELP_STRING, false), Point.Zero);
             }
             else if (input.isKeyPressed(Keys.F2)) // Save
             {
@@ -86,7 +86,7 @@ namespace Lakeside2.Editor
                     UiTextInput input = (UiTextInput)element;
                     if (input.text != "") SerializableMap.Save(Content, map, input.text);
                 });
-                ui.pushElement(filename, Vector2.One);
+                ui.pushElement(filename, new Point(1,1));
             }
             else if (input.isKeyPressed(Keys.F3)) // Load
             {
@@ -103,7 +103,7 @@ namespace Lakeside2.Editor
                         }
                     }
                 });
-                ui.pushElement(filename, Vector2.One);
+                ui.pushElement(filename, new Point(1,1));
             }
             else if (input.isKeyPressed(Keys.E)) // Edit tile properties
             {
@@ -120,7 +120,7 @@ namespace Lakeside2.Editor
                         map.setScript(cursor.getTileLocation(), editor.script);
                         lastEditedTile = editor.tile;
                         lastEditedScript = editor.script;
-                    }), new Vector2(160, 0));
+                    }), new Point(160, 0));
                 }
             }
             else if (input.isKeyHeld(Keys.P)) // Tile painter
@@ -134,7 +134,7 @@ namespace Lakeside2.Editor
             }
             else if (input.isKeyPressed(Keys.M)) // Edit map meta info
             {
-                ui.pushElement(new UiMapMetaEditor(Content, map), new Vector2(160, 0));
+                ui.pushElement(new UiMapMetaEditor(Content, map), new Point(160, 0));
             }
             else if (input.isKeyPressed(Keys.R)) // Row insert
             {

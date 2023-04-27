@@ -90,7 +90,7 @@ namespace Lakeside2.UI
                         case 1:
                             {
                                 UiInputBinding bindingEditor = new UiInputBinding(Content);
-                                system.pushElement(bindingEditor, new Vector2(
+                                system.pushElement(bindingEditor, new Point(
                                     Game1.INTERNAL_WIDTH / 2 - (int)bindingEditor.size.X / 2,
                                     Game1.INTERNAL_HEIGHT / 2 - (int)bindingEditor.size.Y / 2));
                                 break;

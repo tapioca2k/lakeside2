@@ -47,7 +47,7 @@ namespace Lakeside2.UI.Editor
                     Tile picked = (Tile)picker.selected;
                     this.tile.setTexture(Content, picked.filename);
 
-                }), Vector2.Zero);
+                }), Point.Zero);
             }
             else if (input.isKeyPressed(Keys.W))
             {
@@ -60,7 +60,7 @@ namespace Lakeside2.UI.Editor
                     UiNpcEditor editor = (UiNpcEditor)element;
                     if (editor.delete) this.npc = null;
                     else this.npc = editor.npc;
-                }), Vector2.Zero);
+                }), Point.Zero);
             }
             else if (input.isKeyPressed(Keys.S))
             {
@@ -73,7 +73,7 @@ namespace Lakeside2.UI.Editor
                         if (!this.script.loaded) this.script = null;
                     }
 
-                }), Vector2.Zero);
+                }), Point.Zero);
             }
         }
 

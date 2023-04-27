@@ -20,7 +20,7 @@ namespace Lakeside2.Scripting
 
         public override void start()
         {
-            system.pushElement(element, Vector2.Zero);
+            system.pushElement(element, Point.Zero);
             base.start();
         }
 

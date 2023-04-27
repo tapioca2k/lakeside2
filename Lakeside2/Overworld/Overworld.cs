@@ -205,7 +205,7 @@ namespace Lakeside2.WorldMap
                 if (input.isCommandPressed(Bindings.Start))
                 {
                     ui.pushElement(new UiPauseMenu(game, Content, player.p, selected.filename, true),
-                        new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
+                        new Point(Tile.TILE_SIZE, Tile.TILE_SIZE));
                 }
             }
 

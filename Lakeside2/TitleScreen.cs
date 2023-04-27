@@ -84,13 +84,13 @@ namespace Lakeside2
                                 if (game.overworld) this.game.goToOverworld(player, game.map);
                                 else this.game.goToWorld(player, game.map, false);
 
-                            }), new Vector2(Tile.TILE_SIZE, Tile.TILE_SIZE));
+                            }), new Point(Tile.TILE_SIZE, Tile.TILE_SIZE));
                             break;
                         }
                     case 2: // options
                         {
                             ui.pushElement(new UiOptionsMenu(game, Content),
-                                new Vector2(
+                                new Point(
                                     Game1.INTERNAL_WIDTH / 2 - UiOptionsMenu.WIDTH / 2,
                                     Game1.INTERNAL_HEIGHT / 2 - UiOptionsMenu.HEIGHT / 2)
                                 );
@@ -104,9 +104,9 @@ namespace Lakeside2
                 }
             });
 
-            Vector2 center = Vector2.Round(new Vector2(
-                Game1.INTERNAL_WIDTH / 2 - mainList.size.X / 2, 
-                (Game1.INTERNAL_HEIGHT / 2 - mainList.size.Y / 2) + 40));
+            Point center = new Point(
+                Game1.INTERNAL_WIDTH / 2 - (int)mainList.size.X / 2, 
+                (Game1.INTERNAL_HEIGHT / 2 - (int)mainList.size.Y / 2) + 40);
 
             ui.pushElement(mainList, center);
         }

@@ -60,7 +60,7 @@ namespace Lakeside2.Editor
 
             if (input.isKeyPressed(Keys.H)) // Help
             {
-                ui.pushElement(new UiTextBox(HELP_STRING, false), Vector2.Zero);
+                ui.pushElement(new UiTextBox(HELP_STRING, false), Point.Zero);
             }
             else if (input.isKeyPressed(Keys.F2)) // Save
             {
@@ -73,7 +73,7 @@ namespace Lakeside2.Editor
                         File.WriteAllText("Content/map/" + input.text, json);
                     }
                 });
-                ui.pushElement(filename, Vector2.One);
+                ui.pushElement(filename, new Point(1,1));
             }
             else if (input.isKeyPressed(Keys.F3)) // Load
             {
@@ -86,7 +86,7 @@ namespace Lakeside2.Editor
                         map.setPlayerLocation();
                     }
                 });
-                ui.pushElement(filename, Vector2.One);
+                ui.pushElement(filename, new Point(1,1));
             }
             else if (input.isKeyPressed(Keys.E)) // Create new map location
             {
@@ -98,7 +98,7 @@ namespace Lakeside2.Editor
                         map.addLocation(input.text, cursor.getLocation().ToPoint() + new Point((int)map.x, 0));
                         map.setPlayerLocation();
                     }
-                }), Vector2.Zero);
+                }), Point.Zero);
             }
             else if (input.isKeyPressed(Keys.R)) // Delete map location
             {
@@ -115,7 +115,7 @@ namespace Lakeside2.Editor
             }
             else if (input.isKeyPressed(Keys.L)) // Layer editor
             {
-                ui.pushElement(new UiLayerEditor(Content, map), new Vector2(10, 30));
+                ui.pushElement(new UiLayerEditor(Content, map), new Point(10, 30));
             }
         }
 

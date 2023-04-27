@@ -51,7 +51,7 @@ namespace Lakeside2
 
         public void pushUiElement(UiElement element, int x, int y)
         {
-            ui.pushElement(element, makeVector2(x, y));
+            ui.pushElement(element, makePoint(x, y));
         }
 
         public void queueMove(Entity entity, Point direction)
